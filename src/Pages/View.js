@@ -101,7 +101,7 @@ class View extends React.Component {
                             <InstallationInstructions sources={this.state.dashboard.sources} />
                         </div>
                         <div className="col-4 text-right">
-                            <a class="btn btn-danger" href={"https://github.com/kidk/newrelic-dashboards/issues/new?labels=bug&title=Problem%20with%20" + this.state.dashboard.config.name}>Report a problem</a>
+                            <a class="btn btn-danger" href={"https://github.com/newrelic-experimental/quickstarts/issues/new?labels=bug&title=Problem%20with%20" + this.state.dashboard.config.name}>Report a problem</a>
                         </div>
                     </div>
                     <div className="row py-4">
