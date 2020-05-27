@@ -2,7 +2,7 @@
 
 # New Relic Quickstart
 
-Community repository of New Relic dashboards, alerts, and installation instructions. You can find the repository here: (TODO ADD URL)
+Community repository of New Relic dashboards, alerts, and installation instructions. You can find the repository here: https://newrelic-experimental.github.io/quickstarts/
 
 ## Adding your own dashboards, alerts or instructions
 
