@@ -22,7 +22,10 @@ class Preview extends React.Component {
                 <div className="card-body">
                     <h5 className="card-title">
                       <Link className="" to={"/view/" + this.props.quickstart.id}>
-                        { this.props.quickstart.name } <small className="text-muted text-small">created by { this.props.quickstart.authors.join(', ') }</small>
+                        { this.props.quickstart.name }
+                        { this.props.quickstart.authors.length > 0 &&
+                          <span><small className="text-muted text-small">created by { this.props.quickstart.authors.join(', ') }</small></span>
+                        }
                       </Link>
                     </h5>
                     <Datasource sources={this.props.quickstart.sources} />
