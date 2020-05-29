@@ -4,6 +4,8 @@ import InstallationInstructions from '../Partials/InstallationInstructions';
 import {
     Link
   } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBug, faHome, faFileExport } from '@fortawesome/free-solid-svg-icons';
 import data from '../data.json';
 
 class View extends React.Component {
@@ -89,7 +91,7 @@ class View extends React.Component {
                         </div>
                         <div className="col-4 text-right">
                             <Link className="btn btn-default" to={"/"}>
-                                Back to homepage
+                                <FontAwesomeIcon icon={faHome} /> Back to homepage
                             </Link>
                         </div>
                     </div>
@@ -102,7 +104,7 @@ class View extends React.Component {
                             <InstallationInstructions sources={this.state.quickstart.sources} />
                         </div>
                         <div className="col-4 text-right">
-                            <a className="btn btn-danger" href={"https://github.com/newrelic-experimental/quickstarts/issues/new?labels=bug&title=Problem%20with%20" + this.state.quickstart.id}>Report a problem</a>
+                            <a className="btn btn-danger" href={"https://github.com/newrelic-experimental/quickstarts/issues/new?labels=bug&title=Problem%20with%20" + this.state.quickstart.id}><FontAwesomeIcon icon={faBug} /> Report a problem</a>
                         </div>
                     </div>
                     <div className="row">
@@ -118,7 +120,7 @@ class View extends React.Component {
                                         <div className="col-4 py-3 text-right">
                                             <div className="btn-group" role="group" aria-label="Basic example">
                                                 {/* <button className="btn btn-primary">Import to New Relic (TODO)</button> */}
-                                                <button className="btn btn-outline-info" onClick={(event) => { this.copy('./' + this.state.quickstart.id + '/dashboards/' + dashboard.filename) }}>Copy dashboard JSON to clipboard</button>
+                                                <button className="btn btn-outline-info" onClick={(event) => { this.copy('./' + this.state.quickstart.id + '/dashboards/' + dashboard.filename) }}><FontAwesomeIcon icon={faFileExport} /> Copy dashboard JSON to clipboard</button>
                                             </div>
                                         </div>
                                         <div className="col-12">
