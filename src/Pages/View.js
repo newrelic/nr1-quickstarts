@@ -118,7 +118,7 @@ class View extends React.Component {
                                         <div className="col-4 py-3 text-right">
                                             <div className="btn-group" role="group" aria-label="Basic example">
                                                 {/* <button className="btn btn-primary">Import to New Relic (TODO)</button> */}
-                                                <button className="btn btn-info" onClick={(event) => { this.copy('./' + this.state.quickstart.id + '/dashboards/' + dashboard.filename) }}>Copy to clipboard</button>
+                                                <button className="btn btn-outline-info" onClick={(event) => { this.copy('./' + this.state.quickstart.id + '/dashboards/' + dashboard.filename) }}>Copy dashboard JSON to clipboard</button>
                                             </div>
                                         </div>
                                         <div className="col-12">
