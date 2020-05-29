@@ -1,0 +1,8 @@
+name: CoreDNS
+authors:
+    - Stijn Polfliet
+sources:
+    - Kubernetes
+    - Prometheus
+    - name: CoreDNS
+      url: https://github.com/coredns/coredns/tree/master/plugin/metrics

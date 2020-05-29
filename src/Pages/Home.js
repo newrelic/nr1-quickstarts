@@ -23,7 +23,7 @@ class Home extends React.Component {
 
     search(element) {
         let lowercaseSearch = this.state.search.toLowerCase();
-        if (element.config.name.toLowerCase().includes(lowercaseSearch)) {
+        if (element.name.toLowerCase().includes(lowercaseSearch)) {
             return true;
         }
 
@@ -52,8 +52,8 @@ class Home extends React.Component {
                     </div>
                     <div className="container-fluid" id="root">
                         <div className="row py-3">
-                        {data.dashboards.filter(this.search).map((dashboard, i) => {
-                            return (<Preview key={dashboard.name} dashboard={dashboard} />)
+                        {data.quickstarts.filter(this.search).map((quickstart, i) => {
+                            return (<Preview key={quickstart.name} quickstart={quickstart} />)
                         })}
                         </div>
                     </div>

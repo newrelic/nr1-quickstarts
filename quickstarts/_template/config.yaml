@@ -1,0 +1,11 @@
+name: Add the name of your quickstart
+authors:
+    - Samuel V.
+    - Stijn P.
+alerts:
+    - name: Example alert for a user to use
+      description: This alert might trigger when our application is not working
+      query: FROM Transaction SELECT average(duration) FACET appName
+      thresholds:
+        warning: 3
+        error: 5

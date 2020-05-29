@@ -1,4 +1,7 @@
 const fs = require('fs');
+const yaml = require('js-yaml');
+const util = require('util');
+const path = require('path');
 
 // Helper to remove duplicates from an array
 // Thank you StackOverflow: https://stackoverflow.com/questions/1584370/how-to-merge-two-arrays-in-javascript-and-de-duplicate-items
@@ -15,73 +18,83 @@ Array.prototype.unique = function() {
 };
 
 
-// Read dashboards from list
-let dashboards = [];
-fs.readdirSync('dashboards').forEach(process);
+//
+// Read all quickstarts, filter out the ones starting with _ and process each
+//
+let quickstarts = fs.readdirSync('quickstarts')
+        .filter((element) => !element.startsWith('_'))
+        .map(process);
 
-// Process an element
+
+//
+// Process a quickstarts element
+//
 function process(element) {
-    // Read config
-    let config = JSON.parse(fs.readFileSync('dashboards/' + element + '/config.json'));
-
-    // Read dashboard data
-    let dashboardData = []
-    let files = [];
-    let file = 'dashboards/' + element + '/dashboard.json'
-    if (fs.existsSync(file)) {
-        // Single dashboard mode
-        let data = JSON.parse(fs.readFileSync(file))
-        files.push({
-            name: data.title,
-            location: element + '/dashboard.json'
-        });
-        dashboardData.push(data);
-    } else {
-        // Multi dashboard mode
-        let counter = 1;
-        let file = 'dashboards/' + element + '/dashboard_' + counter + '.json';
-        while(fs.existsSync(file)) {
-            let data = JSON.parse(fs.readFileSync(file))
-            files.push({
-                name: data.title,
-                location: element + '/dashboard_' + counter + '.json'
-            });
-            dashboardData.push(data);
-            counter++;
-            file = 'dashboards/' + element + '/dashboard_' + counter + '.json'
-        }
+    //
+    // Quickstart data
+    //
+    let quickstart = {
+        name: '',
+        authors: [],
+        sources: [],
+        alerts: [],
+        dashboards: [],
     }
 
-    // Check screenshots
-    let screenshots = [];
-    fs.readdirSync('dashboards/' + element).forEach((file) => {
-        if (file.endsWith('.png')) {
-            screenshots.push(file);
-        }
+
+    //
+    // Read config and store attributes
+    //
+    let configContents = fs.readFileSync('quickstarts/' + element + '/config.yaml', 'utf8');
+    let config = yaml.safeLoad(configContents);
+    quickstart.id = element;
+    quickstart.name = config.name || element;
+    quickstart.authors = config.authors || [];
+    quickstart.sources = config.sources || [];
+    quickstart.alerts = config.alerts || [];
+
+
+    //
+    // Read dashboard directory and read in all dashboards + screenshots
+    //
+    quickstart.dashboards = fs.readdirSync('quickstarts/' + element + '/dashboards/')
+        .filter((filename) => filename.endsWith('json'))
+        .map((filename) => {
+
+        let dashboard = {
+            'name': '',
+            'filename': filename,
+            'sources': [],
+            'screenshots': [],
+        };
+
+        // Retrieve dashboard json and store dashboard name
+        let dashboardJson = JSON.parse(fs.readFileSync('quickstarts/' + element + '/dashboards/' + filename));
+        dashboard.name = dashboardJson.title;
+        dashboard.sources = dashboardJson.filter.event_types;
+        quickstart.sources = quickstart.sources.concat(dashboard.sources);
+
+        // Check if an image exists with same name as dashboard
+        dashboard.screenshots = ['.png', '.jpeg', '.gif'].map((imageType) => {
+            if (fs.existsSync('quickstarts/' + element + '/dashboards/' + path.parse(filename).name + imageType)) {
+                return path.parse(filename).name + imageType;
+            }
+        }).filter((dashboard) => dashboard);
+
+        return dashboard;
     });
 
-    // Get event_types from all dashboards
-    let sources = config.sources || [];
-    dashboardData.forEach((dashboard) => {
-        dashboard.widgets.forEach((widget) => {
-            sources = sources.concat(widget.event_types).unique().filter((value) => value !== null);
-        });
-    });
 
-    // Add to array
-    dashboards.push({
-        name: element,
-        sources,
-        config,
-        files: files,
-        screenshots,
-    });
+    return quickstart;
 }
 
+
+//
 // Write out data for use in front-end
-console.log(dashboards);
+//
+console.log(util.inspect(quickstarts, false, null, true /* enable colors */))
 let json = JSON.stringify({
-    'dashboards': dashboards
+    'quickstarts': quickstarts
 });
 fs.writeFileSync('src/data.json', json);
 

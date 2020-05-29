@@ -11,7 +11,7 @@ echo ">"
 echo "> Copying dashboard data"
 echo ">"
 mkdir public/data || true
-cp -v -R dashboards/* public/data
+cp -v -R quickstarts/* public/data
 
 # Generate summary file
 echo ">"
