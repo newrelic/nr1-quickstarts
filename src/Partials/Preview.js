@@ -24,7 +24,7 @@ class Preview extends React.Component {
                       <Link className="" to={"/view/" + this.props.quickstart.id}>
                         { this.props.quickstart.name }
                         { this.props.quickstart.authors.length > 0 &&
-                          <span><small className="text-muted text-small">created by { this.props.quickstart.authors.join(', ') }</small></span>
+                          <span><small className="text-muted text-small"> created by { this.props.quickstart.authors.join(', ') }</small></span>
                         }
                       </Link>
                     </h5>
