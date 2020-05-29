@@ -2,10 +2,10 @@ name: Add the name of your quickstart
 authors:
     - Samuel V.
     - Stijn P.
-alerts:
-    - name: Example alert for a user to use
-      description: This alert might trigger when our application is not working
-      query: FROM Transaction SELECT average(duration) FACET appName
-      thresholds:
-        warning: 3
-        error: 5
+# Optionally you can add additional sources as some won't be auto detected by the scripts.
+# You can also redirect to external webpages when the dashboards provides specific installation instructions
+sources:
+  - Kubernetes
+  - Prometheus
+  - name: CoreDNS
+    url: https://github.com/coredns/coredns/tree/master/plugin/metrics
