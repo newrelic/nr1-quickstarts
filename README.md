@@ -10,18 +10,11 @@ Community repository of New Relic dashboards, alerts, and installation instructi
 
 2. [Clone your own repository to your local machine](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository)
 
-3. Create a directory in the `quickstarts` folder with the name of the technology you have a resources for. For example: `RabbitMQ`, `APM Errors`, ..
+3. Copy the directory `quickstarts/_template` and it's content to a new directory within the `quickstarts` folder. Choose a name which identifies the main purpose of your quickstart, for example: `RabbitMQ`, `APM Errors`, ..
 
-4. Add a file called `dashboard.json` to your directory and add the JSON of your dashboard.
+4. Change the dashboards in the `quickstarts/[your dir]/dashboards` folder. You can add multiple screenshots per dashboard as long as they have the same name as your dashboard file. For example `rabbitmq.json` `rabbitmq.png` `rabbitmq.jpeg`.
 
-5. Create a `config.json` file with the following content:
-
-```
-{
-    "name": "Name of your dashboard",
-    "author": "Your name or email address"
-}
-```
+5. Edit the `quickstarts/[your dir]/config.yaml` file with your your values.
 
 6. Commit your changes `git add -A` and `git commit -m "My new resource"`. Change the `My new resource` with a description of the resource you've added.
 
