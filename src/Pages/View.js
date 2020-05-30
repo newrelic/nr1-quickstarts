@@ -5,7 +5,7 @@ import InstallationInstructions from '../Partials/InstallationInstructions';
 import {
     Link
   } from "react-router-dom";
-import { Dropdown } from "react-bootstrap";
+import { Dropdown, Modal, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBug, faHome, faFileExport } from '@fortawesome/free-solid-svg-icons';
 import data from '../data.json';
@@ -30,8 +30,6 @@ class View extends React.Component {
         this.submitModal = this.submitModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.showTerraform = this.showTerraform.bind(this);
-
-        this.showTerraform('./' + this.state.quickstart.id + '/dashboards/' + this.state.quickstart.dashboards[0].filename);
     }
 
     getAccountId(callback) {
@@ -164,49 +162,31 @@ class View extends React.Component {
                     </div>
                 </div>
 
-                {this.state.accountModalVisible &&
-                    <div className="modal fade show" tabIndex="-1" role="dialog" style={{"display": "block", "backgroundColor": "rgba(150, 150, 150, 0.50)"}}>
-                        <div className="modal-dialog" role="document">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    <h5 className="modal-title">Choose your New Relic account ID</h5>
-                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.closeModal}>
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div className="modal-body">
-                                    <p>You can find your account ID in New Relic UI:</p>
-                                    <input type="text" className="form-control" id="accountId" aria-describedby="Account Id" placeholder="" value={this.state.accountId} onChange={this.setAccountId} />
-                                </div>
-                                <div className="modal-footer">
-                                    <button type="button" className="btn btn-primary" onClick={this.submitModal}>Set</button>
-                                    <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={this.closeModal}>Cancel</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
+                <Modal show={this.state.accountModalVisible} onHide={this.closeModal}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Enter your New Relic account ID</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <p>You can find your account ID in New Relic UI:</p>
+                        <input type="text" className="form-control" id="accountId" aria-describedby="Account Id" placeholder="" value={this.state.accountId} onChange={this.setAccountId} />
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="primary" onClick={this.submitModal}>Set</Button>
+                        <Button variant="secondary" onClick={this.closeModal}>Cancel</Button>
+                    </Modal.Footer>
+                </Modal>
 
-                {this.state.terraformModalVisible &&
-                    <div className="modal fade show" tabIndex="-1" role="dialog" style={{"display": "block", "backgroundColor": "rgba(150, 150, 150, 0.50)"}}>
-                        <div className="modal-dialog modal-lg" role="document">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    <h5 className="modal-title">Terraform template</h5>
-                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.closeModal}>
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div className="modal-body">
-                                    <ExportTerraform json={this.state.dashboardJson} />
-                                </div>
-                                <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={this.closeModal}>Cancel</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
+                <Modal show={this.state.terraformModalVisible} size="lg" onHide={this.closeModal}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Terraform export</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <ExportTerraform json={this.state.dashboardJson} />
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="primary" onClick={this.closeModal}>Close modal</Button>
+                    </Modal.Footer>
+                </Modal>
             </div>
         );
     }
