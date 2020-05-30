@@ -1,9 +1,11 @@
 import React from 'react';
 import Datasource from '../Partials/Datasource';
+import ExportTerraform from '../Partials/ExportTerraform';
 import InstallationInstructions from '../Partials/InstallationInstructions';
 import {
     Link
   } from "react-router-dom";
+import { Dropdown } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBug, faHome, faFileExport } from '@fortawesome/free-solid-svg-icons';
 import data from '../data.json';
@@ -16,28 +18,32 @@ class View extends React.Component {
         super(props);
 
         this.state = {
-            'quickstart': data.quickstarts.find(element => element.id === props.match.params.handle),
-            'visible': 0,
-            'modalVisible': false,
-            'accountId': '',
+            quickstart: data.quickstarts.find(element => element.id === props.match.params.handle),
+            visible: 0,
+            accountModalVisible: false,
+            terraformModalVisible: false,
+            accountId: '',
         };
 
         this.copy = this.copy.bind(this);
         this.setAccountId = this.setAccountId.bind(this);
         this.submitModal = this.submitModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.showTerraform = this.showTerraform.bind(this);
+
+        this.showTerraform('./' + this.state.quickstart.id + '/dashboards/' + this.state.quickstart.dashboards[0].filename);
     }
 
     getAccountId(callback) {
         this.modalCallback = callback;
         this.setState({
-            'modalVisible': true,
+            accountModalVisible: true,
         });
     }
 
     submitModal() {
         this.setState({
-            'modalVisible': false,
+            accountModalVisible: false,
         });
         if (this.modalCallback) {
             this.modalCallback();
@@ -46,7 +52,8 @@ class View extends React.Component {
 
     closeModal() {
         this.setState({
-            'modalVisible': false,
+            accountModalVisible: false,
+            terraformModalVisible: false,
         });
     }
 
@@ -57,13 +64,16 @@ class View extends React.Component {
     }
 
     getDashboard(file, callback) {
-        console.log(file);
         this.getAccountId(() => {
-            fetch('./data/' + file).then(response => response.json()).then((json) => {
+            this.getFile(file).then((json) => {
                 json.dashboard_account_id = +this.state.accountId;
                 callback(JSON.stringify(json));
             });
         });
+    }
+
+    getFile(file) {
+        return fetch('./data/' + file).then(response => response.json());
     }
 
     copy(file) {
@@ -79,6 +89,17 @@ class View extends React.Component {
                 }
             });
         });
+    }
+
+    showTerraform(file) {
+        console.log(file);
+        this.getFile(file).then((json) => {
+            this.setState({
+                terraformModalVisible: true,
+                dashboardJson: json,
+            });
+        });
+
     }
 
     render() {
@@ -118,10 +139,16 @@ class View extends React.Component {
                                             <h3>{dashboard.name}</h3>
                                         </div>
                                         <div className="col-4 py-3 text-right">
-                                            <div className="btn-group" role="group" aria-label="Basic example">
-                                                {/* <button className="btn btn-primary">Import to New Relic (TODO)</button> */}
-                                                <button className="btn btn-outline-info" onClick={(event) => { this.copy('./' + this.state.quickstart.id + '/dashboards/' + dashboard.filename) }}><FontAwesomeIcon icon={faFileExport} /> Copy dashboard JSON to clipboard</button>
-                                            </div>
+                                            <Dropdown>
+                                                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                                                    <FontAwesomeIcon icon={faFileExport} /> Export dashboard
+                                                </Dropdown.Toggle>
+
+                                                <Dropdown.Menu>
+                                                    <Dropdown.Item onClick={(event) => { this.copy('./' + this.state.quickstart.id + '/dashboards/' + dashboard.filename) }}>Copy JSON to clipboard</Dropdown.Item>
+                                                    <Dropdown.Item onClick={(event) => { this.showTerraform('./' + this.state.quickstart.id + '/dashboards/' + dashboard.filename) }}>Generate Terraform template</Dropdown.Item>
+                                                </Dropdown.Menu>
+                                            </Dropdown>
                                         </div>
                                         <div className="col-12">
                                             {dashboard.screenshots.map((screenshot) => {
@@ -137,7 +164,7 @@ class View extends React.Component {
                     </div>
                 </div>
 
-                {this.state.modalVisible&&
+                {this.state.accountModalVisible &&
                     <div className="modal fade show" tabIndex="-1" role="dialog" style={{"display": "block", "backgroundColor": "rgba(150, 150, 150, 0.50)"}}>
                         <div className="modal-dialog" role="document">
                             <div className="modal-content">
@@ -153,6 +180,27 @@ class View extends React.Component {
                                 </div>
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-primary" onClick={this.submitModal}>Set</button>
+                                    <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={this.closeModal}>Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                {this.state.terraformModalVisible &&
+                    <div className="modal fade show" tabIndex="-1" role="dialog" style={{"display": "block", "backgroundColor": "rgba(150, 150, 150, 0.50)"}}>
+                        <div className="modal-dialog modal-lg" role="document">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title">Terraform template</h5>
+                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.closeModal}>
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div className="modal-body">
+                                    <ExportTerraform json={this.state.dashboardJson} />
+                                </div>
+                                <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={this.closeModal}>Cancel</button>
                                 </div>
                             </div>
