@@ -17,4 +17,4 @@ cp -v -R quickstarts/* public/data
 echo ">"
 echo "> Generating data for use in React"
 echo ">"
-node generate.js
+node generator/generate.js

@@ -22,7 +22,7 @@ jobs:
 
     - run: yarn
 
-    - run: bash build.sh
+    - run: bash generate-data.sh
 
     - run: yarn run build
 
