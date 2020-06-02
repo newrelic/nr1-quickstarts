@@ -115,49 +115,69 @@ class View extends React.Component {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-8">
-                            <p><b>Created by:</b> { this.state.quickstart.authors.join(', ') }</p>
-                            <Datasource sources={this.state.quickstart.sources} />
-                            <h5 className="pt-4">Installation instructions</h5>
-                            <p>This dashboard requires the following New Relic products:</p>
-                            <InstallationInstructions sources={this.state.quickstart.sources} />
-                        </div>
-                        <div className="col-4 text-right">
-                            <a className="btn btn-danger" href={"https://github.com/newrelic-experimental/quickstarts/issues/new?labels=bug&title=Problem%20with%20" + this.state.quickstart.id}><FontAwesomeIcon icon={faBug} /> Report a problem</a>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-12">
-                            <h2>Dashboards</h2>
-
-                            {this.state.quickstart.dashboards.map((dashboard) => {
-                                return (
-                                    <div key={dashboard.filename} className="row px-4 py-2">
+                        <div class="col-12">
+                            <div className="card">
+                                <div className="card-header">
+                                    Description
+                                </div>
+                                <div className="card-body">
+                                    <div class="row">
                                         <div className="col-8">
-                                            <h3>{dashboard.name}</h3>
-                                        </div>
-                                        <div className="col-4 py-3 text-right">
-                                            <Dropdown>
-                                                <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                                    <FontAwesomeIcon icon={faFileExport} /> Export dashboard
-                                                </Dropdown.Toggle>
+                                            <h5>Installation instructions</h5>
+                                            <p>This dashboard requires the following New Relic products:</p>
+                                            <InstallationInstructions sources={this.state.quickstart.sources} />
 
-                                                <Dropdown.Menu>
-                                                    <Dropdown.Item onClick={(event) => { this.copy('./' + this.state.quickstart.id + '/dashboards/' + dashboard.filename) }}>Copy JSON to clipboard</Dropdown.Item>
-                                                    <Dropdown.Item onClick={(event) => { this.showTerraform('./' + this.state.quickstart.id + '/dashboards/' + dashboard.filename) }}>Generate Terraform template</Dropdown.Item>
-                                                </Dropdown.Menu>
-                                            </Dropdown>
+                                            <p><b>Data sources: <Datasource sources={this.state.quickstart.sources} /></b></p>
+
+                                            {this.state.quickstart.authors.length > 0 &&
+                                                <p><b>Created by:</b> { this.state.quickstart.authors.join(', ') }</p>
+                                            }
                                         </div>
-                                        <div className="col-12">
-                                            {dashboard.screenshots.map((screenshot) => {
-                                                return (
-                                                    <img key={screenshot} src={ "data/" + this.state.quickstart.id + "/dashboards/" + screenshot} className="card-img-top" alt="..." />
-                                                );
-                                            })}
+                                        <div className="col-4 text-right">
+                                            <a className="btn btn-danger" href={"https://github.com/newrelic-experimental/quickstarts/issues/new?labels=bug&title=Problem%20with%20" + this.state.quickstart.id}><FontAwesomeIcon icon={faBug} /> Report a problem</a>
                                         </div>
                                     </div>
-                                )
-                            })}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row mt-4">
+                        <div className="col-12">
+                            <div className="card">
+                                <div className="card-header">
+                                    Dashboards
+                                </div>
+                                <div className="card-body">
+                                    {this.state.quickstart.dashboards.map((dashboard) => {
+                                        return (
+                                            <div key={dashboard.filename} className="row px-4 py-4">
+                                                <div className="col-8 py-1">
+                                                    <h3>{dashboard.name}</h3>
+                                                </div>
+                                                <div className="col-4 text-right">
+                                                    <Dropdown>
+                                                        <Dropdown.Toggle variant="default" id="dropdown-basic">
+                                                            <FontAwesomeIcon icon={faFileExport} /> Import dashboard
+                                                        </Dropdown.Toggle>
+
+                                                        <Dropdown.Menu>
+                                                            <Dropdown.Item onClick={(event) => { this.copy('./' + this.state.quickstart.id + '/dashboards/' + dashboard.filename) }}>Copy JSON to clipboard</Dropdown.Item>
+                                                            <Dropdown.Item onClick={(event) => { this.showTerraform('./' + this.state.quickstart.id + '/dashboards/' + dashboard.filename) }}>Generate Terraform template</Dropdown.Item>
+                                                        </Dropdown.Menu>
+                                                    </Dropdown>
+                                                </div>
+                                                <div className="col-12">
+                                                    {dashboard.screenshots.map((screenshot) => {
+                                                        return (
+                                                            <img key={screenshot} src={ "data/" + this.state.quickstart.id + "/dashboards/" + screenshot} className="card-img-top" alt="..." />
+                                                        );
+                                                    })}
+                                                </div>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
