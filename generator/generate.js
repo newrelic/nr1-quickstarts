@@ -85,6 +85,12 @@ function process(element) {
     });
 
 
+    //
+    // Remove duplicates from sources
+    //
+    quickstart.sources = Array.from(new Set(quickstart.sources)).sort();
+
+
     return quickstart;
 }
 
