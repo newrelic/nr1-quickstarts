@@ -35,11 +35,11 @@ class ExportTerraform extends React.Component {
 
         output.push('  filter {');
         output.push('    event_types = [');
-        output.push(json.filter.event_types.map((eventType) => output.push('        "' + eventType + '"')).join(', \n'));
+        output.push(json.filter.event_types.map((eventType) => '        "' + eventType + '"').join(', \n'));
         output.push('    ]');
         if (json.filter.attributes) {
             output.push('    attributes = [');
-            output.push(json.filter.attributes.map((attribute) => output.push('        "' + attribute + '"')).join(', \n'));
+            output.push(json.filter.attributes.map((attribute) => '        "' + attribute + '"').join(', \n'));
             output.push('    ]');
         }
         output.push('  }');
@@ -110,7 +110,7 @@ class ExportTerraform extends React.Component {
         return (
             <div className="terraform">
                 <button className="btn btn-sm btn-outline-info float-right" onClick={this.copyToClipboard}>Copy to clipboard</button>
-                <pre class="code">
+                <pre className="code">
                     {this.state.output}
                 </pre>
             </div>
