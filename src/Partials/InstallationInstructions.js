@@ -24,6 +24,9 @@ class InstallationInstructions extends React.Component {
             url: 'https://docs.newrelic.com/docs/infrastructure/install-configure-manage-infrastructure'
           }
         case 'PageView':
+        case 'BrowserInteraction':
+        case 'JavaScriptError':
+        case 'PageViewTiming':
           return {
             name: 'New Relic Browser',
             url: 'https://docs.newrelic.com/docs/browser/new-relic-browser/installation/install-new-relic-browser-agent'
