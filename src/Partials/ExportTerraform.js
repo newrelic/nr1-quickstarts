@@ -104,7 +104,7 @@ class ExportTerraform extends React.Component {
             }
         }
         return null
-      }
+    }
 
     render() {
         return (

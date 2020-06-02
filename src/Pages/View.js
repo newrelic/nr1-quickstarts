@@ -17,19 +17,30 @@ class View extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            quickstart: data.quickstarts.find(element => element.id === props.match.params.handle),
-            visible: 0,
-            accountModalVisible: false,
-            terraformModalVisible: false,
-            accountId: '',
-        };
+        this.state = View.getState(props);
 
         this.copy = this.copy.bind(this);
         this.setAccountId = this.setAccountId.bind(this);
         this.submitModal = this.submitModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.showTerraform = this.showTerraform.bind(this);
+    }
+
+    static getState(props) {
+        return {
+            quickstart: data.quickstarts.find(element => element.id === props.match.params.handle),
+            visible: 0,
+            accountModalVisible: false,
+            terraformModalVisible: false,
+            accountId: '',
+        }
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        if (!state.quickstart || (state.quickstart.id !== props.match.params.handle)) {
+            return View.getState(props);
+        }
+        return null
     }
 
     getAccountId(callback) {
@@ -101,6 +112,25 @@ class View extends React.Component {
     }
 
     render() {
+        if (!this.state.quickstart) {
+            return (
+                <div className="album py-2">
+                    <div className="container" id="root">
+                        <div className="row py-4">
+                            <div className="col-8">
+                                <h2>Quickstart not found</h2>
+                            </div>
+                            <div className="col-4 text-right">
+                                <Link className="btn btn-default" to={"/"}>
+                                    <FontAwesomeIcon icon={faHome} /> Back to homepage
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+
         return (
             <div className="album py-2">
                 <div className="container" id="root">
