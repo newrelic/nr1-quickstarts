@@ -1,0 +1,10 @@
+# Used to query against OSQuery metrics
+---
+integrations:
+  - name: nri-flex
+    config:
+      name: osquery
+      apis:
+        - event_type: osqueryOpenSockets
+          commands:
+            - run: osqueryi --json "SELECT * FROM process_open_sockets;"

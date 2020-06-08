@@ -1,0 +1,14 @@
+# Used to query Directory Size via Disk Usage
+---
+integrations:
+  - name: nri-flex
+    config:
+      name: directorySize
+      apis:
+        - event_type: directorySize
+          commands:
+            - run: du -sb /var/db/newrelic-infra/custom-integrations/
+              split: horizontal
+              set_header: [directory.size.bytes, directory.name]
+              regex_match: true
+              split_by: (\d+)\s+(.*)

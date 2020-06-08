@@ -1,0 +1,14 @@
+# Used to query File Size via File Status
+---
+integrations:
+  - name: nri-flex
+    config:
+      name: fileSize
+      apis:
+        - event_type: fileSize
+          commands:
+            - run: stat -c '%n;%s' /etc/*conf
+              split: horizontal
+              set_header: [fileSize.fileName, fileSize.fileSizeBytes]
+              regex_match: false
+              split_by: ";"
