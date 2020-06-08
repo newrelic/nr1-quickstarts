@@ -197,7 +197,7 @@
             "renderer_props": null,
             "extension_type": null,
             "customizations": {
-                "markdown": "# openquery.yml\n```\n# Used to query against OSQuery metrics\n---\nintegrations:\n  - name: nri-flex\n    config:\n      name: osquery\n      apis:\n        - event_type: osqueryOpenSockets\n          commands:\n            - run: osqueryi --json \"SELECT * FROM process_open_sockets;\""
+                "markdown": "# osquery.yml\n```\n# Used to query against OSQuery metrics\n---\nintegrations:\n  - name: nri-flex\n    config:\n      name: osquery\n      apis:\n        - event_type: osqueryOpenSockets\n          commands:\n            - run: osqueryi --json \"SELECT * FROM process_open_sockets;\""
             }
         },
         {
