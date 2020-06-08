@@ -1,0 +1,404 @@
+{
+    "title": "NR-Synthetics Requests",
+    "icon": "bar-chart",
+    "grid_column_count": 3,
+    "filter": {
+        "key_names": [
+            "monitorName",
+            "nr.tripId",
+            "locationLabel"
+        ],
+        "event_types": [
+            "SyntheticRequest",
+            "Transaction",
+            "SyntheticCheck"
+        ],
+        "filter_first": false
+    },
+    "owner": {
+        "email": "bgomes@newrelic.com"
+    },
+    "widgets": [
+        {
+            "title": "Average duration (ms) by Location",
+            "nrql": "SELECT average(durationDNS) as 'DNS', average(durationSSL) as 'SSL', average(durationConnect) as 'Connect' , average(durationSend) as 'Send',  average(durationWait) as 'Wait', average(durationBlocked) as 'Blocked', average(durationReceive) as 'Receive',     average(duration) as 'Duration' from SyntheticRequest  since yesterday  facet locationLabel",
+            "process_as": "facet_table",
+            "width": 1,
+            "height": 1,
+            "row": 1,
+            "column": 1,
+            "event_types": [
+                "SyntheticRequest"
+            ],
+            "facet": "locationLabel",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 228618
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Maximum duration (ms) by Location",
+            "nrql": "SELECT max(durationDNS) as 'DNS', max(durationSSL) as 'SSL', max(durationConnect) as 'Connect' , max(durationSend) as 'Send',  max(durationWait) as 'Wait', max(durationBlocked) as 'Blocked', max(durationReceive) as 'Receive',  max(duration) as 'Duration' from SyntheticRequest  since yesterday  facet locationLabel",
+            "process_as": "facet_table",
+            "width": 1,
+            "height": 1,
+            "row": 1,
+            "column": 2,
+            "event_types": [
+                "SyntheticRequest"
+            ],
+            "facet": "locationLabel",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 228618
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Requests by URL",
+            "nrql": "SELECT count(*) FROM SyntheticRequest SINCE yesterday FACET URL LIMIT 10",
+            "process_as": "facet_bar_chart",
+            "width": 1,
+            "height": 1,
+            "row": 1,
+            "column": 3,
+            "event_types": [
+                "SyntheticRequest"
+            ],
+            "facet": "URL",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 494107
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Average duration (ms) by URL",
+            "nrql": "SELECT average(durationDNS) as 'DNS', average(durationSSL) as 'SSL', average(durationConnect) as 'Connect' , average(durationSend) as 'Send',  average(durationWait) as 'Wait', average(durationBlocked) as 'Blocked', average(durationReceive) as 'Receive',     average(duration) as 'Duration' from SyntheticRequest  since yesterday  facet URL",
+            "process_as": "facet_table",
+            "width": 1,
+            "height": 1,
+            "row": 2,
+            "column": 1,
+            "event_types": [
+                "SyntheticRequest"
+            ],
+            "facet": "URL",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 228618
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Maximum duration (ms) by URL",
+            "nrql": "SELECT max(durationDNS) as 'DNS', max(durationSSL) as 'SSL', max(durationConnect) as 'Connect' , max(durationSend) as 'Send',  max(durationWait) as 'Wait', max(durationBlocked) as 'Blocked', max(durationReceive) as 'Receive',  max(duration) as 'Duration' from SyntheticRequest  since yesterday  facet URL",
+            "process_as": "facet_table",
+            "width": 1,
+            "height": 1,
+            "row": 2,
+            "column": 2,
+            "event_types": [
+                "SyntheticRequest"
+            ],
+            "facet": "URL",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 228618
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Content Category",
+            "nrql": "SELECT count(*) FROM SyntheticRequest SINCE yesterday FACET contentCategory LIMIT 100",
+            "process_as": "facet_pie_chart",
+            "width": 1,
+            "height": 1,
+            "row": 2,
+            "column": 3,
+            "event_types": [
+                "SyntheticRequest"
+            ],
+            "facet": "contentCategory",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 228618
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Domain",
+            "nrql": "SELECT count(*) FROM SyntheticRequest SINCE yesterday FACET domain LIMIT 100",
+            "process_as": "facet_pie_chart",
+            "width": 1,
+            "height": 1,
+            "row": 3,
+            "column": 1,
+            "event_types": [
+                "SyntheticRequest"
+            ],
+            "facet": "domain",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 494107
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Content Type",
+            "nrql": "SELECT count(*) FROM SyntheticRequest SINCE yesterday FACET contentType LIMIT 100",
+            "process_as": "facet_bar_chart",
+            "width": 1,
+            "height": 1,
+            "row": 3,
+            "column": 2,
+            "event_types": [
+                "SyntheticRequest"
+            ],
+            "facet": "contentType",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 494107
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Hosts",
+            "nrql": "SELECT count(*) FROM SyntheticRequest SINCE yesterday  FACET host LIMIT 100",
+            "process_as": "facet_pie_chart",
+            "width": 1,
+            "height": 1,
+            "row": 3,
+            "column": 3,
+            "event_types": [
+                "SyntheticRequest"
+            ],
+            "facet": "host",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 494107
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Location",
+            "nrql": "SELECT count(*) FROM SyntheticRequest SINCE yesterday FACET locationLabel LIMIT 10",
+            "process_as": "facet_pie_chart",
+            "width": 1,
+            "height": 1,
+            "row": 4,
+            "column": 1,
+            "event_types": [
+                "SyntheticRequest"
+            ],
+            "facet": "locationLabel",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 494107
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "External Resources",
+            "nrql": "SELECT count(*) FROM SyntheticRequest SINCE yesterday FACET externalResource LIMIT 10",
+            "process_as": "facet_pie_chart",
+            "width": 1,
+            "height": 1,
+            "row": 4,
+            "column": 2,
+            "event_types": [
+                "SyntheticRequest"
+            ],
+            "facet": "externalResource",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 228618
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Response Status",
+            "nrql": "SELECT count(*) FROM SyntheticRequest SINCE yesterday FACET responseStatus LIMIT 10",
+            "process_as": "facet_pie_chart",
+            "width": 1,
+            "height": 1,
+            "row": 4,
+            "column": 3,
+            "event_types": [
+                "SyntheticRequest"
+            ],
+            "facet": "responseStatus",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 494107
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Command",
+            "nrql": "SELECT count(*) FROM SyntheticRequest SINCE yesterday FACET verb LIMIT 100",
+            "process_as": "facet_pie_chart",
+            "width": 1,
+            "height": 1,
+            "row": 5,
+            "column": 1,
+            "event_types": [
+                "SyntheticRequest"
+            ],
+            "facet": "verb",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 494107
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Max Request and Response size",
+            "nrql": "SELECT max(requestBodySize) , max(requestHeaderSize), max(responseBodySize), max(responseHeaderSize) from SyntheticRequest  since yesterday FACET URL limit 100",
+            "process_as": "facet_table",
+            "width": 1,
+            "height": 1,
+            "row": 5,
+            "column": 2,
+            "event_types": [
+                "SyntheticRequest"
+            ],
+            "facet": "URL",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 228618
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Average Request and Response size by Domain",
+            "nrql": "SELECT average(requestBodySize) , average(requestHeaderSize), average(responseBodySize), average(responseHeaderSize) from SyntheticRequest  since yesterday FACET URL limit 100",
+            "process_as": "facet_table",
+            "width": 1,
+            "height": 1,
+            "row": 5,
+            "column": 3,
+            "event_types": [
+                "SyntheticRequest"
+            ],
+            "facet": "URL",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 228618
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Average Request and Response size",
+            "nrql": "SELECT average(requestBodySize) , average(requestHeaderSize), average(responseBodySize), average(responseHeaderSize) from SyntheticRequest  since yesterday FACET URL limit 100",
+            "process_as": "facet_table",
+            "width": 1,
+            "height": 1,
+            "row": 6,
+            "column": 1,
+            "event_types": [
+                "SyntheticRequest"
+            ],
+            "facet": "URL",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 228618
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Response codes",
+            "nrql": "SELECT count(*) FROM SyntheticRequest SINCE yesterday FACET  responseCode limit 100",
+            "process_as": "facet_pie_chart",
+            "width": 1,
+            "height": 1,
+            "row": 6,
+            "column": 2,
+            "event_types": [
+                "SyntheticRequest"
+            ],
+            "facet": "responseCode",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 228618
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Non HTTP 200 by Domain",
+            "nrql": "SELECT count(*) FROM SyntheticRequest SINCE yesterday where  responseCode !=200 FACET domain limit 100",
+            "process_as": "facet_bar_chart",
+            "width": 1,
+            "height": 1,
+            "row": 6,
+            "column": 3,
+            "event_types": [
+                "SyntheticRequest"
+            ],
+            "facet": "domain",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 494107
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Max Request and Response size by Domain",
+            "nrql": "SELECT max(requestBodySize) , max(requestHeaderSize), max(responseBodySize), max(responseHeaderSize) from SyntheticRequest  since yesterday FACET domain limit 100",
+            "process_as": "facet_table",
+            "width": 1,
+            "height": 1,
+            "row": 7,
+            "column": 1,
+            "event_types": [
+                "SyntheticRequest"
+            ],
+            "facet": "domain",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 228618
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Non HTTP 200 by URL",
+            "nrql": "SELECT count(*) FROM SyntheticRequest SINCE yesterday where  responseCode !=200 FACET URL limit 100",
+            "process_as": "facet_bar_chart",
+            "width": 2,
+            "height": 1,
+            "row": 7,
+            "column": 2,
+            "event_types": [
+                "SyntheticRequest"
+            ],
+            "facet": "URL",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 494107
+                }
+            },
+            "notes": null
+        }
+    ],
+    "dashboard_account_id": 0
+}

@@ -31,6 +31,7 @@ class InstallationInstructions extends React.Component {
             name: 'New Relic Browser',
             url: 'https://docs.newrelic.com/docs/browser/new-relic-browser/installation/install-new-relic-browser-agent'
           }
+        case 'SyntheticRequest':
         case 'SyntheticCheck':
           return {
             name: 'New Relic Synthetics',

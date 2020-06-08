@@ -1,0 +1,208 @@
+{
+    "title": "NR-Synthetics unresponsive checks",
+    "icon": "bar-chart",
+    "grid_column_count": 3,
+    "filter": {
+        "key_names": [],
+        "event_types": [
+            "SyntheticCheck",
+            "SyntheticRequest"
+        ],
+        "filter_first": false
+    },
+    "owner": {
+        "email": "bgomes@newrelic.com"
+    },
+    "widgets": [
+        {
+            "title": "Total number of synthetic checks",
+            "nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago COMPARE WITH 1 week ago",
+            "process_as": "billboard_comparison",
+            "width": 1,
+            "height": 1,
+            "row": 1,
+            "column": 1,
+            "event_types": [
+                "SyntheticCheck"
+            ],
+            "facet": null,
+            "customizations": null,
+            "notes": null
+        },
+        {
+            "title": "Number of Unresponsive Checks",
+            "nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago WHERE result = 'FAILED' COMPARE WITH 1 week ago",
+            "process_as": "billboard_comparison",
+            "width": 1,
+            "height": 1,
+            "row": 1,
+            "column": 2,
+            "event_types": [
+                "SyntheticCheck"
+            ],
+            "facet": null,
+            "customizations": null,
+            "notes": "Failures in 24 hours"
+        },
+        {
+            "title": "Percentage of unresponsive checks",
+            "nrql": "SELECT percentage(count(result), WHERE result = 'FAILED') AS '' FROM SyntheticCheck SINCE 1 day ago COMPARE WITH 1 week ago",
+            "process_as": "billboard_comparison",
+            "width": 1,
+            "height": 1,
+            "row": 1,
+            "column": 3,
+            "event_types": [
+                "SyntheticCheck"
+            ],
+            "facet": null,
+            "customizations": null,
+            "notes": null
+        },
+        {
+            "title": "Unresponsive checks",
+            "nrql": "SELECT count(*) FROM SyntheticCheck SINCE 1 day ago WHERE result = 'FAILED' TIMESERIES AUTO",
+            "process_as": "line_chart",
+            "width": 1,
+            "height": 1,
+            "row": 2,
+            "column": 1,
+            "event_types": [
+                "SyntheticCheck"
+            ],
+            "facet": null,
+            "customizations": null,
+            "notes": null
+        },
+        {
+            "title": "Location",
+            "nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago WHERE result = 'FAILED' FACET locationLabel LIMIT 100",
+            "process_as": "facet_bar_chart",
+            "width": 1,
+            "height": 1,
+            "row": 2,
+            "column": 2,
+            "event_types": [
+                "SyntheticCheck"
+            ],
+            "facet": "locationLabel",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 1150509
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Non-200 responses by path",
+            "nrql": "SELECT count(*) AS '' FROM SyntheticRequest SINCE 1 day ago WHERE responseCode != 200 facet path LIMIT 100",
+            "process_as": "facet_bar_chart",
+            "width": 1,
+            "height": 1,
+            "row": 2,
+            "column": 3,
+            "event_types": [
+                "SyntheticRequest"
+            ],
+            "facet": "path",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 1150509
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Monitors by  error code",
+            "nrql": "SELECT count(*) AS '' FROM SyntheticCheck  SINCE 1 day ago WHERE result = 'FAILED' FACET error LIMIT 100",
+            "process_as": "facet_bar_chart",
+            "width": 1,
+            "height": 1,
+            "row": 3,
+            "column": 1,
+            "event_types": [
+                "SyntheticCheck"
+            ],
+            "facet": "error",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 1150509
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Status codes",
+            "nrql": "SELECT count(*) AS '' FROM SyntheticRequest WHERE responseCode != 200 SINCE 1 day ago FACET responseStatus LIMIT 100",
+            "process_as": "facet_bar_chart",
+            "width": 1,
+            "height": 1,
+            "row": 3,
+            "column": 2,
+            "event_types": [
+                "SyntheticRequest"
+            ],
+            "facet": "responseStatus",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 1150509
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Page elements by monitor name",
+            "nrql": "SELECT count(*) AS '' FROM SyntheticRequest WHERE responseCode != 200 SINCE 1 day ago FACET monitorName LIMIT 100",
+            "process_as": "facet_bar_chart",
+            "width": 1,
+            "height": 1,
+            "row": 3,
+            "column": 3,
+            "event_types": [
+                "SyntheticRequest"
+            ],
+            "facet": "monitorName",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 1150509
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Synthetic monitors",
+            "nrql": "SELECT uniqueCount(monitorName) AS '' FROM SyntheticCheck SINCE 1 day ago FACET monitorName LIMIT 100",
+            "process_as": "facet_bar_chart",
+            "width": 2,
+            "height": 1,
+            "row": 4,
+            "column": 1,
+            "event_types": [
+                "SyntheticCheck"
+            ],
+            "facet": "monitorName",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 1150509
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Number of unresponsive checks",
+            "nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago WHERE result = 'FAILED' TIMESERIES AUTO",
+            "process_as": "line_chart",
+            "width": 1,
+            "height": 1,
+            "row": 4,
+            "column": 3,
+            "event_types": [
+                "SyntheticCheck"
+            ],
+            "facet": null,
+            "customizations": null,
+            "notes": null
+        }
+    ],
+    "dashboard_account_id": 0
+}
