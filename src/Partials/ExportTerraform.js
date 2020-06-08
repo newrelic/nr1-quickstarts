@@ -15,71 +15,77 @@ class ExportTerraform extends React.Component {
     static generate(json) {
         let output = [];
 
-        output.push('data "newrelic_application" "my_application" {');
-        output.push('  name = "My Application"');
-        output.push('}');
-        output.push('');
+        try {
+            output.push('data "newrelic_application" "my_application" {');
+            output.push('  name = "My Application"');
+            output.push('}');
+            output.push('');
 
-        output.push('resource "newrelic_dashboard" "exampledash" {');
-        output.push('  title = "' + json.title + '"');
-        if (json.icon) {
-            output.push('  icon = "' + json.icon + '"');
-        }
-        if (json.visibility) {
-            output.push('  visibility = "' + json.visibility + '"');
-        }
-        if (json.editable) {
-            output.push('  editable = "' + json.editable + '"');
-        }
-        output.push('');
+            output.push('resource "newrelic_dashboard" "exampledash" {');
+            output.push('  title = "' + json.title + '"');
+            if (json.icon) {
+                output.push('  icon = "' + json.icon + '"');
+            }
+            if (json.visibility) {
+                output.push('  visibility = "' + json.visibility + '"');
+            }
+            if (json.editable) {
+                output.push('  editable = "' + json.editable + '"');
+            }
+            output.push('');
 
-        output.push('  filter {');
-        output.push('    event_types = [');
-        output.push(json.filter.event_types.map((eventType) => '        "' + eventType + '"').join(', \n'));
-        output.push('    ]');
-        if (json.filter.attributes) {
-            output.push('    attributes = [');
-            output.push(json.filter.attributes.map((attribute) => '        "' + attribute + '"').join(', \n'));
+            output.push('  filter {');
+            output.push('    event_types = [');
+            output.push(json.filter.event_types.map((eventType) => '        "' + eventType + '"').join(', \n'));
             output.push('    ]');
+            if (json.filter.attributes) {
+                output.push('    attributes = [');
+                output.push(json.filter.attributes.map((attribute) => '        "' + attribute + '"').join(', \n'));
+                output.push('    ]');
+            }
+            output.push('  }');
+            output.push('');
+
+            output = output.concat(json.widgets.map((widget) => {
+                let widgetOutput = [];
+
+                widgetOutput.push('  widget {');
+                widgetOutput.push('    title = "' + widget.title + '"');
+                widgetOutput.push('    visualization = "' + widget.process_as + '"');
+                widgetOutput.push('    row = ' + widget.row);
+                widgetOutput.push('    column = ' + widget.column);
+                if (widget.width) {
+                    widgetOutput.push('    width = ' + widget.width);
+                }
+                if (widget.height) {
+                    widgetOutput.push('    height = ' + widget.height);
+                }
+                if (widget.notes) {
+                    widgetOutput.push('    notes = "' + widget.notes + '"');
+                }
+                if (widget.nrql) {
+                    widgetOutput.push('    nrql = "' + widget.nrql + '"');
+                }
+                if (widget.threshold_red) {
+                    widgetOutput.push('    threshold_red = "' + widget.threshold_red + '"');
+                }
+                if (widget.threshold_yellow) {
+                    widgetOutput.push('    threshold_yellow = "' + widget.threshold_yellow + '"');
+                }
+
+                widgetOutput.push('  }');
+
+                widgetOutput.push('');
+
+                return widgetOutput.join('\n');
+            }));
+
+            output.push('}');
+        } catch {
+            output = []
+            output.push('Error while building the Terraform template');
+            output.push('Please check your json input or create a bug report');
         }
-        output.push('  }');
-        output.push('');
-
-        output = output.concat(json.widgets.map((widget) => {
-            let widgetOutput = [];
-
-            widgetOutput.push('  widget {');
-            widgetOutput.push('    title = "' + widget.title + '"');
-            widgetOutput.push('    visualization = "' + widget.process_as + '"');
-            widgetOutput.push('    row = ' + widget.row);
-            widgetOutput.push('    column = ' + widget.column);
-            if (widget.width) {
-                widgetOutput.push('    width = ' + widget.width);
-            }
-            if (widget.height) {
-                widgetOutput.push('    height = ' + widget.height);
-            }
-            if (widget.notes) {
-                widgetOutput.push('    notes = "' + widget.notes + '"');
-            }
-            if (widget.nrql) {
-                widgetOutput.push('    nrql = "' + widget.nrql + '"');
-            }
-            if (widget.threshold_red) {
-                widgetOutput.push('    threshold_red = "' + widget.threshold_red + '"');
-            }
-            if (widget.threshold_yellow) {
-                widgetOutput.push('    threshold_yellow = "' + widget.threshold_yellow + '"');
-            }
-
-            widgetOutput.push('  }');
-
-            widgetOutput.push('');
-
-            return widgetOutput.join('\n');
-        }));
-
-        output.push('}');
 
         return output.join('\n');
     }

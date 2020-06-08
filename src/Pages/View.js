@@ -145,13 +145,13 @@ class View extends React.Component {
                         </div>
                     </div>
                     <div className="row">
-                        <div class="col-12">
+                        <div className="col-12">
                             <div className="card">
                                 <div className="card-header">
                                     Description
                                 </div>
                                 <div className="card-body">
-                                    <div class="row">
+                                    <div className="row">
                                         <div className="col-8">
                                             <h5>Installation instructions</h5>
                                             <p>This dashboard requires the following New Relic products:</p>
