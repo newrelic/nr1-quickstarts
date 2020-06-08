@@ -1,4 +1,6 @@
 import React from 'react';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 class ExportTerraform extends React.Component {
 
@@ -10,6 +12,10 @@ class ExportTerraform extends React.Component {
         this.state = {
             output: ExportTerraform.generate(props.json)
         }
+    }
+
+    static removeNewlines(line) {
+       return line.replace(/(\r\n|\n|\r)/gm, "");
     }
 
     static generate(json) {
@@ -64,7 +70,7 @@ class ExportTerraform extends React.Component {
                     widgetOutput.push('    notes = "' + widget.notes + '"');
                 }
                 if (widget.nrql) {
-                    widgetOutput.push('    nrql = "' + widget.nrql + '"');
+                    widgetOutput.push('    nrql = "' + ExportTerraform.removeNewlines(widget.nrql) + '"');
                 }
                 if (widget.threshold_red) {
                     widgetOutput.push('    threshold_red = "' + widget.threshold_red + '"');
@@ -115,10 +121,14 @@ class ExportTerraform extends React.Component {
     render() {
         return (
             <div className="terraform">
-                <button className="btn btn-sm btn-outline-info float-right" onClick={this.copyToClipboard}>Copy to clipboard</button>
-                <pre className="code">
-                    {this.state.output}
-                </pre>
+                <div className="col-12 text-right">
+                    <button className="btn btn-sm btn-outline-info" onClick={this.copyToClipboard}>Copy to clipboard</button>
+                </div>
+                <div className="col-12">
+                    <SyntaxHighlighter language="ruby" style={docco}>
+                        {this.state.output}
+                    </SyntaxHighlighter>
+                </div>
             </div>
         );
     }
