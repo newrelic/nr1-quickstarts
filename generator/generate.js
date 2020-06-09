@@ -39,6 +39,7 @@ function process(element) {
         sources: [],
         alerts: [],
         dashboards: [],
+        flex: [],
     }
 
 
@@ -83,6 +84,30 @@ function process(element) {
 
         return dashboard;
     });
+
+
+    //
+    // Read flex directory
+    //
+    if (fs.existsSync('quickstarts/' + element + '/flex')) {
+        quickstart.flex = fs.readdirSync('quickstarts/' + element + '/flex/')
+            .map((filename) => {
+                // We want to remove the flex events from the sources list, as it will add a lot of unknown data sources
+                // We know where the data sources are coming from, so it's not really unknown
+                // We do this by parsing each file and retrieving the specific event_type
+                let flexContents = fs.readFileSync('quickstarts/' + element + '/flex/' + filename, 'utf8');
+                let flexConfig = yaml.safeLoad(flexContents);
+
+                flexConfig.integrations.forEach(integration => {
+                    integration.config.apis.forEach(api => {
+                        quickstart.sources = quickstart.sources.filter((source) => source == api.event_type);
+                    })
+                });
+
+                return filename;
+            });
+        quickstart.sources.push('Flex');
+    }
 
 
     //

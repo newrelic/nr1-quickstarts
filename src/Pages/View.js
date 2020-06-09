@@ -157,6 +157,17 @@ class View extends React.Component {
                                             <p>This dashboard requires the following New Relic products:</p>
                                             <InstallationInstructions sources={this.state.quickstart.sources} />
 
+                                            {this.state.quickstart.flex.length > 0 &&
+                                                <div>
+                                                    <h5>Flex configuration files</h5>
+                                                    <ul>
+                                                    {this.state.quickstart.flex.map((flex) => {
+                                                        return ( <li><a href={'./data/' + this.state.quickstart.id + '/flex/' + flex} target="_BLANK" rel="noopener noreferrer">{flex}</a></li> )
+                                                    })}
+                                                    </ul>
+                                                </div>
+                                            }
+
                                             <p><b>Data sources: <Datasource sources={this.state.quickstart.sources} /></b></p>
 
                                             {this.state.quickstart.authors.length > 0 &&

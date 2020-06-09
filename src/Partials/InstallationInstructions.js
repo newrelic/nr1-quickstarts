@@ -57,8 +57,12 @@ class InstallationInstructions extends React.Component {
             name: 'New Relic Logs',
             url: 'https://docs.newrelic.com/docs/logs'
           }
-        case 'Metric':
-          // Cases to ingore, as they are general metrics
+        case 'Flex': // Speciale case for flex metrics
+          return {
+            name: 'New Relic Flex',
+            url: 'https://docs.newrelic.com/docs/integrations/host-integrations/host-integrations-list/flex-integration-tool-build-your-own-integration'
+          }
+        case 'Metric': // Case to ingore, as they are general metrics
           return {};
         default:
           return {
@@ -77,15 +81,17 @@ class InstallationInstructions extends React.Component {
 
   render() {
     return (
-        <ul>
-          {this.state.requirements.sort((a, b) => (a.name > b.name) ? 1 : -1).map((requirement, i) => {
-            if (requirement.url) {
-              return ( <li key={requirement.name}><a href={requirement.url} target="_BLANK" rel="noopener noreferrer">{requirement.name}</a></li> )
-            } else {
-              return ( <li key={requirement.name}>{requirement.name}</li> )
-            }
-          })}
-        </ul>
+        <div>
+          <ul>
+            {this.state.requirements.sort((a, b) => (a.name > b.name) ? 1 : -1).map((requirement, i) => {
+              if (requirement.url) {
+                return ( <li key={requirement.name}><a href={requirement.url} target="_BLANK" rel="noopener noreferrer">{requirement.name}</a></li> )
+              } else {
+                return ( <li key={requirement.name}>{requirement.name}</li> )
+              }
+            })}
+          </ul>
+        </div>
     );
   }
 
