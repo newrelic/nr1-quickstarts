@@ -1,0 +1,222 @@
+{
+    "title": "Flex",
+    "icon": "dashboard",
+    "grid_column_count": 12,
+    "filter": {
+        "key_names": [],
+        "event_types": [
+            "directorySize",
+            "digCheck",
+            "fileSize",
+            "osqueryOpenSockets",
+            "fileCount"
+        ],
+        "filter_first": false
+    },
+    "owner": {
+        "email": "zmutchler@newrelic.com"
+    },
+    "widgets": [
+        {
+            "title": "",
+            "nrql": null,
+            "width": 5,
+            "height": 4,
+            "row": 1,
+            "column": 1,
+            "notes": null,
+            "event_types": null,
+            "facet": null,
+            "agent_ids": [],
+            "duration": null,
+            "metrics": null,
+            "raw_metric_name": null,
+            "end_time": null,
+            "cds_params_payload": null,
+            "renderer": null,
+            "renderer_props": null,
+            "extension_type": null,
+            "customizations": {
+                "markdown": "# directory-size.yml\n```\n# Used to query Directory Size via Disk Usage\n---\nintegrations:\n  - name: nri-flex\n    config:\n      name: directorySize\n      apis:\n        - event_type: directorySize\n          commands:\n            - run: du -sb /var/db/newrelic-infra/custom-integrations/\n              split: horizontal\n              set_header: [directory.size.bytes, directory.name]\n              regex_match: true\n              split_by: (\\d+)\\s+(.*)"
+            }
+        },
+        {
+            "title": "directorySize",
+            "nrql": "FROM directorySize SELECT max(directory.size.bytes) FACET directory.name",
+            "process_as": "facet_table",
+            "width": 5,
+            "height": 4,
+            "row": 1,
+            "column": 6,
+            "event_types": [
+                "directorySize"
+            ],
+            "facet": "directory.name",
+            "customizations": {
+                "drilldown": {}
+            },
+            "notes": null
+        },
+        {
+            "title": "",
+            "nrql": null,
+            "width": 5,
+            "height": 4,
+            "row": 5,
+            "column": 1,
+            "notes": null,
+            "event_types": null,
+            "facet": null,
+            "agent_ids": [],
+            "duration": null,
+            "metrics": null,
+            "raw_metric_name": null,
+            "end_time": null,
+            "cds_params_payload": null,
+            "renderer": null,
+            "renderer_props": null,
+            "extension_type": null,
+            "customizations": {
+                "markdown": "# file-count.yml\n```\n# Used to count files via List\n---\nintegrations:\n  - name: nri-flex\n    config:\n      name: fileCount\n      apis:\n        - event_type: fileCount\n          commands:\n            - run: echo -e \"{\\\"fileCount.searchFilter\\\":\\\"/etc\\\",\\\"fileCount.totalFound\\\":\\\"$(ls -1 /etc | wc -l)\\\"}\"\n"
+            }
+        },
+        {
+            "title": "fileCount - /etc",
+            "nrql": "FROM fileCount SELECT max(`fileCount.totalFound`)",
+            "process_as": "billboard",
+            "width": 5,
+            "height": 4,
+            "row": 5,
+            "column": 6,
+            "event_types": [
+                "fileCount"
+            ],
+            "facet": null,
+            "customizations": {
+                "thresholds": {}
+            },
+            "notes": null
+        },
+        {
+            "title": "",
+            "nrql": null,
+            "width": 5,
+            "height": 4,
+            "row": 9,
+            "column": 1,
+            "notes": null,
+            "event_types": null,
+            "facet": null,
+            "agent_ids": [],
+            "duration": null,
+            "metrics": null,
+            "raw_metric_name": null,
+            "end_time": null,
+            "cds_params_payload": null,
+            "renderer": null,
+            "renderer_props": null,
+            "extension_type": null,
+            "customizations": {
+                "markdown": "# file-size.yml\n```\n# Used to query File Size via File Status\n---\nintegrations:\n  - name: nri-flex\n    config:\n      name: fileSize\n      apis:\n        - event_type: fileSize\n          commands:\n            - run: stat -c '%n;%s' /etc/*conf\n              split: horizontal\n              set_header: [fileSize.fileName, fileSize.fileSizeBytes]\n              regex_match: false\n              split_by: \";\""
+            }
+        },
+        {
+            "title": "fileSize - /etc/*conf (MB)",
+            "nrql": "FROM fileSize SELECT max(`fileSize.fileSizeBytes`)/1024 AS 'MB' FACET `fileSize.fileName`",
+            "process_as": "facet_bar_chart",
+            "width": 5,
+            "height": 4,
+            "row": 9,
+            "column": 6,
+            "event_types": [
+                "fileSize"
+            ],
+            "facet": "fileSize.fileName",
+            "customizations": {
+                "drilldown": {}
+            },
+            "notes": null
+        },
+        {
+            "title": "",
+            "nrql": null,
+            "width": 5,
+            "height": 4,
+            "row": 13,
+            "column": 1,
+            "notes": null,
+            "event_types": null,
+            "facet": null,
+            "agent_ids": [],
+            "duration": null,
+            "metrics": null,
+            "raw_metric_name": null,
+            "end_time": null,
+            "cds_params_payload": null,
+            "renderer": null,
+            "renderer_props": null,
+            "extension_type": null,
+            "customizations": {
+                "markdown": "# linux-dig.yml\n```\n# Used to resolve DNS queries via dig\n---\nintegrations:\n  - name: nri-flex\n    config:\n      name: digFlex\n      apis:\n        - event_type: digCheck\n          commands:\n            - run: dig google.com | egrep '^google|Query|status' | tr '\\n' ' ' | awk '{print \"dig.status:\"substr($6,1,length($6)-1)\" dig.domain:\"substr($9,1,length($9)-1)\" dig.recordIP:\"$13\" dig.responseTime:\"$17\" dig.unit:\"$18}' | tr ' ' '\\n'\n              split_by: \":\""
+            }
+        },
+        {
+            "title": "digCheck - google.com Response Time (ms)",
+            "nrql": "FROM digCheck SELECT max(dig.responseTime) FACET dig.recordIP",
+            "process_as": "facet_bar_chart",
+            "width": 5,
+            "height": 4,
+            "row": 13,
+            "column": 6,
+            "event_types": [
+                "digCheck"
+            ],
+            "facet": "dig.recordIP",
+            "customizations": {
+                "drilldown": {}
+            },
+            "notes": null
+        },
+        {
+            "title": "",
+            "nrql": null,
+            "width": 5,
+            "height": 4,
+            "row": 17,
+            "column": 1,
+            "notes": null,
+            "event_types": null,
+            "facet": null,
+            "agent_ids": [],
+            "duration": null,
+            "metrics": null,
+            "raw_metric_name": null,
+            "end_time": null,
+            "cds_params_payload": null,
+            "renderer": null,
+            "renderer_props": null,
+            "extension_type": null,
+            "customizations": {
+                "markdown": "# osquery.yml\n```\n# Used to query against OSQuery metrics\n---\nintegrations:\n  - name: nri-flex\n    config:\n      name: osquery\n      apis:\n        - event_type: osqueryOpenSockets\n          commands:\n            - run: osqueryi --json \"SELECT * FROM process_open_sockets;\""
+            }
+        },
+        {
+            "title": "osqueryOpenSockets - Listening Ports",
+            "nrql": "FROM osqueryOpenSockets SELECT count(*) FACET pid, state, local_address, local_port, remote_address, remote_port WHERE state = 'LISTEN' LIMIT MAX",
+            "process_as": "facet_table",
+            "width": 5,
+            "height": 4,
+            "row": 17,
+            "column": 6,
+            "event_types": [
+                "osqueryOpenSockets"
+            ],
+            "facet": "[\"pid\", \"state\", \"local_address\", \"local_port\", \"remote_address\", \"remote_port\"]",
+            "customizations": {
+                "drilldown": {}
+            },
+            "notes": null
+        }
+    ],
+    "dashboard_account_id": 0
+}

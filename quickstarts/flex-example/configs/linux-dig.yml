@@ -1,0 +1,11 @@
+# Used to resolve DNS queries via dig
+---
+integrations:
+  - name: nri-flex
+    config:
+      name: digFlex
+      apis:
+        - event_type: digCheck
+          commands:
+            - run: dig google.com | egrep '^google|Query|status' | tr '\n' ' ' | awk '{print "dig.status:"substr($6,1,length($6)-1)" dig.domain:"substr($9,1,length($9)-1)" dig.recordIP:"$13" dig.responseTime:"$17" dig.unit:"$18}' | tr ' ' '\n'
+              split_by: ":"

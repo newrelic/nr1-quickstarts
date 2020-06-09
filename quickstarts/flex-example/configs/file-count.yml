@@ -1,0 +1,10 @@
+# Used to count files via List
+---
+integrations:
+  - name: nri-flex
+    config:
+      name: fileCount
+      apis:
+        - event_type: fileCount
+          commands:
+            - run: echo -e "{\"fileCount.searchFilter\":\"/etc\",\"fileCount.totalFound\":\"$(ls -1 /etc | wc -l)\"}"
