@@ -25,6 +25,3 @@ yarn-error.log*
 # build data
 public/data
 src/data.json
-
-# quickstart generate data shell file
-/quickstarts/generate-data.sh
