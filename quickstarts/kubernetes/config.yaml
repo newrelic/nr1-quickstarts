@@ -1,0 +1,12 @@
+# Name of your quickstart as shown on the website
+name: Kubernetes
+
+# Optional: Authors of the quickstart
+authors:
+    - Brad S.
+
+# Optional: Add additional sources as some can't be auto detected by the scripts (for example Prometheus data).
+# You can also redirect to external webpages when the dashboards provides specific installation instructions
+sources:
+  - Kubernetes
+  - Prometheus
