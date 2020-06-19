@@ -6,6 +6,7 @@ import {
   } from "react-router-dom";
 import Home from './Pages/Home';
 import View from './Pages/View';
+import ScrollToTop from './Helpers/ScrollToTop';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import ToolsTerraform from './Pages/ToolsTerraform';
@@ -57,6 +58,7 @@ class App extends React.Component {
 
                 </main>
 
+                <ScrollToTop />
             </HashRouter>
         )
     }
