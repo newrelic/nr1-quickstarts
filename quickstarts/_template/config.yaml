@@ -9,7 +9,6 @@ authors:
 # Optional: Add additional sources as some can't be auto detected by the scripts (for example Prometheus data).
 # You can also redirect to external webpages when the dashboards provides specific installation instructions
 sources:
-  - Kubernetes
   - Prometheus
   - name: CoreDNS
     url: https://github.com/coredns/coredns/tree/master/plugin/metrics
