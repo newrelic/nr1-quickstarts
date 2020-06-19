@@ -1,6 +1,7 @@
 import React from 'react';
 import Preview from '../Partials/Preview';
 import data from '../data.json';
+import DatasourceItem from '../Partials/DatasourceItem';
 
 class Home extends React.Component {
 
@@ -27,7 +28,8 @@ class Home extends React.Component {
             return true;
         }
 
-        if (element.sources.toString().toLowerCase().includes(lowercaseSearch)) {
+        let sources = element.sources.map(value => DatasourceItem.getProduct(value));
+        if (sources.toString().toLowerCase().includes(lowercaseSearch)) {
             return true;
         }
 
