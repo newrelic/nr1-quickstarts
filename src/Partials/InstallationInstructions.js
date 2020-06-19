@@ -43,6 +43,9 @@ class InstallationInstructions extends React.Component {
             url: 'https://docs.newrelic.com/docs/apm'
           }
         case 'Kubernetes':
+        case 'K8sContainerSample':
+        case 'K8sNodeSample':
+        case 'K8sPodSample':
           return {
             name: 'New Relic Kubernetes',
             url: 'https://docs.newrelic.com/docs/integrations/kubernetes-integration/get-started/introduction-kubernetes-integration'
