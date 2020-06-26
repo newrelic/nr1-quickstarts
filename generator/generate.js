@@ -50,6 +50,7 @@ function process(element) {
     let config = yaml.safeLoad(configContents);
     quickstart.id = element;
     quickstart.name = config.name || element;
+    quickstart.description = config.description || '';
     quickstart.authors = config.authors || [];
     quickstart.sources = config.sources || [];
     quickstart.alerts = config.alerts || [];
@@ -64,6 +65,7 @@ function process(element) {
 
         let dashboard = {
             'name': '',
+            'description': '',
             'filename': filename,
             'sources': [],
             'screenshots': [],

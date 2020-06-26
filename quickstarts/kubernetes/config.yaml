@@ -1,5 +1,6 @@
 # Name of your quickstart as shown on the website
 name: Kubernetes
+description: Set of dashboards for the New Relic Kubernetes integration.
 
 # Optional: Authors of the quickstart
 authors:

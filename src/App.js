@@ -19,7 +19,7 @@ class App extends React.Component {
         return (
             <HashRouter>
 
-                <div className="container">
+                <div className="container-fluid pb-4">
                     <header>
 
                         <Navbar bg="light" expand="lg">

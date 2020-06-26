@@ -85,15 +85,18 @@ class InstallationInstructions extends React.Component {
   render() {
     return (
         <div>
-          <ul>
-            {this.state.requirements.sort((a, b) => (a.name > b.name) ? 1 : -1).map((requirement, i) => {
+          {this.state.requirements.sort((a, b) => (a.name > b.name) ? 1 : -1).map((requirement, i) => {
               if (requirement.url) {
-                return ( <li key={requirement.name}><a href={requirement.url} target="_BLANK" rel="noopener noreferrer">{requirement.name}</a></li> )
+                  return (
+                    <div>
+                      <h4>{requirement.name}</h4>
+                      <p><a href={requirement.url} target="_BLANK" rel="noopener noreferrer">{requirement.url}</a></p>
+                    </div>
+                   )
               } else {
-                return ( <li key={requirement.name}>{requirement.name}</li> )
+                  return ( <li key={requirement.name}>{requirement.name}</li> )
               }
-            })}
-          </ul>
+          })}
         </div>
     );
   }

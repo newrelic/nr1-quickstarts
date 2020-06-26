@@ -1,14 +1,15 @@
 import React from 'react';
-import Datasource from '../Partials/Datasource';
-import ExportTerraform from '../Partials/ExportTerraform';
-import InstallationInstructions from '../Partials/InstallationInstructions';
+import ViewOverview from './ViewOverview';
 import {
-    Link
+    Link,
+    Switch,
+    Route
   } from "react-router-dom";
-import { Dropdown, Modal, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBug, faHome, faFileExport } from '@fortawesome/free-solid-svg-icons';
+import { faBug, faHome } from '@fortawesome/free-solid-svg-icons';
 import data from '../data.json';
+import ViewDashboard from './ViewDashboards';
+import ViewInstallation from './ViewInstallation';
 
 class View extends React.Component {
 
@@ -18,21 +19,12 @@ class View extends React.Component {
         super(props);
 
         this.state = View.getState(props);
-
-        this.copy = this.copy.bind(this);
-        this.setAccountId = this.setAccountId.bind(this);
-        this.submitModal = this.submitModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
-        this.showTerraform = this.showTerraform.bind(this);
     }
 
     static getState(props) {
         return {
             quickstart: data.quickstarts.find(element => element.id === props.match.params.handle),
-            visible: 0,
-            accountModalVisible: false,
-            terraformModalVisible: false,
-            accountId: '',
+            path: props.match.path,
         }
     }
 
@@ -41,74 +33,6 @@ class View extends React.Component {
             return View.getState(props);
         }
         return null
-    }
-
-    getAccountId(callback) {
-        this.modalCallback = callback;
-        this.setState({
-            accountModalVisible: true,
-        });
-    }
-
-    submitModal() {
-        this.setState({
-            accountModalVisible: false,
-        });
-        if (this.modalCallback) {
-            this.modalCallback();
-        }
-    }
-
-    closeModal() {
-        this.setState({
-            accountModalVisible: false,
-            terraformModalVisible: false,
-        });
-    }
-
-    setAccountId(event) {
-        this.setState({
-            'accountId': event.target.value,
-        });
-    }
-
-    getDashboard(file, callback) {
-        this.getAccountId(() => {
-            this.getFile(file).then((json) => {
-                json.dashboard_account_id = +this.state.accountId;
-                callback(JSON.stringify(json));
-            });
-        });
-    }
-
-    getFile(file) {
-        return fetch('./data/' + file).then(response => response.json());
-    }
-
-    copy(file) {
-        this.getDashboard(file, (text) => {
-            navigator.permissions.query({name: "clipboard-write"}).then(result => {
-                if (result.state === "granted" || result.state === "prompt") {
-                    navigator.clipboard.writeText(text).then(function() {
-                        alert('Dashboard copied to clipboard');
-                    }, function(error) {
-                        console.log('error', error);
-                        alert('Failed to copy dashboard to clipboard');
-                    });
-                }
-            });
-        });
-    }
-
-    showTerraform(file) {
-        console.log(file);
-        this.getFile(file).then((json) => {
-            this.setState({
-                terraformModalVisible: true,
-                dashboardJson: json,
-            });
-        });
-
     }
 
     render() {
@@ -132,122 +56,57 @@ class View extends React.Component {
         }
 
         return (
-            <div className="album py-2">
-                <div className="container" id="root">
-                    <div className="row py-4">
-                        <div className="col-8">
-                            <h2>{ this.state.quickstart.name }</h2>
-                        </div>
-                        <div className="col-4 text-right">
-                            <Link className="btn btn-default" to={"/"}>
-                                <FontAwesomeIcon icon={faHome} /> Back to homepage
-                            </Link>
-                        </div>
+            <div className="container" id="root">
+                <div className="row header">
+                    <div className="col-8">
+                        <h2>{ this.state.quickstart.name }</h2>
                     </div>
-                    <div className="row">
-                        <div className="col-12">
-                            <div className="card">
-                                <div className="card-header">
-                                    Description
-                                </div>
-                                <div className="card-body">
-                                    <div className="row">
-                                        <div className="col-8">
-                                            <h5>Installation instructions</h5>
-                                            <p>This dashboard requires the following New Relic products:</p>
-                                            <InstallationInstructions sources={this.state.quickstart.sources} />
-
-                                            {this.state.quickstart.flex.length > 0 &&
-                                                <div>
-                                                    <h5>Flex configuration files</h5>
-                                                    <ul>
-                                                    {this.state.quickstart.flex.map((flex) => {
-                                                        return ( <li><a href={'./data/' + this.state.quickstart.id + '/flex/' + flex} target="_BLANK" rel="noopener noreferrer">{flex}</a></li> )
-                                                    })}
-                                                    </ul>
-                                                </div>
-                                            }
-
-                                            <p><b>Data sources: <Datasource sources={this.state.quickstart.sources} /></b></p>
-
-                                            {this.state.quickstart.authors.length > 0 &&
-                                                <p><b>Created by:</b> { this.state.quickstart.authors.join(', ') }</p>
-                                            }
-                                        </div>
-                                        <div className="col-4 text-right">
-                                            <a className="btn btn-danger" href={"https://github.com/newrelic-experimental/quickstarts/issues/new?labels=bug&title=Problem%20with%20" + this.state.quickstart.id}><FontAwesomeIcon icon={faBug} /> Report a problem</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="row mt-4">
-                        <div className="col-12">
-                            <div className="card">
-                                <div className="card-header">
-                                    Dashboards
-                                </div>
-                                <div className="card-body">
-                                    {this.state.quickstart.dashboards.map((dashboard) => {
-                                        return (
-                                            <div key={dashboard.filename} className="row px-4 py-4">
-                                                <div className="col-8 py-1">
-                                                    <h3>{dashboard.name}</h3>
-                                                </div>
-                                                <div className="col-4 text-right">
-                                                    <Dropdown>
-                                                        <Dropdown.Toggle variant="default" id="dropdown-basic">
-                                                            <FontAwesomeIcon icon={faFileExport} /> Import dashboard
-                                                        </Dropdown.Toggle>
-
-                                                        <Dropdown.Menu>
-                                                            <Dropdown.Item onClick={(event) => { this.copy('./' + this.state.quickstart.id + '/dashboards/' + dashboard.filename) }}>Copy JSON to clipboard</Dropdown.Item>
-                                                            <Dropdown.Item onClick={(event) => { this.showTerraform('./' + this.state.quickstart.id + '/dashboards/' + dashboard.filename) }}>Generate Terraform template</Dropdown.Item>
-                                                        </Dropdown.Menu>
-                                                    </Dropdown>
-                                                </div>
-                                                <div className="col-12">
-                                                    {dashboard.screenshots.map((screenshot) => {
-                                                        return (
-                                                            <img key={screenshot} src={ "data/" + this.state.quickstart.id + "/dashboards/" + screenshot} className="card-img-top" alt="..." />
-                                                        );
-                                                    })}
-                                                </div>
-                                            </div>
-                                        )
-                                    })}
-                                </div>
-                            </div>
-                        </div>
+                    <div className="col-4 text-right">
+                        <Link className="btn btn-default" to={"/"}>
+                            <FontAwesomeIcon icon={faHome} /> Back to homepage
+                        </Link>
                     </div>
                 </div>
+                <div className="row pt-4">
+                    <div className="col-3 sidebar">
+                        <ul className="nav flex-column">
+                            <li className="nav-item">
+                                <Link className="nav-link" to={"/view/" + this.state.quickstart.id}>
+                                    Description
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to={"/view/" + this.state.quickstart.id + "/installation"}>
+                                    Installation
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to={"/view/" + this.state.quickstart.id + "/dashboards"}>
+                                    Dashboards
+                                </Link>
+                            </li>
+                            <li className="nav-divider"></li>
+                            <li className="nav-item">
+                                <a className="nav-link text-danger" href={"https://github.com/newrelic-experimental/quickstarts/issues/new?labels=bug&title=Problem%20with%20" + this.state.quickstart.id}><FontAwesomeIcon icon={faBug} /> Report a problem</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="col-9 pl-4">
+                        <Switch>
+                            <Route exact path={this.state.path}>
+                                <ViewOverview quickstart={this.state.quickstart} />
+                            </Route>
 
-                <Modal show={this.state.accountModalVisible} onHide={this.closeModal}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Enter your New Relic account ID</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <p>You can find your account ID in New Relic UI:</p>
-                        <input type="text" className="form-control" id="accountId" aria-describedby="Account Id" placeholder="" value={this.state.accountId} onChange={this.setAccountId} />
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="primary" onClick={this.submitModal}>Set</Button>
-                        <Button variant="secondary" onClick={this.closeModal}>Cancel</Button>
-                    </Modal.Footer>
-                </Modal>
+                            <Route path={`${this.state.path}/dashboards`}>
+                                <ViewDashboard quickstart={this.state.quickstart} />
+                            </Route>
 
-                <Modal show={this.state.terraformModalVisible} size="lg" onHide={this.closeModal}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Terraform export</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <ExportTerraform json={this.state.dashboardJson} />
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="primary" onClick={this.closeModal}>Close modal</Button>
-                    </Modal.Footer>
-                </Modal>
+                            <Route path={`${this.state.path}/installation`}>
+                                <ViewInstallation quickstart={this.state.quickstart} />
+                            </Route>
+                        </Switch>
+                    </div>
+                </div>
             </div>
         );
     }

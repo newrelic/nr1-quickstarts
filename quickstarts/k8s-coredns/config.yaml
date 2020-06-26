@@ -1,4 +1,5 @@
 name: CoreDNS
+description: Set of dashboards and examples to monitor CoreDNS.
 authors:
     - Stijn Polfliet
 sources:
