@@ -18,7 +18,7 @@ class Preview extends React.Component {
     return (
         <div className="col-md-4 col-lg-3 col-sm-4">
             <div className="card mb-4 shadow-sm">
-                <img src={ "./data/" + this.props.quickstart.id + "/dashboards/" + this.state.screenshot} className="card-img-top" alt="..." />
+                <img src={ "https://newrelic-experimental.github.io/quickstarts/data/" + this.props.quickstart.id + "/dashboards/" + this.state.screenshot} className="card-img-top" alt="..." />
                 <div className="card-body">
                     <h5 className="card-title">
                       <Link className="" to={"/view/" + this.props.quickstart.id}>

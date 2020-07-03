@@ -33,13 +33,12 @@ class ViewOverview extends React.Component {
                     {this.state.quickstart.dashboards.map((dashboard) => {
                         return dashboard.screenshots.map((screenshot) => {
                             return (
-                                <div className="col-3">
-                                    <img key={screenshot} src={ "data/" + this.state.quickstart.id + "/dashboards/" + screenshot} className="card-img-top" alt="..." />
+                                <div className="col-3" key={dashboard.name + screenshot}>
+                                    <img src={ "https://newrelic-experimental.github.io/quickstarts/data/" + this.state.quickstart.id + "/dashboards/" + screenshot} className="card-img-top" alt="..." />
                                 </div>
                             );
                         });
                     })}
-
                 </div>
 
                 {this.state.quickstart.authors.length > 0 &&
@@ -47,7 +46,7 @@ class ViewOverview extends React.Component {
                         <h5>Authors</h5>
                         <ul>
                         {this.state.quickstart.authors.map((author) => {
-                            return ( <li>{ author }</li> )
+                            return ( <li key={author} >{ author }</li> )
                         })}
                         </ul>
                     </div>

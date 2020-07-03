@@ -1,0 +1,12 @@
+
+// Import bootstrap
+@import '../../src/style.scss';
+
+// Overrides because New Relic does some stuff with the css
+.nav-item {
+    padding: 10px;
+}
+
+ul li {
+    margin-left: 20px;
+}

@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBug, faHome } from '@fortawesome/free-solid-svg-icons';
 import data from '../data.json';
 import ViewDashboard from './ViewDashboards';
-import ViewInstallation from './ViewInstallation';
+import ViewRequirements from './ViewRequirements';
 
 class View extends React.Component {
 
@@ -46,7 +46,7 @@ class View extends React.Component {
                             </div>
                             <div className="col-4 text-right">
                                 <Link className="btn btn-default" to={"/"}>
-                                    <FontAwesomeIcon icon={faHome} /> Back to homepage
+                                    <FontAwesomeIcon icon={faHome} /> Back to listing
                                 </Link>
                             </div>
                         </div>
@@ -63,7 +63,7 @@ class View extends React.Component {
                     </div>
                     <div className="col-4 text-right">
                         <Link className="btn btn-default" to={"/"}>
-                            <FontAwesomeIcon icon={faHome} /> Back to homepage
+                            <FontAwesomeIcon icon={faHome} /> Back to listing
                         </Link>
                     </div>
                 </div>
@@ -76,8 +76,8 @@ class View extends React.Component {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to={"/view/" + this.state.quickstart.id + "/installation"}>
-                                    Installation
+                                <Link className="nav-link" to={"/view/" + this.state.quickstart.id + "/requirements"}>
+                                    Requirements
                                 </Link>
                             </li>
                             <li className="nav-item">
@@ -101,8 +101,8 @@ class View extends React.Component {
                                 <ViewDashboard quickstart={this.state.quickstart} />
                             </Route>
 
-                            <Route path={`${this.state.path}/installation`}>
-                                <ViewInstallation quickstart={this.state.quickstart} />
+                            <Route path={`${this.state.path}/requirements`}>
+                                <ViewRequirements quickstart={this.state.quickstart} />
                             </Route>
                         </Switch>
                     </div>

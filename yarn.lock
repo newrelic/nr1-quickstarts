@@ -2500,7 +2500,7 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
 
-bootstrap@^4.5.0:
+bootstrap@^4.3.1, bootstrap@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.5.0.tgz#97d9dbcb5a8972f8722c9962483543b907d9b9ec"
   integrity sha512-Z93QoXvodoVslA+PWNdk23Hze4RBYIkpb5h8I2HY2Tu2h7A0LpAgLcyrhrSUyo2/Oxm2l1fRZPs1e5hnxnliXA==
@@ -7476,6 +7476,12 @@ npm-run-path@^2.0.0:
     console-control-strings "~1.1.0"
     gauge "~2.7.3"
     set-blocking "~2.0.0"
+
+"nr1-bootstrap-theme@https://github.com/newrelic/nr1-bootstrap-theme.git":
+  version "0.9.0"
+  resolved "https://github.com/newrelic/nr1-bootstrap-theme.git#dcc4831a3478d35d207064c7fbe4810946186375"
+  dependencies:
+    bootstrap "^4.3.1"
 
 nth-check@^1.0.2, nth-check@~1.0.1:
   version "1.0.2"

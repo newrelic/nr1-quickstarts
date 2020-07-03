@@ -1,6 +1,7 @@
 import React from 'react';
-import ExportTerraform from '../Partials/ExportTerraform';
-import { Dropdown, Modal, Button } from "react-bootstrap";
+import {
+    Link,
+  } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileExport } from '@fortawesome/free-solid-svg-icons';
 
@@ -113,57 +114,29 @@ class ViewDashboard extends React.Component {
                 {this.state.quickstart.dashboards.map((dashboard) => {
                     return (
                         <div key={dashboard.filename} className="row px-4 py-4">
-                            <div className="col-8 py-1">
+                            <div className="col-6 py-1">
                                 <h3>{dashboard.name}</h3>
                             </div>
-                            <div className="col-4 text-right">
-                                <Dropdown>
-                                    <Dropdown.Toggle variant="default" id="dropdown-basic">
-                                        <FontAwesomeIcon icon={faFileExport} /> Import dashboard
-                                    </Dropdown.Toggle>
-
-                                    <Dropdown.Menu>
-                                        <Dropdown.Item onClick={(event) => { this.copy('./' + this.state.quickstart.id + '/dashboards/' + dashboard.filename) }}>Copy JSON to clipboard</Dropdown.Item>
-                                        <Dropdown.Item onClick={(event) => { this.showTerraform('./' + this.state.quickstart.id + '/dashboards/' + dashboard.filename) }}>Generate Terraform template</Dropdown.Item>
-                                    </Dropdown.Menu>
-                                </Dropdown>
+                            <div className="col-6 text-right">
+                                { window !== window.top && // Detect if we're in an iframe, if so we assume we're in a Nerdlet
+                                    <button type="button" className="btn btn-secondary"><FontAwesomeIcon icon={faFileExport} /> Import into New Relic</button>
+                                }
+                                { window === window.top &&
+                                    <Link className="nav-link" to={"/import"}>
+                                        Import into New Relic
+                                    </Link>
+                                }
                             </div>
                             <div className="col-12">
                                 {dashboard.screenshots.map((screenshot) => {
                                     return (
-                                        <img key={screenshot} src={ "data/" + this.state.quickstart.id + "/dashboards/" + screenshot} className="card-img-top" alt="..." />
+                                        <img key={screenshot} src={ "https://newrelic-experimental.github.io/quickstarts/data/" + this.state.quickstart.id + "/dashboards/" + screenshot} className="card-img-top" alt="..." />
                                     );
                                 })}
                             </div>
                         </div>
                     )
                 })}
-
-                <Modal show={this.state.accountModalVisible} onHide={this.closeModal}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Enter your New Relic account ID</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <p>You can find your account ID in New Relic UI:</p>
-                        <input type="text" className="form-control" id="accountId" aria-describedby="Account Id" placeholder="" value={this.state.accountId} onChange={this.setAccountId} />
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="primary" onClick={this.submitModal}>Set</Button>
-                        <Button variant="secondary" onClick={this.closeModal}>Cancel</Button>
-                    </Modal.Footer>
-                </Modal>
-
-                <Modal show={this.state.terraformModalVisible} size="lg" onHide={this.closeModal}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Terraform export</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <ExportTerraform json={this.state.dashboardJson} />
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="primary" onClick={this.closeModal}>Close modal</Button>
-                    </Modal.Footer>
-                </Modal>
             </div>
         );
     }

@@ -1,12 +1,12 @@
 import React from 'react';
 import InstallationInstructions from '../Partials/InstallationInstructions';
 
-class ViewInstallation extends React.Component {
+class ViewRequirements extends React.Component {
 
     constructor(props) {
         super(props);
 
-        this.state = ViewInstallation.getState(props);
+        this.state = ViewRequirements.getState(props);
     }
 
     static getState(props) {
@@ -17,7 +17,7 @@ class ViewInstallation extends React.Component {
 
     static getDerivedStateFromProps(props, state) {
         if (!state.quickstart || (state.quickstart.id !== props.quickstart.id)) {
-            return ViewInstallation.getState(props);
+            return ViewRequirements.getState(props);
         }
         return null
     }
@@ -35,7 +35,7 @@ class ViewInstallation extends React.Component {
                         <h5>Flex configuration files</h5>
                         <ul>
                             {this.state.quickstart.flex.map((flex) => {
-                                return ( <li><a href={'./data/' + this.state.quickstart.id + '/flex/' + flex} target="_BLANK" rel="noopener noreferrer">{flex}</a></li> )
+                                return ( <li key={flex}><a href={'./data/' + this.state.quickstart.id + '/flex/' + flex} target="_BLANK" rel="noopener noreferrer">{flex}</a></li> )
                             })}
                         </ul>
                     </div>
@@ -45,4 +45,4 @@ class ViewInstallation extends React.Component {
     }
 }
 
-export default ViewInstallation;
+export default ViewRequirements;
