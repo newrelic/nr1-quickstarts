@@ -9,6 +9,7 @@ import View from './Pages/View';
 import ScrollToTop from '../../../src/Shared/Helpers/ScrollToTop';
 import ToolsTerraform from './Pages/ToolsTerraform';
 import InstallNerdlet from './Pages/InstallNerdlet';
+import { Spinner } from 'nr1'
 
 class App extends React.Component {
 
@@ -38,7 +39,8 @@ class App extends React.Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-12 text-center loading">
-                            <p>Loading ...</p>
+                            <p>Loading</p>
+                            <Spinner />
                         </div>
                     </div>
                 </div>

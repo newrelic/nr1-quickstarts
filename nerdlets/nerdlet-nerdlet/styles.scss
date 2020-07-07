@@ -104,8 +104,10 @@ h5 {
     font-size: 0.8em;
 }
 
+.terraform {
+    max-width: 400px;
+}
 
-// Overrides because New Relic does some stuff with the css
 .nav-item {
     padding: 10px;
 }

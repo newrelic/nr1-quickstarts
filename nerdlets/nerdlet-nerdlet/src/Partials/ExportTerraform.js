@@ -7,7 +7,7 @@ class ExportTerraform extends React.Component {
     constructor(props) {
         super(props);
 
-        this.copyToClipboard = this.copyToClipboard.bind(this);
+        //this.copyToClipboard = this.copyToClipboard.bind(this);
 
         this.state = {
             output: ExportTerraform.generate(props.json)
@@ -96,18 +96,19 @@ class ExportTerraform extends React.Component {
         return output.join('\n');
     }
 
-    copyToClipboard() {
-        navigator.permissions.query({name: "clipboard-write"}).then(result => {
-            if (result.state === "granted" || result.state === "prompt") {
-                navigator.clipboard.writeText(this.state.output).then(function() {
-                    alert('Terraform template copied to clipboard');
-                }, function(error) {
-                    console.log('error', error);
-                    alert('Failed to copy terraform template to clipboard');
-                });
-            }
-        });
-    }
+    // copyToClipboard() {
+
+    //     navigator.permissions.query({name: "clipboard-write"}).then(result => {
+    //         if (result.state === "granted" || result.state === "prompt") {
+    //             navigator.clipboard.writeText(this.state.output).then(function() {
+    //                 alert('Terraform template copied to clipboard');
+    //             }, function(error) {
+    //                 console.log('error', error);
+    //                 alert('Failed to copy terraform template to clipboard');
+    //             });
+    //         }
+    //     });
+    // }
 
     static getDerivedStateFromProps(props, state) {
         if (state.json !== props.json) {
@@ -121,9 +122,9 @@ class ExportTerraform extends React.Component {
     render() {
         return (
             <div className="terraform">
-                <div className="col-12 text-right">
+                {/* <div className="col-12 text-right">
                     <button className="btn btn-sm btn-outline-info" onClick={this.copyToClipboard}>Copy to clipboard</button>
-                </div>
+                </div> */}
                 <div className="col-12">
                     <SyntaxHighlighter language="ruby" style={docco}>
                         {this.state.output}

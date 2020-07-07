@@ -1,9 +1,11 @@
 import React from 'react';
-import {
-    Link,
-  } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileExport } from '@fortawesome/free-solid-svg-icons';
+import ExportTerraform from '../Partials/ExportTerraform';
+import ExportJson from '../Partials/ExportJson';
+import { Modal, HeadingText, AccountPicker, Tabs, TabsItem, JsonChart } from 'nr1'
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 class ViewDashboard extends React.Component {
 
@@ -14,20 +16,17 @@ class ViewDashboard extends React.Component {
 
         this.state = ViewDashboard.getState(props);
 
-        this.copy = this.copy.bind(this);
-        this.setAccountId = this.setAccountId.bind(this);
-        this.submitModal = this.submitModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
-        this.showTerraform = this.showTerraform.bind(this);
+        this.openImport = this.openImport.bind(this);
+        this.closeImport = this.closeImport.bind(this);
+        this.onChangeAccount = this.onChangeAccount.bind(this);
     }
 
     static getState(props) {
         return {
             quickstart: props.quickstart,
-            visible: 0,
-            accountModalVisible: false,
-            terraformModalVisible: false,
-            accountId: '',
+            importModelHidden: true,
+            accountId: null,
+            dashboardJson: '',
         }
     }
 
@@ -38,106 +37,83 @@ class ViewDashboard extends React.Component {
         return null
     }
 
-    getAccountId(callback) {
-        this.modalCallback = callback;
+    openImport(file) {
+        let url = 'https://newrelic-experimental.github.io/quickstarts/data/' + this.state.quickstart.id + '/dashboards/' + file;
+        fetch(url)
+            .then(response => response.json())
+            .then((response) => {
+                let dashboard = response;
+                dashboard.dashboard_account_id = this.state.accountId;
+                this.setState({
+                    dashboardJson: dashboard,
+                });
+            })
         this.setState({
-            accountModalVisible: true,
+            importModelHidden: false
         });
     }
 
-    submitModal() {
+    closeImport() {
         this.setState({
-            accountModalVisible: false,
+            importModelHidden: true
         });
-        if (this.modalCallback) {
-            this.modalCallback();
-        }
     }
 
-    closeModal() {
+    onChangeAccount(value) {
         this.setState({
-            accountModalVisible: false,
-            terraformModalVisible: false,
+            accountId: value
         });
-    }
-
-    setAccountId(event) {
-        this.setState({
-            'accountId': event.target.value,
-        });
-    }
-
-    getDashboard(file, callback) {
-        this.getAccountId(() => {
-            this.getFile(file).then((json) => {
-                json.dashboard_account_id = +this.state.accountId;
-                callback(JSON.stringify(json));
-            });
-        });
-    }
-
-    getFile(file) {
-        return fetch('./data/' + file).then(response => response.json());
-    }
-
-    copy(file) {
-        this.getDashboard(file, (text) => {
-            navigator.permissions.query({name: "clipboard-write"}).then(result => {
-                if (result.state === "granted" || result.state === "prompt") {
-                    navigator.clipboard.writeText(text).then(function() {
-                        alert('Dashboard copied to clipboard');
-                    }, function(error) {
-                        console.log('error', error);
-                        alert('Failed to copy dashboard to clipboard');
-                    });
-                }
-            });
-        });
-    }
-
-    showTerraform(file) {
-        console.log(file);
-        this.getFile(file).then((json) => {
-            this.setState({
-                terraformModalVisible: true,
-                dashboardJson: json,
-            });
-        });
-
     }
 
     render() {
         return (
-            <div className="dashboards">
-                <h3>Dashboards</h3>
+            <>
+                <Modal hidden={this.state.importModelHidden} onClose={this.closeImport}>
+                    <HeadingText spacingType={[AccountPicker.SPACING_TYPE.LARGE]} type={HeadingText.TYPE.HEADING_1}>Import dashboard</HeadingText>
+                    <HeadingText spacingType={[AccountPicker.SPACING_TYPE.LARGE]} type={HeadingText.TYPE.HEADING_3}>1. Select your account</HeadingText>
+                    <AccountPicker
+                        value={this.state.accountId}
+                        onChange={this.onChangeAccount}
+                        spacingType={[AccountPicker.SPACING_TYPE.LARGE]}
+                    />
+                    <HeadingText spacingType={[AccountPicker.SPACING_TYPE.LARGE]} type={HeadingText.TYPE.HEADING_3}>2. Import</HeadingText>
+                    <Tabs defaultValue="tab-1">
+                        <TabsItem value="tab-1" label="Account import">
+                            <p>Soon ..</p>
+                        </TabsItem>
+                        <TabsItem value="tab-2" label="Terraform">
+                            <ExportTerraform json={this.state.dashboardJson} />
+                        </TabsItem>
+                        <TabsItem value="tab-3" label="Json">
+                            <ExportJson json={this.state.dashboardJson} />
+                        </TabsItem>
+                    </Tabs>
+                </Modal>
 
-                {this.state.quickstart.dashboards.map((dashboard) => {
-                    return (
-                        <div key={dashboard.filename} className="row px-4 py-4">
-                            <div className="col-6 py-1">
-                                <h3>{dashboard.name}</h3>
+                <div className="dashboards">
+                    <h3>Dashboards</h3>
+
+                    {this.state.quickstart.dashboards.map((dashboard) => {
+                        return (
+                            <div key={dashboard.filename} className="row px-4 py-4">
+                                <div className="col-6 py-1">
+                                    <h3>{dashboard.name}</h3>
+                                </div>
+                                <div className="col-6 text-right">
+                                    <button type="button" className="btn btn-secondary" onClick={(e) => { this.openImport(dashboard.filename) }}><FontAwesomeIcon icon={faFileExport} /> Import</button>
+                                </div>
+                                <div className="col-12">
+                                    {dashboard.screenshots.map((screenshot) => {
+                                        return (
+                                            <img key={screenshot} src={ "https://newrelic-experimental.github.io/quickstarts/data/" + this.state.quickstart.id + "/dashboards/" + screenshot} className="card-img-top" alt="..." />
+                                        );
+                                    })}
+                                </div>
                             </div>
-                            <div className="col-6 text-right">
-                                { window !== window.top && // Detect if we're in an iframe, if so we assume we're in a Nerdlet
-                                    <button type="button" className="btn btn-secondary"><FontAwesomeIcon icon={faFileExport} /> Import into New Relic</button>
-                                }
-                                { window === window.top &&
-                                    <Link className="nav-link" to={"/install-nerdlet"}>
-                                        Import into New Relic
-                                    </Link>
-                                }
-                            </div>
-                            <div className="col-12">
-                                {dashboard.screenshots.map((screenshot) => {
-                                    return (
-                                        <img key={screenshot} src={ "https://newrelic-experimental.github.io/quickstarts/data/" + this.state.quickstart.id + "/dashboards/" + screenshot} className="card-img-top" alt="..." />
-                                    );
-                                })}
-                            </div>
-                        </div>
-                    )
-                })}
-            </div>
+                        )
+                    })}
+                </div>
+            </>
         );
     }
 }
