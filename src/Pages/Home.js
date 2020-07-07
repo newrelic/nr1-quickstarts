@@ -1,6 +1,7 @@
 import React from 'react';
 import Preview from '../Shared/Partials/Preview';
 import DatasourceItem from '../Shared/Partials/DatasourceItem';
+import data from '../data.json';
 
 class Home extends React.Component {
 
@@ -8,8 +9,7 @@ class Home extends React.Component {
         super(props);
 
         this.state = {
-            search: '',
-            data: props.data,
+            search: ''
         }
 
         this.setSearch = this.setSearch.bind(this);
@@ -55,7 +55,7 @@ class Home extends React.Component {
                 <div className="album bg-light">
                     <div className="container-fluid" id="root">
                         <div className="row py-3">
-                        {this.state.data.quickstarts.filter(this.search).map((quickstart, i) => {
+                        {data.quickstarts.filter(this.search).map((quickstart, i) => {
                             return (<Preview key={quickstart.name} quickstart={quickstart} />)
                         })}
                         </div>

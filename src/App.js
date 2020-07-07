@@ -13,37 +13,17 @@ class App extends React.Component {
 
     constructor(props) {
         super(props);
-
-        this.state = {
-            data: [],
-            loading: true,
-        }
     }
 
-    componentDidMount() {
-        // Load in data from website
-        fetch('./data.json').then((response) => response.json()).then((data) => {
-            this.setState({
-                data,
-                loading: false,
-            });
-        }).catch((response) => {
-            console.log(response);
-        });
-    }
 
     render() {
-        if (this.state.loading) {
-            return ( <p>Loading</p> );
-        }
-
         return (
             <HashRouter>
                 <main role="main">
 
                     <Switch>
-                        <Route path="/view/:handle" render={(props) => ( <View {...props} data={this.state.data} /> )} />
-                        <Route path="/" render={(props) => ( <Home {...props} data={this.state.data} /> )} />
+                        <Route path="/view/:handle" component={View} />
+                        <Route path="/" component={Home} />
                     </Switch>
 
                     <ScrollToTop />

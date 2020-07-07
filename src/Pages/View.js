@@ -4,6 +4,7 @@ import {
   } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
+import data from '../data.json';
 
 class View extends React.Component {
 
@@ -17,7 +18,7 @@ class View extends React.Component {
 
     static getState(props) {
         return {
-            quickstart: props.data.quickstarts.find(element => element.id === props.match.params.handle),
+            quickstart: data.quickstarts.find(element => element.id === props.match.params.handle),
             path: props.match.path,
         }
     }
