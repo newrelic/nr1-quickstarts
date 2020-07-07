@@ -122,7 +122,7 @@ class ViewDashboard extends React.Component {
                                     <button type="button" className="btn btn-secondary"><FontAwesomeIcon icon={faFileExport} /> Import into New Relic</button>
                                 }
                                 { window === window.top &&
-                                    <Link className="nav-link" to={"/import"}>
+                                    <Link className="nav-link" to={"/install-nerdlet"}>
                                         Import into New Relic
                                     </Link>
                                 }

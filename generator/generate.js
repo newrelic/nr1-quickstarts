@@ -131,5 +131,6 @@ console.log(util.inspect(quickstarts, false, null, true /* enable colors */))
 let json = JSON.stringify({
     'quickstarts': quickstarts
 });
-fs.writeFileSync('src/data.json', json);
 fs.writeFileSync('public/data.json', json);
+
+

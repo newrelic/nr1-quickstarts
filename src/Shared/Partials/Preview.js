@@ -1,5 +1,4 @@
 import React from 'react';
-import Datasource from './Datasource';
 import {
     Link
   } from "react-router-dom";
@@ -24,14 +23,10 @@ class Preview extends React.Component {
                       <Link className="" to={"/view/" + this.props.quickstart.id}>
                         { this.props.quickstart.name }
                         { this.props.quickstart.authors.length > 0 &&
-                          <span><small className="text-muted text-small"> created by { this.props.quickstart.authors.join(', ') }</small></span>
+                          <span className="d-block"><small className="text-muted text-small">Created by { this.props.quickstart.authors.join(', ') }</small></span>
                         }
                       </Link>
                     </h5>
-                    <Datasource sources={this.props.quickstart.sources} />
-                    <div className="d-flex justify-content-between align-items-center pt-3">
-
-                    </div>
                 </div>
             </div>
         </div>

@@ -1,28 +1,21 @@
 import React from 'react';
 import {
     Switch,
-    Route,
-    HashRouter
+    Route
   } from "react-router-dom";
 import Home from './Pages/Home';
 import View from './Pages/View';
-import ScrollToTop from './Shared/Helpers/ScrollToTop';
-import './style.scss';
+import ScrollToTop from '../../src/Shared/Helpers/ScrollToTop';
+import ToolsTerraform from './Pages/ToolsTerraform';
+import InstallNerdlet from './Pages/InstallNerdlet';
 
 class App extends React.Component {
 
     constructor(props) {
         super(props);
 
-        this.state = {
-            data: [],
-            loading: true,
-        }
-    }
-
-    componentDidMount() {
         // Load in data from website
-        fetch('./data.json').then((response) => response.json()).then((data) => {
+        fetch('http://localhost:3000/quickstarts/data.json').then((response) => response.json()).then((data) => {
             this.setState({
                 data,
                 loading: false,
@@ -34,21 +27,23 @@ class App extends React.Component {
 
     render() {
         if (this.state.loading) {
-            return ( <p>Loading</p> );
+            return ( <p>Loading..</p> )
         }
 
         return (
             <HashRouter>
                 <main role="main">
-
                     <Switch>
-                        <Route path="/view/:handle" render={(props) => ( <View {...props} data={this.state.data} /> )} />
-                        <Route path="/" render={(props) => ( <Home {...props} data={this.state.data} /> )} />
+                        <Route path="/tools/terraform" component={ToolsTerraform} />
+                        <Route path="/install-nerdlet" component={InstallNerdlet} />
+                        <Route path="/view/:handle" component={View} />
+                        <Route path="/" component={Home} />
                     </Switch>
-
-                    <ScrollToTop />
                 </main>
+
+                <ScrollToTop />
             </HashRouter>
+
         )
     }
 

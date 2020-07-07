@@ -1,15 +1,9 @@
 import React from 'react';
-import ViewOverview from './ViewOverview';
 import {
     Link,
-    Switch,
-    Route
   } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBug, faHome } from '@fortawesome/free-solid-svg-icons';
-import data from '../data.json';
-import ViewDashboard from './ViewDashboards';
-import ViewRequirements from './ViewRequirements';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 class View extends React.Component {
 
@@ -23,7 +17,7 @@ class View extends React.Component {
 
     static getState(props) {
         return {
-            quickstart: data.quickstarts.find(element => element.id === props.match.params.handle),
+            quickstart: props.data.quickstarts.find(element => element.id === props.match.params.handle),
             path: props.match.path,
         }
     }
@@ -38,16 +32,18 @@ class View extends React.Component {
     render() {
         if (!this.state.quickstart) {
             return (
-                <div className="album py-2">
-                    <div className="container" id="root">
-                        <div className="row py-4">
-                            <div className="col-8">
-                                <h2>Quickstart not found</h2>
-                            </div>
-                            <div className="col-4 text-right">
-                                <Link className="btn btn-default" to={"/"}>
-                                    <FontAwesomeIcon icon={faHome} /> Back to listing
-                                </Link>
+                <div className="container" id="root">
+                    <div className="album py-2">
+                        <div className="container" id="root">
+                            <div className="row py-4">
+                                <div className="col-8">
+                                    <h2>Quickstart not found</h2>
+                                </div>
+                                <div className="col-4 text-right">
+                                    <Link className="btn btn-default" to={"/"}>
+                                        <FontAwesomeIcon icon={faHome} /> Back to listing
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -59,7 +55,7 @@ class View extends React.Component {
             <div className="container" id="root">
                 <div className="row header">
                     <div className="col-8">
-                        <h2>{ this.state.quickstart.name }</h2>
+                        <h1>New Relic Quickstarts</h1>
                     </div>
                     <div className="col-4 text-right">
                         <Link className="btn btn-default" to={"/"}>
@@ -68,43 +64,24 @@ class View extends React.Component {
                     </div>
                 </div>
                 <div className="row pt-4">
-                    <div className="col-3 sidebar">
-                        <ul className="nav flex-column">
-                            <li className="nav-item">
-                                <Link className="nav-link" to={"/view/" + this.state.quickstart.id}>
-                                    Description
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to={"/view/" + this.state.quickstart.id + "/requirements"}>
-                                    Requirements
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to={"/view/" + this.state.quickstart.id + "/dashboards"}>
-                                    Dashboards
-                                </Link>
-                            </li>
-                            <li className="nav-divider"></li>
-                            <li className="nav-item">
-                                <a className="nav-link text-danger" href={"https://github.com/newrelic-experimental/quickstarts/issues/new?labels=bug&title=Problem%20with%20" + this.state.quickstart.id}><FontAwesomeIcon icon={faBug} /> Report a problem</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="col-9 pl-4">
-                        <Switch>
-                            <Route exact path={this.state.path}>
-                                <ViewOverview quickstart={this.state.quickstart} />
-                            </Route>
+                    <div className="col-12 pl-4">
+                        <h2 class="pt-2 pb-4">{ this.state.quickstart.name }</h2>
 
-                            <Route path={`${this.state.path}/dashboards`}>
-                                <ViewDashboard quickstart={this.state.quickstart} />
-                            </Route>
+                        <div className="row">
+                            {this.state.quickstart.dashboards.map((dashboard) => {
+                                return dashboard.screenshots.map((screenshot) => {
+                                    return (
+                                        <div className="col-4" key={dashboard.name + screenshot}>
+                                            <img src={ "https://newrelic-experimental.github.io/quickstarts/data/" + this.state.quickstart.id + "/dashboards/" + screenshot} className="card-img-top" alt="..." />
+                                        </div>
+                                    );
+                                });
+                            })}
+                        </div>
 
-                            <Route path={`${this.state.path}/requirements`}>
-                                <ViewRequirements quickstart={this.state.quickstart} />
-                            </Route>
-                        </Switch>
+                        <p class="description mt-4">{ this.state.quickstart.description }</p>
+
+                        {/* <p>ADD INSTALLATION INSTRUCTIONS</p> */}
                     </div>
                 </div>
             </div>
