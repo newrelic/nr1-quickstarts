@@ -4,7 +4,6 @@ import {
   } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
-import data from '../data.json';
 
 class View extends React.Component {
 
@@ -18,7 +17,7 @@ class View extends React.Component {
 
     static getState(props) {
         return {
-            quickstart: data.quickstarts.find(element => element.id === props.match.params.handle),
+            quickstart: props.data.quickstarts.find(element => element.id === props.match.params.handle),
             path: props.match.path,
         }
     }
@@ -66,7 +65,7 @@ class View extends React.Component {
                 </div>
                 <div className="row pt-4">
                     <div className="col-12 pl-4">
-                        <h2 class="pt-2 pb-4">{ this.state.quickstart.name }</h2>
+                        <h2 className="pt-2 pb-4">{ this.state.quickstart.name }</h2>
 
                         <div className="row">
                             {this.state.quickstart.dashboards.map((dashboard) => {
@@ -80,7 +79,7 @@ class View extends React.Component {
                             })}
                         </div>
 
-                        <p class="description mt-4">{ this.state.quickstart.description }</p>
+                        <p className="description mt-4">{ this.state.quickstart.description }</p>
 
                         {/* <p>ADD INSTALLATION INSTRUCTIONS</p> */}
                     </div>

@@ -27,4 +27,3 @@ yarn-error.log*
 # build data
 public/data
 public/data.json
-src/data.json
