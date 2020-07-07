@@ -1,6 +1,7 @@
 import React from 'react';
-import Preview from '../../src/Shared/Partials/Preview';
-import DatasourceItem from '../../src/Shared/Partials/DatasourceItem';
+import Preview from '../../../../src/Shared/Partials/Preview';
+import DatasourceItem from '../../../../src/Shared/Partials/DatasourceItem';
+import data from "./../../../../src/data.json";
 
 class Home extends React.Component {
 

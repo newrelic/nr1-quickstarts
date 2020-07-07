@@ -1,4 +1,5 @@
 import React from 'react';
+import data from "./../../../../src/data.json";
 import ViewOverview from './ViewOverview';
 import {
     Link,
@@ -7,7 +8,6 @@ import {
   } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBug, faHome } from '@fortawesome/free-solid-svg-icons';
-import data from '../data.json';
 import ViewDashboard from './ViewDashboards';
 import ViewRequirements from './ViewRequirements';
 

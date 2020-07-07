@@ -1,5 +1,5 @@
 import React from 'react';
-import DatasourceItem from './DatasourceItem';
+import DatasourceItem from '../../../../src/Shared/Partials/DatasourceItem';
 
 class Datasource extends React.Component {
 

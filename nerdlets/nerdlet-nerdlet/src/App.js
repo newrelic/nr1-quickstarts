@@ -1,11 +1,12 @@
 import React from 'react';
 import {
     Switch,
-    Route
+    Route,
+    HashRouter,
   } from "react-router-dom";
 import Home from './Pages/Home';
 import View from './Pages/View';
-import ScrollToTop from '../../src/Shared/Helpers/ScrollToTop';
+import ScrollToTop from '../../../src/Shared/Helpers/ScrollToTop';
 import ToolsTerraform from './Pages/ToolsTerraform';
 import InstallNerdlet from './Pages/InstallNerdlet';
 
@@ -13,23 +14,9 @@ class App extends React.Component {
 
     constructor(props) {
         super(props);
-
-        // Load in data from website
-        fetch('http://localhost:3000/quickstarts/data.json').then((response) => response.json()).then((data) => {
-            this.setState({
-                data,
-                loading: false,
-            });
-        }).catch((response) => {
-            console.log(response);
-        });
     }
 
     render() {
-        if (this.state.loading) {
-            return ( <p>Loading..</p> )
-        }
-
         return (
             <HashRouter>
                 <main role="main">
