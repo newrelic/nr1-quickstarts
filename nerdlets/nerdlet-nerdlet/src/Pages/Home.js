@@ -1,7 +1,6 @@
 import React from 'react';
 import Preview from '../../../../src/Shared/Partials/Preview';
 import DatasourceItem from '../../../../src/Shared/Partials/DatasourceItem';
-import data from "./../../../../src/data.json";
 
 class Home extends React.Component {
 
@@ -55,7 +54,7 @@ class Home extends React.Component {
                 <div className="album bg-light">
                     <div className="container-fluid" id="root">
                         <div className="row py-3">
-                        {data.quickstarts.filter(this.search).map((quickstart, i) => {
+                        {this.props.data.quickstarts.filter(this.search).map((quickstart, i) => {
                             return (<Preview key={quickstart.name} quickstart={quickstart} />)
                         })}
                         </div>

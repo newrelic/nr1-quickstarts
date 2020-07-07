@@ -1,5 +1,4 @@
 import React from 'react';
-import data from "./../../../../src/data.json";
 import ViewOverview from './ViewOverview';
 import {
     Link,
@@ -23,7 +22,7 @@ class View extends React.Component {
 
     static getState(props) {
         return {
-            quickstart: data.quickstarts.find(element => element.id === props.match.params.handle),
+            quickstart: props.data.quickstarts.find(element => element.id === props.match.params.handle),
             path: props.match.path,
         }
     }
