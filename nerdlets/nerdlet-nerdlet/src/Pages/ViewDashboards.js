@@ -26,7 +26,7 @@ class ViewDashboard extends React.Component {
             quickstart: props.quickstart,
             importModelHidden: true,
             accountId: null,
-            dashboardJson: '',
+            dashboardJson: {},
         }
     }
 
@@ -60,8 +60,12 @@ class ViewDashboard extends React.Component {
     }
 
     onChangeAccount(value) {
+        let dashboard = {... this.state.dashboardJson};
+        dashboard.dashboard_account_id = value;
+
         this.setState({
-            accountId: value
+            accountId: value,
+            dashboardJson: dashboard,
         });
     }
 
