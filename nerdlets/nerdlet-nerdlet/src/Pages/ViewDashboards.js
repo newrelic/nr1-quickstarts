@@ -80,18 +80,23 @@ class ViewDashboard extends React.Component {
                         onChange={this.onChangeAccount}
                         spacingType={[AccountPicker.SPACING_TYPE.LARGE]}
                     />
-                    <HeadingText spacingType={[AccountPicker.SPACING_TYPE.LARGE]} type={HeadingText.TYPE.HEADING_3}>2. Import</HeadingText>
-                    <Tabs defaultValue="tab-1">
-                        <TabsItem value="tab-1" label="Account import">
-                            <p>Soon ..</p>
-                        </TabsItem>
-                        <TabsItem value="tab-2" label="Terraform">
-                            <ExportTerraform json={this.state.dashboardJson} />
-                        </TabsItem>
-                        <TabsItem value="tab-3" label="Json">
-                            <ExportJson json={this.state.dashboardJson} />
-                        </TabsItem>
-                    </Tabs>
+                    {this.state.accountId !== null &&
+                        <>
+                            <HeadingText spacingType={[AccountPicker.SPACING_TYPE.LARGE]} type={HeadingText.TYPE.HEADING_3}>2. Import</HeadingText>
+                            <Tabs defaultValue="tab-1">
+                                <TabsItem value="tab-1" label="Account import">
+                                    <p>Soon ..</p>
+                                </TabsItem>
+                                <TabsItem value="tab-2" label="Terraform">
+                                    <ExportTerraform json={this.state.dashboardJson} />
+                                </TabsItem>
+                                <TabsItem value="tab-3" label="Json">
+                                    <ExportJson json={this.state.dashboardJson} />
+                                </TabsItem>
+                            </Tabs>
+                        </>
+                    }
+
                 </Modal>
 
                 <div className="dashboards">
