@@ -1,17 +1,21 @@
 import React from 'react';
 import InstallationInstructions from '../Partials/InstallationInstructions';
+import { Modal, HeadingText, AccountPicker, Tabs, TabsItem, JsonChart } from 'nr1'
 
 class ViewRequirements extends React.Component {
 
     constructor(props) {
         super(props);
 
+        this.onChangeAccount = this.onChangeAccount.bind(this);
+
         this.state = ViewRequirements.getState(props);
     }
 
     static getState(props) {
         return {
-            quickstart: props.quickstart
+            quickstart: props.quickstart,
+            accountId: null,
         }
     }
 
@@ -22,13 +26,27 @@ class ViewRequirements extends React.Component {
         return null
     }
 
+    onChangeAccount(event, value) {
+        this.setState({
+            accountId: value
+        });
+    }
 
     render() {
         return (
             <div className="overview">
                 <h3>Installation instructions</h3>
-                <p>This quickstart requires the following New Relic products</p>
-                <InstallationInstructions sources={this.state.quickstart.sources} />
+                <p>Please select an account to check the requirements against your environment.</p>
+
+                <AccountPicker
+                    value={this.state.accountId}
+                    onChange={this.onChangeAccount}
+                    spacingType={[AccountPicker.SPACING_TYPE.LARGE]}
+                />
+
+                <p>This quickstart requires the following data sources.</p>
+
+                <InstallationInstructions accountId={this.state.accountId} sources={this.state.quickstart.sources} />
 
                 {this.state.quickstart.flex.length > 0 &&
                     <div>
