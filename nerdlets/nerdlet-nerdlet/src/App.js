@@ -9,6 +9,7 @@ import View from './Pages/View';
 import ScrollToTop from '../../../src/Shared/Helpers/ScrollToTop';
 import ToolsTerraform from './Pages/ToolsTerraform';
 import InstallNerdlet from './Pages/InstallNerdlet';
+import Tools from './Pages/Tools';
 import { Spinner } from 'nr1'
 
 class App extends React.Component {
@@ -54,6 +55,7 @@ class App extends React.Component {
                         <Route path="/tools/terraform" render={(props) => <ToolsTerraform data={this.state.data} {...props} /> } />
                         <Route path="/install-nerdlet" render={(props) => <InstallNerdlet data={this.state.data} {...props} /> } />
                         <Route path="/view/:handle" render={(props) => <View data={this.state.data} {...props} /> } />
+                        <Route path="/tools" render={(props) => <Tools data={this.state.data} {...props} /> } />
                         <Route path="/" render={(props) => <Home data={this.state.data} {...props} /> } />
                     </Switch>
                 </main>
