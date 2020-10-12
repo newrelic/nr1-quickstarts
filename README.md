@@ -36,7 +36,7 @@ Dependencies:
 
 Pulling in third party dependencies: `yarn`
 
-Building the repository dataset: `./build.sh`
+Building the repository dataset: `./generate-data.sh`
 
 Running the website locally: `yarn run start`
 
