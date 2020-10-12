@@ -27,7 +27,7 @@ Community repository of New Relic dashboards, alerts, and installation instructi
 Thanks a lot for your submission!
 
 
-## Building - optional
+## Running local version
 
 Dependencies:
 
@@ -39,6 +39,7 @@ Pulling in third party dependencies: `yarn`
 Building the repository dataset: `./generate-data.sh`
 
 Running the website locally: `yarn run start`
+Running the Nerdlet locally: `nr1 nerdpack:serve`
 
 ## Support
 
