@@ -1,0 +1,7 @@
+# Name of your quickstart as shown on the website
+name: SRE Golden Signals
+description: Requires an APM agent to be installed. Some charts also show signals by username, so make sure to include username as a custom attribute in your APM Transaction data https://docs.newrelic.com/docs/using-new-relic/data/customize-data/collect-custom-attributes
+
+# Optional: Authors of the quickstart
+authors:
+    - Fitzgerald D.
