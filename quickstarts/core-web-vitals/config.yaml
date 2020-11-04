@@ -1,0 +1,8 @@
+# Name of your quickstart as shown on the website
+name: Core Web Vitals
+description: A dashboard to help you understand the Core Web Vitals metrics for your website. https://web.dev/vitals/
+
+# Optional: Authors of the quickstart
+authors:
+    - York A.
+    - Fitzgerald D.

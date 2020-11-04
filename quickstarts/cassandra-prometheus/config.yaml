@@ -1,0 +1,13 @@
+# Name of your quickstart as shown on the website
+name: Cassandra (Prometheus)
+
+# Optional: Authors of the quickstart
+authors:
+    - Daniel Fitzgerald
+
+# Optional: Add additional sources as some can't be auto detected by the scripts (for example Prometheus data).
+# You can also redirect to external webpages when the dashboards provides specific installation instructions
+sources:
+  - Prometheus
+  - name: Cassandra Exporter
+    url: https://github.com/criteo/cassandra_exporter
