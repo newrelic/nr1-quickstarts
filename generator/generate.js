@@ -74,7 +74,9 @@ function process(element) {
         // Retrieve dashboard json and store dashboard name
         let dashboardJson = JSON.parse(fs.readFileSync('quickstarts/' + element + '/dashboards/' + filename));
         dashboard.name = dashboardJson.title;
-        dashboard.sources = dashboardJson.filter.event_types;
+        if (dashboardJson.filter) {
+            dashboard.sources = dashboardJson.filter.event_types || '';
+        }
         quickstart.sources = quickstart.sources.concat(dashboard.sources);
 
         // Check if an image exists with same name as dashboard
