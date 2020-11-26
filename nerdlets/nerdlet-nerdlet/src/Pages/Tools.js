@@ -7,6 +7,9 @@ import ExportJson from '../Partials/ExportJson';
 import {
     Button,
     BlockText,
+    Icon,
+    Grid,
+    GridItem,
     NerdGraphQuery,
     TextField,
     Table,
@@ -133,10 +136,13 @@ class Tools extends React.Component {
         this._getActions = this._getActions.bind(this);
         this.openTools = this.openTools.bind(this);
         this.closeTools = this.closeTools.bind(this);
+        this.onChangeAccount = this.onChangeAccount.bind(this);
+        this.onDashboardNameChange = this.onDashboardNameChange.bind(this);
 
         this.state = {
             toolsModalHidden: true,
             dashboardJson: '',
+            dashboardName: '',
             dashboardLoading: true,
             search: {
                 'name': '%',
@@ -150,6 +156,7 @@ class Tools extends React.Component {
             console.log("received", results);
             this.setState({
                 dashboardJson: results.data.actor.entity,
+                dashboardName: results.data.actor.entity.name + ' Clone',
                 dashboardLoading: false,
             });
         }).catch((error) => { console.log('Nerdgraph Error:', error); })
@@ -164,6 +171,22 @@ class Tools extends React.Component {
         this.setState({
             toolsModalHidden: true
         });
+    }
+
+    onChangeAccount(event, value) {
+        this.setState({
+            accountId: value
+        });
+    }
+
+    onDashboardNameChange(event) {
+        this.setState({
+            dashboardName: event.target.value
+        });
+    }
+
+    onCopyDashboard() {
+        alert('soon');
     }
 
     _search(event) {
@@ -209,7 +232,7 @@ class Tools extends React.Component {
                 <div className="row pt-4">
                     <div className="col-12">
                         <h2>Search</h2>
-                        <TextField type={TextField.TYPE.SEARCH} onChange={this._search} spacingType={[TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE, TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE]} />
+                        <TextField className="custom-textfield" type={TextField.TYPE.SEARCH} onChange={this._search} spacingType={[TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE, TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE]} />
 
                         <h2>Dashboards</h2>
                         <NerdGraphQuery query={this.searchQuery} variables={this.state.search}>
@@ -244,7 +267,23 @@ class Tools extends React.Component {
                     <HeadingText spacingType={[AccountPicker.SPACING_TYPE.LARGE]} type={HeadingText.TYPE.HEADING_1}>Export dashboard</HeadingText>
                     <Tabs defaultValue="tab-1">
                         <TabsItem value="tab-1" label="Copy to">
-                            <p>Soon ..</p>
+                            <p>Where do you want to copy the dashboard to?</p>
+                            <AccountPicker
+                                value={this.state.accountId}
+                                onChange={this.onChangeAccount}
+                                spacingType={[AccountPicker.SPACING_TYPE.LARGE]}
+                            />
+                            <p>How do you want to name the dashboard?</p>
+                            <Grid>
+                                <GridItem columnSpan={12}>
+                                    <TextField className="custom-textfield" value={this.state.dashboardName} type={TextField.TYPE.TEXT} onChange={this.onDashboardNameChange} spacingType={[TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE, TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE]} />
+                                </GridItem>
+                            </Grid>
+                            <Button
+                                type={Button.TYPE.PRIMARY}
+                                iconType={Icon.TYPE.INTERFACE__OPERATIONS__COPY_TO}
+                                onClick={this.onCopyDashboard}
+                            >Copy dashboard</Button>
                         </TabsItem>
                         <TabsItem value="tab-2" label="Generate Terraform">
                             {this.state.dashboardLoading && <Spinner />}
