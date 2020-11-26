@@ -139,7 +139,6 @@ class Tools extends React.Component {
                         {({ data, error, loading }) => {
                             if (loading) return <Spinner />
                             if (error) return <BlockText>{error.message}</BlockText>
-                            console.log("data", data);
                             return (
                                 <div id="results">
                                     {data.actor.entitySearch.count > 200 &&
