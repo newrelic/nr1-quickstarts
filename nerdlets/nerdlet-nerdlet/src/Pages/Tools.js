@@ -28,7 +28,7 @@ class Tools extends React.Component {
     modalCallback = undefined;
     searchTimeout = undefined;
 
-    query = `
+    searchQuery = `
     query($name: String!) {
         actor {
             entitySearch(queryBuilder: {type: DASHBOARD, name: $name}) {
@@ -52,6 +52,80 @@ class Tools extends React.Component {
     }
     `;
 
+    downloadQuery = `
+    query($guid: EntityGuid!){
+        actor {
+          entity(guid: $guid) {
+            ... on DashboardEntity {
+                name
+                description
+                pages {
+                  name
+                  description
+                  widgets {
+                    id
+                    visualization
+                    layout {
+                      column
+                      row
+                      height
+                      width
+                    }
+                    title
+                    configuration {
+                      area {
+                        queries {
+                          accountId
+                          nrql
+                        }
+                      }
+                      line {
+                        queries {
+                          accountId
+                          nrql
+                        }
+                      }
+                      bar {
+                        queries {
+                          accountId
+                          nrql
+                        }
+                      }
+                      billboard {
+                        queries {
+                          accountId
+                          nrql
+                        }
+                        thresholds {
+                          alertSeverity
+                          value
+                        }
+                      }
+                      pie {
+                        queries {
+                          accountId
+                          nrql
+                        }
+                      }
+                      table {
+                        queries {
+                          accountId
+                          nrql
+                        }
+                      }
+                      markdown {
+                        text
+                      }
+                    }
+                    rawConfiguration
+                  }
+                }
+            }
+          }
+        }
+      }
+    `;
+
     constructor(props) {
         super(props);
 
@@ -63,23 +137,26 @@ class Tools extends React.Component {
         this.state = {
             toolsModalHidden: true,
             dashboardJson: '',
+            dashboardLoading: true,
             search: {
                 'name': '%',
             },
         };
     }
 
-    openTools() {
-        let url = 'https://newrelic-experimental.github.io/quickstarts/data/browser/dashboards/browser_overview.json';
-        fetch(url)
-            .then(response => response.json())
-            .then((response) => {
-                this.setState({
-                    dashboardJson: response,
-                });
-            })
+    openTools(guid) {
+        const data = NerdGraphQuery.query({query: this.downloadQuery, variables: {guid: guid}})
+        data.then(results => {
+            console.log("received", results);
+            this.setState({
+                dashboardJson: results.data.actor.entity,
+                dashboardLoading: false,
+            });
+        }).catch((error) => { console.log('Nerdgraph Error:', error); })
+
         this.setState({
-            toolsModalHidden: false
+            toolsModalHidden: false,
+            dashboardLoading: true,
         });
     }
 
@@ -135,7 +212,7 @@ class Tools extends React.Component {
                         <TextField type={TextField.TYPE.SEARCH} onChange={this._search} spacingType={[TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE, TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE]} />
 
                         <h2>Dashboards</h2>
-                        <NerdGraphQuery query={this.query} variables={this.state.search}>
+                        <NerdGraphQuery query={this.searchQuery} variables={this.state.search}>
                         {({ data, error, loading }) => {
                             if (loading) return <Spinner />
                             if (error) return <BlockText>{error.message}</BlockText>
@@ -150,7 +227,7 @@ class Tools extends React.Component {
                                             <TableHeaderCell>Account</TableHeaderCell>
                                         </TableHeader>
                                         {({ item }) => (
-                                            <TableRow actions={this._getActions()} onClick={(evt, { item, index }) => { this.openTools(); }}>
+                                            <TableRow actions={this._getActions()} onClick={(evt, { item, index }) => { this.openTools(item.guid); }}>
                                                 <TableRowCell>{item.name}</TableRowCell>
                                                 <TableRowCell>{item.account.name}</TableRowCell>
                                             </TableRow>
@@ -170,10 +247,12 @@ class Tools extends React.Component {
                             <p>Soon ..</p>
                         </TabsItem>
                         <TabsItem value="tab-2" label="Generate Terraform">
-                            <ExportTerraform json={this.state.dashboardJson} />
+                            {this.state.dashboardLoading && <Spinner />}
+                            {!this.state.dashboardLoading && <ExportTerraform json={this.state.dashboardJson} />}
                         </TabsItem>
                         <TabsItem value="tab-3" label="Export Json">
-                            <ExportJson json={this.state.dashboardJson} />
+                            {this.state.dashboardLoading && <Spinner />}
+                            {!this.state.dashboardLoading && <ExportJson json={this.state.dashboardJson} />}
                         </TabsItem>
                     </Tabs>
                 </Modal>
