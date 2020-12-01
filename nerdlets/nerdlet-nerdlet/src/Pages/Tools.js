@@ -7,6 +7,7 @@ import ExportJson from '../Partials/ExportJson';
 import {
     Button,
     BlockText,
+    EntityTitleTableRowCell,
     Icon,
     Grid,
     GridItem,
@@ -47,6 +48,10 @@ class Tools extends React.Component {
                             guid
                             name
                             accountId
+                            tags {
+                                key
+                                values
+                            }
                         }
                     }
                 }
@@ -218,51 +223,50 @@ class Tools extends React.Component {
 
     render() {
         return (
-            <div className="container" id="root">
-                <div className="row header">
-                    <div className="col-8">
-                        <h2>Tools</h2>
-                    </div>
-                    <div className="col-4 text-right">
+            <>
+                <Grid>
+                    <GridItem columnSpan={8}>
+                        <HeadingText type={HeadingText.TYPE.HEADING_2}>Tools - Dashboards</HeadingText>
+                    </GridItem>
+                    <GridItem columnSpan={4} className="custom-align-right">
                         <Link className="btn btn-default" to={"/"}>
                             <FontAwesomeIcon icon={faHome} /> Back to listing
                         </Link>
-                    </div>
-                </div>
-                <div className="row pt-4">
-                    <div className="col-12">
-                        <h2>Search</h2>
-                        <TextField className="custom-textfield" type={TextField.TYPE.SEARCH} onChange={this._search} spacingType={[TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE, TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE]} />
-
-                        <h2>Dashboards</h2>
+                    </GridItem>
+                    <GridItem columnSpan={12}>
+                        <TextField className="custom-textfield" placeholder="Search" type={TextField.TYPE.SEARCH} onChange={this._search} spacingType={[TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE, TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE]} />
                         <NerdGraphQuery query={this.searchQuery} variables={this.state.search}>
                         {({ data, error, loading }) => {
-                            if (loading) return <Spinner />
+                            if (loading) return <Spinner className="custom-spinner" spacingType={[Spinner.SPACING_TYPE.LARGE, Spinner.SPACING_TYPE.LARGE, Spinner.SPACING_TYPE.LARGE, Spinner.SPACING_TYPE.LARGE]} />
                             if (error) return <BlockText>{error.message}</BlockText>
+                            console.log(data.actor.entitySearch.results.entities[0].tags.filter((tag) => tag.key == 'createdBy')[0].values[0]);
                             return (
-                                <div id="results">
+                                <>
                                     {data.actor.entitySearch.count > 200 &&
-                                        <p>You have access to more than 200 dashboards, please use search to narrow your results:</p>
+                                        <p><b>You have access to more than 200 dashboards, please use search to narrow your results.</b></p>
                                     }
                                     <Table items={data.actor.entitySearch.results.entities}>
                                         <TableHeader>
                                             <TableHeaderCell>Name</TableHeaderCell>
                                             <TableHeaderCell>Account</TableHeaderCell>
+                                            <TableHeaderCell>Created by</TableHeaderCell>
                                         </TableHeader>
                                         {({ item }) => (
                                             <TableRow actions={this._getActions()} onClick={(evt, { item, index }) => { this.openTools(item.guid); }}>
-                                                <TableRowCell>{item.name}</TableRowCell>
+                                                <EntityTitleTableRowCell value={item} />
                                                 <TableRowCell>{item.account.name}</TableRowCell>
+                                                <TableRowCell>{item.tags.filter(tag => tag.key == 'createdBy')[0].values[0]}</TableRowCell>
                                             </TableRow>
                                         )}
                                     </Table>
-                                </div>
+                                </>
 
                             )
                         }}
                         </NerdGraphQuery>
-                    </div>
-                </div>
+                    </GridItem>
+                </Grid>
+
                 <Modal hidden={this.state.toolsModalHidden} onClose={this.closeTools}>
                     <HeadingText spacingType={[AccountPicker.SPACING_TYPE.LARGE]} type={HeadingText.TYPE.HEADING_1}>Export dashboard</HeadingText>
                     <Tabs defaultValue="tab-1">
@@ -295,7 +299,7 @@ class Tools extends React.Component {
                         </TabsItem>
                     </Tabs>
                 </Modal>
-            </div>
+            </>
         );
     }
 }
