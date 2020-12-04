@@ -1,7 +1,5 @@
 import React from 'react';
-import Preview from '../../../../src/Shared/Partials/Preview';
-import DatasourceItem from '../../../../src/Shared/Partials/DatasourceItem';
-import { Link } from "react-router-dom";
+import Preview from '../Shared/Partials/Preview';
 
 class Home extends React.Component {
 
@@ -9,7 +7,7 @@ class Home extends React.Component {
         super(props);
 
         this.state = {
-            search: '',
+            search: ''
         }
 
         this.setSearch = this.setSearch.bind(this);
@@ -28,22 +26,12 @@ class Home extends React.Component {
             return true;
         }
 
-        let sources = element.sources.map(value => DatasourceItem.getProduct(value));
-        if (sources.toString().toLowerCase().includes(lowercaseSearch)) {
-            return true;
-        }
-
         return false;
     }
 
     render() {
         return (
             <div>
-                <div className="text-right px-4">
-                    <Link className="" to={"/tools"}>
-                        Tools
-                    </Link>
-                </div>
                 <section className="jumbotron text-center">
                     <div className="container">
                         <h1>New Relic - Quick start library</h1>
@@ -52,7 +40,7 @@ class Home extends React.Component {
 
                     <div className="container" id="root">
                         <div className="row pt-5">
-                            <input type="text" className="form-control" id="search" aria-describedby="search" placeholder="Search for specific datasource or technology" value={this.state.search} onChange={this.setSearch} />
+                            <input type="text" className="form-control" id="search" aria-describedby="search" placeholder="Search for name or technology" value={this.state.search} onChange={this.setSearch} />
                         </div>
                     </div>
                 </section>

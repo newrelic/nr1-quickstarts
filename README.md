@@ -27,19 +27,9 @@ Community repository of New Relic dashboards, alerts, and installation instructi
 Thanks a lot for your submission!
 
 
-## Running local version
+## Development
 
-Dependencies:
-
-- NodeJS
-- Yarn
-
-Pulling in third party dependencies: `yarn`
-
-Building the repository dataset: `./generate-data.sh`
-
-Running the website locally: `yarn run start`
-Running the Nerdlet locally: `nr1 nerdpack:serve`
+Check out the development manual to set-up your own local dev environment. This is only needed if you want to make changes to the website or nerdlet, not if you want to add another quickstarts. Follow the instructions above to add or edit a quickstart.
 
 ## Support
 

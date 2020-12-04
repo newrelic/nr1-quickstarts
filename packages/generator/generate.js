@@ -3,6 +3,11 @@ const yaml = require('js-yaml');
 const util = require('util');
 const path = require('path');
 
+
+// First argument should be path to quickstarts folder
+let directory = process.argv[2];
+
+
 // Helper to remove duplicates from an array
 // Thank you StackOverflow: https://stackoverflow.com/questions/1584370/how-to-merge-two-arrays-in-javascript-and-de-duplicate-items
 Array.prototype.unique = function() {
@@ -21,15 +26,15 @@ Array.prototype.unique = function() {
 //
 // Read all quickstarts, filter out the ones starting with _ and process each
 //
-let quickstarts = fs.readdirSync('quickstarts')
+let quickstarts = fs.readdirSync(directory)
         .filter((element) => !element.startsWith('_'))
-        .map(process);
+        .map(processQuickstart);
 
 
 //
 // Process a quickstarts element
 //
-function process(element) {
+function processQuickstart(element) {
     //
     // Quickstart data
     //
@@ -46,7 +51,7 @@ function process(element) {
     //
     // Read config and store attributes
     //
-    let configContents = fs.readFileSync('quickstarts/' + element + '/config.yaml', 'utf8');
+    let configContents = fs.readFileSync(directory + element + '/config.yaml', 'utf8');
     let config = yaml.safeLoad(configContents);
     quickstart.id = element;
     quickstart.name = config.name || element;
@@ -59,7 +64,7 @@ function process(element) {
     //
     // Read dashboard directory and read in all dashboards + screenshots
     //
-    quickstart.dashboards = fs.readdirSync('quickstarts/' + element + '/dashboards/')
+    quickstart.dashboards = fs.readdirSync(directory + element + '/dashboards/')
         .filter((filename) => filename.endsWith('json'))
         .map((filename) => {
 
@@ -72,7 +77,7 @@ function process(element) {
         };
 
         // Retrieve dashboard json and store dashboard name
-        let dashboardJson = JSON.parse(fs.readFileSync('quickstarts/' + element + '/dashboards/' + filename));
+        let dashboardJson = JSON.parse(fs.readFileSync(directory + element + '/dashboards/' + filename));
         dashboard.name = dashboardJson.title;
         if (dashboardJson.filter) {
             dashboard.sources = dashboardJson.filter.event_types || '';
@@ -81,7 +86,7 @@ function process(element) {
 
         // Check if an image exists with same name as dashboard
         dashboard.screenshots = ['.png', '.jpeg', '.gif'].map((imageType) => {
-            if (fs.existsSync('quickstarts/' + element + '/dashboards/' + path.parse(filename).name + imageType)) {
+            if (fs.existsSync(directory + element + '/dashboards/' + path.parse(filename).name + imageType)) {
                 return path.parse(filename).name + imageType;
             }
         }).filter((dashboard) => dashboard);
@@ -93,13 +98,13 @@ function process(element) {
     //
     // Read flex directory
     //
-    if (fs.existsSync('quickstarts/' + element + '/flex')) {
-        quickstart.flex = fs.readdirSync('quickstarts/' + element + '/flex/')
+    if (fs.existsSync(directory + element + '/flex')) {
+        quickstart.flex = fs.readdirSync(directory + element + '/flex/')
             .map((filename) => {
                 // We want to remove the flex events from the sources list, as it will add a lot of unknown data sources
                 // We know where the data sources are coming from, so it's not really unknown
                 // We do this by parsing each file and retrieving the specific event_type
-                let flexContents = fs.readFileSync('quickstarts/' + element + '/flex/' + filename, 'utf8');
+                let flexContents = fs.readFileSync(directory + element + '/flex/' + filename, 'utf8');
                 let flexConfig = yaml.safeLoad(flexContents);
 
                 flexConfig.integrations.forEach(integration => {
@@ -131,4 +136,4 @@ console.log(util.inspect(quickstarts, false, null, true /* enable colors */))
 let json = JSON.stringify({
     'quickstarts': quickstarts
 });
-fs.writeFileSync('public/data.json', json);
+fs.writeFileSync('data.json', json);

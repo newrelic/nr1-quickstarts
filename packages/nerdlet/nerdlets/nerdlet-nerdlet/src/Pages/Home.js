@@ -1,6 +1,7 @@
 import React from 'react';
-import Preview from '../Shared/Partials/Preview';
-import DatasourceItem from '../Shared/Partials/DatasourceItem';
+import Preview from '../Partials/Preview';
+import DatasourceItem from '../Partials/DatasourceItem';
+import { Link } from "react-router-dom";
 
 class Home extends React.Component {
 
@@ -8,7 +9,7 @@ class Home extends React.Component {
         super(props);
 
         this.state = {
-            search: ''
+            search: '',
         }
 
         this.setSearch = this.setSearch.bind(this);
@@ -38,6 +39,11 @@ class Home extends React.Component {
     render() {
         return (
             <div>
+                <div className="text-right px-4">
+                    <Link className="" to={"/tools"}>
+                        Tools
+                    </Link>
+                </div>
                 <section className="jumbotron text-center">
                     <div className="container">
                         <h1>New Relic - Quick start library</h1>

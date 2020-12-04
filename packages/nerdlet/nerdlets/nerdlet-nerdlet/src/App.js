@@ -6,7 +6,7 @@ import {
   } from "react-router-dom";
 import Home from './Pages/Home';
 import View from './Pages/View';
-import ScrollToTop from '../../../src/Shared/Helpers/ScrollToTop';
+import ScrollToTop from './Helpers/ScrollToTop';
 import ToolsTerraform from './Pages/ToolsTerraform';
 import InstallNerdlet from './Pages/InstallNerdlet';
 import Tools from './Pages/Tools';

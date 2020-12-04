@@ -1,5 +1,4 @@
 import React from 'react';
-import DatasourceItem from '../../../../src/Shared/Partials/DatasourceItem';
 import { NrqlQuery, Icon, Tooltip } from 'nr1'
 
 class SourceAvailable extends React.Component {
