@@ -34,8 +34,10 @@ class Home extends React.Component {
             <div>
                 <section className="jumbotron text-center">
                     <div className="container">
-                        <h1>New Relic - Quick start library</h1>
+                        <h1>New Relic - Quick start library Preview</h1>
                         <p className="lead text-muted">Library of curated dashboards & alerts with their dependencies.</p>
+                        <p className="lead text-red"><b>Preview functionality!</b></p>
+                        <p className="lead text-red"><b>The release is planned for beginning of 2021.</b></p>
                     </div>
 
                     <div className="container" id="root">

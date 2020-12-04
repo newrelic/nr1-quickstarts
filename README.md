@@ -1,6 +1,6 @@
 [![New Relic Experimental header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/Experimental.png)](https://opensource.newrelic.com/oss-category/#new-relic-experimental)
 
-# New Relic Quickstart ![Deploy website](https://github.com/newrelic-experimental/quickstarts/workflows/Deploy%20website/badge.svg?branch=master)
+# New Relic Quickstart Preview ![Deploy website](https://github.com/newrelic-experimental/quickstarts/workflows/Deploy%20website/badge.svg?branch=master)
 
 Community repository of New Relic dashboards, alerts, and installation instructions. You can find the repository here: https://newrelic-experimental.github.io/quickstarts/
 
