@@ -1,9 +1,7 @@
 import React from 'react';
-import { NrqlQuery, Icon, Tooltip } from 'nr1'
+import { NrqlQuery, Icon, Tooltip, Spinner } from 'nr1'
 
 class SourceAvailable extends React.Component {
-
-
 
     render() {
         if (this.props.accountId) {
@@ -12,8 +10,11 @@ class SourceAvailable extends React.Component {
                     accountId={this.props.accountId}
                     query={"SELECT count(*) FROM " + this.props.source + " SINCE 5 minutes ago"}
                 >
-                {({ data }) => {
-                    console.log(data);
+                {({ loading, data }) => {
+                    if (loading) {
+                        return <Spinner inline={true} />
+                    }
+
                     if (data && data.length > 0 && data[0].data.length > 0 && data[0].data[0].count > 0) {
                         return (
                             <Tooltip text="Requirement fulfilled!">

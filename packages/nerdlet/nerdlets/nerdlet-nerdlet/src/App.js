@@ -10,7 +10,7 @@ import ScrollToTop from './Helpers/ScrollToTop';
 import ToolsTerraform from './Pages/ToolsTerraform';
 import InstallNerdlet from './Pages/InstallNerdlet';
 import Tools from './Pages/Tools';
-import { Spinner } from 'nr1'
+import { Spinner } from 'nr1';
 
 class App extends React.Component {
 
