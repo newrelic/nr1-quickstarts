@@ -20,15 +20,15 @@ jobs:
       with:
         node-version: 12.x
 
-    - run: yarn
+    - run: npm install
 
-    - run: bash generate-data.sh
+    - run: pushd packages/generator/ && bash generate-data.sh && popd
 
-    - run: yarn run build
+    - run: pushd packages/website/ && npm run build && popd
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BRANCH: gh-pages # The branch the action should deploy to.
-        FOLDER: build # The folder the action should deploy.
+        FOLDER: packages/website/build # The folder the action should deploy.
