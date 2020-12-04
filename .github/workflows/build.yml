@@ -20,11 +20,19 @@ jobs:
       with:
         node-version: 12.x
 
-    - run: npm install
+    - name: Build data file
+      run: |
+        pushd packages/generator/
+        npm install
+        bash generate-data.sh
+        popd
 
-    - run: pushd packages/generator/ && bash generate-data.sh && popd
-
-    - run: pushd packages/website/ && npm run build && popd
+    - name: Build website
+      run: |
+        pushd packages/website/
+        npm install
+        npm run build
+        popd
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
