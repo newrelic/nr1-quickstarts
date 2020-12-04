@@ -134,6 +134,19 @@ class Tools extends React.Component {
       }
     `;
 
+    createQuery = `
+    mutation($accountId: Int!, $dashboard: DashboardInput!) {
+        dashboardCreate(accountId: $accountId, dashboard: $dashboard) {
+            name
+            guid
+            owner {
+                email
+            }
+            permissions
+        }
+    }
+    `;
+
     constructor(props) {
         super(props);
 
@@ -143,6 +156,7 @@ class Tools extends React.Component {
         this.closeTools = this.closeTools.bind(this);
         this.onChangeAccount = this.onChangeAccount.bind(this);
         this.onDashboardNameChange = this.onDashboardNameChange.bind(this);
+        this.onCopyDashboard = this.onCopyDashboard.bind(this);
 
         this.state = {
             toolsModalHidden: true,
@@ -190,9 +204,43 @@ class Tools extends React.Component {
         });
     }
 
-    onCopyDashboard() {
-        alert('soon');
+    filterAll(data, filterElement) {
+        for(var key in data) {
+            if (Array.isArray(data[key]) || typeof(data[key]) == "object") {
+                this.filterAll(data[key], filterElement);
+            }
+            if (key == filterElement) {
+                delete data[key];
+            }
+        }
+
+        return data;
     }
+
+    onCopyDashboard() {
+        let dashboardData = this.state.dashboardJson;
+
+        // Set the right dashboard name
+        dashboardData.name = this.state.dashboardName;
+
+        // Set the dashboard as private by default
+        // TODO: Give customer the option
+        dashboardData.permissions = 'PRIVATE';
+
+        // Filter out __typename as the mutator is not a fan
+        dashboardData = this.filterAll(dashboardData, '__typename');
+
+        // Create copy of dashboard
+        const data = NerdGraphQuery.query({query: this.createQuery, variables: {
+            accountId: this.state.accountId,
+            dashboard: dashboardData,
+        }});
+        data.then(results => {
+            console.log("created", results);
+        }).catch((error) => { console.log('Nerdgraph Error:', error); })
+    }
+
+
 
     _search(event) {
         if (this.searchTimeout) {
@@ -239,7 +287,6 @@ class Tools extends React.Component {
                         {({ data, error, loading }) => {
                             if (loading) return <Spinner className="custom-spinner" spacingType={[Spinner.SPACING_TYPE.LARGE, Spinner.SPACING_TYPE.LARGE, Spinner.SPACING_TYPE.LARGE, Spinner.SPACING_TYPE.LARGE]} />
                             if (error) return <BlockText>{error.message}</BlockText>
-                            console.log(data.actor.entitySearch.results.entities[0].tags.filter((tag) => tag.key == 'createdBy')[0].values[0]);
                             return (
                                 <>
                                     {data.actor.entitySearch.count > 200 &&
