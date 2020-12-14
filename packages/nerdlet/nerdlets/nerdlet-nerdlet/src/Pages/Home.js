@@ -2,6 +2,9 @@ import React from 'react';
 import Preview from '../Partials/Preview';
 import DatasourceItem from '../Partials/DatasourceItem';
 import { Link } from "react-router-dom";
+import {
+    Button,
+} from "nr1";
 
 class Home extends React.Component {
 
@@ -41,7 +44,10 @@ class Home extends React.Component {
             <div>
                 <div className="text-right px-4">
                     <Link className="" to={"/tools"}>
-                        Tools
+                        <Button
+                            type={Button.TYPE.NORMAL}
+                            iconType={Button.ICON_TYPE.DOCUMENTS__DOCUMENTS__NOTES__A_ADD}
+                        >Tools</Button>
                     </Link>
                 </div>
                 <section className="jumbotron text-center">

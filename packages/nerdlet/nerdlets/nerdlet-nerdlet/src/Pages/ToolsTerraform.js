@@ -1,8 +1,7 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
 import ExportTerraform from '../Partials/ExportTerraform';
 import {
+    Button,
     Link
   } from "react-router-dom";
 
@@ -59,8 +58,11 @@ class ToolsTerraform extends React.Component {
                             <p>Convert a New Relic dashboard JSON to a Terraform template</p>
                         </div>
                         <div className="col-4 text-right">
-                            <Link className="btn btn-default" to={"/"}>
-                                <FontAwesomeIcon icon={faHome} /> Back to homepage
+                            <Link className="" to={"/"}>
+                                <Button
+                                    type={Button.TYPE.PRIMARY}
+                                    iconType={Button.ICON_TYPE.LOCATION__LOCATION__HOME}
+                                >Back to listing</Button>
                             </Link>
                         </div>
                     </div>

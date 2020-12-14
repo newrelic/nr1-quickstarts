@@ -1,11 +1,14 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFileExport } from '@fortawesome/free-solid-svg-icons';
 import ExportTerraform from '../Partials/ExportTerraform';
 import ExportJson from '../Partials/ExportJson';
-import { Modal, HeadingText, AccountPicker, Tabs, TabsItem, JsonChart } from 'nr1'
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import {
+    Button,
+    Modal,
+    HeadingText,
+    AccountPicker,
+    Tabs,
+    TabsItem
+} from 'nr1'
 
 class ViewDashboard extends React.Component {
 
@@ -96,7 +99,6 @@ class ViewDashboard extends React.Component {
                             </Tabs>
                         </>
                     }
-
                 </Modal>
 
                 <div className="dashboards">
@@ -109,7 +111,11 @@ class ViewDashboard extends React.Component {
                                     <h3>{dashboard.name}</h3>
                                 </div>
                                 <div className="col-6 text-right">
-                                    <button type="button" className="btn btn-secondary" onClick={(e) => { this.openImport(dashboard.filename) }}><FontAwesomeIcon icon={faFileExport} /> Import</button>
+                                    <Button
+                                        onClick={(e) => { this.openImport(dashboard.filename) }}
+                                        type={Button.TYPE.PLAIN}
+                                        iconType={Button.ICON_TYPE.INTERFACE__OPERATIONS__IMPORT}
+                                    >Import</Button>
                                 </div>
                                 <div className="col-12">
                                     {dashboard.screenshots.map((screenshot) => {

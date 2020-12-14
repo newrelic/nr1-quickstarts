@@ -5,9 +5,10 @@ import {
     Switch,
     Route
   } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBug, faHome } from '@fortawesome/free-solid-svg-icons';
-import ViewDashboard from './ViewDashboards';
+import {
+    Button,
+} from "nr1";
+  import ViewDashboard from './ViewDashboards';
 import ViewRequirements from './ViewRequirements';
 
 class View extends React.Component {
@@ -45,8 +46,11 @@ class View extends React.Component {
                                     <h2>Quickstart not found</h2>
                                 </div>
                                 <div className="col-4 text-right">
-                                    <Link className="btn btn-default" to={"/"}>
-                                        <FontAwesomeIcon icon={faHome} /> Back to listing
+                                    <Link className="" to={"/"}>
+                                        <Button
+                                            type={Button.TYPE.PRIMARY}
+                                            iconType={Button.ICON_TYPE.LOCATION__LOCATION__HOME}
+                                        >Back to listing</Button>
                                     </Link>
                                 </div>
                             </div>
@@ -63,8 +67,11 @@ class View extends React.Component {
                         <h2>{ this.state.quickstart.name }</h2>
                     </div>
                     <div className="col-4 text-right">
-                        <Link className="btn btn-default" to={"/"}>
-                            <FontAwesomeIcon icon={faHome} /> Back to listing
+                        <Link className="" to={"/"}>
+                            <Button
+                                type={Button.TYPE.PRIMARY}
+                                iconType={Button.ICON_TYPE.LOCATION__LOCATION__HOME}
+                            >Back to listing</Button>
                         </Link>
                     </div>
                 </div>
@@ -88,7 +95,11 @@ class View extends React.Component {
                             </li>
                             <li className="nav-divider"></li>
                             <li className="nav-item">
-                                <a className="nav-link text-danger" href={"https://github.com/newrelic-experimental/quickstarts/issues/new?labels=bug&title=Problem%20with%20" + this.state.quickstart.id}><FontAwesomeIcon icon={faBug} /> Report a problem</a>
+                                <Button
+                                    to={"https://github.com/newrelic-experimental/quickstarts/issues/new?labels=bug&title=Problem%20with%20" + this.state.quickstart.id}
+                                    type={Button.TYPE.PLAIN}
+                                    iconType={Button.ICON_TYPE.HARDWARE_AND_SOFTWARE__SOFTWARE__APPLICATION__S_WARNING}
+                                >Report a problem</Button>
                             </li>
                         </ul>
                     </div>

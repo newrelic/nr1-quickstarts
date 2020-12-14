@@ -1,10 +1,9 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import ExportModal from '../Partials/ExportModal';
 import {
     BlockText,
+    Button,
     EntityTitleTableRowCell,
     Grid,
     GridItem,
@@ -124,8 +123,11 @@ class Tools extends React.Component {
                         <HeadingText type={HeadingText.TYPE.HEADING_2}>Tools - Dashboards</HeadingText>
                     </GridItem>
                     <GridItem columnSpan={4} className="custom-align-right">
-                        <Link className="btn btn-default" to={"/"}>
-                            <FontAwesomeIcon icon={faHome} /> Back to listing
+                        <Link className="" to={"/"}>
+                            <Button
+                                type={Button.TYPE.PRIMARY}
+                                iconType={Button.ICON_TYPE.LOCATION__LOCATION__HOME}
+                            >Back to listing</Button>
                         </Link>
                     </GridItem>
                     <GridItem columnSpan={12}>
