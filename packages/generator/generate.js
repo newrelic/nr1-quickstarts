@@ -22,6 +22,25 @@ Array.prototype.unique = function() {
     return a;
 };
 
+// Helper to find all queries in a dashboard
+function findQueries(dashboard, data) {
+    if (!data) {
+        data = [];
+    }
+
+    for(var key in dashboard) {
+        if (Array.isArray(dashboard[key]) || typeof(dashboard[key]) == "object") {
+            data = findQueries(dashboard[key], data);
+        }
+
+        if (key == 'nrql') {
+            data.push(dashboard[key]);
+        }
+    }
+
+    return data;
+}
+
 
 //
 // Read all quickstarts, filter out the ones starting with _ and process each
@@ -78,11 +97,40 @@ function processQuickstart(element) {
 
         // Retrieve dashboard json and store dashboard name
         let dashboardJson = JSON.parse(fs.readFileSync(directory + element + '/dashboards/' + filename));
-        dashboard.name = dashboardJson.title;
-        if (dashboardJson.filter) {
-            dashboard.sources = dashboardJson.filter.event_types || '';
+        dashboard.name = dashboardJson.name;
+
+        // Parse dashboard and queries to find data types
+        let queries = findQueries(dashboardJson);
+        let sources = [];
+        // We support a max of 7 event types for a query, if anybody uses more than that it, just add one more (\s*,\s*\w+)?. Repeat until user is happy
+        // My regex isn't good enough to make this pretty
+        let re = new RegExp(/FROM (\w+)(\s*,\s*\w+)?(\s*,\s*\w+)?(\s*,\s*\w+)?(\s*,\s*\w+)?(\s*,\s*\w+)?(\s*,\s*\w+)?/gi);
+        for (let query of queries) {
+            let results = re.exec(query);
+            if (results) {
+                // Remove first element, the match
+                for(let result of results.slice(1)) {
+                    // Ignore empty results
+                    if (!result) {
+                        continue;
+                    }
+
+                    // Remove ,
+                    result = result.replace(',','');
+
+                    // Remove whitespace before and after string
+                    result = result.replace(/ /g,'')
+
+                    // Add element to sources if it's not in there already
+                    if (!sources.includes(result)) {
+                        sources.push(result);
+                    }
+                }
+            }
         }
-        quickstart.sources = quickstart.sources.concat(dashboard.sources);
+        dashboard.sources = sources;
+        quickstart.sources = [].concat(quickstart.sources, sources);
+
 
         // Check if an image exists with same name as dashboard
         dashboard.screenshots = ['.png', '.jpeg', '.gif'].map((imageType) => {
