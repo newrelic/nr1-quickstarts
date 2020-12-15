@@ -7,7 +7,6 @@ import {
 import Home from './Pages/Home';
 import View from './Pages/View';
 import ScrollToTop from './Helpers/ScrollToTop';
-import ToolsTerraform from './Pages/ToolsTerraform';
 import Tools from './Pages/Tools';
 import { Spinner } from 'nr1';
 
@@ -51,7 +50,6 @@ class App extends React.Component {
             <HashRouter>
                 <main role="main" id="root">
                     <Switch>
-                        <Route path="/tools/terraform" render={(props) => <ToolsTerraform data={this.state.data} {...props} /> } />
                         <Route path="/view/:handle" render={(props) => <View data={this.state.data} {...props} /> } />
                         <Route path="/tools" render={(props) => <Tools data={this.state.data} {...props} /> } />
                         <Route path="/" render={(props) => <Home data={this.state.data} {...props} /> } />
