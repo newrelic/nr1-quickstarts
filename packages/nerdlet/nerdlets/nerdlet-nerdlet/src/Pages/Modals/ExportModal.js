@@ -132,6 +132,13 @@ class ExportModal extends React.Component {
     }
 
     loadGuid(guid) {
+        // Reset view
+        this.setState({
+            dashboardJson: '',
+            dashboardName: '',
+            dashboardLoading: true,
+        });
+
         const data = NerdGraphQuery.query({query: this.downloadQuery, variables: {guid: guid}})
         data.then(results => {
             this.setState({
@@ -143,6 +150,13 @@ class ExportModal extends React.Component {
     }
 
     loadJson(url) {
+        // Reset view
+        this.setState({
+            dashboardJson: '',
+            dashboardName: '',
+            dashboardLoading: true,
+        });
+
         fetch(url)
             .then(response => response.json())
             .then((response) => {
