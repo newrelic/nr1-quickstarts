@@ -1,868 +1,1966 @@
 {
-    "title": "Cassandra Performance",
-    "icon": "bar-chart",
-    "grid_column_count": 12,
-    "filter": {
-        "key_names": [],
-        "event_types": ["PageView"],
-        "filter_first": false
-    },
-    "owner": {
-        "email": "danielfitzgerald@newrelic.com",
-        "id": 2334598
-    },
-    "widgets": [{
-        "title": "",
-        "nrql": null,
-        "width": 12,
-        "height": 1,
-        "row": 1,
-        "column": 1,
-        "notes": null,
-        "event_types": null,
-        "facet": null,
-        "agent_ids": [],
-        "duration": null,
-        "metrics": null,
-        "raw_metric_name": null,
-        "end_time": null,
-        "cds_params_payload": null,
-        "renderer": null,
-        "renderer_props": null,
-        "extension_type": null,
-        "customizations": {
-            "markdown": "## JVM Stats"
-        }
-    }, {
-        "title": "Memory Pool Used",
-        "nrql": "SELECT average(jvm_memory_pool_bytes_used) FROM Metric TIMESERIES FACET `pool` LIMIT 10 SINCE 1800 seconds ago",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 2,
-        "column": 1,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Heap Usage",
-        "nrql": "SELECT average(jvm_memory_bytes_used) as 'Heap Usage', average(jvm_memory_bytes_max) as 'Max Heap Size' FROM Metric TIMESERIES LIMIT 10 SINCE 1800 seconds ago",
-        "process_as": "line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 2,
-        "column": 5,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Non-Heap Memory Usage",
-        "nrql": "FROM Metric SELECT average(jvm_memory_bytes_used) as 'Used non-heap size', average(jvm_memory_bytes_committed) as 'Committed non-heap size' WHERE area = 'nonheap' TIMESERIES AUTO ",
-        "process_as": "line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 2,
-        "column": 9,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "",
-        "nrql": null,
-        "width": 12,
-        "height": 1,
-        "row": 5,
-        "column": 1,
-        "notes": null,
-        "event_types": null,
-        "facet": null,
-        "agent_ids": [],
-        "duration": null,
-        "metrics": null,
-        "raw_metric_name": null,
-        "end_time": null,
-        "cds_params_payload": null,
-        "renderer": null,
-        "renderer_props": null,
-        "extension_type": null,
-        "customizations": {
-            "markdown": "## Request Errors"
-        }
-    }, {
-        "title": "Unavailable Exceptions",
-        "nrql": "FROM Metric SELECT rate(average(cassandra_clientrequest_unavailables_count), 1 minute) TIMESERIES FACET type",
-        "process_as": "faceted_line_chart",
-        "width": 3,
-        "height": 3,
-        "row": 6,
-        "column": 1,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Timeout Exceptions",
-        "nrql": "FROM Metric SELECT rate(average(`cassandra_clientrequest_timeouts_count`), 1 minute) TIMESERIES FACET type ",
-        "process_as": "faceted_line_chart",
-        "width": 3,
-        "height": 3,
-        "row": 6,
-        "column": 4,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Storage Exceptions",
-        "nrql": "FROM Metric SELECT rate(average(cassandra_storage_exceptions), 1 minute) TIMESERIES",
-        "process_as": "line_chart",
-        "width": 3,
-        "height": 3,
-        "row": 6,
-        "column": 7,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Speculative Retries / per minute",
-        "nrql": "FROM Metric SELECT rate(average(cassandra_columnfamily_speculativeretries), 1 minute) TIMESERIES FACET keyspace",
-        "process_as": "faceted_line_chart",
-        "width": 3,
-        "height": 3,
-        "row": 6,
-        "column": 10,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "",
-        "nrql": null,
-        "width": 12,
-        "height": 1,
-        "row": 9,
-        "column": 1,
-        "notes": null,
-        "event_types": null,
-        "facet": null,
-        "agent_ids": [],
-        "duration": null,
-        "metrics": null,
-        "raw_metric_name": null,
-        "end_time": null,
-        "cds_params_payload": null,
-        "renderer": null,
-        "renderer_props": null,
-        "extension_type": null,
-        "customizations": {
-            "markdown": "## Disk Usage"
-        }
-    }, {
-        "title": "Total Disk Space Used",
-        "nrql": "FROM Metric SELECT sum(cassandra_columnfamily_totaldiskspaceused) FACET keyspace TIMESERIES ",
-        "process_as": "faceted_line_chart",
-        "width": 6,
-        "height": 3,
-        "row": 10,
-        "column": 1,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Total Disk Usage",
-        "nrql": "FROM Metric SELECT average(cassandra_storage_load) TIMESERIES",
-        "process_as": "line_chart",
-        "width": 6,
-        "height": 3,
-        "row": 10,
-        "column": 7,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "",
-        "nrql": null,
-        "width": 12,
-        "height": 1,
-        "row": 13,
-        "column": 1,
-        "notes": null,
-        "event_types": null,
-        "facet": null,
-        "agent_ids": [],
-        "duration": null,
-        "metrics": null,
-        "raw_metric_name": null,
-        "end_time": null,
-        "cds_params_payload": null,
-        "renderer": null,
-        "renderer_props": null,
-        "extension_type": null,
-        "customizations": {
-            "markdown": "## Compaction"
-        }
-    }, {
-        "title": "Top 10 SSTables count by keyspace",
-        "nrql": "FROM Metric SELECT average(cassandra_columnfamily_livesstablecount) TIMESERIES FACET keyspace LIMIT 10",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 2,
-        "row": 14,
-        "column": 1,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Top 10 SSTables count by columnFamily",
-        "nrql": "FROM Metric SELECT average(cassandra_columnfamily_livesstablecount) TIMESERIES FACET columnfamily LIMIT 10",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 2,
-        "row": 14,
-        "column": 5,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Compaction Pending Tasks",
-        "nrql": "FROM Metric SELECT average(cassandra_compaction_pendingtasks) TIMESERIES ",
-        "process_as": "line_chart",
-        "width": 4,
-        "height": 2,
-        "row": 14,
-        "column": 9,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Compaction Completed Tasks",
-        "nrql": "FROM Metric SELECT average(cassandra_compaction_completedtasks) TIMESERIES",
-        "process_as": "line_chart",
-        "width": 4,
-        "height": 2,
-        "row": 16,
-        "column": 1,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Bytes Compacted",
-        "nrql": "FROM Metric SELECT average(cassandra_compaction_bytescompacted) TIMESERIES",
-        "process_as": "line_chart",
-        "width": 4,
-        "height": 2,
-        "row": 16,
-        "column": 5,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Total Completed Compactions",
-        "nrql": "FROM Metric SELECT average(cassandra_compaction_totalcompactionscompleted) TIMESERIES",
-        "process_as": "line_chart",
-        "width": 4,
-        "height": 2,
-        "row": 16,
-        "column": 9,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "SSTables Per Read by Column Family",
-        "nrql": "FROM Metric SELECT rate(average(cassandra_columnfamily_sstablesperreadhistogram), 1 minute) TIMESERIES FACET columnfamily",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 2,
-        "row": 18,
-        "column": 1,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "SSTables Per Read by keyspace",
-        "nrql": "FROM Metric SELECT rate(average(cassandra_columnfamily_sstablesperreadhistogram), 1 minute) TIMESERIES FACET keyspace",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 2,
-        "row": 18,
-        "column": 5,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "",
-        "nrql": null,
-        "width": 12,
-        "height": 1,
-        "row": 20,
-        "column": 1,
-        "notes": null,
-        "event_types": null,
-        "facet": null,
-        "agent_ids": [],
-        "duration": null,
-        "metrics": null,
-        "raw_metric_name": null,
-        "end_time": null,
-        "cds_params_payload": null,
-        "renderer": null,
-        "renderer_props": null,
-        "extension_type": null,
-        "customizations": {
-            "markdown": "## Connected Clients"
-        }
-    }, {
-        "title": "Connected Clients - Native & Thrift",
-        "nrql": "FROM Metric SELECT average(cassandra_client_connectednativeclients) as 'Connected Native Clients', average(cassandra_client_connectedthriftclients) as 'Connected Thrift Clients' TIMESERIES",
-        "process_as": "line_chart",
-        "width": 12,
-        "height": 2,
-        "row": 21,
-        "column": 1,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "",
-        "nrql": null,
-        "width": 12,
-        "height": 1,
-        "row": 23,
-        "column": 1,
-        "notes": null,
-        "event_types": null,
-        "facet": null,
-        "agent_ids": [],
-        "duration": null,
-        "metrics": null,
-        "raw_metric_name": null,
-        "end_time": null,
-        "cds_params_payload": null,
-        "renderer": null,
-        "renderer_props": null,
-        "extension_type": null,
-        "customizations": {
-            "markdown": "## Hinted Handoff"
-        }
-    }, {
-        "title": "Total Hints",
-        "nrql": "FROM Metric SELECT rate(average(cassandra_storage_totalhints), 1 minute) as 'Total Hints' TIMESERIES",
-        "process_as": "line_chart",
-        "width": 6,
-        "height": 2,
-        "row": 24,
-        "column": 1,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Total Hints in Progress",
-        "nrql": "FROM Metric SELECT rate(average(cassandra_storage_totalhintsinprogress), 1 minute) as 'Total Hints in Progress' TIMESERIES",
-        "process_as": "line_chart",
-        "width": 6,
-        "height": 2,
-        "row": 24,
-        "column": 7,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "",
-        "nrql": null,
-        "width": 12,
-        "height": 1,
-        "row": 26,
-        "column": 1,
-        "notes": null,
-        "event_types": null,
-        "facet": null,
-        "agent_ids": [],
-        "duration": null,
-        "metrics": null,
-        "raw_metric_name": null,
-        "end_time": null,
-        "cds_params_payload": null,
-        "renderer": null,
-        "renderer_props": null,
-        "extension_type": null,
-        "customizations": {
-            "markdown": "## Bloom Filters"
-        }
-    }, {
-        "title": "False Positives by ColumnFamily",
-        "nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterfalsepositives) TIMESERIES FACET columnfamily",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 27,
-        "column": 1,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "False Positives by Keyspace",
-        "nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterfalsepositives) FACET keyspace TIMESERIES ",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 27,
-        "column": 5,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "False Ratios by ColumnFamily",
-        "nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterfalseratio) FACET columnfamily TIMESERIES ",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 27,
-        "column": 9,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "False Ratios by Keyspace",
-        "nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterfalseratio) FACET keyspace TIMESERIES",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 30,
-        "column": 1,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Disk Space Used by ColumnFamily",
-        "nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterdiskspaceused) TIMESERIES facet columnfamily",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 30,
-        "column": 5,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Disk Space Used by Keyspace",
-        "nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterdiskspaceused) FACET keyspace TIMESERIES ",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 30,
-        "column": 9,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Off-Heap Memory Used by ColumnFamily",
-        "nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilteroffheapmemoryused) FACET columnfamily TIMESERIES ",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 33,
-        "column": 1,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Off-Heap Memory Used by Keyspace",
-        "nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilteroffheapmemoryused) FACET keyspace TIMESERIES ",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 33,
-        "column": 5,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "",
-        "nrql": null,
-        "width": 12,
-        "height": 1,
-        "row": 36,
-        "column": 1,
-        "notes": null,
-        "event_types": null,
-        "facet": null,
-        "agent_ids": [],
-        "duration": null,
-        "metrics": null,
-        "raw_metric_name": null,
-        "end_time": null,
-        "cds_params_payload": null,
-        "renderer": null,
-        "renderer_props": null,
-        "extension_type": null,
-        "customizations": {
-            "markdown": "## Threadpools"
-        }
-    }, {
-        "title": "Completed Tasks",
-        "nrql": "FROM Metric SELECT rate(average(cassandra_threadpools_completedtasks), 1 minute) FACET threadpools TIMESERIES ",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 37,
-        "column": 1,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Pending Tasks",
-        "nrql": "FROM Metric SELECT rate(average(cassandra_threadpools_pendingtasks), 1 minute) as 'Pending Tasks' FACET threadpools TIMESERIES ",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 37,
-        "column": 5,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Dropped Messages",
-        "nrql": "FROM Metric SELECT rate(average(cassandra_droppedmessage_dropped), 1 minute) FACET droppedmessage TIMESERIES ",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 37,
-        "column": 9,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Active Tasks",
-        "nrql": "FROM Metric SELECT rate(average(cassandra_threadpools_activetasks), 1 minute) FACET threadpools TIMESERIES ",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 40,
-        "column": 1,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Blocked Tasks",
-        "nrql": "FROM Metric SELECT rate(average(cassandra_threadpools_totalblockedtasks), 1 minute) FACET threadpools TIMESERIES ",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 40,
-        "column": 5,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Currently Blocked Tasks",
-        "nrql": "FROM Metric SELECT rate(average(cassandra_threadpools_currentlyblockedtasks), 1 minute) FACET threadpools TIMESERIES ",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 40,
-        "column": 9,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "",
-        "nrql": null,
-        "width": 12,
-        "height": 1,
-        "row": 43,
-        "column": 1,
-        "notes": null,
-        "event_types": null,
-        "facet": null,
-        "agent_ids": [],
-        "duration": null,
-        "metrics": null,
-        "raw_metric_name": null,
-        "end_time": null,
-        "cds_params_payload": null,
-        "renderer": null,
-        "renderer_props": null,
-        "extension_type": null,
-        "customizations": {
-            "markdown": "## Key Cache"
-        }
-    }, {
-        "title": "Key Cache Hit Rate",
-        "nrql": "FROM Metric SELECT average(cassandra_cache_hitrate) FACET cache TIMESERIES ",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 44,
-        "column": 1,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Key Cache Size",
-        "nrql": "FROM Metric SELECT average(cassandra_cache_size) FACET cache TIMESERIES ",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 44,
-        "column": 5,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Key Cache Hits",
-        "nrql": "FROM Metric SELECT average(cassandra_cache_hits) FACET cache TIMESERIES ",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 44,
-        "column": 9,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Cache Requests",
-        "nrql": "FROM Metric SELECT rate(average(cassandra_cache_requests), 1 minute) FACET cache TIMESERIES ",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 47,
-        "column": 1,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Cache Entries",
-        "nrql": "FROM Metric SELECT average(cassandra_cache_entries) FACET cache TIMESERIES ",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 47,
-        "column": 5,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "",
-        "nrql": null,
-        "width": 12,
-        "height": 1,
-        "row": 50,
-        "column": 1,
-        "notes": null,
-        "event_types": null,
-        "facet": null,
-        "agent_ids": [],
-        "duration": null,
-        "metrics": null,
-        "raw_metric_name": null,
-        "end_time": null,
-        "cds_params_payload": null,
-        "renderer": null,
-        "renderer_props": null,
-        "extension_type": null,
-        "customizations": {
-            "markdown": "## Memtables"
-        }
-    }, {
-        "title": "Top 10 Memtables by table size by ColumnFamily",
-        "nrql": "FROM Metric SELECT sum(cassandra_columnfamily_memtablelivedatasize) FACET columnfamily TIMESERIES LIMIT 10",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 51,
-        "column": 1,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Top 10 Memtables by table size by Keyspace",
-        "nrql": "FROM Metric SELECT sum(cassandra_columnfamily_memtablelivedatasize) FACET keyspace TIMESERIES LIMIT 10",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 51,
-        "column": 5,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Memtables columns count by ColumnFamily",
-        "nrql": "FROM Metric SELECT average(cassandra_columnfamily_memtablecolumnscount) FACET columnfamily TIMESERIES ",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 51,
-        "column": 9,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Memtables column count by Keyspace",
-        "nrql": "FROM Metric SELECT average(cassandra_columnfamily_memtablecolumnscount) FACET keyspace TIMESERIES",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 54,
-        "column": 1,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Total Memtables Size",
-        "nrql": "FROM Metric SELECT average(cassandra_columnfamily_memtableonheapsize) as 'On-Heap Size', average(cassandra_columnfamily_memtableoffheapsize) as 'Off-Heap Size' TIMESERIES ",
-        "process_as": "line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 54,
-        "column": 5,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Memtables Switch Count",
-        "nrql": "FROM Metric SELECT rate(average(cassandra_columnfamily_memtableswitchcount), 1 minute) FACET columnfamily TIMESERIES",
-        "process_as": "faceted_line_chart",
-        "width": 4,
-        "height": 3,
-        "row": 54,
-        "column": 9,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "",
-        "nrql": null,
-        "width": 12,
-        "height": 1,
-        "row": 57,
-        "column": 1,
-        "notes": null,
-        "event_types": null,
-        "facet": null,
-        "agent_ids": [],
-        "duration": null,
-        "metrics": null,
-        "raw_metric_name": null,
-        "end_time": null,
-        "cds_params_payload": null,
-        "renderer": null,
-        "renderer_props": null,
-        "extension_type": null,
-        "customizations": {
-            "markdown": "## CQL"
-        }
-    }, {
-        "title": "CQL Regular Statements",
-        "nrql": "FROM Metric SELECT rate(average(cassandra_cql_regularstatementsexecuted), 1 minute) TIMESERIES",
-        "process_as": "line_chart",
-        "width": 6,
-        "height": 3,
-        "row": 58,
-        "column": 1,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "CQL prepared statements",
-        "nrql": "FROM Metric SELECT rate(average(cassandra_cql_preparedstatementsexecuted), 1 minute) TIMESERIES",
-        "process_as": "line_chart",
-        "width": 6,
-        "height": 3,
-        "row": 58,
-        "column": 7,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "",
-        "nrql": null,
-        "width": 12,
-        "height": 1,
-        "row": 61,
-        "column": 1,
-        "notes": null,
-        "event_types": null,
-        "facet": null,
-        "agent_ids": [],
-        "duration": null,
-        "metrics": null,
-        "raw_metric_name": null,
-        "end_time": null,
-        "cds_params_payload": null,
-        "renderer": null,
-        "renderer_props": null,
-        "extension_type": null,
-        "customizations": {
-            "markdown": "## Tombstones 💀"
-        }
-    }, {
-        "title": "Tombstones by Keyspace",
-        "nrql": "FROM Metric SELECT average(cassandra_table_tombstonescannedhistogram_count) FACET keyspace TIMESERIES",
-        "process_as": "faceted_line_chart",
-        "width": 12,
-        "height": 3,
-        "row": 62,
-        "column": 1,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }, {
-        "title": "Tombstones by Table",
-        "nrql": "FROM Metric SELECT average(cassandra_table_tombstonescannedhistogram_count) FACET table TIMESERIES",
-        "process_as": "faceted_line_chart",
-        "width": 12,
-        "height": 3,
-        "row": 65,
-        "column": 1,
-        "event_types": null,
-        "facet": null,
-        "customizations": null,
-        "notes": null
-    }],
-    "dashboard_account_id": 0
+	"name": "Cassandra Performance",
+	"description": null,
+	"pages": [
+		{
+			"name": "Cassandra Performance",
+			"description": null,
+			"widgets": [
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 1,
+						"width": 12
+					},
+					"title": "",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": {
+							"text": "## JVM Stats"
+						}
+					},
+					"rawConfiguration": {
+						"text": "## JVM Stats"
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 2,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Memory Pool Used",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT average(jvm_memory_pool_bytes_used) FROM Metric TIMESERIES FACET `pool` LIMIT 10 SINCE 1800 seconds ago"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT average(jvm_memory_pool_bytes_used) FROM Metric TIMESERIES FACET `pool` LIMIT 10 SINCE 1800 seconds ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 2,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Heap Usage",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT average(jvm_memory_bytes_used) as 'Heap Usage', average(jvm_memory_bytes_max) as 'Max Heap Size' FROM Metric TIMESERIES LIMIT 10 SINCE 1800 seconds ago"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT average(jvm_memory_bytes_used) as 'Heap Usage', average(jvm_memory_bytes_max) as 'Max Heap Size' FROM Metric TIMESERIES LIMIT 10 SINCE 1800 seconds ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 2,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Non-Heap Memory Usage",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT average(jvm_memory_bytes_used) as 'Used non-heap size', average(jvm_memory_bytes_committed) as 'Committed non-heap size' WHERE area = 'nonheap' TIMESERIES AUTO "
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT average(jvm_memory_bytes_used) as 'Used non-heap size', average(jvm_memory_bytes_committed) as 'Committed non-heap size' WHERE area = 'nonheap' TIMESERIES AUTO "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 5,
+						"height": 1,
+						"width": 12
+					},
+					"title": "",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": {
+							"text": "## Request Errors"
+						}
+					},
+					"rawConfiguration": {
+						"text": "## Request Errors"
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 6,
+						"height": 3,
+						"width": 3
+					},
+					"title": "Unavailable Exceptions",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT rate(average(cassandra_clientrequest_unavailables_count), 1 minute) TIMESERIES FACET type"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT rate(average(cassandra_clientrequest_unavailables_count), 1 minute) TIMESERIES FACET type"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 4,
+						"row": 6,
+						"height": 3,
+						"width": 3
+					},
+					"title": "Timeout Exceptions",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT rate(average(`cassandra_clientrequest_timeouts_count`), 1 minute) TIMESERIES FACET type "
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT rate(average(`cassandra_clientrequest_timeouts_count`), 1 minute) TIMESERIES FACET type "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 7,
+						"row": 6,
+						"height": 3,
+						"width": 3
+					},
+					"title": "Storage Exceptions",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT rate(average(cassandra_storage_exceptions), 1 minute) TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT rate(average(cassandra_storage_exceptions), 1 minute) TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 10,
+						"row": 6,
+						"height": 3,
+						"width": 3
+					},
+					"title": "Speculative Retries / per minute",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT rate(average(cassandra_columnfamily_speculativeretries), 1 minute) TIMESERIES FACET keyspace"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT rate(average(cassandra_columnfamily_speculativeretries), 1 minute) TIMESERIES FACET keyspace"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 9,
+						"height": 1,
+						"width": 12
+					},
+					"title": "",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": {
+							"text": "## Disk Usage"
+						}
+					},
+					"rawConfiguration": {
+						"text": "## Disk Usage"
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 10,
+						"height": 3,
+						"width": 6
+					},
+					"title": "Total Disk Space Used",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT sum(cassandra_columnfamily_totaldiskspaceused) FACET keyspace TIMESERIES "
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT sum(cassandra_columnfamily_totaldiskspaceused) FACET keyspace TIMESERIES "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 7,
+						"row": 10,
+						"height": 3,
+						"width": 6
+					},
+					"title": "Total Disk Usage",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT average(cassandra_storage_load) TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT average(cassandra_storage_load) TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 13,
+						"height": 1,
+						"width": 12
+					},
+					"title": "",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": {
+							"text": "## Compaction"
+						}
+					},
+					"rawConfiguration": {
+						"text": "## Compaction"
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 14,
+						"height": 2,
+						"width": 4
+					},
+					"title": "Top 10 SSTables count by keyspace",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT average(cassandra_columnfamily_livesstablecount) TIMESERIES FACET keyspace LIMIT 10"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT average(cassandra_columnfamily_livesstablecount) TIMESERIES FACET keyspace LIMIT 10"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 14,
+						"height": 2,
+						"width": 4
+					},
+					"title": "Top 10 SSTables count by columnFamily",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT average(cassandra_columnfamily_livesstablecount) TIMESERIES FACET columnfamily LIMIT 10"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT average(cassandra_columnfamily_livesstablecount) TIMESERIES FACET columnfamily LIMIT 10"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 14,
+						"height": 2,
+						"width": 4
+					},
+					"title": "Compaction Pending Tasks",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT average(cassandra_compaction_pendingtasks) TIMESERIES "
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT average(cassandra_compaction_pendingtasks) TIMESERIES "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 16,
+						"height": 2,
+						"width": 4
+					},
+					"title": "Compaction Completed Tasks",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT average(cassandra_compaction_completedtasks) TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT average(cassandra_compaction_completedtasks) TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 16,
+						"height": 2,
+						"width": 4
+					},
+					"title": "Bytes Compacted",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT average(cassandra_compaction_bytescompacted) TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT average(cassandra_compaction_bytescompacted) TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 16,
+						"height": 2,
+						"width": 4
+					},
+					"title": "Total Completed Compactions",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT average(cassandra_compaction_totalcompactionscompleted) TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT average(cassandra_compaction_totalcompactionscompleted) TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 18,
+						"height": 2,
+						"width": 4
+					},
+					"title": "SSTables Per Read by Column Family",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT rate(average(cassandra_columnfamily_sstablesperreadhistogram), 1 minute) TIMESERIES FACET columnfamily"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT rate(average(cassandra_columnfamily_sstablesperreadhistogram), 1 minute) TIMESERIES FACET columnfamily"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 18,
+						"height": 2,
+						"width": 4
+					},
+					"title": "SSTables Per Read by keyspace",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT rate(average(cassandra_columnfamily_sstablesperreadhistogram), 1 minute) TIMESERIES FACET keyspace"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT rate(average(cassandra_columnfamily_sstablesperreadhistogram), 1 minute) TIMESERIES FACET keyspace"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 20,
+						"height": 1,
+						"width": 12
+					},
+					"title": "",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": {
+							"text": "## Connected Clients"
+						}
+					},
+					"rawConfiguration": {
+						"text": "## Connected Clients"
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 21,
+						"height": 2,
+						"width": 12
+					},
+					"title": "Connected Clients - Native & Thrift",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT average(cassandra_client_connectednativeclients) as 'Connected Native Clients', average(cassandra_client_connectedthriftclients) as 'Connected Thrift Clients' TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT average(cassandra_client_connectednativeclients) as 'Connected Native Clients', average(cassandra_client_connectedthriftclients) as 'Connected Thrift Clients' TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 23,
+						"height": 1,
+						"width": 12
+					},
+					"title": "",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": {
+							"text": "## Hinted Handoff"
+						}
+					},
+					"rawConfiguration": {
+						"text": "## Hinted Handoff"
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 24,
+						"height": 2,
+						"width": 6
+					},
+					"title": "Total Hints",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT rate(average(cassandra_storage_totalhints), 1 minute) as 'Total Hints' TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT rate(average(cassandra_storage_totalhints), 1 minute) as 'Total Hints' TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 7,
+						"row": 24,
+						"height": 2,
+						"width": 6
+					},
+					"title": "Total Hints in Progress",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT rate(average(cassandra_storage_totalhintsinprogress), 1 minute) as 'Total Hints in Progress' TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT rate(average(cassandra_storage_totalhintsinprogress), 1 minute) as 'Total Hints in Progress' TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 26,
+						"height": 1,
+						"width": 12
+					},
+					"title": "",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": {
+							"text": "## Bloom Filters"
+						}
+					},
+					"rawConfiguration": {
+						"text": "## Bloom Filters"
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 27,
+						"height": 3,
+						"width": 4
+					},
+					"title": "False Positives by ColumnFamily",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterfalsepositives) TIMESERIES FACET columnfamily"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterfalsepositives) TIMESERIES FACET columnfamily"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 27,
+						"height": 3,
+						"width": 4
+					},
+					"title": "False Positives by Keyspace",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterfalsepositives) FACET keyspace TIMESERIES "
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterfalsepositives) FACET keyspace TIMESERIES "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 27,
+						"height": 3,
+						"width": 4
+					},
+					"title": "False Ratios by ColumnFamily",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterfalseratio) FACET columnfamily TIMESERIES "
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterfalseratio) FACET columnfamily TIMESERIES "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 30,
+						"height": 3,
+						"width": 4
+					},
+					"title": "False Ratios by Keyspace",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterfalseratio) FACET keyspace TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterfalseratio) FACET keyspace TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 30,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Disk Space Used by ColumnFamily",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterdiskspaceused) TIMESERIES facet columnfamily"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterdiskspaceused) TIMESERIES facet columnfamily"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 30,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Disk Space Used by Keyspace",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterdiskspaceused) FACET keyspace TIMESERIES "
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterdiskspaceused) FACET keyspace TIMESERIES "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 33,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Off-Heap Memory Used by ColumnFamily",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilteroffheapmemoryused) FACET columnfamily TIMESERIES "
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilteroffheapmemoryused) FACET columnfamily TIMESERIES "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 33,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Off-Heap Memory Used by Keyspace",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilteroffheapmemoryused) FACET keyspace TIMESERIES "
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilteroffheapmemoryused) FACET keyspace TIMESERIES "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 36,
+						"height": 1,
+						"width": 12
+					},
+					"title": "",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": {
+							"text": "## Threadpools"
+						}
+					},
+					"rawConfiguration": {
+						"text": "## Threadpools"
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 37,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Completed Tasks",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT rate(average(cassandra_threadpools_completedtasks), 1 minute) FACET threadpools TIMESERIES "
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT rate(average(cassandra_threadpools_completedtasks), 1 minute) FACET threadpools TIMESERIES "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 37,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Pending Tasks",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT rate(average(cassandra_threadpools_pendingtasks), 1 minute) as 'Pending Tasks' FACET threadpools TIMESERIES "
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT rate(average(cassandra_threadpools_pendingtasks), 1 minute) as 'Pending Tasks' FACET threadpools TIMESERIES "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 37,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Dropped Messages",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT rate(average(cassandra_droppedmessage_dropped), 1 minute) FACET droppedmessage TIMESERIES "
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT rate(average(cassandra_droppedmessage_dropped), 1 minute) FACET droppedmessage TIMESERIES "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 40,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Active Tasks",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT rate(average(cassandra_threadpools_activetasks), 1 minute) FACET threadpools TIMESERIES "
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT rate(average(cassandra_threadpools_activetasks), 1 minute) FACET threadpools TIMESERIES "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 40,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Blocked Tasks",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT rate(average(cassandra_threadpools_totalblockedtasks), 1 minute) FACET threadpools TIMESERIES "
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT rate(average(cassandra_threadpools_totalblockedtasks), 1 minute) FACET threadpools TIMESERIES "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 40,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Currently Blocked Tasks",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT rate(average(cassandra_threadpools_currentlyblockedtasks), 1 minute) FACET threadpools TIMESERIES "
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT rate(average(cassandra_threadpools_currentlyblockedtasks), 1 minute) FACET threadpools TIMESERIES "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 43,
+						"height": 1,
+						"width": 12
+					},
+					"title": "",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": {
+							"text": "## Key Cache"
+						}
+					},
+					"rawConfiguration": {
+						"text": "## Key Cache"
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 44,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Key Cache Hit Rate",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT average(cassandra_cache_hitrate) FACET cache TIMESERIES "
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT average(cassandra_cache_hitrate) FACET cache TIMESERIES "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 44,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Key Cache Size",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT average(cassandra_cache_size) FACET cache TIMESERIES "
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT average(cassandra_cache_size) FACET cache TIMESERIES "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 44,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Key Cache Hits",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT average(cassandra_cache_hits) FACET cache TIMESERIES "
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT average(cassandra_cache_hits) FACET cache TIMESERIES "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 47,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Cache Requests",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT rate(average(cassandra_cache_requests), 1 minute) FACET cache TIMESERIES "
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT rate(average(cassandra_cache_requests), 1 minute) FACET cache TIMESERIES "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 47,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Cache Entries",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT average(cassandra_cache_entries) FACET cache TIMESERIES "
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT average(cassandra_cache_entries) FACET cache TIMESERIES "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 50,
+						"height": 1,
+						"width": 12
+					},
+					"title": "",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": {
+							"text": "## Memtables"
+						}
+					},
+					"rawConfiguration": {
+						"text": "## Memtables"
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 51,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Top 10 Memtables by table size by ColumnFamily",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT sum(cassandra_columnfamily_memtablelivedatasize) FACET columnfamily TIMESERIES LIMIT 10"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT sum(cassandra_columnfamily_memtablelivedatasize) FACET columnfamily TIMESERIES LIMIT 10"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 51,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Top 10 Memtables by table size by Keyspace",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT sum(cassandra_columnfamily_memtablelivedatasize) FACET keyspace TIMESERIES LIMIT 10"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT sum(cassandra_columnfamily_memtablelivedatasize) FACET keyspace TIMESERIES LIMIT 10"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 51,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Memtables columns count by ColumnFamily",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT average(cassandra_columnfamily_memtablecolumnscount) FACET columnfamily TIMESERIES "
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT average(cassandra_columnfamily_memtablecolumnscount) FACET columnfamily TIMESERIES "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 54,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Memtables column count by Keyspace",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT average(cassandra_columnfamily_memtablecolumnscount) FACET keyspace TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT average(cassandra_columnfamily_memtablecolumnscount) FACET keyspace TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 54,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Total Memtables Size",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT average(cassandra_columnfamily_memtableonheapsize) as 'On-Heap Size', average(cassandra_columnfamily_memtableoffheapsize) as 'Off-Heap Size' TIMESERIES "
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT average(cassandra_columnfamily_memtableonheapsize) as 'On-Heap Size', average(cassandra_columnfamily_memtableoffheapsize) as 'Off-Heap Size' TIMESERIES "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 54,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Memtables Switch Count",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT rate(average(cassandra_columnfamily_memtableswitchcount), 1 minute) FACET columnfamily TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT rate(average(cassandra_columnfamily_memtableswitchcount), 1 minute) FACET columnfamily TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 57,
+						"height": 1,
+						"width": 12
+					},
+					"title": "",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": {
+							"text": "## CQL"
+						}
+					},
+					"rawConfiguration": {
+						"text": "## CQL"
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 58,
+						"height": 3,
+						"width": 6
+					},
+					"title": "CQL Regular Statements",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT rate(average(cassandra_cql_regularstatementsexecuted), 1 minute) TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT rate(average(cassandra_cql_regularstatementsexecuted), 1 minute) TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 7,
+						"row": 58,
+						"height": 3,
+						"width": 6
+					},
+					"title": "CQL prepared statements",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT rate(average(cassandra_cql_preparedstatementsexecuted), 1 minute) TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT rate(average(cassandra_cql_preparedstatementsexecuted), 1 minute) TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 61,
+						"height": 1,
+						"width": 12
+					},
+					"title": "",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": {
+							"text": "## Tombstones 💀"
+						}
+					},
+					"rawConfiguration": {
+						"text": "## Tombstones 💀"
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 62,
+						"height": 3,
+						"width": 12
+					},
+					"title": "Tombstones by Keyspace",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT average(cassandra_table_tombstonescannedhistogram_count) FACET keyspace TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT average(cassandra_table_tombstonescannedhistogram_count) FACET keyspace TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 65,
+						"height": 3,
+						"width": 12
+					},
+					"title": "Tombstones by Table",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT average(cassandra_table_tombstonescannedhistogram_count) FACET table TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT average(cassandra_table_tombstonescannedhistogram_count) FACET table TIMESERIES"
+							}
+						]
+					}
+				}
+			]
+		}
+	]
 }
