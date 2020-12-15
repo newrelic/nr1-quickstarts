@@ -1,113 +1,16 @@
+/*
+    General
+*/
 
-.list-view {
-    background: #f7f7f8;
-    padding: 10px;
+// Because we wrap buttons with Link for React router, we need to disable the underline link
+a:hover {
+    text-decoration: none !important;
 }
 
-.preview-item {
-    background-color: white;
-    padding: 5px;
-}
 
-.preview-image {
-    img {
-        width: 100%;
-    }
-}
-
-.view-item {
-    background-color: white;
-    padding: 10px;
-}
-
-footer {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-}
-
-footer p {
-    margin-bottom: .25rem;
-}
-
-.bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-@media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-    }
-}
-
-.sources .badge {
-    margin-right: 5px;
-}
-
-.float-right {
-    float: right;
-}
-
-.code {
-    width: 100%;
-}
-
-.sidebar {
-    border-right: 1px solid #eee;
-}
-
-.nav-divider {
-    border-bottom: 1px solid #eee;
-    padding-top: 5px;
-    margin-bottom: 5px;
-}
-
-.header {
-    border-bottom: 1px solid #eee;
-    padding: 10px 0 15px 0;
-}
-
-header a:hover {
-    text-decoration: none;
-}
-
-h1 {
-    font-size: 2em;
-}
-
-h4 {
-    padding: 10px 0 5px 0;
-}
-
-h5 {
-    padding: 15px 0 5px 0;
-}
-
-.text-small {
-    font-size: 0.8em;
-}
-
-.terraform {
-    max-width: 400px;
-}
-
-.nav-item {
-    padding: 10px;
-}
-
-ul li {
-    margin-left: 20px;
-}
-
-#search {
-    border: 1px solid #ccc;
-    padding: 5px;
-}
-
+/*
+    General helpers
+*/
 .text-green {
     color: green;
 }
@@ -120,22 +23,68 @@ ul li {
     text-align: right;
 }
 
-.custom-textfield {
-    width: 100%;
+.text-center {
+    text-align: center;
+}
+
+.padding-top {
+    padding-top: 15px;
 }
 
 .custom-spinner {
     height: 50px;
 }
 
-.custom-align-right {
-    text-align: right;
+/*
+    Used on App.js
+*/
+
+.loading {
+    padding-top: 50px;
+    height: 100px;
 }
 
-a:hover {
-    text-decoration: none !important;
+/*
+    Used on Home.js
+*/
+
+.custom-textfield {
+    width: 100%;
 }
 
-.padding-top {
-    padding-top: 15px;
+.list-view {
+    background: #f7f7f8;
+    padding: 10px;
+}
+
+/*
+    Used on Preview.js
+*/
+
+.preview-item {
+    background-color: white;
+    padding: 5px;
+}
+
+.preview-image {
+    img {
+        width: 100%;
+    }
+}
+
+/*
+    Used on View.js
+*/
+
+.view-item {
+    background-color: white;
+    padding: 10px;
+}
+
+/*
+    Used on ExportTerraform
+*/
+
+.terraform {
+    max-width: 400px;
 }
