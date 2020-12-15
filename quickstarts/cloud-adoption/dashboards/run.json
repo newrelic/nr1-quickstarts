@@ -1,122 +1,206 @@
 {
-    "title": "Cloud Adoption - Run - New Relic One",
-    "icon": "bar-chart",
-    "grid_column_count": 12,
-    "filter": {
-        "key_names": [
-            "awsRegion"
-        ],
-        "event_types": [
-            "ComputeSample"
-        ],
-        "filter_first": false
-    },
-    "owner": {
-        "email": "kdowns@newrelic.com"
-    },
-    "widgets": [
-        {
-            "title": " ",
-            "nrql": null,
-            "width": 4,
-            "height": 6,
-            "row": 1,
-            "column": 1,
-            "notes": null,
-            "event_types": null,
-            "facet": null,
-            "agent_ids": [],
-            "duration": null,
-            "metrics": null,
-            "raw_metric_name": null,
-            "end_time": null,
-            "cds_params_payload": null,
-            "renderer": null,
-            "renderer_props": null,
-            "extension_type": null,
-            "customizations": {
-                "markdown": "![Image](https://s3.amazonaws.com/nr-cloud-adoption/CloudAdoption-Run.png)\n"
-            }
-        },
-        {
-            "title": "Response Time by Browser",
-            "nrql": "SELECT average(duration) from PageView  facet userAgentName since 24 hours ago TIMESERIES",
-            "process_as": "faceted_area_chart",
-            "width": 4,
-            "height": 3,
-            "row": 1,
-            "column": 5,
-            "event_types": [
-                "PageView"
-            ],
-            "facet": "userAgentName",
-            "customizations": null,
-            "notes": null
-        },
-        {
-            "title": "Instances per region",
-            "nrql": "SELECT uniqueCount(entityId) from ComputeSample WHERE provider ='Ec2Instance' FACET awsRegion",
-            "process_as": "facet_bar_chart",
-            "width": 4,
-            "height": 3,
-            "row": 1,
-            "column": 9,
-            "event_types": [
-                "ComputeSample"
-            ],
-            "facet": "awsRegion",
-            "customizations": {
-                "drilldown": {}
-            },
-            "notes": null
-        },
-        {
-            "title": "Instance Tier Average CPU",
-            "nrql": "SELECT average(cpuPercent) FROM SystemSample WHERE ec2InstanceType IN ('t2.medium', 't2.nano', 't2.small', 't2.micro') TIMESERIES FACET ec2InstanceType LIMIT 100",
-            "process_as": "faceted_line_chart",
-            "width": 4,
-            "height": 3,
-            "row": 4,
-            "column": 5,
-            "event_types": [
-                "SystemSample"
-            ],
-            "facet": "ec2InstanceType",
-            "customizations": null,
-            "notes": null
-        },
-        {
-            "title": "Cost by Instance Type",
-            "nrql": "SELECT max(`provider.forecastedAmount`) as 'Actual Amount' from FinanceSample where provider='BillingBudget' AND `provider.budgetName` LIKE 'EC2 %' AND providerAccountId = '1895' facet `provider.budgetName` since 1 day ago",
-            "process_as": "facet_bar_chart",
-            "width": 4,
-            "height": 3,
-            "row": 4,
-            "column": 9,
-            "event_types": [
-                "FinanceSample"
-            ],
-            "facet": "provider.budgetName",
-            "customizations": {
-                "drilldown": {}
-            },
-            "notes": null
-        },
-        {
-            "title": "Forecasted Cloud Cost",
-            "nrql": "SELECT max(`provider.forecastedAmount`) FROM FinanceSample WHERE provider='BillingBudget' AND `provider.budgetType`='COST' AND providerAccountId = '1895' TIMESERIES AUTO  SINCE yesterday FACET `provider.budgetName` LIMIT 5",
-            "process_as": "faceted_line_chart",
-            "width": 12,
-            "height": 3,
-            "row": 7,
-            "column": 1,
-            "event_types": [
-                "FinanceSample"
-            ],
-            "facet": "provider.budgetName",
-            "customizations": null,
-            "notes": null
-        }
-    ],
-    "dashboard_account_id": 0
+	"name": "Cloud Adoption - Run",
+	"description": "",
+	"pages": [
+		{
+			"name": "Cloud Adoption - Run",
+			"description": "",
+			"widgets": [
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 6,
+						"width": 4
+					},
+					"title": " ",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": {
+							"text": "![Image](https://s3.amazonaws.com/nr-cloud-adoption/CloudAdoption-Run.png)\n"
+						}
+					},
+					"rawConfiguration": {
+						"text": "![Image](https://s3.amazonaws.com/nr-cloud-adoption/CloudAdoption-Run.png)\n"
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Response Time by Browser",
+					"configuration": {
+						"area": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT average(duration) from PageView  facet userAgentName since 24 hours ago TIMESERIES"
+								}
+							]
+						},
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT average(duration) from PageView  facet userAgentName since 24 hours ago TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Instances per region",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT uniqueCount(entityId) from ComputeSample WHERE provider ='Ec2Instance' FACET awsRegion"
+								}
+							]
+						},
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT uniqueCount(entityId) from ComputeSample WHERE provider ='Ec2Instance' FACET awsRegion"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Instance Tier Average CPU",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT average(cpuPercent) FROM SystemSample WHERE provider ='Ec2Instance' TIMESERIES FACET ec2InstanceType LIMIT 100"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT average(cpuPercent) FROM SystemSample WHERE provider ='Ec2Instance' TIMESERIES FACET ec2InstanceType LIMIT 100"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Cost by Instance Type",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT max(`provider.forecastedAmount`) as 'Actual Amount' from FinanceSample where provider='BillingBudget' AND `provider.budgetName` LIKE 'EC2 %' facet `provider.budgetName` since 1 day ago"
+								}
+							]
+						},
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT max(`provider.forecastedAmount`) as 'Actual Amount' from FinanceSample where provider='BillingBudget' AND `provider.budgetName` LIKE 'EC2 %' facet `provider.budgetName` since 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 7,
+						"height": 3,
+						"width": 12
+					},
+					"title": "Forecasted Cloud Cost",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT max(`provider.forecastedAmount`) FROM FinanceSample WHERE provider='BillingBudget' AND `provider.budgetType`='COST' TIMESERIES AUTO  SINCE yesterday FACET `provider.budgetName` LIMIT 5"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT max(`provider.forecastedAmount`) FROM FinanceSample WHERE provider='BillingBudget' AND `provider.budgetType`='COST' TIMESERIES AUTO  SINCE yesterday FACET `provider.budgetName` LIMIT 5"
+							}
+						]
+					}
+				}
+			]
+		}
+	]
 }

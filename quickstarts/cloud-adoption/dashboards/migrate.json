@@ -1,104 +1,174 @@
 {
-    "title": "Cloud Adoption - Migrate - New Relic One",
-    "icon": "bar-chart",
-    "grid_column_count": 12,
-    "filter": {
-        "key_names": [],
-        "event_types": [
-            "Transaction",
-            "SyntheticCheck"
-        ],
-        "filter_first": false
-    },
-    "owner": {
-        "email": "kdowns@newrelic.com"
-    },
-    "widgets": [
-        {
-            "title": " ",
-            "nrql": null,
-            "width": 4,
-            "height": 6,
-            "row": 1,
-            "column": 1,
-            "notes": null,
-            "event_types": null,
-            "facet": null,
-            "agent_ids": [],
-            "duration": null,
-            "metrics": null,
-            "raw_metric_name": null,
-            "end_time": null,
-            "cds_params_payload": null,
-            "renderer": null,
-            "renderer_props": null,
-            "extension_type": null,
-            "customizations": {
-                "markdown": "![Image](https://s3.amazonaws.com/nr-cloud-adoption/CloudAdoption-Migrate.png)\n"
-            }
-        },
-        {
-            "title": "Application Response Codes",
-            "nrql": "SELECT count(*) FROM Transaction since 1 day ago FACET  httpResponseCode",
-            "process_as": "facet_pie_chart",
-            "width": 4,
-            "height": 3,
-            "row": 1,
-            "column": 5,
-            "event_types": [
-                "Transaction"
-            ],
-            "facet": "httpResponseCode",
-            "customizations": {
-                "drilldown": {}
-            },
-            "notes": null
-        },
-        {
-            "title": "Average Response Time by app",
-            "nrql": "SELECT average(duration) FROM Transaction since 1 day ago FACET appName TIMESERIES AUTO",
-            "process_as": "faceted_line_chart",
-            "width": 4,
-            "height": 3,
-            "row": 1,
-            "column": 9,
-            "event_types": [
-                "Transaction"
-            ],
-            "facet": "appName",
-            "customizations": null,
-            "notes": null
-        },
-        {
-            "title": "On-Prem Availability",
-            "nrql": "SELECT percentage(count(*), WHERE result = 'SUCCESS') as 'Availability %' FROM SyntheticCheck WHERE monitorName = 'Verify checkout flow is working'  SINCE last week",
-            "process_as": "attribute_sheet",
-            "width": 4,
-            "height": 3,
-            "row": 4,
-            "column": 5,
-            "event_types": [
-                "SyntheticCheck"
-            ],
-            "facet": null,
-            "customizations": null,
-            "notes": null
-        },
-        {
-            "title": "Cloud Availability",
-            "nrql": "SELECT percentage(count(*), WHERE result = 'SUCCESS') as 'Availability %' FROM SyntheticCheck WHERE monitorName = 'Load homepage and assets' SINCE last week",
-            "process_as": "attribute_sheet",
-            "width": 4,
-            "height": 3,
-            "row": 4,
-            "column": 9,
-            "event_types": [
-                "SyntheticCheck"
-            ],
-            "facet": null,
-            "customizations": null,
-            "notes": null
-        }
-    ],
-    "dashboard_account_id": 0
+	"name": "Cloud Adoption - Migrate",
+	"description": "",
+	"pages": [
+		{
+			"name": "Cloud Adoption - Migrate",
+			"description": "",
+			"widgets": [
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 6,
+						"width": 4
+					},
+					"title": " ",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": {
+							"text": "![Image](https://s3.amazonaws.com/nr-cloud-adoption/CloudAdoption-Migrate.png)\n"
+						}
+					},
+					"rawConfiguration": {
+						"text": "![Image](https://s3.amazonaws.com/nr-cloud-adoption/CloudAdoption-Migrate.png)\n"
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Application Response Codes",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT count(*) FROM Transaction since 1 day ago FACET  httpResponseCode"
+								}
+							]
+						},
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT count(*) FROM Transaction since 1 day ago FACET  httpResponseCode"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Average Response Time by app",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT average(duration) FROM Transaction since 1 day ago FACET appName TIMESERIES AUTO"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT average(duration) FROM Transaction since 1 day ago FACET appName TIMESERIES AUTO"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "On-Prem Availability (query change needed)",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT percentage(count(*), WHERE result = 'SUCCESS') as 'Availability %' FROM SyntheticCheck WHERE monitorName = 'Verify checkout flow is working'  SINCE last week"
+								}
+							],
+							"thresholds": null
+						},
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT percentage(count(*), WHERE result = 'SUCCESS') as 'Availability %' FROM SyntheticCheck WHERE monitorName = 'Verify checkout flow is working'  SINCE last week"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Cloud Availability (query change needed)",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT percentage(count(*), WHERE result = 'SUCCESS') as 'Availability %' FROM SyntheticCheck WHERE monitorName = 'Load homepage and assets' SINCE last week"
+								}
+							],
+							"thresholds": null
+						},
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT percentage(count(*), WHERE result = 'SUCCESS') as 'Availability %' FROM SyntheticCheck WHERE monitorName = 'Load homepage and assets' SINCE last week"
+							}
+						]
+					}
+				}
+			]
+		}
+	]
 }
