@@ -122,7 +122,7 @@ class Tools extends React.Component {
                     <GridItem columnSpan={8}>
                         <HeadingText type={HeadingText.TYPE.HEADING_2}>Tools - Dashboards</HeadingText>
                     </GridItem>
-                    <GridItem columnSpan={4} className="custom-align-right">
+                    <GridItem columnSpan={4} className="text-right">
                         <Link className="" to={"/"}>
                             <Button
                                 type={Button.TYPE.PRIMARY}
