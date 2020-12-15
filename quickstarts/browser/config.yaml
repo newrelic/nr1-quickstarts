@@ -2,3 +2,4 @@ name: Browser examples
 description: Set of dashboards based on New Relic Browser agent data.
 authors:
     - New Relic
+    - Alex York

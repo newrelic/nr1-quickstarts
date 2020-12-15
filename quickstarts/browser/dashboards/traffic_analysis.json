@@ -1,228 +1,386 @@
 {
-    "title": "Browser Traffic Analysis",
-    "icon": "bar-chart",
-    "grid_column_count": 12,
-    "filter": {
-        "key_names": [
-            "session",
-            "countryCode",
-            "userAgentName",
-            "deviceType",
-            "userAgentVersion",
-            "userAgentOS",
-            "pageUrl",
-            "city"
-        ],
-        "event_types": [
-            "PageView"
-        ],
-        "filter_first": false
-    },
-    "owner": {
-        "email": "yli@newrelic.com"
-    },
-    "widgets": [
-        {
-            "title": "Browser",
-            "nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET userAgentName SINCE 1 day ago",
-            "process_as": "facet_pie_chart",
-            "width": 4,
-            "height": 3,
-            "row": 1,
-            "column": 1,
-            "event_types": [
-                "PageView"
-            ],
-            "facet": "userAgentName",
-            "customizations": {
-                "drilldown": {
-                    "dashboard_id": 270734
-                }
-            },
-            "notes": null
-        },
-        {
-            "title": "Longest Sessions",
-            "nrql": "SELECT count(*) , average(duration) as 'Avg' FROM PageView FACET session SINCE 1 day ago limit 25",
-            "process_as": "facet_table",
-            "width": 4,
-            "height": 6,
-            "row": 1,
-            "column": 5,
-            "event_types": [
-                "PageView"
-            ],
-            "facet": "session",
-            "customizations": {
-                "drilldown": {
-                    "dashboard_id": 270734
-                }
-            },
-            "notes": null
-        },
-        {
-            "title": "Country",
-            "nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET countryCode SINCE 1 day ago",
-            "process_as": "facet_pie_chart",
-            "width": 4,
-            "height": 3,
-            "row": 1,
-            "column": 9,
-            "event_types": [
-                "PageView"
-            ],
-            "facet": "countryCode",
-            "customizations": {
-                "drilldown": {
-                    "dashboard_id": 270734
-                }
-            },
-            "notes": null
-        },
-        {
-            "title": "Browser Version",
-            "nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET userAgentVersion SINCE 1 day ago",
-            "process_as": "facet_pie_chart",
-            "width": 4,
-            "height": 3,
-            "row": 4,
-            "column": 1,
-            "event_types": [
-                "PageView"
-            ],
-            "facet": "userAgentVersion",
-            "customizations": {
-                "drilldown": {
-                    "dashboard_id": 270734
-                }
-            },
-            "notes": null
-        },
-        {
-            "title": "City",
-            "nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET city SINCE 1 day ago",
-            "process_as": "facet_pie_chart",
-            "width": 4,
-            "height": 3,
-            "row": 4,
-            "column": 9,
-            "event_types": [
-                "PageView"
-            ],
-            "facet": "city",
-            "customizations": {
-                "drilldown": {
-                    "dashboard_id": 270734
-                }
-            },
-            "notes": null
-        },
-        {
-            "title": "OS",
-            "nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET userAgentOS SINCE 1 day ago",
-            "process_as": "facet_pie_chart",
-            "width": 4,
-            "height": 3,
-            "row": 7,
-            "column": 1,
-            "event_types": [
-                "PageView"
-            ],
-            "facet": "userAgentOS",
-            "customizations": {
-                "drilldown": {
-                    "dashboard_id": 270734
-                }
-            },
-            "notes": null
-        },
-        {
-            "title": "Slowest Sessions",
-            "nrql": "SELECT average(duration) as 'Avg', count(*) FROM PageView FACET session SINCE 1 day ago limit 25",
-            "process_as": "facet_table",
-            "width": 4,
-            "height": 6,
-            "row": 7,
-            "column": 5,
-            "event_types": [
-                "PageView"
-            ],
-            "facet": "session",
-            "customizations": {
-                "drilldown": {
-                    "dashboard_id": 270734
-                }
-            },
-            "notes": null
-        },
-        {
-            "title": "Device Type",
-            "nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET deviceType WHERE deviceType != 'Unknown' SINCE 1 day ago",
-            "process_as": "facet_pie_chart",
-            "width": 4,
-            "height": 3,
-            "row": 7,
-            "column": 9,
-            "event_types": [
-                "PageView"
-            ],
-            "facet": "deviceType",
-            "customizations": {
-                "drilldown": {
-                    "dashboard_id": 270734
-                }
-            },
-            "notes": null
-        },
-        {
-            "title": "Top Page Hits",
-            "nrql": "SELECT count(*) FROM PageView FACET pageUrl SINCE 1 day ago",
-            "process_as": "facet_bar_chart",
-            "width": 4,
-            "height": 3,
-            "row": 10,
-            "column": 1,
-            "event_types": [
-                "PageView"
-            ],
-            "facet": "pageUrl",
-            "customizations": {
-                "drilldown": {
-                    "dashboard_id": 270734
-                }
-            },
-            "notes": null
-        },
-        {
-            "title": "Pages Over Time",
-            "nrql": "SELECT average(duration) from PageView  facet pageUrl since 1 day ago TIMESERIES",
-            "process_as": "faceted_area_chart",
-            "width": 4,
-            "height": 3,
-            "row": 10,
-            "column": 9,
-            "event_types": [
-                "PageView"
-            ],
-            "facet": "pageUrl",
-            "customizations": null,
-            "notes": null
-        },
-        {
-            "title": "Timestamp by Page",
-            "nrql": "SELECT pageUrl, duration  FROM PageView since 1 day ago limit 300",
-            "process_as": "event_table",
-            "width": 12,
-            "height": 3,
-            "row": 13,
-            "column": 1,
-            "event_types": [
-                "PageView"
-            ],
-            "facet": null,
-            "customizations": null,
-            "notes": null
-        }
-    ],
-    "dashboard_account_id": 0
+	"name": "Browser Traffic Analysis",
+	"description": "",
+	"pages": [
+		{
+			"name": "Browser Traffic Analysis",
+			"description": "",
+			"widgets": [
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Browser",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET userAgentName SINCE 1 day ago"
+								}
+							]
+						},
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET userAgentName SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 1,
+						"height": 6,
+						"width": 4
+					},
+					"title": "Longest Sessions",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT count(*) , average(duration) as 'Avg' FROM PageView FACET session SINCE 1 day ago limit 25"
+								}
+							]
+						},
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT count(*) , average(duration) as 'Avg' FROM PageView FACET session SINCE 1 day ago limit 25"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Country",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET countryCode SINCE 1 day ago"
+								}
+							]
+						},
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET countryCode SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Browser Version",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET userAgentVersion SINCE 1 day ago"
+								}
+							]
+						},
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET userAgentVersion SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "City",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET city SINCE 1 day ago"
+								}
+							]
+						},
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET city SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "OS",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET userAgentOS SINCE 1 day ago"
+								}
+							]
+						},
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET userAgentOS SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 7,
+						"height": 6,
+						"width": 4
+					},
+					"title": "Slowest Sessions",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT average(duration) as 'Avg', count(*) FROM PageView FACET session SINCE 1 day ago limit 25"
+								}
+							]
+						},
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT average(duration) as 'Avg', count(*) FROM PageView FACET session SINCE 1 day ago limit 25"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Device Type",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET deviceType WHERE deviceType != 'Unknown' SINCE 1 day ago"
+								}
+							]
+						},
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET deviceType WHERE deviceType != 'Unknown' SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Top Page Hits",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT count(*) FROM PageView FACET pageUrl SINCE 1 day ago"
+								}
+							]
+						},
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT count(*) FROM PageView FACET pageUrl SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Pages Over Time",
+					"configuration": {
+						"area": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT average(duration) from PageView  facet pageUrl since 1 day ago TIMESERIES"
+								}
+							]
+						},
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT average(duration) from PageView  facet pageUrl since 1 day ago TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 13,
+						"height": 3,
+						"width": 12
+					},
+					"title": "Timestamp by Page",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT pageUrl, duration  FROM PageView since 1 day ago limit 300"
+								}
+							]
+						},
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT pageUrl, duration  FROM PageView since 1 day ago limit 300"
+							}
+						]
+					}
+				}
+			]
+		}
+	]
 }
