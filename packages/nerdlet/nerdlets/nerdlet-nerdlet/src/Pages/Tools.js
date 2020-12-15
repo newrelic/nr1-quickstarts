@@ -69,7 +69,6 @@ class Tools extends React.Component {
     }
 
     openTools(guid) {
-        console.log('openTools', guid);
         this.setState({
             dashboardGuid: guid,
             toolsModalHidden: false,
