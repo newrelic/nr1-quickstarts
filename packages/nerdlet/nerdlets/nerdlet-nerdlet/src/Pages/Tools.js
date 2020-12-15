@@ -114,6 +114,15 @@ class Tools extends React.Component {
         ];
     }
 
+    getCreator(tags) {
+        let creatorTag = tags.filter(tag => tag.key == 'createdBy');
+        if (creatorTag && creatorTag.length > 0 && creatorTag[0].values && creatorTag[0].values.length > 0) {
+            return creatorTag[0].values[0];
+        } else {
+            return '';
+        }
+    }
+
     render() {
         return (
             <>
@@ -150,7 +159,7 @@ class Tools extends React.Component {
                                             <TableRow actions={this._getActions()} onClick={(evt, { item, index }) => { this.openTools(item.guid); }}>
                                                 <EntityTitleTableRowCell value={item} />
                                                 <TableRowCell>{item.account.name}</TableRowCell>
-                                                <TableRowCell>{item.tags.filter(tag => tag.key == 'createdBy')[0].values[0]}</TableRowCell>
+                                                <TableRowCell>{this.getCreator(item.tags)}</TableRowCell>
                                             </TableRow>
                                         )}
                                     </Table>
