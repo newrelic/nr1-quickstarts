@@ -1,140 +1,250 @@
 {
-    "title": "APM and Infrastructure",
-    "icon": "bar-chart",
-    "grid_column_count": 12,
-    "filter": {
-        "key_names": [
-            "appName",
-            "name"
-        ],
-        "event_types": [
-            "Transaction",
-            "ProcessSample"
-        ],
-        "filter_first": false
-    },
-    "owner": {
-        "email": "rjussel@newrelic.com"
-    },
-    "widgets": [
-        {
-            "title": "Application Names",
-            "nrql": "SELECT average(duration) FROM Transaction,ProcessSample   facet cases( where appName = 'WebPortal' OR `nr.apmApplicationNames` LIKE '%WebPortal%' as 'Web Portal' ,WHERE appName = 'Billing Service' OR `nr.apmApplicationNames` LIKE '%Billing Service%' as 'Billing Service', WHERE appName ='Fulfillment Service' OR `nr.apmApplicationNames` LIKE '%Fulfillment%' as 'Fulfillment', WHERE appName = 'Plan Service' OR `nr.apmApplicationNames` like '%Plan Service%' as 'Plan Service' )",
-            "process_as": "facet_bar_chart",
-            "width": 4,
-            "height": 3,
-            "row": 1,
-            "column": 1,
-            "event_types": [
-                "Transaction",
-                "ProcessSample"
-            ],
-            "facet": "cases",
-            "customizations": {
-                "drilldown": {
-                    "dashboard_id": 506425
-                }
-            },
-            "notes": null
-        },
-        {
-            "title": "APM Response Time",
-            "nrql": "SELECT average(duration) from Transaction TIMESERIES since 6 hours ago facet appName",
-            "process_as": "faceted_line_chart",
-            "width": 8,
-            "height": 3,
-            "row": 1,
-            "column": 5,
-            "event_types": [
-                "Transaction"
-            ],
-            "facet": "appName",
-            "customizations": null,
-            "notes": null
-        },
-        {
-            "title": "Transaction Durations",
-            "nrql": "SELECT average(duration) from Transaction facet name where appName IN ('WebPortal','Billing Service','Fulfillment Service','Plan Service' )",
-            "process_as": "facet_table",
-            "width": 4,
-            "height": 6,
-            "row": 4,
-            "column": 1,
-            "event_types": [
-                "Transaction"
-            ],
-            "facet": "name",
-            "customizations": {
-                "drilldown": {
-                    "dashboard_id": 506425
-                }
-            },
-            "notes": null
-        },
-        {
-            "title": "CPU Usage (Infrastructure)",
-            "nrql": "FROM SystemSample SELECT average(cpuPercent) WHERE `nr.apmApplicationNames` like '%WebPortal%' TIMESERIES since 6 hours ago",
-            "process_as": "line_chart",
-            "width": 8,
-            "height": 3,
-            "row": 4,
-            "column": 5,
-            "event_types": [
-                "SystemSample"
-            ],
-            "facet": null,
-            "customizations": null,
-            "notes": null
-        },
-        {
-            "title": "CPU by Host (Infrastructure)",
-            "nrql": "FROM SystemSample SELECT average(cpuPercent) WHERE `nr.apmApplicationNames` like '%WebPortal%' TIMESERIES since 6 hours ago facet hostname",
-            "process_as": "faceted_line_chart",
-            "width": 8,
-            "height": 3,
-            "row": 7,
-            "column": 5,
-            "event_types": [
-                "SystemSample"
-            ],
-            "facet": "hostname",
-            "customizations": null,
-            "notes": null
-        },
-        {
-            "title": "Top Processes",
-            "nrql": "SELECT average(cpuPercent) FROM ProcessSample  FACET processDisplayName  LIMIT 100 SINCE 60 minutes ago",
-            "process_as": "facet_bar_chart",
-            "width": 4,
-            "height": 3,
-            "row": 10,
-            "column": 1,
-            "event_types": [
-                "ProcessSample"
-            ],
-            "facet": "processDisplayName",
-            "customizations": {
-                "drilldown": {
-                    "dashboard_id": 506425
-                }
-            },
-            "notes": null
-        },
-        {
-            "title": "Processes",
-            "nrql": "SELECT average(cpuPercent) FROM ProcessSample TIMESERIES FACET processDisplayName  LIMIT 100 SINCE 60 minutes ago",
-            "process_as": "faceted_line_chart",
-            "width": 8,
-            "height": 3,
-            "row": 10,
-            "column": 5,
-            "event_types": [
-                "ProcessSample"
-            ],
-            "facet": "processDisplayName",
-            "customizations": null,
-            "notes": null
-        }
-    ],
-    "dashboard_account_id": 0
+	"name": "APM and Infrastructure",
+	"description": "",
+	"pages": [
+		{
+			"name": "APM and Infrastructure",
+			"description": "",
+			"widgets": [
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Application Names",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT average(duration) FROM Transaction, ProcessSample FACET appName"
+								}
+							]
+						},
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT average(duration) FROM Transaction, ProcessSample FACET appName"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 1,
+						"height": 3,
+						"width": 8
+					},
+					"title": "APM Response Time",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT average(duration) from Transaction TIMESERIES since 6 hours ago facet appName"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT average(duration) from Transaction TIMESERIES since 6 hours ago facet appName"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 4,
+						"height": 6,
+						"width": 4
+					},
+					"title": "Transaction Durations",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT average(duration) from Transaction facet name"
+								}
+							]
+						},
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT average(duration) from Transaction facet name"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 4,
+						"height": 3,
+						"width": 8
+					},
+					"title": "CPU Usage (Infrastructure)",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM SystemSample SELECT average(cpuPercent) FACET hostname TIMESERIES since 6 hours ago"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM SystemSample SELECT average(cpuPercent) FACET hostname TIMESERIES since 6 hours ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 7,
+						"height": 3,
+						"width": 8
+					},
+					"title": "CPU by Host (Infrastructure)",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM SystemSample SELECT average(cpuPercent) TIMESERIES since 6 hours ago facet hostname"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM SystemSample SELECT average(cpuPercent) TIMESERIES since 6 hours ago facet hostname"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Top Processes",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT average(cpuPercent) FROM ProcessSample  FACET processDisplayName  LIMIT 100 SINCE 60 minutes ago"
+								}
+							]
+						},
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT average(cpuPercent) FROM ProcessSample  FACET processDisplayName  LIMIT 100 SINCE 60 minutes ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 10,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Processes",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT average(cpuPercent) FROM ProcessSample TIMESERIES FACET processDisplayName  LIMIT 100 SINCE 60 minutes ago"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT average(cpuPercent) FROM ProcessSample TIMESERIES FACET processDisplayName  LIMIT 100 SINCE 60 minutes ago"
+							}
+						]
+					}
+				}
+			]
+		}
+	]
 }
