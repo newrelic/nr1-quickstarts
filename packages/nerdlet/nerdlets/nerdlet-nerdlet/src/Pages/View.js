@@ -109,7 +109,8 @@ class View extends React.Component {
                     <InstallationInstructions accountId={this.state.accountId} sources={this.state.quickstart.sources} />
                     {this.state.quickstart.flex.length > 0 &&
                         <div>
-                            <h5>Flex configuration files</h5>
+                            <b>Flex configuration files</b>
+                            <p>This dashboard uses custom flex data, please <a href="https://github.com/newrelic/nri-flex/blob/master/docs/basic-tutorial.md" target="_BLANK">install the following Flex files.</a></p>
                             <ul>
                                 {this.state.quickstart.flex.map((flex) => {
                                     return ( <li key={flex}><a href={'./data/' + this.state.quickstart.id + '/flex/' + flex} target="_BLANK" rel="noopener noreferrer">{flex}</a></li> )
