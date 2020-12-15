@@ -1,5 +1,5 @@
 import React from 'react';
-import ExportJson from '../Partials/ExportJson';
+import ExportJson from '../../Partials/ExportJson';
 import {
     Button,
     Icon,

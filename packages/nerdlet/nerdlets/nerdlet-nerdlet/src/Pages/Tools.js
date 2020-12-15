@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import ExportModal from '../Partials/ExportModal';
+import ExportModal from './Modals/ExportModal';
 import {
     BlockText,
     Button,

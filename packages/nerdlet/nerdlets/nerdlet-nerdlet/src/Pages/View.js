@@ -1,5 +1,5 @@
 import React from 'react';
-import ExportModal from '../Partials/ExportModal';
+import ExportModal from './Modals/ExportModal';
 import {
     Link,
     Switch,
