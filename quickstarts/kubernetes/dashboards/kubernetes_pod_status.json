@@ -1,111 +1,241 @@
 {
-    "title": "Kubernetes Pod Status",
-    "icon": "dashboard",
-    "grid_column_count": 12,
-    "filter": {
-        "key_names": [],
-        "event_types": [
-            "K8sPodSample",
-            "K8sContainerSample"
-        ],
-        "filter_first": false
-    },
-    "owner": {
-        "email": "bschmitt@newrelic.com"
-    },
-    "widgets": [
-        {
-            "title": "",
-            "nrql": null,
-            "width": 1,
-            "height": 2,
-            "row": 1,
-            "column": 1,
-            "notes": null,
-            "event_types": null,
-            "facet": null,
-            "agent_ids": [],
-            "duration": null,
-            "metrics": null,
-            "raw_metric_name": null,
-            "end_time": null,
-            "cds_params_payload": null,
-            "renderer": null,
-            "renderer_props": null,
-            "extension_type": null,
-            "customizations": {
-                "markdown": "![Pod](https://github.com/kubernetes/community/blob/master/icons/png/resources/labeled/pod-128.png?raw=true)"
-            }
-        },
-        {
-            "title": "Overall Pod Status",
-            "nrql": "from K8sPodSample select uniqueCount(podName) as 'Total Pods', filter(uniqueCount(podName), where status = 'Running') as 'Running Pods', filter(uniqueCount(podName), where status = 'Pending') as 'Pending Pods', filter(uniqueCount(podName), where status = 'Failed') as 'Failed Pods' since 30 minutes ago",
-            "process_as": "attribute_sheet",
-            "width": 11,
-            "height": 2,
-            "row": 1,
-            "column": 2,
-            "event_types": null,
-            "facet": null,
-            "customizations": null,
-            "notes": null
-        },
-        {
-            "title": "Pod Status by Cluster",
-            "nrql": "FROM K8sPodSample select uniqueCount(podName) as 'Pod Count' where status is not null facet clusterName, status since 30 minutes ago limit 1000",
-            "process_as": "facet_table",
-            "width": 4,
-            "height": 3,
-            "row": 3,
-            "column": 1,
-            "event_types": null,
-            "facet": null,
-            "customizations": {
-                "drilldown": {}
-            },
-            "notes": null
-        },
-        {
-            "title": "Latest Pending Pods",
-            "nrql": "FROM K8sPodSample select podName, status, clusterName where status = 'Pending' since 30 minutes ago limit 1000",
-            "process_as": "event_table",
-            "width": 8,
-            "height": 3,
-            "row": 3,
-            "column": 5,
-            "event_types": null,
-            "facet": null,
-            "customizations": null,
-            "notes": null
-        },
-        {
-            "title": "Pod OOMKills",
-            "nrql": "SELECT count(reason) as 'OOM Kills' from K8sContainerSample WHERE reason = 'OOMKilled' facet clusterName, podName since 30 minutes ago limit 1000",
-            "process_as": "facet_table",
-            "width": 4,
-            "height": 5,
-            "row": 6,
-            "column": 1,
-            "event_types": null,
-            "facet": null,
-            "customizations": {
-                "drilldown": {}
-            },
-            "notes": null
-        },
-        {
-            "title": "Latest Failed Pods",
-            "nrql": "FROM K8sPodSample select podName, status, clusterName where status = 'Failed' since 30 minutes ago limit 1000",
-            "process_as": "event_table",
-            "width": 8,
-            "height": 3,
-            "row": 6,
-            "column": 5,
-            "event_types": null,
-            "facet": null,
-            "customizations": null,
-            "notes": null
-        }
-    ],
-    "dashboard_account_id": 0
+	"name": "Kubernetes Pod Status",
+	"description": "",
+	"pages": [
+		{
+			"name": "Kubernetes Pod Status",
+			"description": "",
+			"widgets": [
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 2,
+						"width": 1
+					},
+					"title": "",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": {
+							"text": "![Pod](https://github.com/kubernetes/community/blob/master/icons/png/resources/labeled/pod-128.png?raw=true)"
+						}
+					},
+					"rawConfiguration": {
+						"text": "![Pod](https://github.com/kubernetes/community/blob/master/icons/png/resources/labeled/pod-128.png?raw=true)"
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 2,
+						"row": 1,
+						"height": 2,
+						"width": 11
+					},
+					"title": "Overall Pod Status",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "from K8sPodSample select uniqueCount(podName) as 'Total Pods', filter(uniqueCount(podName), where status = 'Running') as 'Running Pods', filter(uniqueCount(podName), where status = 'Pending') as 'Pending Pods', filter(uniqueCount(podName), where status = 'Failed') as 'Failed Pods' since 30 minutes ago"
+								}
+							],
+							"thresholds": null
+						},
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "from K8sPodSample select uniqueCount(podName) as 'Total Pods', filter(uniqueCount(podName), where status = 'Running') as 'Running Pods', filter(uniqueCount(podName), where status = 'Pending') as 'Pending Pods', filter(uniqueCount(podName), where status = 'Failed') as 'Failed Pods' since 30 minutes ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 3,
+						"height": 3,
+						"width": 5
+					},
+					"title": "Pod Status by Cluster",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM K8sPodSample select uniqueCount(podName) as 'Pod Count' where status is not null facet clusterName, status since 30 minutes ago limit 1000"
+								}
+							]
+						},
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM K8sPodSample select uniqueCount(podName) as 'Pod Count' where status is not null facet clusterName, status since 30 minutes ago limit 1000"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 6,
+						"row": 3,
+						"height": 3,
+						"width": 7
+					},
+					"title": "Latest Pending Pods",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM K8sPodSample select podName, status, clusterName where status = 'Pending' since 30 minutes ago limit 1000"
+								}
+							]
+						},
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM K8sPodSample select podName, status, clusterName where status = 'Pending' since 30 minutes ago limit 1000"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 6,
+						"height": 3,
+						"width": 5
+					},
+					"title": "Pod OOMKills",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT count(reason) as 'OOM Kills' from K8sContainerSample WHERE reason = 'OOMKilled' facet clusterName, podName since 30 minutes ago limit 1000"
+								}
+							]
+						},
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT count(reason) as 'OOM Kills' from K8sContainerSample WHERE reason = 'OOMKilled' facet clusterName, podName since 30 minutes ago limit 1000"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 6,
+						"row": 6,
+						"height": 3,
+						"width": 7
+					},
+					"title": "Latest Failed Pods",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM K8sPodSample select podName, status, clusterName where status = 'Failed' since 30 minutes ago limit 1000"
+								}
+							]
+						},
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM K8sPodSample select podName, status, clusterName where status = 'Failed' since 30 minutes ago limit 1000"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 9,
+						"height": 3,
+						"width": 12
+					},
+					"title": "Pods Restarts",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT max(restartCount) - min(restartCount) FROM K8sContainerSample FACET podName,namespace"
+								}
+							]
+						},
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT max(restartCount) - min(restartCount) FROM K8sContainerSample FACET podName,namespace"
+							}
+						]
+					}
+				}
+			]
+		}
+	]
 }

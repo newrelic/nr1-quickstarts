@@ -1,213 +1,405 @@
 {
-    "title": "Kubernetes Clusters and Nodes",
-    "icon": "dashboard",
-    "grid_column_count": 12,
-    "filter": {
-        "key_names": [],
-        "event_types": [
-            "K8sNodeSample",
-            "K8sPodSample"
-        ],
-        "filter_first": false
-    },
-    "owner": {
-        "email": "bschmitt@newrelic.com"
-    },
-    "widgets": [
-        {
-            "title": "",
-            "nrql": null,
-            "width": 1,
-            "height": 2,
-            "row": 1,
-            "column": 1,
-            "notes": null,
-            "event_types": null,
-            "facet": null,
-            "agent_ids": [],
-            "duration": null,
-            "metrics": null,
-            "raw_metric_name": null,
-            "end_time": null,
-            "cds_params_payload": null,
-            "renderer": null,
-            "renderer_props": null,
-            "extension_type": null,
-            "customizations": {
-                "markdown": "![Kubernetes](https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Kubernetes_logo_without_workmark.svg/1200px-Kubernetes_logo_without_workmark.svg.png)"
-            }
-        },
-        {
-            "title": "Clusters",
-            "nrql": "from K8sNodeSample, K8sPodSample select uniqueCount(nodeName) as 'Nodes', filter(uniqueCount(podName), where status = 'Running') as 'Running Pods', filter(uniqueCount(podName), where status in ('Pending')) as 'Pending Pods', uniqueCount(podName) as 'Total Pods' facet clusterName since 30 minutes ago limit 1000",
-            "process_as": "facet_table",
-            "width": 5,
-            "height": 3,
-            "row": 1,
-            "column": 2,
-            "event_types": null,
-            "facet": null,
-            "customizations": {
-                "drilldown": {
-                    "dashboard_id": 1250006
-                }
-            },
-            "notes": null
-        },
-        {
-            "title": "CPU Usage",
-            "nrql": "FROM K8sNodeSample SELECT average(cpuUsedCores / allocatableCpuCores * 100) AS 'CPU Util %', 100 as '100' since 30 minutes ago TIMESERIES",
-            "process_as": "line_chart",
-            "width": 2,
-            "height": 3,
-            "row": 1,
-            "column": 7,
-            "event_types": null,
-            "facet": null,
-            "customizations": null,
-            "notes": null
-        },
-        {
-            "title": "Memory Usage",
-            "nrql": "FROM K8sNodeSample SELECT average(memoryWorkingSetBytes / allocatableMemoryBytes * 100) AS 'Memory Util %', 100 as '100' since 30 minutes ago TIMESERIES",
-            "process_as": "line_chart",
-            "width": 2,
-            "height": 3,
-            "row": 1,
-            "column": 9,
-            "event_types": null,
-            "facet": null,
-            "customizations": null,
-            "notes": null
-        },
-        {
-            "title": "Disk Usage",
-            "nrql": "SELECT average(fsUsedBytes / fsCapacityBytes * 100) AS 'Disk Util %', 100 as '100' FROM K8sNodeSample since 30 minutes ago TIMESERIES",
-            "process_as": "line_chart",
-            "width": 2,
-            "height": 3,
-            "row": 1,
-            "column": 11,
-            "event_types": null,
-            "facet": null,
-            "customizations": null,
-            "notes": null
-        },
-        {
-            "title": "",
-            "nrql": "from K8sNodeSample select uniqueCount(nodeName) as 'Nodes' since 30 minutes ago",
-            "process_as": "billboard",
-            "width": 1,
-            "height": 1,
-            "row": 3,
-            "column": 1,
-            "event_types": null,
-            "facet": null,
-            "customizations": {
-                "thresholds": {}
-            },
-            "notes": null
-        },
-        {
-            "title": "",
-            "nrql": "FROM K8sPodSample select uniqueCount(podName) as 'Running Pods' where status = 'Running' since 30 minutes ago",
-            "process_as": "billboard",
-            "width": 1,
-            "height": 1,
-            "row": 4,
-            "column": 1,
-            "event_types": null,
-            "facet": null,
-            "customizations": {
-                "thresholds": {}
-            },
-            "notes": null
-        },
-        {
-            "title": "Nodes",
-            "nrql": "FROM K8sNodeSample, K8sPodSample select filter(uniqueCount(podName), where eventType() = 'K8sPodSample' and status = 'Running') as 'Running Pods', filter(uniqueCount(podName), where eventType() = 'K8sPodSample' and status = 'Pending') as 'Pending Pods', filter(average(cpuUsedCores) / average(allocatableCpuCores) * 100, where eventType() = 'K8sNodeSample') as 'CPU %', filter(average(memoryWorkingSetBytes / allocatableMemoryBytes * 100), where eventType() = 'K8sNodeSample') as 'Mem %', filter(max(fsUsedBytes / fsCapacityBytes) * 100, where eventType() = 'K8sNodeSample') as 'Disk Util %' where nodeName is not null facet nodeName limit 2000 since 30 minutes ago",
-            "process_as": "facet_table",
-            "width": 11,
-            "height": 5,
-            "row": 4,
-            "column": 2,
-            "event_types": null,
-            "facet": null,
-            "customizations": {
-                "drilldown": {
-                    "dashboard_id": 1250006
-                }
-            },
-            "notes": null
-        },
-        {
-            "title": "",
-            "nrql": "FROM K8sPodSample select filter(uniqueCount(podName), where status = 'Running') / filter(uniqueCount(podName), where status in ('Running','Pending')) * 100 as '% Pods Running' since 30 minutes ago",
-            "process_as": "billboard",
-            "width": 1,
-            "height": 1,
-            "row": 5,
-            "column": 1,
-            "event_types": null,
-            "facet": null,
-            "customizations": {
-                "thresholds": {}
-            },
-            "notes": null
-        },
-        {
-            "title": "",
-            "nrql": "FROM K8sPodSample select uniqueCount(namespaceName) as 'Namespaces' since 30 minutes ago",
-            "process_as": "billboard",
-            "width": 1,
-            "height": 1,
-            "row": 6,
-            "column": 1,
-            "event_types": null,
-            "facet": null,
-            "customizations": {
-                "thresholds": {}
-            },
-            "notes": null
-        },
-        {
-            "title": "",
-            "nrql": "FROM K8sPodSample select uniqueCount(deploymentName) as 'Deployments' since 30 minutes ago",
-            "process_as": "billboard",
-            "width": 1,
-            "height": 1,
-            "row": 7,
-            "column": 1,
-            "event_types": null,
-            "facet": null,
-            "customizations": {
-                "thresholds": {}
-            },
-            "notes": null
-        },
-        {
-            "title": "",
-            "nrql": null,
-            "width": 1,
-            "height": 1,
-            "row": 8,
-            "column": 1,
-            "notes": null,
-            "event_types": null,
-            "facet": null,
-            "agent_ids": [],
-            "duration": null,
-            "metrics": null,
-            "raw_metric_name": null,
-            "end_time": null,
-            "cds_params_payload": null,
-            "renderer": null,
-            "renderer_props": null,
-            "extension_type": null,
-            "customizations": {
-                "markdown": "#"
-            }
-        }
-    ],
-    "dashboard_account_id": 0
+	"name": "Kubernetes Clusters and Nodes",
+	"description": "",
+	"pages": [
+		{
+			"name": "Kubernetes Clusters and Nodes",
+			"description": "",
+			"widgets": [
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 2,
+						"width": 1
+					},
+					"title": "",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": {
+							"text": "![Kubernetes](https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Kubernetes_logo_without_workmark.svg/1200px-Kubernetes_logo_without_workmark.svg.png)"
+						}
+					},
+					"rawConfiguration": {
+						"text": "![Kubernetes](https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Kubernetes_logo_without_workmark.svg/1200px-Kubernetes_logo_without_workmark.svg.png)"
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 2,
+						"row": 1,
+						"height": 3,
+						"width": 5
+					},
+					"title": "Clusters",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "from K8sNodeSample, K8sPodSample select uniqueCount(nodeName) as 'Nodes', filter(uniqueCount(podName), where status = 'Running') as 'Running Pods', filter(uniqueCount(podName), where status in ('Pending')) as 'Pending Pods', uniqueCount(podName) as 'Total Pods' facet clusterName since 30 minutes ago limit 1000"
+								}
+							]
+						},
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "from K8sNodeSample, K8sPodSample select uniqueCount(nodeName) as 'Nodes', filter(uniqueCount(podName), where status = 'Running') as 'Running Pods', filter(uniqueCount(podName), where status in ('Pending')) as 'Pending Pods', uniqueCount(podName) as 'Total Pods' facet clusterName since 30 minutes ago limit 1000"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 7,
+						"row": 1,
+						"height": 3,
+						"width": 2
+					},
+					"title": "CPU Usage",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM K8sNodeSample SELECT average(cpuUsedCores / allocatableCpuCores * 100) AS 'CPU Util %', 100 as '100' since 30 minutes ago TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM K8sNodeSample SELECT average(cpuUsedCores / allocatableCpuCores * 100) AS 'CPU Util %', 100 as '100' since 30 minutes ago TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 1,
+						"height": 3,
+						"width": 2
+					},
+					"title": "Memory Usage",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM K8sNodeSample SELECT average(memoryWorkingSetBytes / allocatableMemoryBytes * 100) AS 'Memory Util %', 100 as '100' since 30 minutes ago TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM K8sNodeSample SELECT average(memoryWorkingSetBytes / allocatableMemoryBytes * 100) AS 'Memory Util %', 100 as '100' since 30 minutes ago TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 11,
+						"row": 1,
+						"height": 3,
+						"width": 2
+					},
+					"title": "Disk Usage",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT average(fsUsedBytes / fsCapacityBytes * 100) AS 'Disk Util %', 100 as '100' FROM K8sNodeSample since 30 minutes ago TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT average(fsUsedBytes / fsCapacityBytes * 100) AS 'Disk Util %', 100 as '100' FROM K8sNodeSample since 30 minutes ago TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 3,
+						"height": 1,
+						"width": 1
+					},
+					"title": "",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "from K8sNodeSample select uniqueCount(nodeName) as 'Nodes' since 30 minutes ago"
+								}
+							],
+							"thresholds": null
+						},
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "from K8sNodeSample select uniqueCount(nodeName) as 'Nodes' since 30 minutes ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 4,
+						"height": 1,
+						"width": 1
+					},
+					"title": "",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM K8sPodSample select uniqueCount(podName) as 'Running Pods' where status = 'Running' since 30 minutes ago"
+								}
+							],
+							"thresholds": null
+						},
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM K8sPodSample select uniqueCount(podName) as 'Running Pods' where status = 'Running' since 30 minutes ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 2,
+						"row": 4,
+						"height": 5,
+						"width": 11
+					},
+					"title": "Nodes",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM K8sNodeSample, K8sPodSample select filter(uniqueCount(podName), where eventType() = 'K8sPodSample' and status = 'Running') as 'Running Pods', filter(uniqueCount(podName), where eventType() = 'K8sPodSample' and status = 'Pending') as 'Pending Pods', filter(average(cpuUsedCores) / average(allocatableCpuCores) * 100, where eventType() = 'K8sNodeSample') as 'CPU %', filter(average(memoryWorkingSetBytes / allocatableMemoryBytes * 100), where eventType() = 'K8sNodeSample') as 'Mem %', filter(max(fsUsedBytes / fsCapacityBytes) * 100, where eventType() = 'K8sNodeSample') as 'Disk Util %' where nodeName is not null facet nodeName limit 2000 since 30 minutes ago"
+								}
+							]
+						},
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM K8sNodeSample, K8sPodSample select filter(uniqueCount(podName), where eventType() = 'K8sPodSample' and status = 'Running') as 'Running Pods', filter(uniqueCount(podName), where eventType() = 'K8sPodSample' and status = 'Pending') as 'Pending Pods', filter(average(cpuUsedCores) / average(allocatableCpuCores) * 100, where eventType() = 'K8sNodeSample') as 'CPU %', filter(average(memoryWorkingSetBytes / allocatableMemoryBytes * 100), where eventType() = 'K8sNodeSample') as 'Mem %', filter(max(fsUsedBytes / fsCapacityBytes) * 100, where eventType() = 'K8sNodeSample') as 'Disk Util %' where nodeName is not null facet nodeName limit 2000 since 30 minutes ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 5,
+						"height": 1,
+						"width": 1
+					},
+					"title": "",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM K8sPodSample select filter(uniqueCount(podName), where status = 'Running') / filter(uniqueCount(podName), where status in ('Running','Pending')) * 100 as '% Pods Running' since 30 minutes ago"
+								}
+							],
+							"thresholds": null
+						},
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM K8sPodSample select filter(uniqueCount(podName), where status = 'Running') / filter(uniqueCount(podName), where status in ('Running','Pending')) * 100 as '% Pods Running' since 30 minutes ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 6,
+						"height": 1,
+						"width": 1
+					},
+					"title": "",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM K8sPodSample select uniqueCount(namespaceName) as 'Namespaces' since 30 minutes ago"
+								}
+							],
+							"thresholds": null
+						},
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM K8sPodSample select uniqueCount(namespaceName) as 'Namespaces' since 30 minutes ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 7,
+						"height": 1,
+						"width": 1
+					},
+					"title": "",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM K8sPodSample select uniqueCount(deploymentName) as 'Deployments' since 30 minutes ago"
+								}
+							],
+							"thresholds": null
+						},
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM K8sPodSample select uniqueCount(deploymentName) as 'Deployments' since 30 minutes ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 8,
+						"height": 1,
+						"width": 1
+					},
+					"title": "",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": {
+							"text": "#"
+						}
+					},
+					"rawConfiguration": {
+						"text": "#"
+					}
+				}
+			]
+		}
+	]
 }

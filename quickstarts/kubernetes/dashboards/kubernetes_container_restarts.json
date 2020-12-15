@@ -1,58 +1,70 @@
 {
-    "title": "Kubernetes Container Restarts",
-    "icon": "dashboard",
-    "grid_column_count": 12,
-    "filter": {
-        "key_names": [],
-        "event_types": [
-            "K8sContainerSample"
-        ],
-        "filter_first": false
-    },
-    "owner": {
-        "email": "bschmitt@newrelic.com"
-    },
-    "widgets": [
-        {
-            "title": "",
-            "nrql": null,
-            "width": 3,
-            "height": 7,
-            "row": 1,
-            "column": 1,
-            "notes": null,
-            "event_types": null,
-            "facet": null,
-            "agent_ids": [],
-            "duration": null,
-            "metrics": null,
-            "raw_metric_name": null,
-            "end_time": null,
-            "cds_params_payload": null,
-            "renderer": null,
-            "renderer_props": null,
-            "extension_type": null,
-            "customizations": {
-                "markdown": "# Container Restarts\n---\n![Container](https://github.com/kubernetes/community/blob/master/icons/png/resources/unlabeled/pod-128.png?raw=true)\n\nContainer restarts are **usually** not a good thing.  This dashboard will help identify the biggest offenders and where they are currently _trying_ to run."
-            }
-        },
-        {
-            "title": "Container Restarts",
-            "nrql": "FROM K8sContainerSample select max(restartCount), latest(reason) where restartCount > 0 order by restartCount facet containerName, podName, clusterName since 30 minutes ago limit 1000",
-            "process_as": "facet_table",
-            "width": 9,
-            "height": 7,
-            "row": 1,
-            "column": 4,
-            "event_types": null,
-            "facet": null,
-            "customizations": {
-                "drilldown": {
-                    "dashboard_id": 1250031
-                }
-            },
-            "notes": null
-        }
-    ],
-    "dashboard_account_id": 0
+	"name": "Kubernetes Container Restarts",
+	"description": "",
+	"pages": [
+		{
+			"name": "Kubernetes Container Restarts",
+			"description": "",
+			"widgets": [
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 7,
+						"width": 3
+					},
+					"title": "",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": {
+							"text": "# Container Restarts\n---\n![Container](https://github.com/kubernetes/community/blob/master/icons/png/resources/unlabeled/pod-128.png?raw=true)\n\nContainer restarts are **usually** not a good thing.  This dashboard will help identify the biggest offenders and where they are currently _trying_ to run."
+						}
+					},
+					"rawConfiguration": {
+						"text": "# Container Restarts\n---\n![Container](https://github.com/kubernetes/community/blob/master/icons/png/resources/unlabeled/pod-128.png?raw=true)\n\nContainer restarts are **usually** not a good thing.  This dashboard will help identify the biggest offenders and where they are currently _trying_ to run."
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 4,
+						"row": 1,
+						"height": 7,
+						"width": 9
+					},
+					"title": "Container Restarts",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM K8sContainerSample select max(restartCount), latest(reason) where restartCount > 0 order by restartCount facet containerName, podName, clusterName since 30 minutes ago limit 1000"
+								}
+							]
+						},
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM K8sContainerSample select max(restartCount), latest(reason) where restartCount > 0 order by restartCount facet containerName, podName, clusterName since 30 minutes ago limit 1000"
+							}
+						]
+					}
+				}
+			]
+		}
+	]
 }
