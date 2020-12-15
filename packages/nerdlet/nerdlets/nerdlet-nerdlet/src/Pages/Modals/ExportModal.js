@@ -227,7 +227,7 @@ class ExportModal extends React.Component {
                 <HeadingText spacingType={[AccountPicker.SPACING_TYPE.LARGE]} type={HeadingText.TYPE.HEADING_1}>Export dashboard</HeadingText>
                 <Tabs defaultValue="tab-1">
                     <TabsItem value="tab-1" label="Import into">
-                        <p>Where do you want to import the dashboard into?</p>
+                        <p className="padding-top">Where do you want to import the dashboard into?</p>
                         <AccountPicker
                             value={this.state.accountId}
                             onChange={this.onChangeAccount}
