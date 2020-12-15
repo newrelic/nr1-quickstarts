@@ -55,8 +55,7 @@ class Tools extends React.Component {
     constructor(props) {
         super(props);
 
-        this._search = this._search.bind(this);
-        this._getActions = this._getActions.bind(this);
+        this.search = this.search.bind(this);
         this.openTools = this.openTools.bind(this);
         this.closeTools = this.closeTools.bind(this);
 
@@ -87,7 +86,7 @@ class Tools extends React.Component {
         });
     }
 
-    _search(event) {
+    search(event) {
         if (this.searchTimeout) {
             clearTimeout(this.searchTimeout);
         }
@@ -100,18 +99,6 @@ class Tools extends React.Component {
                 }
             })
         }, 500);
-    }
-
-    _getActions() {
-        return [
-            {
-                label: 'Open tools',
-                iconType: TableRow.ACTIONS_ICON_TYPE.INTERFACE__OPERATIONS__ALERT,
-                onClick: (evt, { item, index }) => {
-                    this.openTools();
-                },
-            },
-        ];
     }
 
     getCreator(tags) {
@@ -139,7 +126,7 @@ class Tools extends React.Component {
                         </Link>
                     </GridItem>
                     <GridItem columnSpan={12}>
-                        <TextField className="custom-textfield" placeholder="Search" type={TextField.TYPE.SEARCH} onChange={this._search} spacingType={[TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE, TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE]} />
+                        <TextField className="custom-textfield" placeholder="Search" type={TextField.TYPE.SEARCH} onChange={this.search} spacingType={[TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE, TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE]} />
                         <NerdGraphQuery query={this.searchQuery} variables={this.state.search}>
                         {({ data, error, loading }) => {
                             if (loading) return <Spinner className="custom-spinner" spacingType={[Spinner.SPACING_TYPE.LARGE, Spinner.SPACING_TYPE.LARGE, Spinner.SPACING_TYPE.LARGE, Spinner.SPACING_TYPE.LARGE]} />
@@ -156,7 +143,7 @@ class Tools extends React.Component {
                                             <TableHeaderCell>Created by</TableHeaderCell>
                                         </TableHeader>
                                         {({ item }) => (
-                                            <TableRow actions={this._getActions()} onClick={(evt, { item, index }) => { this.openTools(item.guid); }}>
+                                            <TableRow onClick={(evt, { item, index }) => { this.openTools(item.guid); }}>
                                                 <EntityTitleTableRowCell value={item} />
                                                 <TableRowCell>{item.account.name}</TableRowCell>
                                                 <TableRowCell>{this.getCreator(item.tags)}</TableRowCell>
