@@ -2,6 +2,14 @@ import React from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
+//
+// Warning: This code is currently not used, but kept for us in future
+// Blocker: Terraform support for new dashboard API
+// TODO:
+// - Convert to use Nr1 components and remove bootstrap
+// - Change to work with new dashboard JSON format
+//
+
 class ExportTerraform extends React.Component {
 
     constructor(props) {
