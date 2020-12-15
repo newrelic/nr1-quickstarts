@@ -1,124 +1,250 @@
 {
-  "title": "CoreDNS - Prometheus",
-  "icon": "bar-chart",
-  "grid_column_count": 12,
-  "filter": {
-    "key_names": [
-
-    ],
-    "event_types": [
-      "Metric"
-    ],
-    "filter_first": false
-  },
-  "owner": {
-    "email": "spolfliet@newrelic.com"
-  },
-  "widgets": [
-    {
-      "title": "Requests (total)",
-      "nrql": "FROM Metric SELECT rate(sum(coredns_dns_request_count_total), 5 minutes) FACET proto TIMESERIES",
-      "process_as": "faceted_line_chart",
-      "width": 4,
-      "height": 3,
-      "row": 1,
-      "column": 1,
-      "event_types": [
-        "Metric"
-      ],
-      "facet": "proto",
-      "customizations": null,
-      "notes": null
-    },
-    {
-      "title": "Requests (by qtype)",
-      "nrql": "FROM Metric SELECT rate(sum(coredns_dns_request_type_count_total), 5 minutes) FACET type TIMESERIES",
-      "process_as": "faceted_line_chart",
-      "width": 4,
-      "height": 3,
-      "row": 1,
-      "column": 5,
-      "event_types": [
-        "Metric"
-      ],
-      "facet": "type",
-      "customizations": null,
-      "notes": null
-    },
-    {
-      "title": "Requests (by zone)",
-      "nrql": "FROM Metric SELECT rate(sum(coredns_dns_request_count_total), 5 minutes) FACET zone TIMESERIES",
-      "process_as": "faceted_line_chart",
-      "width": 4,
-      "height": 3,
-      "row": 1,
-      "column": 9,
-      "event_types": [
-        "Metric"
-      ],
-      "facet": "zone",
-      "customizations": null,
-      "notes": null
-    },
-    {
-      "title": "Responses (by rcode)",
-      "nrql": "FROM Metric SELECT rate(sum(coredns_dns_response_rcode_count_total), 5 minutes) FACET rcode TIMESERIES",
-      "process_as": "faceted_line_chart",
-      "width": 4,
-      "height": 3,
-      "row": 4,
-      "column": 1,
-      "event_types": [
-        "Metric"
-      ],
-      "facet": "rcode",
-      "customizations": null,
-      "notes": null
-    },
-    {
-      "title": "Cache (size)",
-      "nrql": "FROM Metric SELECT sum(coredns_cache_size) FACET type TIMESERIES",
-      "process_as": "faceted_line_chart",
-      "width": 4,
-      "height": 3,
-      "row": 4,
-      "column": 5,
-      "event_types": [
-        "Metric"
-      ],
-      "facet": "type",
-      "customizations": null,
-      "notes": null
-    },
-    {
-      "title": "Cache (hitrate)",
-      "nrql": "FROM Metric SELECT rate(sum(coredns_cache_hits_total), 5 minutes) FACET type TIMESERIES",
-      "process_as": "faceted_line_chart",
-      "width": 4,
-      "height": 3,
-      "row": 4,
-      "column": 9,
-      "event_types": [
-        "Metric"
-      ],
-      "facet": "type",
-      "customizations": null,
-      "notes": null
-    },
-    {
-      "title": "CoreDNS Logs",
-      "nrql": "FROM Log select timestamp, message where `labels.k8s-app` = 'kube-dns'",
-      "process_as": "event_table",
-      "width": 12,
-      "height": 3,
-      "row": 7,
-      "column": 1,
-      "event_types": [
-        "Log"
-      ],
-      "facet": null,
-      "customizations": null,
-      "notes": null
-    }
-  ]
+	"name": "CoreDNS - Prometheus",
+	"description": null,
+	"pages": [
+		{
+			"name": "CoreDNS - Prometheus",
+			"description": null,
+			"widgets": [
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Requests (total)",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT rate(sum(coredns_dns_request_count_total), 5 minutes) FACET proto TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT rate(sum(coredns_dns_request_count_total), 5 minutes) FACET proto TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Requests (by qtype)",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT rate(sum(coredns_dns_request_type_count_total), 5 minutes) FACET type TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT rate(sum(coredns_dns_request_type_count_total), 5 minutes) FACET type TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Requests (by zone)",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT rate(sum(coredns_dns_request_count_total), 5 minutes) FACET zone TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT rate(sum(coredns_dns_request_count_total), 5 minutes) FACET zone TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Responses (by rcode)",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT rate(sum(coredns_dns_response_rcode_count_total), 5 minutes) FACET rcode TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT rate(sum(coredns_dns_response_rcode_count_total), 5 minutes) FACET rcode TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Cache (size)",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT sum(coredns_cache_size) FACET type TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT sum(coredns_cache_size) FACET type TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Cache (hitrate)",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Metric SELECT rate(sum(coredns_cache_hits_total), 5 minutes) FACET type TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Metric SELECT rate(sum(coredns_cache_hits_total), 5 minutes) FACET type TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 7,
+						"height": 3,
+						"width": 12
+					},
+					"title": "CoreDNS Logs",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "FROM Log select timestamp, message where `labels.k8s-app` = 'kube-dns'"
+								}
+							]
+						},
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Log select timestamp, message where `labels.k8s-app` = 'kube-dns'"
+							}
+						]
+					}
+				}
+			]
+		}
+	]
 }
