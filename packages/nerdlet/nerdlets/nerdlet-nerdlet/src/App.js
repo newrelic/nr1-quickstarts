@@ -50,7 +50,7 @@ class App extends React.Component {
 
         return (
             <HashRouter>
-                <main role="main">
+                <main role="main" id="root">
                     <Switch>
                         <Route path="/tools/terraform" render={(props) => <ToolsTerraform data={this.state.data} {...props} /> } />
                         <Route path="/install-nerdlet" render={(props) => <InstallNerdlet data={this.state.data} {...props} /> } />

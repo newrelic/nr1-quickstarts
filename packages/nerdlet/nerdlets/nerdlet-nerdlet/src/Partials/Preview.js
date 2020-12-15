@@ -1,7 +1,13 @@
 import React from 'react';
 import {
     Link
-  } from "react-router-dom";
+} from "react-router-dom";
+import {
+    Card,
+    CardHeader,
+    CardBody,
+    GridItem,
+} from "nr1";
 
 class Preview extends React.Component {
 
@@ -14,22 +20,22 @@ class Preview extends React.Component {
     }
 
     render() {
+        let subtitle = '';
+        if (this.props.quickstart.authors.length > 0) {
+            subtitle = 'Created by ' + this.props.quickstart.authors.join(', ');
+        }
+
         return (
-            <div className="col-md-3 col-lg-2 col-sm-4">
-                <div className="card mb-4 shadow-sm">
-                    <img src={ "https://newrelic-experimental.github.io/quickstarts/data/" + this.props.quickstart.id + "/dashboards/" + this.state.screenshot} className="card-img-top" alt="..." />
-                    <div className="card-body">
-                        <h5 className="card-title">
-                            <Link className="" to={"/view/" + this.props.quickstart.id}>
-                                { this.props.quickstart.name }
-                                { this.props.quickstart.authors.length > 0 &&
-                                    <span className="d-block"><small className="text-muted text-small">Created by { this.props.quickstart.authors.join(', ') }</small></span>
-                                }
-                            </Link>
-                        </h5>
-                    </div>
-                </div>
-            </div>
+            <GridItem columnSpan={3}>
+                <Link className="preview-item" to={"/view/" + this.props.quickstart.id}>
+                    <Card>
+                        <CardHeader title={this.props.quickstart.name} subtitle={subtitle} />
+                        <CardBody className="preview-image">
+                            <img src={ "https://newrelic-experimental.github.io/quickstarts/data/" + this.props.quickstart.id + "/dashboards/" + this.state.screenshot} alt="Dashboard screenshot" />
+                        </CardBody>
+                    </Card>
+                </Link>
+            </GridItem>
         );
     }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { ListItem } from 'nr1';
 
 class DatasourceItem extends React.Component {
 
@@ -37,7 +38,7 @@ class DatasourceItem extends React.Component {
 
     render() {
         return (
-            <span className="badge badge-dark">{this.state.name}</span>
+            <ListItem>{this.state.name}</ListItem>
         );
     }
 

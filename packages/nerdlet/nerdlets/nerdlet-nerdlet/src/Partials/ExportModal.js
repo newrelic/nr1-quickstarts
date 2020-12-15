@@ -124,7 +124,6 @@ class ExportModal extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        // Typical usage (don't forget to compare props):
         if (prevProps.sourceGuid !== this.props.sourceGuid) {
             this.loadGuid(this.props.sourceGuid);
         } else if (prevProps.sourceUrl !== this.props.sourceUrl) {
@@ -144,7 +143,17 @@ class ExportModal extends React.Component {
     }
 
     loadJson(url) {
-
+        fetch(url)
+            .then(response => response.json())
+            .then((response) => {
+                let dashboard = response;
+                dashboard.dashboard_account_id = this.state.accountId;
+                this.setState({
+                    dashboardName: dashboard.title,
+                    dashboardJson: dashboard,
+                    dashboardLoading: false,
+                });
+            })
     }
 
     closeModal(event, value) {
@@ -217,8 +226,8 @@ class ExportModal extends React.Component {
             <Modal hidden={this.props.hidden} onClose={this.closeModal}>
                 <HeadingText spacingType={[AccountPicker.SPACING_TYPE.LARGE]} type={HeadingText.TYPE.HEADING_1}>Export dashboard</HeadingText>
                 <Tabs defaultValue="tab-1">
-                    <TabsItem value="tab-1" label="Copy to">
-                        <p>Where do you want to copy the dashboard to?</p>
+                    <TabsItem value="tab-1" label="Import into">
+                        <p>Where do you want to import the dashboard into?</p>
                         <AccountPicker
                             value={this.state.accountId}
                             onChange={this.onChangeAccount}
@@ -234,7 +243,7 @@ class ExportModal extends React.Component {
                             type={Button.TYPE.PRIMARY}
                             iconType={Icon.TYPE.INTERFACE__OPERATIONS__COPY_TO}
                             onClick={this.onCopyDashboard}
-                        >Copy dashboard</Button>
+                        >Import dashboard</Button>
                     </TabsItem>
                     <TabsItem value="tab-3" label="Export Json">
                         <ExportJson json={this.state.dashboardJson} />

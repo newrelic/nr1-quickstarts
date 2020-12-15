@@ -1,15 +1,16 @@
 import React from 'react';
 import DatasourceItem from './DatasourceItem';
+import { List } from 'nr1';
 
 class Datasource extends React.Component {
 
     render() {
         return (
-            <div className="sources">
+            <List>
                 {this.props.sources.map((source, i) => {
                     return (<DatasourceItem key={source} source={source} />)
                 })}
-            </div>
+            </List>
         );
     }
 }

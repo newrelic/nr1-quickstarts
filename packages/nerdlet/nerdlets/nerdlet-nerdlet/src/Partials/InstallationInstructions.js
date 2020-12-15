@@ -106,8 +106,9 @@ class InstallationInstructions extends React.Component {
                     if (requirement.url) {
                         return (
                             <div key={requirement.name}>
-                                <h4>{requirement.name} <SourceAvailable accountId={this.props.accountId} source={requirement.source} /></h4>
+                                <b>{requirement.name} <SourceAvailable accountId={this.props.accountId} source={requirement.source} /></b>
                                 <p><a href={requirement.url} target="_BLANK" rel="noopener noreferrer">{requirement.url}</a></p>
+                                <br />
                             </div>
                         )
                     } else {

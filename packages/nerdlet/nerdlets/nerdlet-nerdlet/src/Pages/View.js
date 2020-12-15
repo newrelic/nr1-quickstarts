@@ -1,15 +1,20 @@
 import React from 'react';
-import ViewOverview from './ViewOverview';
+import ExportModal from '../Partials/ExportModal';
 import {
     Link,
     Switch,
     Route
   } from "react-router-dom";
 import {
+    AccountPicker,
     Button,
+    HeadingText,
+    List,
+    ListItem,
+    Grid,
+    GridItem,
 } from "nr1";
-  import ViewDashboard from './ViewDashboards';
-import ViewRequirements from './ViewRequirements';
+import InstallationInstructions from '../Partials/InstallationInstructions';
 
 class View extends React.Component {
 
@@ -18,6 +23,10 @@ class View extends React.Component {
     constructor(props) {
         super(props);
 
+        this.onChangeAccount = this.onChangeAccount.bind(this);
+        this.openTools = this.openTools.bind(this);
+        this.closeTools = this.closeTools.bind(this);
+
         this.state = View.getState(props);
     }
 
@@ -25,6 +34,9 @@ class View extends React.Component {
         return {
             quickstart: props.data.quickstarts.find(element => element.id === props.match.params.handle),
             path: props.match.path,
+            dashboardUrl: '',
+            toolsModalHidden: true,
+            accountId: null,
         }
     }
 
@@ -33,6 +45,26 @@ class View extends React.Component {
             return View.getState(props);
         }
         return null
+    }
+
+    onChangeAccount(event, value) {
+        this.setState({
+            accountId: value
+        });
+    }
+
+    openTools(file) {
+        let url = 'https://newrelic-experimental.github.io/quickstarts/data/' + this.state.quickstart.id + '/dashboards/' + file;
+        this.setState({
+            dashboardUrl: url,
+            toolsModalHidden: false,
+        });
+    }
+
+    closeTools() {
+        this.setState({
+            toolsModalHidden: true
+        });
     }
 
     render() {
@@ -48,7 +80,7 @@ class View extends React.Component {
                                 <div className="col-4 text-right">
                                     <Link className="" to={"/"}>
                                         <Button
-                                            type={Button.TYPE.PRIMARY}
+                                            type={Button.TYPE.NORMAL}
                                             iconType={Button.ICON_TYPE.LOCATION__LOCATION__HOME}
                                         >Back to listing</Button>
                                     </Link>
@@ -61,66 +93,100 @@ class View extends React.Component {
         }
 
         return (
-            <div className="container" id="root">
-                <div className="row header">
-                    <div className="col-8">
-                        <h2>{ this.state.quickstart.name }</h2>
-                    </div>
-                    <div className="col-4 text-right">
-                        <Link className="" to={"/"}>
-                            <Button
-                                type={Button.TYPE.PRIMARY}
-                                iconType={Button.ICON_TYPE.LOCATION__LOCATION__HOME}
-                            >Back to listing</Button>
-                        </Link>
-                    </div>
-                </div>
-                <div className="row pt-4">
-                    <div className="col-3 sidebar">
-                        <ul className="nav flex-column">
-                            <li className="nav-item">
-                                <Link className="nav-link" to={"/view/" + this.state.quickstart.id}>
-                                    Description
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to={"/view/" + this.state.quickstart.id + "/requirements"}>
-                                    Requirements
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to={"/view/" + this.state.quickstart.id + "/dashboards"}>
-                                    Dashboards
-                                </Link>
-                            </li>
-                            <li className="nav-divider"></li>
-                            <li className="nav-item">
-                                <Button
-                                    to={"https://github.com/newrelic-experimental/quickstarts/issues/new?labels=bug&title=Problem%20with%20" + this.state.quickstart.id}
-                                    type={Button.TYPE.PLAIN}
-                                    iconType={Button.ICON_TYPE.HARDWARE_AND_SOFTWARE__SOFTWARE__APPLICATION__S_WARNING}
-                                >Report a problem</Button>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="col-9 pl-4">
-                        <Switch>
-                            <Route exact path={this.state.path}>
-                                <ViewOverview quickstart={this.state.quickstart} />
-                            </Route>
+            <Grid>
+                <GridItem columnStart={10} columnEnd={12} className="text-right">
+                    <Link to={"/"}>
+                        <Button
+                            type={Button.TYPE.NORMAL}
+                            iconType={Button.ICON_TYPE.LOCATION__LOCATION__HOME}
+                        >Back to listing</Button>
+                    </Link>
+                </GridItem>
+                <GridItem columnSpan={2}>
+                    <HeadingText type={HeadingText.TYPE.HEADING_2}>{ this.state.quickstart.name }</HeadingText>
 
-                            <Route path={`${this.state.path}/dashboards`}>
-                                <ViewDashboard quickstart={this.state.quickstart} />
-                            </Route>
+                    <HeadingText type={HeadingText.TYPE.HEADING_3} className="padding-top">Description</HeadingText>
+                    <p>{ this.state.quickstart.description }</p>
 
-                            <Route path={`${this.state.path}/requirements`}>
-                                <ViewRequirements quickstart={this.state.quickstart} />
-                            </Route>
-                        </Switch>
-                    </div>
-                </div>
-            </div>
-        );
+                    <HeadingText type={HeadingText.TYPE.HEADING_3} className="padding-top">Requirements</HeadingText>
+                    <AccountPicker
+                        value={this.state.accountId}
+                        onChange={this.onChangeAccount}
+                        spacingType={[AccountPicker.SPACING_TYPE.LARGE]}
+                    />
+                    <InstallationInstructions accountId={this.state.accountId} sources={this.state.quickstart.sources} />
+                    {this.state.quickstart.flex.length > 0 &&
+                        <div>
+                            <h5>Flex configuration files</h5>
+                            <ul>
+                                {this.state.quickstart.flex.map((flex) => {
+                                    return ( <li key={flex}><a href={'./data/' + this.state.quickstart.id + '/flex/' + flex} target="_BLANK" rel="noopener noreferrer">{flex}</a></li> )
+                                })}
+                            </ul>
+                        </div>
+                    }
+
+                    <HeadingText type={HeadingText.TYPE.HEADING_3} className="padding-top">Dashboards</HeadingText>
+                    <List>
+                    {this.state.quickstart.dashboards.map((dashboard) => {
+                        return (
+                            <ListItem key={dashboard.filename}>
+                                { dashboard.name }
+                            </ListItem>
+                        )
+                    })}
+                    </List>
+
+                    {this.state.quickstart.authors.length > 0 &&
+                        <div>
+                            <HeadingText type={HeadingText.TYPE.HEADING_3} className="padding-top">Authors</HeadingText>
+                            <ul>
+                            {this.state.quickstart.authors.map((author) => {
+                                return ( <li key={author} >{ author }</li> )
+                            })}
+                            </ul>
+                        </div>
+                    }
+
+
+                    <HeadingText type={HeadingText.TYPE.HEADING_3} className="padding-top">Problems or feedback?</HeadingText>
+                    <Button
+                        to={"https://github.com/newrelic-experimental/quickstarts/issues/new?labels=bug&title=Problem%20with%20" + this.state.quickstart.id}
+                        type={Button.TYPE.PLAIN}
+                        iconType={Button.ICON_TYPE.HARDWARE_AND_SOFTWARE__SOFTWARE__APPLICATION__S_WARNING}
+                    >Create a ticket</Button>
+                </GridItem>
+
+                <GridItem columnSpan={10}>
+                    {this.state.quickstart.dashboards.map((dashboard) => {
+                        return (
+                            <Grid className="view-item" id={dashboard.filename}>
+                                <GridItem columnSpan={10}>
+                                    <HeadingText type={HeadingText.TYPE.HEADING_3}>{ dashboard.name }</HeadingText>
+                                </GridItem>
+                                <GridItem columnSpan={2} className="text-right">
+                                    <Button
+                                        onClick={(e) => { this.openTools(dashboard.filename) }}
+                                        type={Button.TYPE.PLAIN}
+                                        iconType={Button.ICON_TYPE.INTERFACE__OPERATIONS__IMPORT}
+                                    >Import</Button>
+                                </GridItem>
+                                {dashboard.screenshots.map((screenshot) => {
+                                    return (
+                                        <GridItem columnSpan={12}>
+                                            <img key={screenshot} src={ "https://newrelic-experimental.github.io/quickstarts/data/" + this.state.quickstart.id + "/dashboards/" + screenshot} className="card-img-top" alt="..." />
+                                        </GridItem>
+                                    );
+                                })}
+
+                            </Grid>
+                        )
+                    })}
+                </GridItem>
+
+                <ExportModal hidden={this.state.toolsModalHidden} onClose={this.closeTools} sourceUrl={this.state.dashboardUrl} />
+            </Grid>
+        )
     }
 }
 

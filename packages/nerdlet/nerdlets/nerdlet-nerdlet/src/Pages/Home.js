@@ -4,6 +4,9 @@ import DatasourceItem from '../Partials/DatasourceItem';
 import { Link } from "react-router-dom";
 import {
     Button,
+    Grid,
+    GridItem,
+    TextField,
 } from "nr1";
 
 class Home extends React.Component {
@@ -41,40 +44,30 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div>
-                <div className="text-right px-4">
-                    <Link className="" to={"/tools"}>
-                        <Button
-                            type={Button.TYPE.NORMAL}
-                            iconType={Button.ICON_TYPE.DOCUMENTS__DOCUMENTS__NOTES__A_ADD}
-                        >Tools</Button>
-                    </Link>
-                </div>
-                <section className="jumbotron text-center">
-                    <div className="container">
-                        <h1>New Relic - Quick start library</h1>
-                        <p className="lead text-muted">Library of curated dashboards & alerts with their dependencies.</p>
-                        <p className="lead text-red"><b>Preview functionality!</b></p>
-                        <p className="lead text-red"><b>The release is planned for beginning of 2021.</b></p>
-                    </div>
-
-                    <div className="container" id="root">
-                        <div className="row pt-5">
-                            <input type="text" className="form-control" id="search" aria-describedby="search" placeholder="Search for specific datasource or technology" value={this.state.search} onChange={this.setSearch} />
-                        </div>
-                    </div>
-                </section>
-
-                <div className="album bg-light">
-                    <div className="container-fluid" id="root">
-                        <div className="row py-3">
-                        {this.props.data.quickstarts.filter(this.search).map((quickstart, i) => {
-                            return (<Preview key={quickstart.name} quickstart={quickstart} />)
-                        })}
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <>
+                <Grid>
+                    <GridItem columnSpan={9}>
+                        <p>Library of curated dashboards & alerts with their dependencies.</p>
+                        <p className="text-red"><b>Preview functionality! Release planned for beginning of 2021.</b></p>
+                    </GridItem>
+                    <GridItem columnSpan={3} className="text-right">
+                        <Link to={"/tools"}>
+                            <Button
+                                type={Button.TYPE.NORMAL}
+                                iconType={Button.ICON_TYPE.DOCUMENTS__DOCUMENTS__NOTES__A_ADD}
+                            >Tools</Button>
+                        </Link>
+                    </GridItem>
+                    <GridItem columnSpan={12}>
+                        <TextField className="custom-textfield" placeholder="Search" type={TextField.TYPE.SEARCH} onChange={this.setSearch} spacingType={[TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE, TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE]} />
+                    </GridItem>
+                </Grid>
+                <Grid className="list-view">
+                    {this.props.data.quickstarts.filter(this.search).map((quickstart, i) => {
+                        return (<Preview key={quickstart.name} quickstart={quickstart} />)
+                    })}
+                </Grid>
+            </>
         );
     }
 

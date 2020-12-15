@@ -1,36 +1,23 @@
 
-// Import bootstrap
-@import '~bootstrap/scss/bootstrap.scss';
-@import "~nr1-bootstrap-theme/dist/main.css";
-
-#root {
-    background-color: white !important;
+.list-view {
+    background: #f7f7f8;
+    padding: 10px;
 }
 
-.jumbotron {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-    margin-bottom: 0;
-    background-color: #fff;
+.preview-item {
+    background-color: white;
+    padding: 5px;
 }
 
-@media (min-width: 768px) {
-    .jumbotron {
-        padding-top: 6rem;
-        padding-bottom: 6rem;
+.preview-image {
+    img {
+        width: 100%;
     }
 }
 
-.jumbotron p:last-child {
-    margin-bottom: 0;
-}
-
-.jumbotron h1 {
-    font-weight: 300;
-}
-
-.jumbotron .container {
-    max-width: 40rem;
+.view-item {
+    background-color: white;
+    padding: 10px;
 }
 
 footer {
@@ -129,6 +116,10 @@ ul li {
     color: red;
 }
 
+.text-right {
+    text-align: right;
+}
+
 .custom-textfield {
     width: 100%;
 }
@@ -143,4 +134,8 @@ ul li {
 
 a:hover {
     text-decoration: none !important;
+}
+
+.padding-top {
+    padding-top: 15px;
 }
