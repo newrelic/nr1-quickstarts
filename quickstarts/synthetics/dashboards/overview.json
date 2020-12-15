@@ -1,181 +1,305 @@
 {
-    "title": "NR-Synthetics Checks",
-    "icon": "bar-chart",
-    "grid_column_count": 3,
-    "filter": {
-        "key_names": [],
-        "event_types": [
-            "SyntheticCheck"
-        ],
-        "filter_first": false
-    },
-    "owner": {
-        "email": "bgomes@newrelic.com"
-    },
-    "widgets": [
-        {
-            "title": "Checks",
-            "nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE today",
-            "process_as": "gauge",
-            "width": 1,
-            "height": 1,
-            "row": 1,
-            "column": 1,
-            "event_types": [
-                "SyntheticCheck"
-            ],
-            "facet": null,
-            "customizations": {
-                "limit": 5000
-            },
-            "notes": "number of checks during the past 7 days"
-        },
-        {
-            "title": "Location",
-            "nrql": "SELECT count(*) FROM SyntheticCheck SINCE today FACET locationLabel LIMIT 5",
-            "process_as": "facet_pie_chart",
-            "width": 1,
-            "height": 1,
-            "row": 1,
-            "column": 2,
-            "event_types": [
-                "SyntheticCheck"
-            ],
-            "facet": "locationLabel",
-            "customizations": {
-                "drilldown": {
-                    "dashboard_id": 352786
-                }
-            },
-            "notes": "checks by location"
-        },
-        {
-            "title": "Result",
-            "nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE today FACET result",
-            "process_as": "facet_pie_chart",
-            "width": 1,
-            "height": 1,
-            "row": 1,
-            "column": 3,
-            "event_types": [
-                "SyntheticCheck"
-            ],
-            "facet": "result",
-            "customizations": {
-                "drilldown": {
-                    "dashboard_id": 352786
-                }
-            },
-            "notes": "checks by result"
-        },
-        {
-            "title": "Monitor",
-            "nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE today FACET  monitorName",
-            "process_as": "facet_bar_chart",
-            "width": 1,
-            "height": 1,
-            "row": 2,
-            "column": 1,
-            "event_types": [
-                "SyntheticCheck"
-            ],
-            "facet": "monitorName",
-            "customizations": {
-                "drilldown": {
-                    "dashboard_id": 352786
-                }
-            },
-            "notes": null
-        },
-        {
-            "title": "Monitor",
-            "nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE today FACET monitorName",
-            "process_as": "facet_pie_chart",
-            "width": 1,
-            "height": 1,
-            "row": 2,
-            "column": 2,
-            "event_types": [
-                "SyntheticCheck"
-            ],
-            "facet": "monitorName",
-            "customizations": {
-                "drilldown": {
-                    "dashboard_id": 352786
-                }
-            },
-            "notes": null
-        },
-        {
-            "title": "Weekly Availability",
-            "nrql": "SELECT percentage(count(*), where result='SUCCESS') FROM SyntheticCheck SINCE today",
-            "process_as": "gauge",
-            "width": 1,
-            "height": 1,
-            "row": 2,
-            "column": 3,
-            "event_types": [
-                "SyntheticCheck"
-            ],
-            "facet": null,
-            "customizations": {
-                "limit": 100
-            },
-            "notes": null
-        },
-        {
-            "title": "Request and Response Body Sizes",
-            "nrql": "SELECT average(totalResponseBodySize) AS '' FROM SyntheticCheck SINCE today FACET monitorName LIMIT 5",
-            "process_as": "facet_table",
-            "width": 1,
-            "height": 1,
-            "row": 3,
-            "column": 1,
-            "event_types": [
-                "SyntheticCheck"
-            ],
-            "facet": "monitorName",
-            "customizations": {
-                "drilldown": {
-                    "dashboard_id": 352786
-                }
-            },
-            "notes": "request and response body sizes"
-        },
-        {
-            "title": "Check Duration",
-            "nrql": "SELECT average(duration) AS '' FROM SyntheticCheck SINCE today TIMESERIES AUTO",
-            "process_as": "line_chart",
-            "width": 1,
-            "height": 1,
-            "row": 3,
-            "column": 2,
-            "event_types": [
-                "SyntheticCheck"
-            ],
-            "facet": null,
-            "customizations": null,
-            "notes": "average duration of checks"
-        },
-        {
-            "title": "Type",
-            "nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE today FACET type",
-            "process_as": "facet_bar_chart",
-            "width": 1,
-            "height": 1,
-            "row": 3,
-            "column": 3,
-            "event_types": [
-                "SyntheticCheck"
-            ],
-            "facet": "type",
-            "customizations": {
-                "drilldown": {
-                    "dashboard_id": 352786
-                }
-            },
-            "notes": null
-        }
-    ],
-    "dashboard_account_id": 0
+	"name": "Synthetics Checks",
+	"description": null,
+	"pages": [
+		{
+			"name": "Synthetics Checks",
+			"description": null,
+			"widgets": [
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Checks",
+					"configuration": null,
+					"rawConfiguration": {
+						"limit": 5000,
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Location",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago FACET locationLabel LIMIT 10"
+								}
+							]
+						},
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago FACET locationLabel LIMIT 10"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Result",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago FACET result"
+								}
+							]
+						},
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago FACET result"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Monitor",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago FACET  monitorName"
+								}
+							]
+						},
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago FACET  monitorName"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Monitor",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago FACET monitorName"
+								}
+							]
+						},
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago FACET monitorName"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Weekly Availability",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT percentage(count(*), where result='SUCCESS') AS '' FROM SyntheticCheck SINCE 1 day ago"
+								}
+							],
+							"thresholds": null
+						},
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT percentage(count(*), where result='SUCCESS') AS '' FROM SyntheticCheck SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Request and Response Body Sizes",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT average(totalResponseBodySize) AS '' FROM SyntheticCheck SINCE 1 day ago FACET monitorName LIMIT 10"
+								}
+							]
+						},
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT average(totalResponseBodySize) AS '' FROM SyntheticCheck SINCE 1 day ago FACET monitorName LIMIT 10"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Check Duration",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT average(duration) AS '' FROM SyntheticCheck SINCE 1 day ago TIMESERIES AUTO"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT average(duration) AS '' FROM SyntheticCheck SINCE 1 day ago TIMESERIES AUTO"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Type",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago FACET type"
+								}
+							]
+						},
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago FACET type"
+							}
+						]
+					}
+				}
+			]
+		}
+	]
 }
