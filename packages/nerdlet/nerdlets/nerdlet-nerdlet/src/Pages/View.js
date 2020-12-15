@@ -70,25 +70,17 @@ class View extends React.Component {
     render() {
         if (!this.state.quickstart) {
             return (
-                <div className="container" id="root">
-                    <div className="album py-2">
-                        <div className="container" id="root">
-                            <div className="row py-4">
-                                <div className="col-8">
-                                    <h2>Quickstart not found</h2>
-                                </div>
-                                <div className="col-4 text-right">
-                                    <Link className="" to={"/"}>
-                                        <Button
-                                            type={Button.TYPE.NORMAL}
-                                            iconType={Button.ICON_TYPE.LOCATION__LOCATION__HOME}
-                                        >Back to listing</Button>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <Grid>
+                    <GridItem columnSpan={12}>
+                        <HeadingText type={HeadingText.TYPE.HEADING_2} className="padding-bottom">Item not found</HeadingText>
+                        <Link to={"/"}>
+                            <Button
+                                type={Button.TYPE.PRIMARY}
+                                iconType={Button.ICON_TYPE.LOCATION__LOCATION__HOME}
+                            >Back to listing</Button>
+                        </Link>
+                    </GridItem>
+                </Grid>
             )
         }
 
