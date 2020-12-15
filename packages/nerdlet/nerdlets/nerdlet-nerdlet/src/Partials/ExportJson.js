@@ -1,9 +1,8 @@
 import React from 'react';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import {
     Grid,
     GridItem,
+    TextField,
 } from 'nr1';
 
 class ExportTerraform extends React.Component {
@@ -29,9 +28,7 @@ class ExportTerraform extends React.Component {
         return (
             <Grid>
                 <GridItem columnSpan={12}>
-                    <SyntaxHighlighter language="json" style={docco}>
-                        {this.state.output}
-                    </SyntaxHighlighter>
+                    <TextField className="custom-textfield" label="JSON output" placeholder="e.g. John Doe" multiline={true} readOnly={true} value={this.state.output} />
                 </GridItem>
             </Grid>
 
