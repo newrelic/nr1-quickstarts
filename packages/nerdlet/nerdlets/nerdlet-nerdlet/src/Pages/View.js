@@ -94,7 +94,7 @@ class View extends React.Component {
                         >Back to listing</Button>
                     </Link>
                 </GridItem>
-                <GridItem columnSpan={2}>
+                <GridItem columnSpan={4}>
                     <HeadingText type={HeadingText.TYPE.HEADING_2}>{ this.state.quickstart.name }</HeadingText>
 
                     <HeadingText type={HeadingText.TYPE.HEADING_3} className="padding-top">Description</HeadingText>
@@ -149,7 +149,7 @@ class View extends React.Component {
                     >Create a ticket</Button>
                 </GridItem>
 
-                <GridItem columnSpan={10}>
+                <GridItem columnSpan={8}>
                     {this.state.quickstart.dashboards.map((dashboard) => {
                         return (
                             <Grid className="view-item" id={dashboard.filename}>
