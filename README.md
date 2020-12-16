@@ -29,7 +29,7 @@ Thanks a lot for your submission!
 
 ## Development
 
-Check out the development manual to set-up your own local dev environment. This is only needed if you want to make changes to the website or nerdlet, not if you want to add another quickstarts. Follow the instructions above to add or edit a quickstart.
+Check out the [development manual](./DEVELOPMENT.md) to set-up your own local dev environment. This is only needed if you want to make changes to the website or nerdlet, not if you want to add another quickstarts. Follow the instructions above to add or edit a quickstart.
 
 ## Support
 
