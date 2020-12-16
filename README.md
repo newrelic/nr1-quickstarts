@@ -10,9 +10,9 @@ Community repository of New Relic dashboards, alerts, and installation instructi
 
 2. [Clone your own repository to your local machine](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository)
 
-3. Copy the directory `quickstarts/_template` and it's content to a new directory within the `quickstarts` folder. Choose a name which identifies the main purpose of your quickstart, for example: `RabbitMQ`, `APM Errors`, ..
+3. Copy the directory `quickstarts/_template` and it's content to a new directory within the `quickstarts` folder. Choose a name which identifies the main purpose of your quickstart, for example: `rabbitmq`, `apm-errors`, ..
 
-4. Change the dashboards in the `quickstarts/[your dir]/dashboards` folder. You can add multiple screenshots per dashboard as long as they have the same name as your dashboard file. For example `rabbitmq.json` `rabbitmq.png` `rabbitmq.jpeg`.
+4. Change the dashboards in the `quickstarts/[your dir]/dashboards` folder. You can add multiple screenshots per dashboard as long as they have the same name as your dashboard file. For example `rabbitmq.json` `rabbitmq.png` `rabbitmq.jpeg`. You can add multiple screenshots by putting a number after the filename, for example `rabbitmq1.png`, `rabbitmq2,png`.
 
 5. Edit the `quickstarts/[your dir]/config.yaml` file with your your values.
 

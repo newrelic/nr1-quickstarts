@@ -1,0 +1,13 @@
+# Name of your quickstart as shown on the website
+name: Full Stack Observability
+description: >
+  Set of dashboards with data from all New Relic Products, giving you Full Stack Observability over Metrics, Events, Logs and Traces.
+
+# Optional: Authors of the quickstart
+authors:
+  - New Relic
+  - Samuel V.
+
+# Optional: Add additional sources as some can't be auto detected by the scripts (for example Prometheus data).
+# You can also redirect to external webpages when the dashboards provides specific installation instructions
+# sources:
