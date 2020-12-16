@@ -22,12 +22,15 @@ class InstallationInstructions extends React.Component {
                     break;
                 case 'SystemSample':
                 case 'ProcessSample':
+                case 'NetworkSample':
+                case 'StorageSample':
                     data = {
                         name: 'New Relic Infrastructure',
                         url: 'https://docs.newrelic.com/docs/infrastructure/install-configure-manage-infrastructure'
                     }
                     break;
                 case 'PageView':
+                case 'PageAction':
                 case 'BrowserInteraction':
                 case 'JavaScriptError':
                 case 'PageViewTiming':
@@ -44,6 +47,7 @@ class InstallationInstructions extends React.Component {
                     }
                     break;
                 case 'Transaction':
+                case 'TransactionError':
                     data = {
                         name: 'New Relic APM',
                         url: 'https://docs.newrelic.com/docs/apm'
@@ -56,6 +60,20 @@ class InstallationInstructions extends React.Component {
                     data = {
                         name: 'New Relic Kubernetes',
                         url: 'https://docs.newrelic.com/docs/integrations/kubernetes-integration/get-started/introduction-kubernetes-integration'
+                    }
+                    break;
+                case 'Mobile':
+                case 'MobileCrash':
+                case 'MobileRequest':
+                    data = {
+                        name: 'New Relic Mobile',
+                        url: 'https://docs.newrelic.com/docs/mobile-monitoring/new-relic-mobile/get-started/introduction-mobile-monitoring'
+                    }
+                    break;
+                case 'ServerlessSample':
+                    data = {
+                        name: 'New Relic Serverless',
+                        url: 'https://docs.newrelic.com/docs/serverless-function-monitoring/aws-lambda-monitoring/get-started/monitoring-aws-lambda-serverless-monitoring'
                     }
                     break;
                 case 'Prometheus':
