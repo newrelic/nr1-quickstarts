@@ -8,7 +8,7 @@ class SourceAvailable extends React.Component {
             return (
                 <NrqlQuery
                     accountId={this.props.accountId}
-                    query={"SELECT count(*) FROM " + this.props.source + " SINCE 5 minutes ago"}
+                    query={"SELECT count(*) FROM " + this.props.source + " SINCE 60 minutes ago LIMIT 1"}
                 >
                 {({ loading, data }) => {
                     if (loading) {
