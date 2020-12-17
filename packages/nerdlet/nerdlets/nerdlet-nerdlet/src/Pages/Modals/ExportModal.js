@@ -120,6 +120,7 @@ class ExportModal extends React.Component {
             dashboardJson: '',
             dashboardName: '',
             dashboardLoading: true,
+            submitted: false,
         }
     }
 
@@ -145,14 +146,19 @@ class ExportModal extends React.Component {
             dashboardLoading: true,
         });
 
-        const data = NerdGraphQuery.query({query: this.downloadQuery, variables: {guid: guid}})
-        data.then(results => {
+        const data = NerdGraphQuery.query({
+            query: this.downloadQuery,
+            variables: {guid: guid},
+        })
+        data.then((results) => {
             this.setState({
                 dashboardJson: this.filterDashboard(results.data.actor.entity),
                 dashboardName: results.data.actor.entity.name + ' Clone',
                 dashboardLoading: false,
             });
-        }).catch((error) => { console.log('Nerdgraph Error:', error); })
+        }).catch((error) => {
+            console.log('Nerdgraph Error:', error);
+        });
     }
 
     loadJson(url) {
@@ -244,6 +250,34 @@ class ExportModal extends React.Component {
     }
 
     onCopyDashboard() {
+        // Stop user from pressing button twice
+        this.setState({
+            submitted: true,
+            errorAccountId: false,
+            errorDashboardName: false,
+        });
+
+        // Check if accountId has been set and the dashboardname is not empty
+        let error = false;
+        if (!this.state.accountId > 0) {
+            error = true;
+            this.setState({
+                submitted: false,
+                errorAccountId: true,
+            });
+        }
+        if (this.state.dashboardName.trim().length == 0) {
+            error = true;
+            this.setState({
+                submitted: false,
+                errorDashboardName: true,
+            });
+        }
+        if(error) {
+            // Let's stop here
+            return;
+        }
+
         let dashboardData = this.state.dashboardJson;
 
         // Set the right dashboard name
@@ -288,22 +322,33 @@ class ExportModal extends React.Component {
                 <Tabs defaultValue="tab-1">
                     <TabsItem value="tab-1" label="Import into">
                         <p className="padding-top">Where do you want to import the dashboard into?</p>
+                        {this.state.errorAccountId &&
+                            <p className="text-red">Please choose an account!</p>
+                        }
                         <AccountPicker
                             value={this.state.accountId}
                             onChange={this.onChangeAccount}
                             spacingType={[AccountPicker.SPACING_TYPE.LARGE]}
                         />
+
                         <p>How do you want to name the dashboard?</p>
+                        {this.state.errorDashboardName &&
+                            <p className="text-red">Please choose a dashboard name!</p>
+                        }
                         <Grid>
                             <GridItem columnSpan={12}>
                                 <TextField className="custom-textfield" value={this.state.dashboardName} type={TextField.TYPE.TEXT} onChange={this.onDashboardNameChange} spacingType={[TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE, TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE]} />
                             </GridItem>
                         </Grid>
+
                         <Button
                             type={Button.TYPE.PRIMARY}
                             iconType={Icon.TYPE.INTERFACE__OPERATIONS__COPY_TO}
                             onClick={this.onCopyDashboard}
-                        >Import dashboard</Button>
+                            loading={this.state.submitted}
+                        >
+                            Import dashboard
+                        </Button>
                     </TabsItem>
                     <TabsItem value="tab-3" label="Export Json">
                         <ExportJson json={this.state.dashboardJson} />
