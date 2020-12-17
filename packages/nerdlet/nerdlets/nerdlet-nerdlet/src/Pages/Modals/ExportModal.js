@@ -129,6 +129,12 @@ class ExportModal extends React.Component {
         } else if (prevProps.sourceUrl !== this.props.sourceUrl) {
             this.loadJson(this.props.sourceUrl);
         }
+
+        if (prevProps.accountId !== this.props.accountId) {
+            this.setState({
+                accountId: this.props.accountId,
+            })
+        }
     }
 
     loadGuid(guid) {

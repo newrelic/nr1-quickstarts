@@ -177,7 +177,7 @@ class View extends React.Component {
                     })}
                 </GridItem>
 
-                <ExportModal hidden={this.state.toolsModalHidden} onClose={this.closeTools} sourceUrl={this.state.dashboardUrl} />
+                <ExportModal hidden={this.state.toolsModalHidden} onClose={this.closeTools} sourceUrl={this.state.dashboardUrl} accountId={this.state.accountId} />
             </Grid>
         )
     }
