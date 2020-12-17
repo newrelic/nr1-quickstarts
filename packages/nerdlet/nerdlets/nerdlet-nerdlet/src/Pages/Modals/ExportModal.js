@@ -168,7 +168,7 @@ class ExportModal extends React.Component {
             .then((response) => {
                 let dashboard = response;
                 this.setState({
-                    dashboardName: dashboard.title,
+                    dashboardName: dashboard.name,
                     dashboardJson: this.filterDashboard(dashboard), // This is probably not needed, but just to be sure ;)
                     dashboardLoading: false,
                 });
