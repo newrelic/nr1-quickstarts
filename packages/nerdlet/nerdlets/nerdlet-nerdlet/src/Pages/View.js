@@ -101,6 +101,7 @@ class View extends React.Component {
                     <p>{ this.state.quickstart.description }</p>
 
                     <HeadingText type={HeadingText.TYPE.HEADING_3} className="padding-top">Requirements</HeadingText>
+                    <p>Check if you have all the required datasources for these dashboards:</p>
                     <AccountPicker
                         value={this.state.accountId}
                         onChange={this.onChangeAccount}
