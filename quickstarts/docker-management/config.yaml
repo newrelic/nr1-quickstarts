@@ -1,0 +1,8 @@
+# Name of your quickstart as shown on the website
+name: Docker Management
+description: >
+  Shows resource consumption, images, containers per host and other details about a Docker environment.
+
+# Optional: Authors of the quickstart
+authors:
+    - Jeremy Cooper

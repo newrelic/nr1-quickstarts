@@ -1,0 +1,386 @@
+{
+	"name": "Docker Management",
+	"description": "",
+	"pages": [
+		{
+			"name": "Docker Management",
+			"description": "",
+			"widgets": [
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Top 5 Memory Consumer Containers",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT average(memoryResidentSizeBytes),average(memoryVirtualSizeBytes) FROM ProcessSample FACET containerId SINCE 30 minutes AGO limit 5"
+								}
+							]
+						},
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT average(memoryResidentSizeBytes),average(memoryVirtualSizeBytes) FROM ProcessSample FACET containerId SINCE 30 minutes AGO limit 5"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 1,
+						"height": 6,
+						"width": 4
+					},
+					"title": "Container Images",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT  uniqueCount(containerImageName) FROM  ProcessSample FACET  containerImageName limit 1000 SINCE 30 minutes ago order by containerImageName"
+								}
+							]
+						},
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT  uniqueCount(containerImageName) FROM  ProcessSample FACET  containerImageName limit 1000 SINCE 30 minutes ago order by containerImageName"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 4,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Top 5 CPU Consumer Containers",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT average(cpuPercent) FROM ProcessSample FACET containerId since 30 minutes ago limit 5"
+								}
+							]
+						},
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT average(cpuPercent) FROM ProcessSample FACET containerId since 30 minutes ago limit 5"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "CPU USAGE",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT average(cpuPercent),average(cpuSystemPercent), average(cpuUserPercent)  FROM ProcessSample SINCE  30 minutes ago TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT average(cpuPercent),average(cpuSystemPercent), average(cpuUserPercent)  FROM ProcessSample SINCE  30 minutes ago TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 7,
+						"height": 6,
+						"width": 4
+					},
+					"title": "Container Count By host",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT uniqueCount (containerId) FROM ProcessSample FACET fullHostname since 30 minutes ago limit 1000"
+								}
+							]
+						},
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT uniqueCount (containerId) FROM ProcessSample FACET fullHostname since 30 minutes ago limit 1000"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Process List",
+					"configuration": {
+						"area": null,
+						"line": null,
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT  uniques(commandLine) FROM ProcessSample SINCE 30 minutes AGO"
+								}
+							]
+						},
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT  uniques(commandLine) FROM ProcessSample SINCE 30 minutes AGO"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Disk Access",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT  average(diskFreePercent), average(readBytesPerSecond), average(writeBytesPerSecond) FROM StorageSample SINCE 30 minutes ago TIMESERIES 1 minute"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT  average(diskFreePercent), average(readBytesPerSecond), average(writeBytesPerSecond) FROM StorageSample SINCE 30 minutes ago TIMESERIES 1 minute"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Process Count",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT  uniqueCount(processDisplayName) FROM ProcessSample facet entityName SINCE 30 minutes AGO  TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT  uniqueCount(processDisplayName) FROM ProcessSample facet entityName SINCE 30 minutes AGO  TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 1,
+						"row": 13,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Received Bytes Per Second",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT average(receiveBytesPerSecond) FROM NetworkSample SINCE 30 minutes ago COMPARE WITH 1 WEEK AGO TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT average(receiveBytesPerSecond) FROM NetworkSample SINCE 30 minutes ago COMPARE WITH 1 WEEK AGO TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 5,
+						"row": 13,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Memory Usage",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "select average(memoryResidentSizeBytes),average(memoryVirtualSizeBytes) FROM ProcessSample SINCE 30 minutes ago TIMESERIES 1 minute"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "select average(memoryResidentSizeBytes),average(memoryVirtualSizeBytes) FROM ProcessSample SINCE 30 minutes ago TIMESERIES 1 minute"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {},
+					"layout": {
+						"column": 9,
+						"row": 13,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Transmitted Bytes Per second",
+					"configuration": {
+						"area": null,
+						"line": {
+							"queries": [
+								{
+									"accountId": 0,
+									"nrql": "SELECT average(transmitBytesPerSecond) FROM NetworkSample SINCE 30 minutes ago COMPARE WITH 1 WEEK AGO TIMESERIES"
+								}
+							]
+						},
+						"bar": null,
+						"billboard": null,
+						"pie": null,
+						"table": null,
+						"markdown": null
+					},
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT average(transmitBytesPerSecond) FROM NetworkSample SINCE 30 minutes ago COMPARE WITH 1 WEEK AGO TIMESERIES"
+							}
+						]
+					}
+				}
+			]
+		}
+	]
+}
