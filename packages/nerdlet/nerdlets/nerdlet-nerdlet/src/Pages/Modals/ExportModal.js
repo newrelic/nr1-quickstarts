@@ -268,7 +268,9 @@ class ExportModal extends React.Component {
                 description: 'The dashboard was copied to your selected account.',
                 type: Toast.TYPE.NORMAL
             })
-        }).catch((error) => { console.log('Nerdgraph Error:', error); })
+        }).catch((error) => {
+            console.log('Nerdgraph Error:', error);
+        })
     }
 
     render() {

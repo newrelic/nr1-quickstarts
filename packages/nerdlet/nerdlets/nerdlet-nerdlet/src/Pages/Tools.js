@@ -40,6 +40,7 @@ class Tools extends React.Component {
                             guid
                             name
                             accountId
+                            reporting
                             tags {
                                 key
                                 values

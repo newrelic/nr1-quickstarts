@@ -121,7 +121,7 @@ class View extends React.Component {
                     }
 
                     <HeadingText type={HeadingText.TYPE.HEADING_3} className="padding-top">Dashboards</HeadingText>
-                    <List>
+                    <List rowHeight={16}>
                     {this.state.quickstart.dashboards.map((dashboard) => {
                         return (
                             <ListItem key={dashboard.filename}>
@@ -154,7 +154,7 @@ class View extends React.Component {
                 <GridItem columnSpan={8}>
                     {this.state.quickstart.dashboards.map((dashboard) => {
                         return (
-                            <Grid className="view-item" id={dashboard.filename}>
+                            <Grid className="view-item" key={dashboard.filename}>
                                 <GridItem columnSpan={10}>
                                     <HeadingText type={HeadingText.TYPE.HEADING_3}>{ dashboard.name }</HeadingText>
                                 </GridItem>
@@ -167,8 +167,8 @@ class View extends React.Component {
                                 </GridItem>
                                 {dashboard.screenshots.map((screenshot) => {
                                     return (
-                                        <GridItem columnSpan={12}>
-                                            <img key={screenshot} src={ "https://newrelic-experimental.github.io/quickstarts/data/" + this.state.quickstart.id + "/dashboards/" + screenshot} className="card-img-top" alt="..." />
+                                        <GridItem key={screenshot} columnSpan={12}>
+                                            <img src={ "https://newrelic-experimental.github.io/quickstarts/data/" + this.state.quickstart.id + "/dashboards/" + screenshot} className="card-img-top" alt="..." />
                                         </GridItem>
                                     );
                                 })}
