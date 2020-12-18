@@ -6,6 +6,7 @@ import {
     Grid,
     GridItem,
     NerdGraphQuery,
+    NerdGraphMutation,
     TextField,
     HeadingText,
     Modal,
@@ -97,7 +98,7 @@ class ExportModal extends React.Component {
     }
     `;
 
-    createQuery = `
+    createMutation = `
     mutation($accountId: Int!, $dashboard: DashboardInput!) {
         dashboardCreate(accountId: $accountId, dashboard: $dashboard) {
             entityResult {
@@ -291,10 +292,13 @@ class ExportModal extends React.Component {
         dashboardData = this.filterDashboard(dashboardData, true);
 
         // Create copy of dashboard
-        const data = NerdGraphQuery.query({query: this.createQuery, variables: {
-            accountId: this.state.accountId,
-            dashboard: dashboardData,
-        }});
+        const data = NerdGraphMutation.mutate({
+            mutation: this.createMutation,
+            variables: {
+                accountId: this.state.accountId,
+                dashboard: dashboardData,
+            }
+        });
         data.then(results => {
             console.log("created", results);
             Toast.showToast({
