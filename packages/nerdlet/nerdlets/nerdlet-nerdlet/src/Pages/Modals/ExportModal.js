@@ -305,9 +305,22 @@ class ExportModal extends React.Component {
                 title: 'Dashboard created',
                 description: 'The dashboard was copied to your selected account.',
                 type: Toast.TYPE.NORMAL
-            })
+            });
+
+            this.setState({
+                submitted: false,
+            });
         }).catch((error) => {
             console.log('Nerdgraph Error:', error);
+            Toast.showToast({
+                title: 'Dashboard error',
+                description: 'An error occurred and the dashboard was not created, please try again at a later time.',
+                type: Toast.TYPE.CRITICAL
+            });
+
+            this.setState({
+                submitted: false,
+            });
         })
     }
 
