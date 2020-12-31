@@ -119,6 +119,7 @@ class ExportModal extends React.Component {
         // Set initial state
         this.state = {
             dashboardJson: '',
+            dashboardUrl: null,
             dashboardName: '',
             dashboardLoading: true,
             submitted: false,
@@ -144,6 +145,7 @@ class ExportModal extends React.Component {
         this.setState({
             dashboardJson: '',
             dashboardName: '',
+            dashboardUrl: null,
             dashboardLoading: true,
         });
 
@@ -166,6 +168,7 @@ class ExportModal extends React.Component {
         // Reset view
         this.setState({
             dashboardJson: '',
+            dashboardUrl: url,
             dashboardName: '',
             dashboardLoading: true,
         });
@@ -368,6 +371,9 @@ class ExportModal extends React.Component {
                         </Button>
                     </TabsItem>
                     <TabsItem value="tab-3" label="Export Json">
+                        {this.state.dashboardUrl &&
+                            <p className="custom-export-json-link"><a href={this.state.dashboardUrl} target="_BLANK">Link to JSON</a></p>
+                        }
                         <ExportJson json={this.state.dashboardJson} />
                     </TabsItem>
                 </Tabs>
