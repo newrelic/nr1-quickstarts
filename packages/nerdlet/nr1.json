@@ -1,6 +1,6 @@
 {
-    "schemaType": "NERDPACK",
-    "id": "dcaa3623-1e1c-41a3-a1d9-994499f4b66d",
-    "displayName": "Nerdlet",
-    "description": "Nerdpack nerdlet"
+  "schemaType": "NERDPACK",
+  "id": "50015722-eee3-439f-a5e3-76ac3ae26acb",
+  "displayName": "Quickstarts",
+  "description": "Rich set of dashboards ready to be imported into your New Relic account. Quickly check if you have all the required data sources, and import the dashboard into your accounts."
 }

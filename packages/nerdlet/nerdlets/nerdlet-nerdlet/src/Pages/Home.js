@@ -47,8 +47,7 @@ class Home extends React.Component {
             <>
                 <Grid>
                     <GridItem columnSpan={9}>
-                        <p>Library of curated dashboards & alerts with their dependencies.</p>
-                        <p className="text-red"><b>Preview functionality! Release planned for beginning of 2021.</b></p>
+                        <p>Library of curated dashboards &amp; alerts with their dependencies.</p>
                     </GridItem>
                     <GridItem columnSpan={3} className="text-right">
                         <Link to={"/tools"}>
