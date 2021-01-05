@@ -107,7 +107,7 @@ class InstallationInstructions extends React.Component {
             data.source = source;
 
             return data;
-        }).sort().filter(function(item, pos, ary) {
+        }).sort(this.sorter).filter(function(item, pos, ary) {
             if (!item.name) { return false; }
             return !pos || item.name !== ary[pos - 1].name;
         });
@@ -117,10 +117,14 @@ class InstallationInstructions extends React.Component {
         }
     }
 
+    sorter(a, b) {
+        return (a.name > b.name) ? 1 : -1;
+    }
+
     render() {
         return (
             <div>
-                {this.state.requirements.sort((a, b) => (a.name > b.name) ? 1 : -1).map((requirement, i) => {
+                {this.state.requirements.sort(this.sorter).map((requirement, i) => {
                     if (requirement.url) {
                         return (
                             <div key={requirement.name}>
