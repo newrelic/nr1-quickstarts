@@ -81,7 +81,7 @@ class View extends React.Component {
 
                         <p className="description mt-4">{ this.state.quickstart.description }</p>
 
-                        {/* <p>ADD INSTALLATION INSTRUCTIONS</p> */}
+                        <p><b>Installation: </b>Please follow the <a href="https://github.com/newrelic-experimental/quickstarts/blob/main/INSTALLATION.md" target="_BLANK">instructions here</a> to install the Quickstarts Nerdlet into your New Relic account which will allow you to import these dashboards.</p>
                     </div>
                 </div>
             </div>
