@@ -11,12 +11,12 @@
 
 ### Generator
 
-1) Open generator directory: `cd src/generator`
+1) Open generator directory: `cd packages/generator`
 2) Building the repository dataset: `./generate-data.sh`
 
 ### Nerdlet
 
-1) Open website directory: `cd src/nerdlet`
+1) Open website directory: `cd packages/nerdlet`
 2) Install dependencies: `npm install`
 3) Run local webserver: `nr1 nerdpack:serve`
 
@@ -24,6 +24,6 @@
 
 It's important to first run the generator, as you won't have data to play with if you don't.
 
-1) Open website directory: `cd src/website`
+1) Open website directory: `cd packages/website`
 2) Install dependencies: `npm install`
 3) Run local webserver: `npm run start`
