@@ -7,7 +7,9 @@
 			"description": "",
 			"widgets": [
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 1,
 						"row": 1,
@@ -41,7 +43,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 6,
 						"row": 1,
@@ -76,7 +80,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.heatmap"
+					},
 					"layout": {
 						"column": 8,
 						"row": 1,
@@ -95,7 +101,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 1,
 						"row": 5,
@@ -129,7 +137,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 10,
 						"row": 5,
@@ -164,7 +174,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 1,
 						"row": 8,
@@ -198,7 +210,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 8,
 						"row": 8,
@@ -232,7 +246,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 1,
 						"row": 11,
@@ -266,7 +282,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.table"
+					},
 					"layout": {
 						"column": 7,
 						"row": 11,
@@ -300,7 +318,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 1,
 						"row": 14,
@@ -334,7 +354,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 5,
 						"row": 14,
@@ -368,7 +390,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 9,
 						"row": 14,
@@ -402,7 +426,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 1,
 						"row": 17,
@@ -436,7 +462,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
 						"row": 17,
@@ -470,7 +498,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.area"
+					},
 					"layout": {
 						"column": 9,
 						"row": 17,
@@ -504,7 +534,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.area"
+					},
 					"layout": {
 						"column": 1,
 						"row": 20,
@@ -538,7 +570,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.table"
+					},
 					"layout": {
 						"column": 1,
 						"row": 24,
@@ -572,7 +606,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 9,
 						"row": 24,
@@ -606,7 +642,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.table"
+					},
 					"layout": {
 						"column": 1,
 						"row": 29,
@@ -640,7 +678,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.area"
+					},
 					"layout": {
 						"column": 9,
 						"row": 29,
@@ -674,7 +714,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.table"
+					},
 					"layout": {
 						"column": 1,
 						"row": 33,
@@ -708,7 +750,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.table"
+					},
 					"layout": {
 						"column": 10,
 						"row": 33,
@@ -742,7 +786,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.table"
+					},
 					"layout": {
 						"column": 1,
 						"row": 38,
@@ -776,7 +822,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 1,
 						"row": 44,
@@ -810,7 +858,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
 						"row": 44,

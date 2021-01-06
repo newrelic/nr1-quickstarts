@@ -7,7 +7,9 @@
 			"description": null,
 			"widgets": [
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 1,
 						"row": 1,
@@ -41,7 +43,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 5,
 						"row": 1,
@@ -75,7 +79,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 9,
 						"row": 1,
@@ -109,7 +115,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 1,
 						"row": 4,
@@ -143,7 +151,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 5,
 						"row": 4,
@@ -177,7 +187,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.table"
+					},
 					"layout": {
 						"column": 9,
 						"row": 4,
@@ -211,7 +223,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 1,
 						"row": 7,
@@ -245,7 +259,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 5,
 						"row": 7,
@@ -279,7 +295,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 9,
 						"row": 7,
@@ -313,7 +331,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 1,
 						"row": 10,
@@ -347,7 +367,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.table"
+					},
 					"layout": {
 						"column": 1,
 						"row": 13,
