@@ -7,7 +7,9 @@
 			"description": "",
 			"widgets": [
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.markdown"
+					},
 					"layout": {
 						"column": 1,
 						"row": 1,
@@ -31,7 +33,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 5,
 						"row": 1,
@@ -65,7 +69,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 9,
 						"row": 1,
@@ -99,14 +105,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 5,
 						"row": 4,
 						"height": 3,
 						"width": 4
 					},
-					"title": "On-Prem Availability (query change needed)",
+					"title": "On-Prem Availability",
 					"configuration": {
 						"area": null,
 						"line": null,
@@ -134,14 +142,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 9,
 						"row": 4,
 						"height": 3,
 						"width": 4
 					},
-					"title": "Cloud Availability (query change needed)",
+					"title": "Cloud Availability",
 					"configuration": {
 						"area": null,
 						"line": null,
