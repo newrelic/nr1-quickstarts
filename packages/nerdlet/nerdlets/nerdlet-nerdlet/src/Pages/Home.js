@@ -47,7 +47,7 @@ class Home extends React.Component {
             <>
                 <Grid>
                     <GridItem columnSpan={9}>
-                        <p>Library of curated dashboards &amp; alerts with their dependencies.</p>
+                        <p>Use the search bar below to find a specific dashboard and click on any to get a more detailed description. If you want to add more dashboards or contribute to the code, please check out our <a href="https://github.com/newrelic-experimental/quickstarts" rel="noopener noreferrer" target="_BLANK">Github repository</a>.</p>
                     </GridItem>
                     <GridItem columnSpan={3} className="text-right">
                         <Link to={"/tools"}>
