@@ -116,7 +116,7 @@ class Tools extends React.Component {
             <>
                 <Grid>
                     <GridItem columnSpan={8}>
-                        <HeadingText type={HeadingText.TYPE.HEADING_2}>Tools - Dashboards</HeadingText>
+                        <HeadingText type={HeadingText.TYPE.HEADING_2}>Tools</HeadingText>
                     </GridItem>
                     <GridItem columnSpan={4} className="text-right">
                         <Link className="" to={"/"}>
@@ -127,6 +127,7 @@ class Tools extends React.Component {
                         </Link>
                     </GridItem>
                     <GridItem columnSpan={12}>
+                        <p>Below is a list of all the dashboards you have access to within New Relic. You can click on any of them to get a list of export options.</p>
                         <TextField className="custom-textfield" placeholder="Search" type={TextField.TYPE.SEARCH} onChange={this.search} spacingType={[TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE, TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE]} />
                         <NerdGraphQuery query={this.searchQuery} variables={this.state.search}>
                         {({ data, error, loading }) => {
