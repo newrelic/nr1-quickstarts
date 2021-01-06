@@ -205,12 +205,19 @@ class ExportModal extends React.Component {
         });
     }
 
-    loopAll(data, filterElement, callback) {
+    loopAll(data, filterParent, filterElement, callback, parentMatch) {
+        // First call, parentMatch is not set, setting to false as we don't have a match yet
+        if (!parentMatch == undefined) {
+            parentMatch = false;
+        }
+
         for(var key in data) {
             if (Array.isArray(data[key]) || typeof(data[key]) == "object") {
-                this.loopAll(data[key], filterElement, callback);
+                // Check if the current key matches our parent or we don't need to filter on a parent
+                parentMatch = filterParent == key || filterParent == null;
+                this.loopAll(data[key], filterParent, filterElement, callback, parentMatch);
             }
-            if (key == filterElement) {
+            if (key == filterElement && parentMatch) {
                 data = callback(data, key);
             }
         }
@@ -218,16 +225,16 @@ class ExportModal extends React.Component {
         return data;
     }
 
-    filterAll(data, filterElement) {
-        return this.loopAll(data, filterElement, (data, key) => {
+    filterAll(data, filterParent, filterElement) {
+        return this.loopAll(data, filterParent, filterElement, (data, key) => {
             delete data[key];
 
             return data;
         });
     }
 
-    replaceAll(data, filterElement, filterValue) {
-        return this.loopAll(data, filterElement, (data, key) => {
+    replaceAll(data, filterParent, filterElement, filterValue) {
+        return this.loopAll(data, filterParent, filterElement, (data, key) => {
             data[key] = filterValue;
 
             return data;
@@ -240,18 +247,18 @@ class ExportModal extends React.Component {
         // - Account specific
 
         // Filter out __typename as the mutator is not a fan
-        dashboardData = this.filterAll(dashboardData, '__typename');
+        dashboardData = this.filterAll(dashboardData, null, '__typename');
 
-        // Filter out widget Id's because they will change anyway
-        dashboardData = this.filterAll(dashboardData, 'id');
+        // Filter out widget Id's because they will change anyway.
+        dashboardData = this.filterAll(dashboardData, 'widgets', 'id');
 
         // Set accountId to right value depending on case
         if (forImport) {
             // Dashboard is being imported, lets replace accountId with current set accountId
-            dashboardData = this.replaceAll(dashboardData, 'accountId', this.state.accountId);
+            dashboardData = this.replaceAll(dashboardData, 'queries', 'accountId', this.state.accountId);
         } else {
             // Change all accounts to 0, so we don't expose sensitive information
-            dashboardData = this.replaceAll(dashboardData, 'accountId', 0);
+            dashboardData = this.replaceAll(dashboardData, 'queries', 'accountId', 0);
         }
 
         return dashboardData;
