@@ -2,6 +2,7 @@ const fs = require('fs');
 const yaml = require('js-yaml');
 const util = require('util');
 const path = require('path');
+const { exit } = require('process');
 
 
 // First argument should be path to quickstarts folder
@@ -131,6 +132,24 @@ function processQuickstart(element) {
         dashboard.sources = sources;
         quickstart.sources = [].concat(quickstart.sources, sources);
 
+        // Check if we have a configuration or visualization set for all widgets
+        for (let page of dashboardJson['pages']) {
+            for (let widget of page['widgets']) {
+                if (
+                    Object.keys(widget['visualization']).length === 0 &&
+                    widget['visualization']['area'] == null &&
+                    widget['visualization']['line'] == null &&
+                    widget['visualization']['bar'] == null &&
+                    widget['visualization']['billboard'] == null &&
+                    widget['visualization']['pie'] == null &&
+                    widget['visualization']['table'] == null &&
+                    widget['visualization']['markdown'] == null
+                ) {
+                    console.error('Incorrect widget found in ' + element + ' ' + filename + ', title: ' + widget['title'])
+                    exit(1);
+                }
+            }
+        }
 
         // Check if an image exists with same name as dashboard
         dashboard.screenshots = fs.readdirSync(directory + element + '/dashboards/')
@@ -141,7 +160,6 @@ function processQuickstart(element) {
             .map((imagename) => {
                 return imagename;
             });
-
 
         return dashboard;
     });
