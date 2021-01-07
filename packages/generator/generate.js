@@ -132,24 +132,40 @@ function processQuickstart(element) {
         dashboard.sources = sources;
         quickstart.sources = [].concat(quickstart.sources, sources);
 
-        // Check if we have a configuration or visualization set for all widgets
-        // for (let page of dashboardJson['pages']) {
-        //     for (let widget of page['widgets']) {
-        //         if (
-        //             Object.keys(widget['visualization']).length === 0 &&
-        //             widget['visualization']['area'] == null &&
-        //             widget['visualization']['line'] == null &&
-        //             widget['visualization']['bar'] == null &&
-        //             widget['visualization']['billboard'] == null &&
-        //             widget['visualization']['pie'] == null &&
-        //             widget['visualization']['table'] == null &&
-        //             widget['visualization']['markdown'] == null
-        //         ) {
-        //             console.error('Incorrect widget found in ' + element + ' ' + filename + ', title: ' + widget['title'])
-        //             exit(1);
-        //         }
-        //     }
-        // }
+        // Do a sanity check of all widgets
+        for (let page of dashboardJson['pages']) {
+            for (let widget of page['widgets']) {
+                // Check if we have a configuration or visualization set for all widgets
+                if (
+                    Object.keys(widget['visualization']).length === 0 &&
+                    widget['visualization']['area'] == null &&
+                    widget['visualization']['line'] == null &&
+                    widget['visualization']['bar'] == null &&
+                    widget['visualization']['billboard'] == null &&
+                    widget['visualization']['pie'] == null &&
+                    widget['visualization']['table'] == null &&
+                    widget['visualization']['markdown'] == null
+                ) {
+                    console.error('Incorrect widget found in ' + element + ' ' + filename + ', title: ' + widget['title'])
+                    console.error('Configuration or Visualisation should be set for all widgets');
+                    exit(1);
+                }
+
+                // Check if we have a configuration or rawConfiguration set of all widgets
+                // We cannot have both at the moment, but the product team is looking to merge this at some point
+                if (
+                    'configuration' in widget &&
+                    widget['configuration'] !== null &&
+                    'rawConfiguration' in widget &&
+                    widget['rawConfiguration'] !== null
+                    ) {
+                        console.error('Incorrect widget found in ' + element + ' ' + filename + ', title: ' + widget['title'])
+                        console.error('Configuration or rawConfiguration should be set for all widgets, but you only on of both.');
+                        console.error('Please delete configuration if rawConfiguration has been set.');
+                        exit(1);
+                    }
+            }
+        }
 
         // Check if an image exists with same name as dashboard
         dashboard.screenshots = fs.readdirSync(directory + element + '/dashboards/')

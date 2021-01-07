@@ -44,50 +44,52 @@ class ExportModal extends React.Component {
                                 width
                             }
                             title
-                            configuration {
-                                area {
-                                    queries {
-                                        accountId
-                                        nrql
-                                    }
-                                }
-                                line {
-                                    queries {
-                                        accountId
-                                        nrql
-                                    }
-                                }
-                                bar {
-                                    queries {
-                                        accountId
-                                        nrql
-                                    }
-                                }
-                                billboard {
-                                    queries {
-                                        accountId
-                                        nrql
-                                    }
-                                    thresholds {
-                                        alertSeverity
-                                        value
-                                    }
-                                }
-                                pie {
-                                    queries {
-                                        accountId
-                                        nrql
-                                    }
-                                }
-                                table {
-                                    queries {
-                                        accountId
-                                        nrql
-                                    }
-                                }
-                                markdown {
-                                    text
-                                }
+                            # Disabled because our import API cannot accept configuration and rawConfiguration
+                            # Can enabled again the future when the API supports both
+                            # configuration {
+                            #     area {
+                            #         queries {
+                            #             accountId
+                            #             nrql
+                            #         }
+                            #    }
+                            #     line {
+                            #         queries {
+                            #             accountId
+                            #             nrql
+                            #         }
+                            #    }
+                            #     bar {
+                            #         queries {
+                            #             accountId
+                            #             nrql
+                            #         }
+                            #    }
+                            #     billboard {
+                            #         queries {
+                            #             accountId
+                            #             nrql
+                            #       }
+                            #         thresholds {
+                            #             alertSeverity
+                            #             value
+                            #         }
+                            #   }
+                            #     pie {
+                            #         queries {
+                            #             accountId
+                            #             nrql
+                            #         }
+                            #   }
+                            #     table {
+                            #         queries {
+                            #             accountId
+                            #             nrql
+                            #         }
+                            #   }
+                            #     markdown {
+                            #         text
+                            #     }
                             }
                             rawConfiguration
                         }
