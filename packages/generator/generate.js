@@ -155,9 +155,7 @@ function processQuickstart(element) {
                 // We cannot have both at the moment, but the product team is looking to merge this at some point
                 if (
                     'configuration' in widget &&
-                    widget['configuration'] !== null &&
-                    'rawConfiguration' in widget &&
-                    widget['rawConfiguration'] !== null
+                    'rawConfiguration' in widget
                     ) {
                         console.error('Incorrect widget found in ' + element + ' ' + filename + ', title: ' + widget['title'])
                         console.error('Configuration or rawConfiguration should be set for all widgets, but you only on of both.');
