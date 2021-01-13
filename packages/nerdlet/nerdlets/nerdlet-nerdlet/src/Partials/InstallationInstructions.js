@@ -20,6 +20,12 @@ class InstallationInstructions extends React.Component {
                         url: 'https://docs.newrelic.com/docs/integrations/amazon-integrations/aws-integrations-list/aws-ec2-monitoring-integration',
                     }
                     break;
+                case 'FinanceSample':
+                    data = {
+                        name: 'New Relic Amazon Billing integration',
+                        url: 'https://docs.newrelic.com/docs/integrations/amazon-integrations/aws-integrations-list/aws-billing-monitoring-integration',
+                    }
+                    break;
                 case 'SystemSample':
                 case 'ProcessSample':
                 case 'NetworkSample':
