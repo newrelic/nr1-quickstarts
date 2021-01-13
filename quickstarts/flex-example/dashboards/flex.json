@@ -1,13 +1,15 @@
 {
-	"name": "Flex",
+	"name": "Quickstart - Flex",
 	"description": null,
 	"pages": [
 		{
-			"name": "Flex",
+			"name": "Quickstart - Flex",
 			"description": null,
 			"widgets": [
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.markdown"
+					},
 					"layout": {
 						"column": 1,
 						"row": 1,
@@ -15,23 +17,14 @@
 						"width": 5
 					},
 					"title": "",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": {
-							"text": "# directory-size.yml\n```\n# Used to query Directory Size via Disk Usage\n---\nintegrations:\n  - name: nri-flex\n    config:\n      name: directorySize\n      apis:\n        - event_type: directorySize\n          commands:\n            - run: du -sb /var/db/newrelic-infra/custom-integrations/\n              split: horizontal\n              set_header: [directory.size.bytes, directory.name]\n              regex_match: true\n              split_by: (\\d+)\\s+(.*)"
-						}
-					},
 					"rawConfiguration": {
 						"text": "# directory-size.yml\n```\n# Used to query Directory Size via Disk Usage\n---\nintegrations:\n  - name: nri-flex\n    config:\n      name: directorySize\n      apis:\n        - event_type: directorySize\n          commands:\n            - run: du -sb /var/db/newrelic-infra/custom-integrations/\n              split: horizontal\n              set_header: [directory.size.bytes, directory.name]\n              regex_match: true\n              split_by: (\\d+)\\s+(.*)"
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.table"
+					},
 					"layout": {
 						"column": 6,
 						"row": 1,
@@ -39,22 +32,6 @@
 						"width": 5
 					},
 					"title": "directorySize",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "FROM directorySize SELECT max(directory.size.bytes) FACET directory.name"
-								}
-							]
-						},
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -65,7 +42,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.markdown"
+					},
 					"layout": {
 						"column": 1,
 						"row": 5,
@@ -73,23 +52,14 @@
 						"width": 5
 					},
 					"title": "",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": {
-							"text": "# file-count.yml\n```\n# Used to count files via List\n---\nintegrations:\n  - name: nri-flex\n    config:\n      name: fileCount\n      apis:\n        - event_type: fileCount\n          commands:\n            - run: echo -e \"{\\\"fileCount.searchFilter\\\":\\\"/etc\\\",\\\"fileCount.totalFound\\\":\\\"$(ls -1 /etc | wc -l)\\\"}\"\n"
-						}
-					},
 					"rawConfiguration": {
 						"text": "# file-count.yml\n```\n# Used to count files via List\n---\nintegrations:\n  - name: nri-flex\n    config:\n      name: fileCount\n      apis:\n        - event_type: fileCount\n          commands:\n            - run: echo -e \"{\\\"fileCount.searchFilter\\\":\\\"/etc\\\",\\\"fileCount.totalFound\\\":\\\"$(ls -1 /etc | wc -l)\\\"}\"\n"
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 6,
 						"row": 5,
@@ -97,23 +67,6 @@
 						"width": 5
 					},
 					"title": "fileCount - /etc",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "FROM fileCount SELECT max(`fileCount.totalFound`)"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -124,7 +77,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.markdown"
+					},
 					"layout": {
 						"column": 1,
 						"row": 9,
@@ -132,23 +87,14 @@
 						"width": 5
 					},
 					"title": "",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": {
-							"text": "# file-size.yml\n```\n# Used to query File Size via File Status\n---\nintegrations:\n  - name: nri-flex\n    config:\n      name: fileSize\n      apis:\n        - event_type: fileSize\n          commands:\n            - run: stat -c '%n;%s' /etc/*conf\n              split: horizontal\n              set_header: [fileSize.fileName, fileSize.fileSizeBytes]\n              regex_match: false\n              split_by: \";\""
-						}
-					},
 					"rawConfiguration": {
 						"text": "# file-size.yml\n```\n# Used to query File Size via File Status\n---\nintegrations:\n  - name: nri-flex\n    config:\n      name: fileSize\n      apis:\n        - event_type: fileSize\n          commands:\n            - run: stat -c '%n;%s' /etc/*conf\n              split: horizontal\n              set_header: [fileSize.fileName, fileSize.fileSizeBytes]\n              regex_match: false\n              split_by: \";\""
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 6,
 						"row": 9,
@@ -156,22 +102,6 @@
 						"width": 5
 					},
 					"title": "fileSize - /etc/*conf (MB)",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "FROM fileSize SELECT max(`fileSize.fileSizeBytes`)/1024 AS 'MB' FACET `fileSize.fileName`"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -182,7 +112,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.markdown"
+					},
 					"layout": {
 						"column": 1,
 						"row": 13,
@@ -190,23 +122,14 @@
 						"width": 5
 					},
 					"title": "",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": {
-							"text": "# linux-dig.yml\n```\n# Used to resolve DNS queries via dig\n---\nintegrations:\n  - name: nri-flex\n    config:\n      name: digFlex\n      apis:\n        - event_type: digCheck\n          commands:\n            - run: dig google.com | egrep '^google|Query|status' | tr '\\n' ' ' | awk '{print \"dig.status:\"substr($6,1,length($6)-1)\" dig.domain:\"substr($9,1,length($9)-1)\" dig.recordIP:\"$13\" dig.responseTime:\"$17\" dig.unit:\"$18}' | tr ' ' '\\n'\n              split_by: \":\""
-						}
-					},
 					"rawConfiguration": {
 						"text": "# linux-dig.yml\n```\n# Used to resolve DNS queries via dig\n---\nintegrations:\n  - name: nri-flex\n    config:\n      name: digFlex\n      apis:\n        - event_type: digCheck\n          commands:\n            - run: dig google.com | egrep '^google|Query|status' | tr '\\n' ' ' | awk '{print \"dig.status:\"substr($6,1,length($6)-1)\" dig.domain:\"substr($9,1,length($9)-1)\" dig.recordIP:\"$13\" dig.responseTime:\"$17\" dig.unit:\"$18}' | tr ' ' '\\n'\n              split_by: \":\""
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 6,
 						"row": 13,
@@ -214,22 +137,6 @@
 						"width": 5
 					},
 					"title": "digCheck - google.com Response Time (ms)",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "FROM digCheck SELECT max(dig.responseTime) FACET dig.recordIP"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -240,7 +147,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.markdown"
+					},
 					"layout": {
 						"column": 1,
 						"row": 17,
@@ -248,23 +157,14 @@
 						"width": 5
 					},
 					"title": "",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": {
-							"text": "# osquery.yml\n```\n# Used to query against OSQuery metrics\n---\nintegrations:\n  - name: nri-flex\n    config:\n      name: osquery\n      apis:\n        - event_type: osqueryOpenSockets\n          commands:\n            - run: osqueryi --json \"SELECT * FROM process_open_sockets;\""
-						}
-					},
 					"rawConfiguration": {
-						"text": "# osquery.yml\n```\n# Used to query against OSQuery metrics\n---\nintegrations:\n  - name: nri-flex\n    config:\n      name: osquery\n      apis:\n        - event_type: osqueryOpenSockets\n          commands:\n            - run: osqueryi --json \"SELECT * FROM process_open_sockets;\""
+						"text": "# openquery.yml\n```\n# Used to query against OSQuery metrics\n---\nintegrations:\n  - name: nri-flex\n    config:\n      name: osquery\n      apis:\n        - event_type: osqueryOpenSockets\n          commands:\n            - run: osqueryi --json \"SELECT * FROM process_open_sockets;\""
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.table"
+					},
 					"layout": {
 						"column": 6,
 						"row": 17,
@@ -272,22 +172,6 @@
 						"width": 5
 					},
 					"title": "osqueryOpenSockets - Listening Ports",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "FROM osqueryOpenSockets SELECT count(*) FACET pid, state, local_address, local_port, remote_address, remote_port WHERE state = 'LISTEN' LIMIT MAX"
-								}
-							]
-						},
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
