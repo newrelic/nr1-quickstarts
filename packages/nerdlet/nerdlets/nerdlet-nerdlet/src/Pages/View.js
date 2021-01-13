@@ -63,7 +63,8 @@ class View extends React.Component {
 
     closeTools() {
         this.setState({
-            toolsModalHidden: true
+            toolsModalHidden: true,
+            dashboardUrl: null,
         });
     }
 
