@@ -1,13 +1,15 @@
 {
-	"name": "Synthetics Checks",
+	"name": "NR-Synthetics Checks",
 	"description": null,
 	"pages": [
 		{
-			"name": "Synthetics Checks",
+			"name": "NR-Synthetics Checks",
 			"description": null,
 			"widgets": [
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bullet"
+					},
 					"layout": {
 						"column": 1,
 						"row": 1,
@@ -15,7 +17,6 @@
 						"width": 4
 					},
 					"title": "Checks",
-					"configuration": null,
 					"rawConfiguration": {
 						"limit": 5000,
 						"queries": [
@@ -27,7 +28,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 5,
 						"row": 1,
@@ -35,22 +38,6 @@
 						"width": 4
 					},
 					"title": "Location",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago FACET locationLabel LIMIT 10"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -61,7 +48,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 9,
 						"row": 1,
@@ -69,22 +58,6 @@
 						"width": 4
 					},
 					"title": "Result",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago FACET result"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -95,7 +68,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 1,
 						"row": 4,
@@ -103,22 +78,6 @@
 						"width": 4
 					},
 					"title": "Monitor",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago FACET  monitorName"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -129,7 +88,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 5,
 						"row": 4,
@@ -137,22 +98,6 @@
 						"width": 4
 					},
 					"title": "Monitor",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago FACET monitorName"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -163,7 +108,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 9,
 						"row": 4,
@@ -171,23 +118,6 @@
 						"width": 4
 					},
 					"title": "Weekly Availability",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentage(count(*), where result='SUCCESS') AS '' FROM SyntheticCheck SINCE 1 day ago"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -198,7 +128,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.table"
+					},
 					"layout": {
 						"column": 1,
 						"row": 7,
@@ -206,22 +138,6 @@
 						"width": 4
 					},
 					"title": "Request and Response Body Sizes",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(totalResponseBodySize) AS '' FROM SyntheticCheck SINCE 1 day ago FACET monitorName LIMIT 10"
-								}
-							]
-						},
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -232,7 +148,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
 						"row": 7,
@@ -240,22 +158,6 @@
 						"width": 4
 					},
 					"title": "Check Duration",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) AS '' FROM SyntheticCheck SINCE 1 day ago TIMESERIES AUTO"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -266,7 +168,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 9,
 						"row": 7,
@@ -274,22 +178,6 @@
 						"width": 4
 					},
 					"title": "Type",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago FACET type"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{

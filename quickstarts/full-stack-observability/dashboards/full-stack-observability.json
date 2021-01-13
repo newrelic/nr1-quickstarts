@@ -1,5 +1,5 @@
 {
-	"name": "New Relic Full Stack Observability",
+	"name": "Full Stack Observability",
 	"description": "",
 	"pages": [
 		{
@@ -7,7 +7,9 @@
 			"description": null,
 			"widgets": [
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bullet"
+					},
 					"layout": {
 						"column": 1,
 						"row": 1,
@@ -15,7 +17,6 @@
 						"width": 12
 					},
 					"title": "Availability",
-					"configuration": null,
 					"rawConfiguration": {
 						"limit": 100,
 						"queries": [
@@ -27,7 +28,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.markdown"
+					},
 					"layout": {
 						"column": 1,
 						"row": 3,
@@ -35,23 +38,14 @@
 						"width": 4
 					},
 					"title": "",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": {
-							"text": "# End-User"
-						}
-					},
 					"rawConfiguration": {
 						"text": "# End-User"
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.markdown"
+					},
 					"layout": {
 						"column": 5,
 						"row": 3,
@@ -59,23 +53,14 @@
 						"width": 4
 					},
 					"title": "",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": {
-							"text": "# Application"
-						}
-					},
 					"rawConfiguration": {
 						"text": "# Application"
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.markdown"
+					},
 					"layout": {
 						"column": 9,
 						"row": 3,
@@ -83,23 +68,14 @@
 						"width": 4
 					},
 					"title": "",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": {
-							"text": "# Infrastructure"
-						}
-					},
 					"rawConfiguration": {
 						"text": "# Infrastructure"
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 1,
 						"row": 4,
@@ -107,23 +83,6 @@
 						"width": 4
 					},
 					"title": "Page Views",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) from PageView since 1 day ago"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -134,7 +93,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 5,
 						"row": 4,
@@ -142,23 +103,6 @@
 						"width": 4
 					},
 					"title": "Transactions",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "select count(*) FROM Transaction since 1 day ago"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -169,7 +113,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 9,
 						"row": 4,
@@ -177,23 +123,6 @@
 						"width": 4
 					},
 					"title": "Hosts",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "from ComputeSample SELECT count(hostname)"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -204,7 +133,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 1,
 						"row": 7,
@@ -212,22 +143,6 @@
 						"width": 4
 					},
 					"title": "Page Views per Domain",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) from PageView since 1 day ago facet domain"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -238,7 +153,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 5,
 						"row": 7,
@@ -246,22 +163,6 @@
 						"width": 4
 					},
 					"title": "Transactions per Application",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "select count(*) FROM Transaction since 1 day ago facet appName"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -272,7 +173,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 9,
 						"row": 7,
@@ -280,22 +183,6 @@
 						"width": 4
 					},
 					"title": "CPU usage per Host",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(cpuPercent) FROM SystemSample FACET `entityName` since 1 day ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -306,7 +193,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 1,
 						"row": 10,
@@ -314,22 +203,6 @@
 						"width": 4
 					},
 					"title": "Page Load Time trend",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) FROM PageView since 1 day ago compare WITH 1 day ago timeseries"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -340,7 +213,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
 						"row": 10,
@@ -348,22 +223,6 @@
 						"width": 4
 					},
 					"title": "Transaction Duration Trend",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "select average(duration) FROM Transaction since 1 day ago compare with 1 day ago TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -374,7 +233,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 9,
 						"row": 10,
@@ -382,22 +243,6 @@
 						"width": 4
 					},
 					"title": "CPU Usage trend",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(cpuPercent) FROM SystemSample since 1 day ago compare WITH 1 day ago TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -408,7 +253,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 1,
 						"row": 13,
@@ -416,22 +263,6 @@
 						"width": 4
 					},
 					"title": "Page Load per Site",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) FROM PageView since 1 day ago facet domain  timeseries"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -442,7 +273,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
 						"row": 13,
@@ -450,22 +283,6 @@
 						"width": 8
 					},
 					"title": "Slow Applications trend",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "select average(duration) FROM Transaction since 1 day ago facet appName TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -476,7 +293,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.area"
+					},
 					"layout": {
 						"column": 1,
 						"row": 16,
@@ -484,22 +303,6 @@
 						"width": 4
 					},
 					"title": "Mobile App Usage by app version",
-					"configuration": {
-						"area": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(responseTime) from MobileRequest facet appVersion TIMESERIES since  1 week ago"
-								}
-							]
-						},
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -510,7 +313,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 5,
 						"row": 16,
@@ -518,22 +323,6 @@
 						"width": 4
 					},
 					"title": "Mobile App Crashes by version",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM MobileCrash  WHERE crashFingerprint NOT IN(  ) FACET `appVersion` since 1 day ago"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -544,7 +333,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 9,
 						"row": 16,
@@ -552,22 +343,6 @@
 						"width": 4
 					},
 					"title": "Mobile App Session Duration by Mobile Device",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(sessionDuration) FROM MobileRequest SINCE 1 day ago facet deviceModel"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -578,7 +353,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.table"
+					},
 					"layout": {
 						"column": 1,
 						"row": 19,
@@ -586,22 +363,6 @@
 						"width": 4
 					},
 					"title": "Synthetic Checks Availability",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentage(count(result), WHERE result = 'SUCCESS') as 'Availability', average(duration) as 'Duration' FROM SyntheticCheck  SINCE 1 day ago FACET monitorName"
-								}
-							]
-						},
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -612,7 +373,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
 						"row": 19,
@@ -620,22 +383,6 @@
 						"width": 4
 					},
 					"title": "Synthetics Locations Availability",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentage(count(result), WHERE result = 'SUCCESS') as 'Availability' FROM SyntheticCheck  SINCE 1 week ago FACET locationLabel TIMESERIES 1 hour"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -646,7 +393,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 9,
 						"row": 19,
@@ -654,95 +403,11 @@
 						"width": 4
 					},
 					"title": "Synthetics Locations Average Duration",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) FROM SyntheticCheck  SINCE 1 week ago FACET locationLabel TIMESERIES 1 hour"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
 								"nrql": "SELECT average(duration) FROM SyntheticCheck  SINCE 1 week ago FACET locationLabel TIMESERIES 1 hour"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 1,
-						"row": 22,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Predict Drive Full in 1 month",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT predictLinear(diskUsedPercent,1 month) FROM StorageSample facet mountPoint"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT predictLinear(diskUsedPercent,1 month) FROM StorageSample facet mountPoint"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 5,
-						"row": 22,
-						"height": 3,
-						"width": 8
-					},
-					"title": "App performance Derivative",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT derivative(duration, 1 minute) from Transaction FACET appName TIMESERIES "
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT derivative(duration, 1 minute) from Transaction FACET appName TIMESERIES "
 							}
 						]
 					}
@@ -754,7 +419,9 @@
 			"description": null,
 			"widgets": [
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 1,
 						"row": 1,
@@ -762,23 +429,6 @@
 						"width": 3
 					},
 					"title": "Site Visitors",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT uniqueCount(session) AS 'Visitors' FROM PageView SINCE 1 day ago COMPARE WITH 1 day ago"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -789,7 +439,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 4,
 						"row": 1,
@@ -797,23 +449,6 @@
 						"width": 3
 					},
 					"title": "Availability",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentage(count(*), WHERE result = 'SUCCESS') FROM SyntheticCheck SINCE 1 week ago COMPARE WITH 1 week ago"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -824,7 +459,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 7,
 						"row": 1,
@@ -832,22 +469,6 @@
 						"width": 6
 					},
 					"title": "1 Month Downtime (by location)",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT 100 - percentage(count(*), WHERE result = 'SUCCESS') as 'Downtime' FROM SyntheticCheck SINCE 1 month ago facet location limit 5"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -858,7 +479,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 1,
 						"row": 4,
@@ -866,22 +489,6 @@
 						"width": 6
 					},
 					"title": "Live Users",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT uniqueCount(session)*100 AS 'Users' FROM PageView SINCE 5 minute ago UNTIL 1 minute ago TIMESERIES 1 second"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -892,74 +499,66 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 7,
 						"row": 4,
 						"height": 5,
 						"width": 6
 					},
-					"title": "Number of active users per day",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT uniqueCount(session) FROM PageView since 1 week ago FACET weekdayOf(timestamp) "
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
+					"title": "Revenue Daily Break-Down",
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT uniqueCount(session) FROM PageView since 1 week ago FACET weekdayOf(timestamp) "
+								"nrql": "SELECT sum(PurchasedCartGrandTotal)/100 As 'Revenue' FROM Transaction since 1 week ago FACET weekdayOf(timestamp) "
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 1,
 						"row": 6,
 						"height": 3,
-						"width": 6
+						"width": 3
+					},
+					"title": "Revenue at Risk",
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT sum(PurchasedCartGrandTotal)/400 As 'Revenue' FROM Transaction since 1 day ago"
+							}
+						],
+						"thresholds": [
+							{
+								"alertSeverity": "CRITICAL",
+								"value": 30000
+							},
+							{
+								"alertSeverity": "WARNING",
+								"value": 15000
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 4,
+						"row": 6,
+						"height": 3,
+						"width": 3
 					},
 					"title": "Customers at Risk",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT uniqueCount(username)/10 as 'Users Experiencing Errors' from Transaction where error IS NOT NULL since 1 day ago"
-								}
-							],
-							"thresholds": [
-								{
-									"alertSeverity": "CRITICAL",
-									"value": 500
-								},
-								{
-									"alertSeverity": "WARNING",
-									"value": 250
-								}
-							]
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -980,7 +579,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.histogram"
+					},
 					"layout": {
 						"column": 1,
 						"row": 9,
@@ -988,7 +589,6 @@
 						"width": 12
 					},
 					"title": "Site Performance",
-					"configuration": null,
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -1001,1114 +601,20 @@
 			]
 		},
 		{
-			"name": "Customer",
-			"description": null,
-			"widgets": [
-				{
-					"visualization": {},
-					"layout": {
-						"column": 1,
-						"row": 1,
-						"height": 3,
-						"width": 4
-					},
-					"title": "",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": {
-							"text": "\n![NR Browser Icon](https://newrelic.com/assets/newrelic/brand/logo-browser.svg)\n\nhttps://blog.newrelic.com/product-news/monitor-frontend-performance-with-user-centric-performance-metrics/"
-						}
-					},
-					"rawConfiguration": {
-						"text": "\n![NR Browser Icon](https://newrelic.com/assets/newrelic/brand/logo-browser.svg)\n\nhttps://blog.newrelic.com/product-news/monitor-frontend-performance-with-user-centric-performance-metrics/"
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 5,
-						"row": 1,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Key Metrics to Monitor",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(backendDuration, 50) as 'Server-side', percentile(firstPaint, 50) as `First Paint`, percentile(firstContentfulPaint, 50) as `First Contentful Paint`, percentile(largestContentfulPaint, 50) as 'Largest Contentful Paint', percentile(firstInputDelay, 50) as 'FID in ms', percentile(firstInteraction, 50) as 'FI in secs' FROM PageViewTiming, PageView SINCE 1 day ago"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT percentile(backendDuration, 50) as 'Server-side', percentile(firstPaint, 50) as `First Paint`, percentile(firstContentfulPaint, 50) as `First Contentful Paint`, percentile(largestContentfulPaint, 50) as 'Largest Contentful Paint', percentile(firstInputDelay, 50) as 'FID in ms', percentile(firstInteraction, 50) as 'FI in secs' FROM PageViewTiming, PageView SINCE 1 day ago"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 9,
-						"row": 1,
-						"height": 3,
-						"width": 4
-					},
-					"title": "How soon after my visual content starts loading do my users engage?",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(firstPaint, 50),percentile(firstContentfulPaint, 50), percentile(largestContentfulPaint, 50), percentile(firstInteraction, 50) FROM PageViewTiming SINCE 1 day ago TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT percentile(firstPaint, 50),percentile(firstContentfulPaint, 50), percentile(largestContentfulPaint, 50), percentile(firstInteraction, 50) FROM PageViewTiming SINCE 1 day ago TIMESERIES"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 1,
-						"row": 4,
-						"height": 3,
-						"width": 4
-					},
-					"title": "How are my users engaging? First Interaction Type",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(firstInteraction,50) as 'First Interaction' FROM PageViewTiming SINCE 1 hour ago FACET interactionType where firstInteraction<300"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT percentile(firstInteraction,50) as 'First Interaction' FROM PageViewTiming SINCE 1 hour ago FACET interactionType where firstInteraction<300"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 5,
-						"row": 4,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Customer patterns for Interaction Times",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(firstInteraction, 50) FROM PageViewTiming facet userAgentName, userAgentVersion where firstInteraction<300"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT percentile(firstInteraction, 50) FROM PageViewTiming facet userAgentName, userAgentVersion where firstInteraction<300"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 9,
-						"row": 4,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Least Responsive Page Urls - FID- Check your long tasks!",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(firstInputDelay, 50) FROM PageViewTiming FACET pageUrl SINCE 1 day ago where firstInteraction<300"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT percentile(firstInputDelay, 50) FROM PageViewTiming FACET pageUrl SINCE 1 day ago where firstInteraction<300"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 1,
-						"row": 7,
-						"height": 3,
-						"width": 4
-					},
-					"title": "First Interaction by DeviceType",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "FROM PageViewTiming SELECT percentile(firstInteraction, 50) FACET deviceType SINCE 1 day ago where firstInteraction<300"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "FROM PageViewTiming SELECT percentile(firstInteraction, 50) FACET deviceType SINCE 1 day ago where firstInteraction<300"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 5,
-						"row": 7,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Largest Contentful Paint by Page group",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(largestContentfulPaint,50) FROM PageViewTiming FACET browserTransactionName TIMESERIES AUTO SINCE 12 hours ago"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT percentile(largestContentfulPaint,50) FROM PageViewTiming FACET browserTransactionName TIMESERIES AUTO SINCE 12 hours ago"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 9,
-						"row": 7,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Which of your pages are the slowest to get visual content on the page?",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(largestContentfulPaint, 50) as 'LCP' FROM PageViewTiming SINCE 1 day ago TIMESERIES  FACET pageUrl LIMIT 5"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT percentile(largestContentfulPaint, 50) as 'LCP' FROM PageViewTiming SINCE 1 day ago TIMESERIES  FACET pageUrl LIMIT 5"
-							}
-						]
-					}
-				}
-			]
-		},
-		{
-			"name": "Ops",
-			"description": null,
-			"widgets": [
-				{
-					"visualization": {},
-					"layout": {
-						"column": 1,
-						"row": 1,
-						"height": 3,
-						"width": 4
-					},
-					"title": "End-user service SLAs - customer sentiment score",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT apdex(duration, t: 3) FROM PageView facet appName since 10 minutes ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT apdex(duration, t: 3) FROM PageView facet appName since 10 minutes ago"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 5,
-						"row": 1,
-						"height": 3,
-						"width": 8
-					},
-					"title": "microservice SLAs - customer sentiment score",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT apdex(duration, t: 0.1) FROM Transaction facet appName since 10 minutes ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT apdex(duration, t: 0.1) FROM Transaction facet appName since 10 minutes ago"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 1,
-						"row": 4,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Business transaction hotspots",
-					"configuration": null,
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT histogram(duration, 5, 10) from PageView facet pageUrl since 10 minutes ago"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 5,
-						"row": 4,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Max page load time - by business transaction name",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT max(duration) from PageView facet pageUrl since 10 minutes ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT max(duration) from PageView facet pageUrl since 10 minutes ago"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 9,
-						"row": 4,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Business Errors (Javascript)",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "FROM JavaScriptError SELECT count(*) facet errorMessage, transactionName since 10 minutes ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "FROM JavaScriptError SELECT count(*) facet errorMessage, transactionName since 10 minutes ago"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 1,
-						"row": 7,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Async route-changes (single page app) - business transaction performance",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "FROM BrowserInteraction SELECT average(duration) facet browserInteractionName SINCE 10 minutes ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "FROM BrowserInteraction SELECT average(duration) facet browserInteractionName SINCE 10 minutes ago"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 5,
-						"row": 7,
-						"height": 3,
-						"width": 8
-					},
-					"title": "route changes (SPA) hotspots - business transactions",
-					"configuration": null,
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "FROM BrowserInteraction SELECT histogram(duration, 5, 10) facet browserInteractionName SINCE 10 minutes ago"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 1,
-						"row": 10,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Key Backend Transaction hotspots",
-					"configuration": null,
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT histogram(duration, 5, 10) from Transaction facet name  since 10 minutes ago"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 5,
-						"row": 10,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Avg Duration by backend transaction name",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) from Transaction facet name   since 10 minutes ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT average(duration) from Transaction facet name   since 10 minutes ago"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 9,
-						"row": 10,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Backend Errors - App Services",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "FROM Transaction SELECT count(*) facet errorType, appName where errorMessage  IS NOT NULL since 10 minutes ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "FROM Transaction SELECT count(*) facet errorType, appName where errorMessage  IS NOT NULL since 10 minutes ago"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 1,
-						"row": 13,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Average Duration by micro-service name",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) from Transaction facet appName  since 10 minutes ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT average(duration) from Transaction facet appName  since 10 minutes ago"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 5,
-						"row": 13,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Service Status (Synthetics) - Up / Down",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) from SyntheticCheck facet result, monitorName since 10 minutes ago"
-								}
-							]
-						},
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT count(*) from SyntheticCheck facet result, monitorName since 10 minutes ago"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 9,
-						"row": 13,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Time since load - user action",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(timeSinceLoad) from PageAction facet actionName   since 10 minutes ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT average(timeSinceLoad) from PageAction facet actionName   since 10 minutes ago"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 1,
-						"row": 16,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Lambda cloud functions - avg execution time",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "FROM ServerlessSample SELECT average(`provider.duration.Average`)/4 as 'Avg execution time' facet displayName since 15 minute ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "FROM ServerlessSample SELECT average(`provider.duration.Average`)/4 as 'Avg execution time' facet displayName since 15 minute ago"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 5,
-						"row": 16,
-						"height": 6,
-						"width": 8
-					},
-					"title": "CPU % trend by Hostname",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "FROM SystemSample SELECT average(cpuPercent) facet hostname TIMESERIES Since 10 minutes ago"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "FROM SystemSample SELECT average(cpuPercent) facet hostname TIMESERIES Since 10 minutes ago"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 1,
-						"row": 19,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Avg CPU % trend - cross-hosts",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(cpuPercent) from SystemSample TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT average(cpuPercent) from SystemSample TIMESERIES"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 1,
-						"row": 22,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Customer sentiment score by hosts",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT apdex(duration, t: 0.1) FROM Transaction facet host since 10 minutes ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT apdex(duration, t: 0.1) FROM Transaction facet host since 10 minutes ago"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 5,
-						"row": 22,
-						"height": 3,
-						"width": 8
-					},
-					"title": "Memory % trend by Hostname",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "FROM SystemSample SELECT average(memoryUsedBytes/memoryTotalBytes)*100 facet hostname TIMESERIES Since 10 minutes ago"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "FROM SystemSample SELECT average(memoryUsedBytes/memoryTotalBytes)*100 facet hostname TIMESERIES Since 10 minutes ago"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 1,
-						"row": 25,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Average Response time - cross-app & cross-URL",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) from PageView TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT average(duration) from PageView TIMESERIES"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 5,
-						"row": 25,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Average Response time - backend transaction trends",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) from Transaction TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT average(duration) from Transaction TIMESERIES"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 9,
-						"row": 25,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Cross-service Error trend",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) from TransactionError TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT count(*) from TransactionError TIMESERIES"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 1,
-						"row": 28,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Response time trends by Page URL",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) from PageView facet pageUrl TIMESERIES limit 50"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT average(duration) from PageView facet pageUrl TIMESERIES limit 50"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 5,
-						"row": 28,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Average Response Time - backend transaction names",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) from Transaction TIMESERIES facet name"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT average(duration) from Transaction TIMESERIES facet name"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 9,
-						"row": 28,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Error trend by app-service",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) from TransactionError TIMESERIES facet appName"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT count(*) from TransactionError TIMESERIES facet appName"
-							}
-						]
-					}
-				}
-			]
-		},
-		{
 			"name": "SRE",
 			"description": null,
 			"widgets": [
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 1,
 						"row": 1,
 						"height": 3,
 						"width": 4
 					},
-					"title": "Golden Signs Latency - HTTP",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(totalTime, 50, 90, 99) FROM Transaction WHERE httpResponseCode = '200' SINCE 1 day ago TIMESERIES 1 hour EXTRAPOLATE"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
+					"title": "Golden Signals Latency - HTTP",
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -2119,7 +625,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
 						"row": 1,
@@ -2127,22 +635,6 @@
 						"width": 4
 					},
 					"title": "Golden Signals Latency - HTTP 500",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(totalTime, 50, 90, 99) FROM Transaction WHERE  httpResponseCode = '500' SINCE 1 day ago TIMESERIES 1 hour EXTRAPOLATE"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -2153,7 +645,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.table"
+					},
 					"layout": {
 						"column": 9,
 						"row": 1,
@@ -2161,22 +655,6 @@
 						"width": 4
 					},
 					"title": "Golden Signals Latency - 90 Percentile with Username",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(totalTime, 90) FROM Transaction  SINCE 1 day ago FACET username limit 20"
-								}
-							]
-						},
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -2187,7 +665,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 1,
 						"row": 4,
@@ -2195,22 +675,6 @@
 						"width": 8
 					},
 					"title": "Golden Signals Latency - HTTP 500 - Trend Analysis",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM Transaction WHERE  httpResponseCode = '500' SINCE 1 day ago TIMESERIES 1 hour COMPARE WITH 1 day ago EXTRAPOLATE"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -2221,7 +685,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 1,
 						"row": 7,
@@ -2229,22 +695,6 @@
 						"width": 4
 					},
 					"title": "Golden Signals Traffic - Throughput Per Minute",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT rate(count(*), 1 minute) AS 'Requests per Minute' FROM Transaction  since 1 day ago TIMESERIES 10 minute EXTRAPOLATE"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -2255,7 +705,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
 						"row": 7,
@@ -2263,22 +715,6 @@
 						"width": 4
 					},
 					"title": "Golden Signals Traffic - Throughput Per Hour",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT rate(count(*), 1 hour) AS 'Requests per Hour' FROM Transaction  since 7 day ago TIMESERIES 1 hour  EXTRAPOLATE"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -2289,7 +725,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.table"
+					},
 					"layout": {
 						"column": 9,
 						"row": 7,
@@ -2297,22 +735,6 @@
 						"width": 4
 					},
 					"title": "Golden Signals Traffic - Throughput Per Hour with Username",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT rate(count(*), 1 hour) AS 'Requests per Hour' FROM Transaction  since 1 day ago FACET username limit 20"
-								}
-							]
-						},
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -2323,7 +745,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 1,
 						"row": 10,
@@ -2331,22 +755,6 @@
 						"width": 8
 					},
 					"title": "Golden Signals Traffic - Throughput Per Hour - Trend Analysis",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT rate(count(*), 1 hour) AS 'Requests per Hour' FROM Transaction  since 7 day ago COMPARE WITH 1 week ago TIMESERIES 1 hour EXTRAPOLATE"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -2357,7 +765,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 1,
 						"row": 13,
@@ -2365,23 +775,6 @@
 						"width": 4
 					},
 					"title": "Golden Signals Errors - HTTP Status Codes",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT filter(count(*), WHERE httpResponseCode LIKE '1%') as '1xx Informational', filter(count(*), WHERE httpResponseCode LIKE '2%') as '2xx Success', filter(count(*), WHERE httpResponseCode LIKE '3%') as '3xx Redirection', filter(count(*), WHERE httpResponseCode LIKE '4%') as '4xx Client Error', filter(count(*), WHERE httpResponseCode LIKE '5%') as '5xx Server Error' FROM Transaction  SINCE 1 day ago"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -2392,7 +785,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 5,
 						"row": 13,
@@ -2400,23 +795,6 @@
 						"width": 4
 					},
 					"title": "Golden Signals Errors - Unhandled Errors %",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentage(count(*), WHERE error is true) AS 'Unhandled Error rate %' FROM Transaction  SINCE 1 day ago COMPARE WITH 1 day ago"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -2427,7 +805,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 9,
 						"row": 13,
@@ -2435,22 +815,6 @@
 						"width": 4
 					},
 					"title": "Golden Signals Errors - HTTP Code Redirection, Client Error And Server Error by Transaction Name",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM Transaction WHERE  httpResponseCode LIKE '3%' or httpResponseCode LIKE '4%' OR httpResponseCode LIKE '5%' SINCE 1 day ago FACET httpResponseCode, name TIMESERIES 10 minutes"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -2461,7 +825,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.area"
+					},
 					"layout": {
 						"column": 1,
 						"row": 16,
@@ -2469,22 +835,6 @@
 						"width": 8
 					},
 					"title": "Golden Signals Errors - Top 5 Unhandled Application Errors",
-					"configuration": {
-						"area": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM TransactionError  FACET error.class SINCE 1 day ago TIMESERIES 10 minute limit 5 EXTRAPOLATE"
-								}
-							]
-						},
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -2495,7 +845,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.table"
+					},
 					"layout": {
 						"column": 9,
 						"row": 16,
@@ -2503,22 +855,6 @@
 						"width": 4
 					},
 					"title": "Golden Signals Errors - Top 10 Unhandled Application Errors with Transaction Name and Host",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM TransactionError WHERE  username IS NOT NULL FACET username, error.message, transactionName, host SINCE 1 day ago limit 10"
-								}
-							]
-						},
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -2529,7 +865,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 1,
 						"row": 19,
@@ -2537,22 +875,6 @@
 						"width": 8
 					},
 					"title": "Golden Signals Errors - HTTP Code Redirection, Client Error And Server Error",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT filter(count(*), WHERE httpResponseCode LIKE '3%' as 'Redirection'), filter(count(*), WHERE httpResponseCode LIKE '4%' as 'Client Error'), filter(count(*), WHERE httpResponseCode LIKE '5%' as 'Server Error') FROM Transaction SINCE 1 day ago TIMESERIES 10 minutes EXTRAPOLATE"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -2563,7 +885,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 1,
 						"row": 22,
@@ -2571,22 +895,6 @@
 						"width": 4
 					},
 					"title": "Golden Signals Saturation - Database Percentile",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(databaseDuration, 50, 90, 99) FROM Transaction  SINCE 1 day ago TIMESERIES 10 minute EXTRAPOLATE"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -2597,7 +905,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
 						"row": 22,
@@ -2605,22 +915,6 @@
 						"width": 4
 					},
 					"title": "Golden Signals Saturation - Top 5 Database 90 Percentile by Host and Transaction Name",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(databaseDuration, 90) FROM Transaction  FACET host, name TIMESERIES 1 hour since  1 day ago"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -2631,7 +925,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.table"
+					},
 					"layout": {
 						"column": 9,
 						"row": 22,
@@ -2639,22 +935,6 @@
 						"width": 4
 					},
 					"title": "Golden Signals Saturation - Database 90 Percentile with Username",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(databaseDuration, 90) FROM Transaction  FACET username SINCE 1 day ago LIMIT 10"
-								}
-							]
-						},
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -2671,7 +951,9 @@
 			"description": null,
 			"widgets": [
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 1,
 						"row": 1,
@@ -2679,23 +961,6 @@
 						"width": 4
 					},
 					"title": "Total Errors",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM TransactionError SINCE 1 day ago COMPARE WITH 1 week ago"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -2706,7 +971,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 5,
 						"row": 1,
@@ -2714,22 +981,6 @@
 						"width": 4
 					},
 					"title": "Errors by App",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM TransactionError FACET appName SINCE 1 day ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -2740,7 +991,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 9,
 						"row": 1,
@@ -2748,22 +1001,6 @@
 						"width": 4
 					},
 					"title": "Error Message",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM TransactionError FACET `error.message` SINCE 1 day ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -2774,7 +1011,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 1,
 						"row": 4,
@@ -2782,22 +1021,6 @@
 						"width": 8
 					},
 					"title": "Errors by Message over Time",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM TransactionError FACET `error.message` SINCE 1 day ago TIMESERIES 5 minutes"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -2808,7 +1031,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 9,
 						"row": 4,
@@ -2816,22 +1041,6 @@
 						"width": 4
 					},
 					"title": "",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM TransactionError FACET httpResponseCode SINCE 1 day ago"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -2842,7 +1051,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.table"
+					},
 					"layout": {
 						"column": 1,
 						"row": 7,
@@ -2850,22 +1061,6 @@
 						"width": 8
 					},
 					"title": "Error Transactions",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM TransactionError FACET transactionName SINCE 1 day ago"
-								}
-							]
-						},
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -2876,7 +1071,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 9,
 						"row": 7,
@@ -2884,22 +1081,6 @@
 						"width": 4
 					},
 					"title": "Errors by Referrer",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM TransactionError FACET `request.headers.referer` SINCE 1 day ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -2916,7 +1097,9 @@
 			"description": null,
 			"widgets": [
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.markdown"
+					},
 					"layout": {
 						"column": 1,
 						"row": 1,
@@ -2924,23 +1107,14 @@
 						"width": 4
 					},
 					"title": "",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": {
-							"text": "![Image](https://newrelic.com/content/dam/component-assets/u03-navigation/logo-apm.svg)\n* Use below charts to filter this dashboard by App, by Transaction, by Response Code and/or by Host, or below links to dive deeper in the New Relic portal\n* [Web Portal App Overview](https://rpm.newrelic.com/accounts/1606862/applications/)\n* [Web Portal App Deployments](https://rpm.newrelic.com/accounts/1606862/applications/43192210/deployments)\n* [Service Maps](https://rpm.newrelic.com/accounts/1606862/service_maps)\n* [Key Transactions](https://rpm.newrelic.com/accounts/1606862/key_transactions)\n* [Distributed Tracing](https://rpm.newrelic.com/accounts/2040817/applications/156206528/tracing?duration=1800000&facetType=TRACE_HAS_ERRORS&query=&sortBy=2&sortDir=DESC)"
-						}
-					},
 					"rawConfiguration": {
 						"text": "![Image](https://newrelic.com/content/dam/component-assets/u03-navigation/logo-apm.svg)\n* Use below charts to filter this dashboard by App, by Transaction, by Response Code and/or by Host, or below links to dive deeper in the New Relic portal\n* [Web Portal App Overview](https://rpm.newrelic.com/accounts/1606862/applications/)\n* [Web Portal App Deployments](https://rpm.newrelic.com/accounts/1606862/applications/43192210/deployments)\n* [Service Maps](https://rpm.newrelic.com/accounts/1606862/service_maps)\n* [Key Transactions](https://rpm.newrelic.com/accounts/1606862/key_transactions)\n* [Distributed Tracing](https://rpm.newrelic.com/accounts/2040817/applications/156206528/tracing?duration=1800000&facetType=TRACE_HAS_ERRORS&query=&sortBy=2&sortDir=DESC)"
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 5,
 						"row": 1,
@@ -2948,23 +1122,6 @@
 						"width": 4
 					},
 					"title": "Number of Transactions (Last hour)",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) from Transaction since 1 hour ago compare WITH 1 day ago"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -2975,7 +1132,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 9,
 						"row": 1,
@@ -2983,22 +1142,6 @@
 						"width": 4
 					},
 					"title": "Transactions over time",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) from Transaction since 1 day ago compare WITH 1 day ago TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3009,7 +1152,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 1,
 						"row": 4,
@@ -3017,22 +1162,6 @@
 						"width": 4
 					},
 					"title": "Load by Application",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM Transaction FACET appName since 1 hour ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3043,7 +1172,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 5,
 						"row": 4,
@@ -3051,23 +1182,6 @@
 						"width": 4
 					},
 					"title": "Transaction Duration (Last hour)",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) from Transaction since 1 hour ago compare WITH 1 day ago"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3078,7 +1192,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 9,
 						"row": 4,
@@ -3086,22 +1202,6 @@
 						"width": 4
 					},
 					"title": "Transaction Duration by Application",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) FROM Transaction FACET appName since 1 day ago TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3112,7 +1212,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 1,
 						"row": 7,
@@ -3120,22 +1222,6 @@
 						"width": 4
 					},
 					"title": "HTTP Response Codes",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM Transaction FACET httpResponseCode SINCE 1 hour ago"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3146,7 +1232,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
 						"row": 7,
@@ -3154,22 +1242,6 @@
 						"width": 8
 					},
 					"title": "Slow transactions",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) from Transaction since 1 day ago facet name TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3180,7 +1252,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 1,
 						"row": 10,
@@ -3188,22 +1262,6 @@
 						"width": 4
 					},
 					"title": "Load by Host",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM Transaction SINCE 1 day ago facet host"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3214,7 +1272,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.heatmap"
+					},
 					"layout": {
 						"column": 5,
 						"row": 10,
@@ -3222,7 +1282,6 @@
 						"width": 8
 					},
 					"title": "Transaction Duration Heatmap",
-					"configuration": null,
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3233,7 +1292,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 1,
 						"row": 13,
@@ -3241,22 +1302,6 @@
 						"width": 4
 					},
 					"title": "Load by transaction name",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) from Transaction since 1 day ago facet name"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3267,7 +1312,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
 						"row": 13,
@@ -3275,22 +1322,6 @@
 						"width": 4
 					},
 					"title": "Load by Host",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM Transaction SINCE 1 day ago facet host TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3301,7 +1332,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 9,
 						"row": 13,
@@ -3309,22 +1342,6 @@
 						"width": 4
 					},
 					"title": "Transactions w/ 5xx Errors per Host",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM Transaction WHERE httpResponseCode LIKE '5%' facet host SINCE 1 day ago"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3335,7 +1352,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 1,
 						"row": 16,
@@ -3343,32 +1362,6 @@
 						"width": 2
 					},
 					"title": "% of Transactions w/ 5xx Errors",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentage(count(*), WHERE httpResponseCode LIKE '5%') FROM Transaction SINCE 1 day ago"
-								}
-							],
-							"thresholds": [
-								{
-									"alertSeverity": "CRITICAL",
-									"value": 2
-								},
-								{
-									"alertSeverity": "WARNING",
-									"value": 0.1
-								}
-							]
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3389,7 +1382,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 3,
 						"row": 16,
@@ -3397,22 +1392,6 @@
 						"width": 3
 					},
 					"title": "5xx Errors over Time",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentage(count(*), WHERE httpResponseCode LIKE '5%') FROM Transaction SINCE 1 day ago TIMESERIES AUTO"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3423,7 +1402,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 6,
 						"row": 16,
@@ -3431,22 +1412,6 @@
 						"width": 3
 					},
 					"title": "Application Errors",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM TransactionError facet appName,`error.message` since 1 hour ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3457,7 +1422,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 9,
 						"row": 16,
@@ -3465,22 +1432,6 @@
 						"width": 4
 					},
 					"title": "Transactions w/ 5xx Errors per name",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM Transaction FACET name WHERE httpResponseCode LIKE '5%' SINCE 1 day ago"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3491,7 +1442,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.table"
+					},
 					"layout": {
 						"column": 1,
 						"row": 19,
@@ -3499,22 +1452,6 @@
 						"width": 12
 					},
 					"title": "Recent 5xx Error Transactions",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT appName, host, transactionSubtype, transactionType, name FROM Transaction WHERE httpResponseCode LIKE '5%' SINCE 1 day ago"
-								}
-							]
-						},
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3525,15 +1462,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.heatmap"
+					},
 					"layout": {
 						"column": 1,
 						"row": 22,
 						"height": 3,
-						"width": 4
+						"width": 3
 					},
 					"title": "Database Duration Isolation",
-					"configuration": null,
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3544,15 +1482,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.heatmap"
+					},
 					"layout": {
-						"column": 5,
+						"column": 4,
 						"row": 22,
 						"height": 3,
-						"width": 4
+						"width": 3
 					},
 					"title": "Worst DB Apps offenders",
-					"configuration": null,
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3563,15 +1502,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.heatmap"
+					},
 					"layout": {
-						"column": 9,
+						"column": 7,
 						"row": 22,
 						"height": 3,
 						"width": 3
 					},
 					"title": "Accumulated DB Time by transaction",
-					"configuration": null,
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3582,7 +1522,29 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 10,
+						"row": 22,
+						"height": 3,
+						"width": 3
+					},
+					"title": "Pearson correlation - transaction duration/db call count",
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT (count(*) * sum(duration * databaseCallCount) - sum(duration) * sum(databaseCallCount)) / (sqrt(count(*) * sum(pow(duration,2)) - pow(sum(duration),2)) * (sqrt(count(*) * sum(pow(databaseCallCount,2)) - pow(sum(databaseCallCount),2)))) as 'pearson correlation' from Transaction where databaseCallCount is NOT NULL facet appName since 1 week ago COMPARE WITH 1 week ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
 					"layout": {
 						"column": 1,
 						"row": 25,
@@ -3590,22 +1552,6 @@
 						"width": 12
 					},
 					"title": "Worst DB Transactions offenders",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT sum(databaseDuration) as 'Time', count(*) as 'Count', percentile(databaseDuration, 99, 80, 50) as 'DB' FROM Transaction FACET name SINCE 1 day ago LIMIT 15"
-								}
-							]
-						},
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3622,7 +1568,9 @@
 			"description": null,
 			"widgets": [
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bullet"
+					},
 					"layout": {
 						"column": 1,
 						"row": 1,
@@ -3630,7 +1578,6 @@
 						"width": 4
 					},
 					"title": "Overall CPU Used",
-					"configuration": null,
 					"rawConfiguration": {
 						"limit": 100,
 						"queries": [
@@ -3642,7 +1589,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bullet"
+					},
 					"layout": {
 						"column": 5,
 						"row": 1,
@@ -3650,7 +1599,6 @@
 						"width": 4
 					},
 					"title": "Overall Memory Used",
-					"configuration": null,
 					"rawConfiguration": {
 						"limit": 100,
 						"queries": [
@@ -3662,7 +1610,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bullet"
+					},
 					"layout": {
 						"column": 9,
 						"row": 1,
@@ -3670,7 +1620,6 @@
 						"width": 4
 					},
 					"title": "Overall Disk Usage Rate",
-					"configuration": null,
 					"rawConfiguration": {
 						"limit": 100,
 						"queries": [
@@ -3682,7 +1631,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 1,
 						"row": 4,
@@ -3690,22 +1641,6 @@
 						"width": 4
 					},
 					"title": "CPU per Host (%)",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(cpuPercent) FROM SystemSample FACET `entityName` since 1 day ago limit 20"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3716,7 +1651,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 5,
 						"row": 4,
@@ -3724,22 +1661,6 @@
 						"width": 4
 					},
 					"title": "Memory Used per Host (%)",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(memoryUsedBytes/memoryTotalBytes*100) FROM SystemSample  FACET `entityName` since 1 day ago limit 20"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3750,7 +1671,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 9,
 						"row": 4,
@@ -3758,22 +1681,6 @@
 						"width": 4
 					},
 					"title": "Disk Usage Rate per Host (%)",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(diskUsedPercent) from SystemSample facet entityName  since 1 day ago limit 20"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3784,7 +1691,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 1,
 						"row": 10,
@@ -3792,22 +1701,6 @@
 						"width": 4
 					},
 					"title": "CPU per Host (%)",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(cpuPercent) FROM SystemSample TIMESERIES FACET `entityName` since 1 day ago"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3818,7 +1711,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
 						"row": 10,
@@ -3826,22 +1721,6 @@
 						"width": 4
 					},
 					"title": "Memory Used per Host (%)",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(memoryUsedBytes/memoryTotalBytes*100) FROM SystemSample TIMESERIES FACET `entityName` since 1 day ago"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3852,7 +1731,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 9,
 						"row": 10,
@@ -3860,22 +1741,6 @@
 						"width": 4
 					},
 					"title": "Disk Usage Rate per Host (%)",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(diskUsedPercent) from SystemSample facet entityName  since 1 day ago TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3886,7 +1751,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.histogram"
+					},
 					"layout": {
 						"column": 1,
 						"row": 13,
@@ -3894,7 +1761,6 @@
 						"width": 4
 					},
 					"title": "CPU Used Distribution",
-					"configuration": null,
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3905,7 +1771,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.histogram"
+					},
 					"layout": {
 						"column": 5,
 						"row": 13,
@@ -3913,7 +1781,6 @@
 						"width": 4
 					},
 					"title": "Memory Used Distribution",
-					"configuration": null,
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3924,7 +1791,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.histogram"
+					},
 					"layout": {
 						"column": 9,
 						"row": 13,
@@ -3932,7 +1801,6 @@
 						"width": 4
 					},
 					"title": "Disk Usage Distirbution",
-					"configuration": null,
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3943,7 +1811,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 1,
 						"row": 16,
@@ -3951,22 +1821,6 @@
 						"width": 4
 					},
 					"title": "Load Average",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(loadAverageFiveMinute) FROM SystemSample FACET `entityName` since 1 day ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -3977,7 +1831,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
 						"row": 16,
@@ -3985,22 +1841,6 @@
 						"width": 8
 					},
 					"title": "Load Average over Time",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(loadAverageFiveMinute) FROM SystemSample TIMESERIES FACET `entityName` since 1 day ago"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -4011,7 +1851,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 1,
 						"row": 19,
@@ -4019,22 +1861,6 @@
 						"width": 4
 					},
 					"title": "Top 10 Process CPU",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(cpuPercent) FROM ProcessSample  FACET commandName   LIMIT 10 SINCE 1 day ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -4045,7 +1871,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
 						"row": 19,
@@ -4053,22 +1881,6 @@
 						"width": 4
 					},
 					"title": "Top 10 Process CPU",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(cpuPercent) FROM ProcessSample  FACET commandName  TIMESERIES  LIMIT 10 SINCE 1 day ago"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -4079,7 +1891,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 9,
 						"row": 19,
@@ -4087,22 +1901,6 @@
 						"width": 4
 					},
 					"title": "Server Disk I/Os",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(readBytesPerSecond) as 'Reads', average(writeBytesPerSecond) as 'Writes' FROM StorageSample SINCE 1 day ago TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -4113,7 +1911,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.table"
+					},
 					"layout": {
 						"column": 1,
 						"row": 22,
@@ -4121,22 +1921,6 @@
 						"width": 8
 					},
 					"title": "Server Process Breakdown",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*), average(threadCount), average(cpuPercent), average(cpuSystemPercent) FROM ProcessSample FACET commandName SINCE 1 day ago"
-								}
-							]
-						},
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -4147,7 +1931,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 9,
 						"row": 22,
@@ -4155,22 +1941,6 @@
 						"width": 4
 					},
 					"title": "Disk I/Os per Host",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(readBytesPerSecond+writeBytesPerSecond) FROM StorageSample TIMESERIES FACET `entityName` since 1 day ago"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -4181,7 +1951,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.table"
+					},
 					"layout": {
 						"column": 1,
 						"row": 25,
@@ -4189,22 +1961,6 @@
 						"width": 12
 					},
 					"title": "Hosts Detailed View",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(SystemSample.cpuPercent) as 'CPU-avg.', (average(SystemSample.memoryUsedBytes)*100/average(SystemSample.memoryTotalBytes)) as 'RAM-avg.', average(SystemSample.diskUsedPercent) as 'Disk-avg.', average(NetworkSample.receiveBytesPerSecond/1000) as 'In-KB/sec', average(NetworkSample.transmitBytesPerSecond/1000) as 'Out-KB/sec' FROM SystemSample, NetworkSample, ProcessSample since 1 week ago facet hostname, environment, coreCount, operatingSystem, linuxDistribution   limit 500"
-								}
-							]
-						},
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -4215,7 +1971,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 1,
 						"row": 31,
@@ -4223,23 +1981,6 @@
 						"width": 4
 					},
 					"title": "Network - Received Packet (last 15min)",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(receivePacketsPerSecond) as 'Packets Per Second' FROM NetworkSample SINCE 15 minutes AGO compare with 15 minutes ago"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -4250,7 +1991,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
 						"row": 31,
@@ -4258,22 +2001,6 @@
 						"width": 4
 					},
 					"title": "Received Packets (Inbound)",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(receivePacketsPerSecond) FROM NetworkSample SINCE 1 day ago TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -4284,7 +2011,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 9,
 						"row": 31,
@@ -4292,22 +2021,6 @@
 						"width": 4
 					},
 					"title": "Inbound BW by Host",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(receiveBytesPerSecond) as 'Inbound BW' FROM NetworkSample facet hostname SINCE 1 day ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -4318,7 +2031,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 1,
 						"row": 34,
@@ -4326,22 +2041,6 @@
 						"width": 4
 					},
 					"title": "Server Network BW Usage",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(receiveBytesPerSecond) as 'Inbound BW', average(transmitBytesPerSecond) as 'Outbound BW' FROM NetworkSample SINCE 1 day ago TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -4352,7 +2051,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
 						"row": 34,
@@ -4360,22 +2061,6 @@
 						"width": 4
 					},
 					"title": "Transmitted Packets (Outbound)",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(transmitPacketsPerSecond) FROM NetworkSample SINCE 1 day ago TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -4386,7 +2071,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 9,
 						"row": 34,
@@ -4394,22 +2081,6 @@
 						"width": 4
 					},
 					"title": "Outbound BW by Host",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(transmitBytesPerSecond) as 'Outbound BW' FROM NetworkSample facet hostname SINCE 1 day ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -4426,240 +2097,56 @@
 			"description": null,
 			"widgets": [
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 1,
 						"row": 1,
 						"height": 3,
-						"width": 3
+						"width": 5
 					},
-					"title": "Errors (from Logs)",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) as 'Errors' from Log WHERE message LIKE '%error%' since 1 day ago"
-								}
-							],
-							"thresholds": [
-								{
-									"alertSeverity": "CRITICAL",
-									"value": 500
-								},
-								{
-									"alertSeverity": "WARNING",
-									"value": 250
-								}
-							]
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
+					"title": "Logs per host",
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) as 'Errors' from Log WHERE message LIKE '%error%' since 1 day ago"
-							}
-						],
-						"thresholds": [
-							{
-								"alertSeverity": "CRITICAL",
-								"value": 500
-							},
-							{
-								"alertSeverity": "WARNING",
-								"value": 250
+								"nrql": "SELECT count(*) from Log since 1 day ago TIMESERIES MAX FACET host "
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
-					"layout": {
-						"column": 4,
-						"row": 1,
-						"height": 3,
-						"width": 2
+					"visualization": {
+						"id": "viz.line"
 					},
-					"title": "Warnings (from Logs)",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) as 'Warnings' from Log WHERE message LIKE '%warning%' since 1 day ago"
-								}
-							],
-							"thresholds": [
-								{
-									"alertSeverity": "CRITICAL",
-									"value": 6000
-								},
-								{
-									"alertSeverity": "WARNING",
-									"value": 2000
-								}
-							]
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT count(*) as 'Warnings' from Log WHERE message LIKE '%warning%' since 1 day ago"
-							}
-						],
-						"thresholds": [
-							{
-								"alertSeverity": "CRITICAL",
-								"value": 6000
-							},
-							{
-								"alertSeverity": "WARNING",
-								"value": 2000
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
 					"layout": {
 						"column": 6,
 						"row": 1,
 						"height": 3,
 						"width": 7
 					},
-					"title": "Errors on Applications (from logs)",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) from Log WHERE message LIKE '%error%' AND `entity.name` = 'WebPortal' since 1 day ago TIMESERIES MAX"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
+					"title": "Errors on WebPortal Application (from logs)",
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) from Log WHERE message LIKE '%error%' AND `entity.name` = 'WebPortal' since 1 day ago TIMESERIES MAX"
+								"nrql": "SELECT count(*) from Log WHERE message LIKE '%error%' since 1 day ago TIMESERIES MAX"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.table"
+					},
 					"layout": {
 						"column": 1,
 						"row": 4,
-						"height": 3,
-						"width": 6
-					},
-					"title": "Errors by Host (from Logs)",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) from Log WHERE message LIKE '%error%' since 1 hour ago FACET hostname"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT count(*) from Log WHERE message LIKE '%error%' since 1 hour ago FACET hostname"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 7,
-						"row": 4,
-						"height": 3,
-						"width": 6
-					},
-					"title": "Warnings by Host",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) from Log WHERE message LIKE '%warning%' FACET hostname since 1 hour ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT count(*) from Log WHERE message LIKE '%warning%' FACET hostname since 1 hour ago"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 1,
-						"row": 7,
 						"height": 3,
 						"width": 12
 					},
 					"title": "K8s Pod Errors (from logs)",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT host, pod_name, message from Log WHERE message LIKE '%error%' and host IS NOT NULL since 1 day ago LIMIT max"
-								}
-							]
-						},
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -4676,7 +2163,9 @@
 			"description": null,
 			"widgets": [
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.markdown"
+					},
 					"layout": {
 						"column": 1,
 						"row": 1,
@@ -4684,23 +2173,14 @@
 						"width": 4
 					},
 					"title": "",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": {
-							"text": "![Image](https://newrelic.com/content/dam/component-assets/u03-navigation/logo-browser.svg)\n* Use below charts to filter by Domain, Category, Device, Country or Browser\n* Use calendar options on the right to filter\n* Narrow results up to 1 URL from the URL Heatmap\n* Compare funnels between slow & fast pages\n* Compare Front-End vs Back-End Performance\n* [Dive deeper into Real User Monitoring](https://rpm.newrelic.com/accounts/1606862/browser)"
-						}
-					},
 					"rawConfiguration": {
 						"text": "![Image](https://newrelic.com/content/dam/component-assets/u03-navigation/logo-browser.svg)\n* Use below charts to filter by Domain, Category, Device, Country or Browser\n* Use calendar options on the right to filter\n* Narrow results up to 1 URL from the URL Heatmap\n* Compare funnels between slow & fast pages\n* Compare Front-End vs Back-End Performance\n* [Dive deeper into Real User Monitoring](https://rpm.newrelic.com/accounts/1606862/browser)"
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.area"
+					},
 					"layout": {
 						"column": 5,
 						"row": 1,
@@ -4708,22 +2188,6 @@
 						"width": 4
 					},
 					"title": "Page Views by Domain",
-					"configuration": {
-						"area": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM PageView  facet domain  since 1 day ago TIMESERIES"
-								}
-							]
-						},
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -4734,7 +2198,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.histogram"
+					},
 					"layout": {
 						"column": 9,
 						"row": 1,
@@ -4742,7 +2208,6 @@
 						"width": 4
 					},
 					"title": "Page Load Distribution",
-					"configuration": null,
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -4753,7 +2218,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 1,
 						"row": 4,
@@ -4761,22 +2228,6 @@
 						"width": 4
 					},
 					"title": "Pages Views by Domain",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM PageView  facet domain  since 1 day ago"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -4787,132 +2238,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.area"
+					},
 					"layout": {
 						"column": 5,
 						"row": 4,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Page Views by Url",
-					"configuration": {
-						"area": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM PageView FACET pageUrl TIMESERIES since 1 day ago"
-								}
-							]
-						},
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT count(*) FROM PageView FACET pageUrl TIMESERIES since 1 day ago"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 9,
-						"row": 4,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Page Load Time by Domain",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) FROM PageView  facet domain since 1 day ago timeseries"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT average(duration) FROM PageView  facet domain since 1 day ago timeseries"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 1,
-						"row": 7,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Page Views by Url",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM PageView FACET pageUrl since 1 day ago"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT count(*) FROM PageView FACET pageUrl since 1 day ago"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 5,
-						"row": 7,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Page Views by device",
-					"configuration": {
-						"area": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM PageView  FACET deviceType TIMESERIES  SINCE 1 DAY AGO"
-								}
-							]
-						},
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -4923,64 +2258,36 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 9,
-						"row": 7,
+						"row": 4,
 						"height": 3,
 						"width": 4
 					},
-					"title": "Page Load Time by Url",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) FROM PageView FACET pageUrl TIMESERIES since 1 day ago"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
+					"title": "Page Load Time by Domain",
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(duration) FROM PageView FACET pageUrl TIMESERIES since 1 day ago"
+								"nrql": "SELECT average(duration) FROM PageView  facet domain since 1 day ago timeseries"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 1,
-						"row": 10,
+						"row": 7,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Page Views by device",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "select count(*) FROM PageView  FACET deviceType   SINCE 1 DAY AGO"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -4991,30 +2298,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.area"
+					},
 					"layout": {
 						"column": 5,
-						"row": 10,
+						"row": 7,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Page Views by Country",
-					"configuration": {
-						"area": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(domain) FROM PageView  FACET countryCode  TIMESERIES  SINCE 1 DAY AGO"
-								}
-							]
-						},
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5025,30 +2318,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 9,
-						"row": 10,
+						"row": 7,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Page Load Time by device",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) FROM PageView FACET deviceType TIMESERIES SINCE 1 DAY AGO"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5059,30 +2338,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 1,
-						"row": 13,
+						"row": 10,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Page Views by Country",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM PageView facet countryCode  since 1 day ago"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5093,30 +2358,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.area"
+					},
 					"layout": {
 						"column": 5,
-						"row": 13,
+						"row": 10,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Page Views by Browser",
-					"configuration": {
-						"area": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM PageView  FACET userAgentName  TIMESERIES  SINCE 1 DAY AGO"
-								}
-							]
-						},
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5127,30 +2378,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 9,
-						"row": 13,
+						"row": 10,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Page Load Time by Country",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) FROM PageView  FACET countryCode  SINCE 1 DAY AGO"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5161,30 +2398,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 1,
-						"row": 16,
+						"row": 13,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Page Views by Browser",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM PageView  facet userAgentName   since 1 day ago"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5195,31 +2418,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 5,
-						"row": 16,
+						"row": 13,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Page Views Trend",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM PageView  since 1 week ago COMPARE WITH 1 week ago"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5230,30 +2438,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 9,
-						"row": 16,
+						"row": 13,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Page Load Time by Browser",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) FROM PageView FACET userAgentName   SINCE 1 DAY AGO"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5264,31 +2458,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 1,
-						"row": 19,
+						"row": 16,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Unique Sessions Trend",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT UniqueCount(session) FROM PageView  since 1 week ago COMPARE WITH 1 week ago"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5299,30 +2478,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
-						"row": 19,
+						"row": 16,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Page Views Trend",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM PageView TIMESERIES since 1 week ago COMPARE WITH 1 week ago"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5333,31 +2498,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 9,
-						"row": 19,
+						"row": 16,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Page Load Time Trend",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) as 'seconds' FROM PageView  since 1 week ago COMPARE WITH 1 week ago"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5368,30 +2518,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 1,
-						"row": 22,
+						"row": 19,
 						"height": 3,
 						"width": 8
 					},
 					"title": "Unique Sessions Trend",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT UniqueCount(session) FROM PageView TIMESERIES since 1 week ago COMPARE WITH 1 week ago"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5402,30 +2538,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 9,
-						"row": 22,
+						"row": 19,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Page Load Response Time Trend",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) FROM PageView TIMESERIES since 1 week ago COMPARE WITH 1 week ago"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5436,15 +2558,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.heatmap"
+					},
 					"layout": {
 						"column": 1,
-						"row": 25,
+						"row": 22,
 						"height": 3,
 						"width": 8
 					},
 					"title": "URL Page Load Heatmap",
-					"configuration": null,
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5455,30 +2578,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 9,
-						"row": 25,
+						"row": 22,
 						"height": 6,
 						"width": 4
 					},
 					"title": "Page Views by URL",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM PageView facet pageUrl  since 1 day ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5489,31 +2598,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 1,
-						"row": 28,
+						"row": 25,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Average Page Load Time (Front-end vs Backend)",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) as 'Average PLT (sec)', average(backendDuration) as 'Backend Time (sec)', average(networkDuration) as 'Network (sec)' FROM PageView SINCE 1 day ago"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5524,30 +2618,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
-						"row": 28,
+						"row": 25,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Page Load Details (Front-end vs Back-end)",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(networkDuration) as 'Network (sec)', average(backendDuration) as 'Backend Time (sec)',average(duration) as 'Page Load time (sec)' FROM PageView SINCE 1 day ago TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5558,31 +2638,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 1,
-						"row": 31,
+						"row": 28,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Page Load Breakdown (SPA Agent only)",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(timeToFetchStart) AS 'Request queueing', average(timeToResponseStart) AS 'First byte', average(firstPaint) as 'First paint', average(firstContentfulPaint) as 'First contentful paint', average(timeToDomInteractive) as 'Time to Interactive', average(timeToDomContentLoadedEventEnd) AS 'DOM content loaded', average(timeToLoadEventEnd) AS 'Window load', average(duration) AS 'Window load + AJAX' FROM BrowserInteraction WHERE category = 'Initial page load' AND `mobileOptimized` IS NULL"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5593,30 +2658,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
-						"row": 31,
+						"row": 28,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Page Load Breakdown (SPA Agent only)",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(timeToFetchStart) AS 'Request queueing', average(timeToResponseStart) AS 'First byte', average(firstPaint) as 'First paint', average(firstContentfulPaint) as 'First contentful paint', average(timeToDomInteractive) as 'Time to Interactive', average(timeToDomContentLoadedEventEnd) AS 'DOM content loaded', average(timeToLoadEventEnd) AS 'Window load', average(duration) AS 'Window load + AJAX' FROM BrowserInteraction WHERE category = 'Initial page load' TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5627,31 +2678,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 9,
-						"row": 31,
+						"row": 28,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Page Load Time Percentiles",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(duration,10) AS '10th PLT', percentile(duration,50) AS 'Median PLT', percentile(duration,90) AS '90th PLT', percentile(duration,95) AS '95th PLT' FROM PageView since 1 day ago"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5662,15 +2698,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.histogram"
+					},
 					"layout": {
 						"column": 1,
-						"row": 34,
+						"row": 31,
 						"height": 3,
 						"width": 4
 					},
 					"title": "First Paint distribution",
-					"configuration": null,
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5681,30 +2718,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 5,
-						"row": 34,
+						"row": 31,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Longest first paint by URL",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(firstPaint,50) as 'First paint'   FROM BrowserInteraction  WHERE category = 'Initial page load' facet targetUrl"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5715,30 +2738,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 9,
-						"row": 34,
+						"row": 31,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Page Load Percentiles VS Average",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(duration, 10, 50, 90, 95), average(duration) FROM PageView since 1 day ago TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5749,15 +2758,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bullet"
+					},
 					"layout": {
 						"column": 1,
-						"row": 37,
+						"row": 34,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Front-End Apdex (Threshold 2 sec)",
-					"configuration": null,
 					"rawConfiguration": {
 						"limit": 1,
 						"queries": [
@@ -5769,15 +2779,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bullet"
+					},
 					"layout": {
 						"column": 5,
-						"row": 37,
+						"row": 34,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Back-End Apdex (Threshold 0.2 sec) (APM Agent)",
-					"configuration": null,
 					"rawConfiguration": {
 						"limit": 1,
 						"queries": [
@@ -5789,30 +2800,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 9,
-						"row": 37,
+						"row": 34,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Longest Time to Interactive (Median) by URL",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(timeToDomInteractive  ,50) as 'Time to Interactive'   FROM BrowserInteraction  WHERE category = 'Initial page load' facet targetUrl"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5823,30 +2820,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 1,
-						"row": 40,
+						"row": 37,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Front-End Apdex (Threshold 2 sec)",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT apdex(duration,t: 2) AS '' FROM PageView  SINCE 1 day ago TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5857,30 +2840,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
-						"row": 40,
+						"row": 37,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Back-End Apdex (Threshold 0.5 sec) (APM Agent)",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT apdex(duration,t: 0.5) AS '' FROM Transaction   SINCE 1 day ago TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5891,30 +2860,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 9,
-						"row": 40,
+						"row": 37,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Back-end System Load (Infrastructure Agent)",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(loadAverageOneMinute), average(loadAverageFiveMinute), average(loadAverageFifteenMinute) FROM SystemSample since 1 day ago TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5925,30 +2880,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 1,
-						"row": 43,
+						"row": 40,
 						"height": 3,
 						"width": 4
 					},
 					"title": "JS Errors by Browser",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM JavaScriptError FACET userAgentName SINCE 1 day ago"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5959,30 +2900,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 5,
-						"row": 43,
+						"row": 40,
 						"height": 3,
 						"width": 4
 					},
 					"title": "JS Errors Classes",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM JavaScriptError FACET errorClass SINCE 1 day ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -5993,30 +2920,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 9,
-						"row": 43,
+						"row": 40,
 						"height": 3,
 						"width": 4
 					},
 					"title": "Back-End CPU usage (Infrastructure Agent)",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(cpuPercent) FROM SystemSample TIMESERIES FACET `entityName` since 1 day ago"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -6027,30 +2940,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 1,
-						"row": 46,
+						"row": 43,
 						"height": 3,
 						"width": 4
 					},
 					"title": "JS Errors Messages",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM JavaScriptError facet errorMessage since 1 day ago"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -6061,30 +2960,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.table"
+					},
 					"layout": {
 						"column": 5,
-						"row": 46,
+						"row": 43,
 						"height": 3,
 						"width": 4
 					},
 					"title": "JS Errors by URI",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM JavaScriptError FACET requestUri SINCE 1 day ago"
-								}
-							]
-						},
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -6095,30 +2980,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 9,
-						"row": 46,
+						"row": 43,
 						"height": 3,
 						"width": 4
 					},
 					"title": "JS Errors Count",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM JavaScriptError SINCE 1 day ago TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -6129,30 +3000,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 1,
-						"row": 49,
+						"row": 46,
 						"height": 3,
 						"width": 4
 					},
 					"title": "JS Errors by Browser version",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM JavaScriptError FACET userAgentVersion SINCE 1 day ago"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -6163,30 +3020,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
-						"column": 5,
-						"row": 49,
+						"column": 9,
+						"row": 46,
 						"height": 3,
-						"width": 8
+						"width": 4
 					},
 					"title": "JS Errors Related Transactions (APM)",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM JavaScriptError SINCE 1 hour ago FACET transactionName"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -6197,30 +3040,16 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.table"
+					},
 					"layout": {
-						"column": 1,
-						"row": 52,
+						"column": 5,
+						"row": 49,
 						"height": 3,
-						"width": 12
+						"width": 8
 					},
 					"title": "JS Errors Stack Trace Context",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM JavaScriptError FACET stackTrace SINCE 1 day ago"
-								}
-							]
-						},
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -6237,7 +3066,9 @@
 			"description": null,
 			"widgets": [
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.markdown"
+					},
 					"layout": {
 						"column": 1,
 						"row": 1,
@@ -6245,23 +3076,14 @@
 						"width": 4
 					},
 					"title": "",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": {
-							"text": "![Image](https://newrelic.com/content/dam/component-assets/u03-navigation/logo-synthetics.svg)\n* Number of checks follow-up\n* Availability Analysis\n* Performance Analysis\n* Third Party Analysis\n* [Dive deeper into Synthetic Monitoring](https://synthetics.newrelic.com/accounts/2119955/monitors)"
-						}
-					},
 					"rawConfiguration": {
 						"text": "![Image](https://newrelic.com/content/dam/component-assets/u03-navigation/logo-synthetics.svg)\n* Number of checks follow-up\n* Availability Analysis\n* Performance Analysis\n* Third Party Analysis\n* [Dive deeper into Synthetic Monitoring](https://synthetics.newrelic.com/accounts/2119955/monitors)"
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 5,
 						"row": 1,
@@ -6269,23 +3091,6 @@
 						"width": 4
 					},
 					"title": "# Nb of checks trend",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM SyntheticCheck  SINCE 1 day ago COMPARE WITH  1 day ago"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -6296,7 +3101,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 9,
 						"row": 1,
@@ -6304,22 +3111,6 @@
 						"width": 4
 					},
 					"title": "Number of Checks by Status",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM SyntheticCheck FACET result  since 1 day ago"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -6330,7 +3121,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 1,
 						"row": 4,
@@ -6338,23 +3131,6 @@
 						"width": 4
 					},
 					"title": "Request & Response Total Size (KB) over time",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "from SyntheticCheck select average(totalRequestHeaderSize+totalRequestBodySize)/1000 as 'Request Size (KB)', average(totalResponseBodySize)/1000 as 'Response Size (KB)'"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -6365,7 +3141,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
 						"row": 4,
@@ -6373,22 +3151,6 @@
 						"width": 4
 					},
 					"title": "Request & Response Total Size (KB) over time",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "from SyntheticCheck select average(totalRequestHeaderSize+totalRequestBodySize)/1000 as 'Request Size (KB)', average(totalResponseBodySize)/1000 as 'Response Size (KB)' since 1 day ago TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -6399,7 +3161,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 9,
 						"row": 4,
@@ -6407,22 +3171,6 @@
 						"width": 4
 					},
 					"title": "Number of Checks by Monitor",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM SyntheticCheck FACET monitorName since 1 day ago"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -6433,7 +3181,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bullet"
+					},
 					"layout": {
 						"column": 1,
 						"row": 7,
@@ -6441,7 +3191,6 @@
 						"width": 4
 					},
 					"title": "Global Synthetics Availability",
-					"configuration": null,
 					"rawConfiguration": {
 						"limit": 100,
 						"queries": [
@@ -6453,7 +3202,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
 						"row": 7,
@@ -6461,22 +3212,6 @@
 						"width": 4
 					},
 					"title": "Availability by Location",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentage(count(result), WHERE result = 'SUCCESS') as 'Availability' FROM SyntheticCheck  SINCE 1 day ago FACET locationLabel TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -6487,7 +3222,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 9,
 						"row": 7,
@@ -6495,22 +3232,6 @@
 						"width": 4
 					},
 					"title": "Availability by Location",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentage(count(result), WHERE result = 'SUCCESS') as 'Availability' FROM SyntheticCheck  SINCE 1 day ago FACET locationLabel"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -6521,7 +3242,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 1,
 						"row": 10,
@@ -6529,33 +3252,19 @@
 						"width": 8
 					},
 					"title": "Availability by monitor",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentage(count(result), WHERE result = 'SUCCESS') as 'Taux de dispo' FROM SyntheticCheck SINCE 1 day ago FACET monitorName TIMESERIES 15 minutes"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT percentage(count(result), WHERE result = 'SUCCESS') as 'Taux de dispo' FROM SyntheticCheck SINCE 1 day ago FACET monitorName TIMESERIES 15 minutes"
+								"nrql": "SELECT percentage(count(result), WHERE result = 'SUCCESS') as 'Availability' FROM SyntheticCheck SINCE 1 day ago FACET monitorName TIMESERIES 15 minutes"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 9,
 						"row": 10,
@@ -6563,22 +3272,6 @@
 						"width": 4
 					},
 					"title": "Availability per monitor",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentage(count(result), WHERE result = 'SUCCESS') as 'Availability' FROM SyntheticCheck  SINCE 1 day ago FACET monitorName"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -6589,7 +3282,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 1,
 						"row": 13,
@@ -6597,33 +3292,19 @@
 						"width": 8
 					},
 					"title": "Average duration by monitor",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) as 'Durée ms'  FROM SyntheticCheck SINCE 1 day ago FACET monitorName TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(duration) as 'Durée ms'  FROM SyntheticCheck SINCE 1 day ago FACET monitorName TIMESERIES"
+								"nrql": "SELECT average(duration) FROM SyntheticCheck SINCE 1 day ago FACET monitorName TIMESERIES"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 9,
 						"row": 13,
@@ -6631,22 +3312,6 @@
 						"width": 4
 					},
 					"title": "Average duration per monitor",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) as 'Durée ms' FROM SyntheticCheck  FACET monitorName SINCE 1 day ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -6657,7 +3322,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 1,
 						"row": 16,
@@ -6665,34 +3332,19 @@
 						"width": 4
 					},
 					"title": "Percentiles vs Average Duration",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) as 'Average', percentile(duration, 10) as 'p10th', percentile(duration, 50) as 'p50th', percentile(duration, 90) as 'p90th' FROM SyntheticCheck WHERE monitorName not like '%API Analytics%'  SINCE 1 day ago"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(duration) as 'Average', percentile(duration, 10) as 'p10th', percentile(duration, 50) as 'p50th', percentile(duration, 90) as 'p90th' FROM SyntheticCheck WHERE monitorName not like '%API Analytics%'  SINCE 1 day ago"
+								"nrql": "SELECT average(duration) as 'Average', percentile(duration, 10) as 'p10th', percentile(duration, 50) as 'p50th', percentile(duration, 90) as 'p90th' FROM SyntheticCheck SINCE 1 day ago"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
 						"row": 16,
@@ -6700,33 +3352,19 @@
 						"width": 4
 					},
 					"title": "Percentiles vs Average Full Page Load",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) as 'Average', percentile(duration, 10) as 'p10th', percentile(duration, 50) as 'p50th', percentile(duration, 90) as 'p90th' FROM SyntheticCheck WHERE monitorName not like '%API Analytics%'  SINCE 1 day ago TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(duration) as 'Average', percentile(duration, 10) as 'p10th', percentile(duration, 50) as 'p50th', percentile(duration, 90) as 'p90th' FROM SyntheticCheck WHERE monitorName not like '%API Analytics%'  SINCE 1 day ago TIMESERIES"
+								"nrql": "SELECT average(duration) as 'Average', percentile(duration, 10) as 'p10th', percentile(duration, 50) as 'p50th', percentile(duration, 90) as 'p90th' FROM SyntheticCheck SINCE 1 day ago TIMESERIES"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 9,
 						"row": 16,
@@ -6734,22 +3372,6 @@
 						"width": 4
 					},
 					"title": "Duration per Step",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) FROM SyntheticRequest  FACET pageref since 1 day ago limit 20"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -6760,7 +3382,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.area"
+					},
 					"layout": {
 						"column": 1,
 						"row": 19,
@@ -6768,22 +3392,6 @@
 						"width": 8
 					},
 					"title": "Duration per Step",
-					"configuration": {
-						"area": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) FROM SyntheticRequest  FACET pageref TIMESERIES since 1 day ago"
-								}
-							]
-						},
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -6794,7 +3402,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 1,
 						"row": 22,
@@ -6802,22 +3412,6 @@
 						"width": 4
 					},
 					"title": "Slow Domains",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) FROM SyntheticRequest FACET host SINCE 1 day  AGO"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -6828,7 +3422,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.area"
+					},
 					"layout": {
 						"column": 5,
 						"row": 22,
@@ -6836,22 +3432,6 @@
 						"width": 8
 					},
 					"title": "Slow Domains over Time",
-					"configuration": {
-						"area": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) FROM SyntheticRequest FACET host SINCE 1 day  AGO TIMESERIES"
-								}
-							]
-						},
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -6862,7 +3442,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 1,
 						"row": 25,
@@ -6870,22 +3452,6 @@
 						"width": 4
 					},
 					"title": "Requests Count per Domain",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM SyntheticRequest FACET host  SINCE 1 day  AGO"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -6896,7 +3462,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
 						"row": 25,
@@ -6904,22 +3472,6 @@
 						"width": 4
 					},
 					"title": "Requests by Content Category",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(contentCategory) FROM SyntheticRequest FACET contentCategory since 1 day ago TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -6930,7 +3482,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 9,
 						"row": 25,
@@ -6938,22 +3492,6 @@
 						"width": 4
 					},
 					"title": "Requests by Content Category",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(contentCategory) FROM SyntheticRequest FACET contentCategory since 1 day ago"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -6964,7 +3502,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 1,
 						"row": 28,
@@ -6972,22 +3512,6 @@
 						"width": 4
 					},
 					"title": "Slow objects",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) FROM SyntheticRequest  FACET path SINCE 1 day  AGO"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -6998,7 +3522,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
 						"row": 28,
@@ -7006,22 +3532,6 @@
 						"width": 4
 					},
 					"title": "Average & Median Duration per Request",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) as 'Average', percentile(duration,50) as 'Median' FROM SyntheticRequest SINCE 1 day  AGO TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -7032,7 +3542,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 9,
 						"row": 28,
@@ -7040,22 +3552,6 @@
 						"width": 4
 					},
 					"title": "Requests Types",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(verb) as 'HTTP Requests' FROM SyntheticRequest FACET verb since 1 day ago"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -7066,7 +3562,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.table"
+					},
 					"layout": {
 						"column": 1,
 						"row": 31,
@@ -7074,22 +3572,6 @@
 						"width": 12
 					},
 					"title": "Content Detail by URL",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) as 'Avg Duration', percentile(duration,50) as 'Median', percentile(duration,90) as '90th Percentile', count(hierarchicalURL) as 'Count'  FROM SyntheticRequest FACET hierarchicalURL, domain, verb,contentCategory, contentType  limit 20"
-								}
-							]
-						},
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -7106,7 +3588,9 @@
 			"description": null,
 			"widgets": [
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.markdown"
+					},
 					"layout": {
 						"column": 1,
 						"row": 1,
@@ -7114,23 +3598,14 @@
 						"width": 4
 					},
 					"title": "",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": {
-							"text": "![Image](https://newrelic.com/content/dam/component-assets/u03-navigation/logo-mobile.svg)\n\n[Dive deeper into Mobile Performance](https://rpm.newrelic.com/accounts/1606862/mobile/61690778)"
-						}
-					},
 					"rawConfiguration": {
 						"text": "![Image](https://newrelic.com/content/dam/component-assets/u03-navigation/logo-mobile.svg)\n\n[Dive deeper into Mobile Performance](https://rpm.newrelic.com/accounts/1606862/mobile/61690778)"
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 5,
 						"row": 1,
@@ -7138,23 +3613,6 @@
 						"width": 4
 					},
 					"title": "Mobile Sessions",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) AS 'sessions' FROM Mobile SINCE 1 week ago COMPARE WITH 1 week ago"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -7165,7 +3623,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bullet"
+					},
 					"layout": {
 						"column": 9,
 						"row": 1,
@@ -7173,7 +3633,6 @@
 						"width": 4
 					},
 					"title": "Unique Mobile Users",
-					"configuration": null,
 					"rawConfiguration": {
 						"limit": 1000,
 						"queries": [
@@ -7185,7 +3644,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.area"
+					},
 					"layout": {
 						"column": 1,
 						"row": 4,
@@ -7193,22 +3654,6 @@
 						"width": 4
 					},
 					"title": "App usage by version",
-					"configuration": {
-						"area": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(responseTime) from MobileRequest facet appVersion TIMESERIES since  1 week ago"
-								}
-							]
-						},
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -7219,7 +3664,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 5,
 						"row": 4,
@@ -7227,22 +3674,6 @@
 						"width": 4
 					},
 					"title": "Device Model Distribution",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT Count(*)  FROM MobileRequest SINCE 1 day ago facet deviceModel"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -7253,7 +3684,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 9,
 						"row": 4,
@@ -7261,22 +3694,6 @@
 						"width": 4
 					},
 					"title": "Slowest HTTP Requests by Device Model",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "from MobileRequest select average(responseTime) facet deviceModel"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -7287,7 +3704,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 1,
 						"row": 7,
@@ -7295,22 +3714,6 @@
 						"width": 4
 					},
 					"title": "Device Manufacturers Distribution",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "select count(*) FROM Mobile SINCE 1 day ago  facet deviceManufacturer"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -7321,41 +3724,29 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
 						"row": 7,
 						"height": 3,
 						"width": 4
 					},
-					"title": "Device Model HTTP Performance",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(responseTime)  FROM MobileRequest   SINCE 1 day ago facet deviceModel"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
+					"title": "API Response time",
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(responseTime)  FROM MobileRequest   SINCE 1 day ago facet deviceModel"
+								"nrql": "SELECT average(duration) FROM Transaction SINCE 1 day ago COMPARE WITH 1 day ago TIMESERIES AUTO"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 9,
 						"row": 7,
@@ -7363,22 +3754,6 @@
 						"width": 4
 					},
 					"title": "Carrier Distribution",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "select count(*) from Mobile since 1 day ago facet carrier"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -7389,7 +3764,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 1,
 						"row": 10,
@@ -7397,22 +3774,6 @@
 						"width": 4
 					},
 					"title": "Historical Conversion Rate",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT uniqueCount(session) AS 'Site Visitors' FROM PageView SINCE 1 minute ago COMPARE WITH 1 week ago TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -7423,41 +3784,9 @@
 					}
 				},
 				{
-					"visualization": {},
-					"layout": {
-						"column": 5,
-						"row": 10,
-						"height": 3,
-						"width": 4
+					"visualization": {
+						"id": "viz.bar"
 					},
-					"title": "Device Model HTTP Performance",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(responseTime) FROM MobileRequest SINCE 1 day ago facet deviceModel TIMESERIES"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT average(responseTime) FROM MobileRequest SINCE 1 day ago facet deviceModel TIMESERIES"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
 					"layout": {
 						"column": 9,
 						"row": 10,
@@ -7465,22 +3794,6 @@
 						"width": 4
 					},
 					"title": "Time Spent in App by App Version",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(sessionDuration) FROM Mobile SINCE 1 week ago facet appVersion"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -7491,7 +3804,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 1,
 						"row": 13,
@@ -7499,22 +3814,6 @@
 						"width": 4
 					},
 					"title": "Device Manufacturers HTTP Performance",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(responseTime) from MobileRequest  facet deviceManufacturer since 1 day ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -7525,41 +3824,29 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 5,
 						"row": 13,
 						"height": 3,
 						"width": 4
 					},
-					"title": "CRASH by Device Model",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) from MobileCrash  SINCE 1 day ago facet deviceModel"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
+					"title": "Device Model HTTP Performance",
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) from MobileCrash  SINCE 1 day ago facet deviceModel"
+								"nrql": "SELECT average(responseTime)  FROM MobileRequest   SINCE 1 day ago facet deviceModel"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 9,
 						"row": 13,
@@ -7567,22 +3854,6 @@
 						"width": 4
 					},
 					"title": "Carrier HTTP Performance",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "select count(*) from Mobile since 1 day ago facet carrier"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -7593,7 +3864,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 1,
 						"row": 16,
@@ -7601,22 +3874,6 @@
 						"width": 4
 					},
 					"title": "Device Manufacturers HTTP Performance",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(responseTime) from MobileRequest  facet deviceManufacturer TIMESERIES  since 1 day ago"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -7627,41 +3884,29 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
 						"row": 16,
 						"height": 3,
 						"width": 4
 					},
-					"title": "Session Duration by Device Model",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(sessionDuration) FROM MobileRequest SINCE 1 day ago facet deviceModel"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
+					"title": "Device Model HTTP Performance",
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(sessionDuration) FROM MobileRequest SINCE 1 day ago facet deviceModel"
+								"nrql": "SELECT average(responseTime) FROM MobileRequest SINCE 1 day ago facet deviceModel TIMESERIES"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 9,
 						"row": 16,
@@ -7669,22 +3914,6 @@
 						"width": 4
 					},
 					"title": "Carrier HTTP Performance",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "select count(*) from Mobile since 1 day ago facet carrier"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -7695,7 +3924,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 1,
 						"row": 19,
@@ -7703,22 +3934,6 @@
 						"width": 4
 					},
 					"title": "CRASH by Device Manufacturers",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) from MobileCrash  facet deviceManufacturer since 1 day ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -7729,41 +3944,29 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 5,
 						"row": 19,
 						"height": 3,
 						"width": 4
 					},
-					"title": "Mobile App Crash by Version",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM MobileCrash  WHERE crashFingerprint NOT IN(  ) FACET `appVersion` since 1 day ago"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
+					"title": "CRASH by Device Model",
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) FROM MobileCrash  WHERE crashFingerprint NOT IN(  ) FACET `appVersion` since 1 day ago"
+								"nrql": "SELECT count(*) from MobileCrash  SINCE 1 day ago facet deviceModel"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 9,
 						"row": 19,
@@ -7771,22 +3974,6 @@
 						"width": 4
 					},
 					"title": "CRASH by Carrier",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) from MobileCrash since 1 day ago facet carrier"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -7797,7 +3984,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.pie"
+					},
 					"layout": {
 						"column": 1,
 						"row": 22,
@@ -7805,22 +3994,6 @@
 						"width": 4
 					},
 					"title": "Mobile App Usage by Version",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(responseTime) from MobileRequest facet appVersion"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -7831,35 +4004,61 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 5,
 						"row": 22,
 						"height": 3,
-						"width": 8
+						"width": 4
+					},
+					"title": "Session Duration by Device Model",
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT average(sessionDuration) FROM MobileRequest SINCE 1 day ago facet deviceModel"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.area"
+					},
+					"layout": {
+						"column": 9,
+						"row": 22,
+						"height": 3,
+						"width": 4
 					},
 					"title": "Mobile App Crash by Version over time",
-					"configuration": {
-						"area": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM MobileCrash  WHERE crashFingerprint NOT IN(  ) FACET `appVersion` since 1 day ago TIMESERIES"
-								}
-							]
-						},
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
 								"nrql": "SELECT count(*) FROM MobileCrash  WHERE crashFingerprint NOT IN(  ) FACET `appVersion` since 1 day ago TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 5,
+						"row": 25,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Mobile App Crash by Version",
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT count(*) FROM MobileCrash  WHERE crashFingerprint NOT IN(  ) FACET `appVersion` since 1 day ago"
 							}
 						]
 					}

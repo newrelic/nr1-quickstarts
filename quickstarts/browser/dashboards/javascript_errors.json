@@ -17,22 +17,6 @@
 						"width": 4
 					},
 					"title": "JS Errors by Application",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM JavaScriptError SINCE 1 hour ago FACET appName"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -53,22 +37,6 @@
 						"width": 4
 					},
 					"title": "Top 50 JS Error",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM  JavaScriptError FACET errorClass SINCE 1 day ago LIMIT 50"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -89,22 +57,6 @@
 						"width": 4
 					},
 					"title": "Related JS Error Messages",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM  JavaScriptError FACET errorMessage SINCE 1 day ago LIMIT 50"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -125,22 +77,6 @@
 						"width": 4
 					},
 					"title": "JS Errors by Device Type",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM  JavaScriptError FACET deviceType SINCE 1 day ago LIMIT 50"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -161,22 +97,6 @@
 						"width": 4
 					},
 					"title": "JS Error by Related Backend Transaction",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM JavaScriptError SINCE 1 hour ago FACET transactionName"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -197,22 +117,6 @@
 						"width": 4
 					},
 					"title": "Error by Request Uri",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM  JavaScriptError FACET requestUri SINCE 1 day ago LIMIT 50"
-								}
-							]
-						},
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -233,22 +137,6 @@
 						"width": 4
 					},
 					"title": "JS Errors by Agent OS",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM  JavaScriptError FACET userAgentOS SINCE 1 day ago LIMIT 50"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -269,22 +157,6 @@
 						"width": 4
 					},
 					"title": "JS Errors by Browser",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM  JavaScriptError FACET userAgentName SINCE 1 day ago LIMIT 50"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -305,22 +177,6 @@
 						"width": 4
 					},
 					"title": "Related Browser Versions",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM  JavaScriptError FACET userAgentVersion SINCE 1 day ago LIMIT 50"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -341,22 +197,6 @@
 						"width": 12
 					},
 					"title": "Daily Running JS Error Count",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM  JavaScriptError SINCE 1 day ago TIMESERIES AUTO"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -377,22 +217,6 @@
 						"width": 12
 					},
 					"title": "Stack Trace Context",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM JavaScriptError FACET stackTrace  SINCE 1 day ago"
-								}
-							]
-						},
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{

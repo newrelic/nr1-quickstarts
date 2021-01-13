@@ -7,7 +7,9 @@
 			"description": "",
 			"widgets": [
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.markdown"
+					},
 					"layout": {
 						"column": 1,
 						"row": 1,
@@ -15,23 +17,14 @@
 						"width": 3
 					},
 					"title": "",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": {
-							"text": "# Container Restarts\n---\n![Container](https://github.com/kubernetes/community/blob/master/icons/png/resources/unlabeled/pod-128.png?raw=true)\n\nContainer restarts are **usually** not a good thing.  This dashboard will help identify the biggest offenders and where they are currently _trying_ to run."
-						}
-					},
 					"rawConfiguration": {
 						"text": "# Container Restarts\n---\n![Container](https://github.com/kubernetes/community/blob/master/icons/png/resources/unlabeled/pod-128.png?raw=true)\n\nContainer restarts are **usually** not a good thing.  This dashboard will help identify the biggest offenders and where they are currently _trying_ to run."
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.table"
+					},
 					"layout": {
 						"column": 4,
 						"row": 1,
@@ -39,22 +32,6 @@
 						"width": 9
 					},
 					"title": "Container Restarts",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "FROM K8sContainerSample select max(restartCount), latest(reason) where restartCount > 0 order by restartCount facet containerName, podName, clusterName since 30 minutes ago limit 1000"
-								}
-							]
-						},
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{

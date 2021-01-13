@@ -7,375 +7,221 @@
 			"description": "",
 			"widgets": [
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 1,
 						"row": 1,
 						"height": 3,
-						"width": 4
+						"width": 2
 					},
-					"title": "Golden Signals Latency - HTTP 200",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(totalTime, 50, 95) FROM Transaction WHERE httpResponseCode = '200' SINCE 1 day ago FACET appName limit 5"
-								}
-							]
-						},
-						"markdown": null
-					},
+					"title": "Availability",
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT percentile(totalTime, 50, 95) FROM Transaction WHERE httpResponseCode = '200' SINCE 1 day ago FACET appName limit 5"
+								"nrql": "FROM Transaction SELECT percentage(COUNT(*), WHERE error IS false) as '' since 1 week ago"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
-						"column": 5,
+						"column": 3,
 						"row": 1,
 						"height": 3,
 						"width": 4
 					},
-					"title": "Golden Signals Latency - HTTP 500",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(totalTime, 50, 95) FROM Transaction WHERE httpResponseCode = '500' SINCE 1 day ago FACET appName limit 5"
-								}
-							]
-						},
-						"markdown": null
-					},
+					"title": "Availability per Microservices",
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT percentile(totalTime, 50, 95) FROM Transaction WHERE httpResponseCode = '500' SINCE 1 day ago FACET appName limit 5"
+								"nrql": "FROM Transaction SELECT percentage(count(*), WHERE error is false) facet appName since 1 week ago"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 7,
+						"row": 1,
+						"height": 3,
+						"width": 2
+					},
+					"title": "Latency (Percentile)",
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "SELECT percentile(duration, 50, 90, 99) as 'sec' from Transaction "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.heatmap"
+					},
 					"layout": {
 						"column": 9,
 						"row": 1,
 						"height": 3,
 						"width": 4
 					},
-					"title": "Golden Signals Traffic - Throughput Per Minute",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT rate(count(*), 1 minute) AS 'Requests per Minute' FROM Transaction FACET appName since 1 day ago TIMESERIES 10 minute EXTRAPOLATE limit 5"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
+					"title": "Latency Histgram",
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT rate(count(*), 1 minute) AS 'Requests per Minute' FROM Transaction FACET appName since 1 day ago TIMESERIES 10 minute EXTRAPOLATE limit 5"
+								"nrql": "SELECT histogram(duration, 5, 10) from Transaction facet request.uri since 1 week ago"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 1,
 						"row": 4,
 						"height": 3,
-						"width": 4
+						"width": 3
 					},
-					"title": "Golden Signals Errors - HTTP 3xx, 4xx & 5xx",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT filter(count(*), WHERE httpResponseCode LIKE '3%' as '3xx'), filter(count(*), WHERE httpResponseCode LIKE '4%' as '4xx'), filter(count(*), WHERE httpResponseCode LIKE '5%' as '5xx') FROM Transaction SINCE 1 day ago FACET appName limit 5"
-								}
-							]
-						},
-						"markdown": null
-					},
+					"title": "Throughput",
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT filter(count(*), WHERE httpResponseCode LIKE '3%' as '3xx'), filter(count(*), WHERE httpResponseCode LIKE '4%' as '4xx'), filter(count(*), WHERE httpResponseCode LIKE '5%' as '5xx') FROM Transaction SINCE 1 day ago FACET appName limit 5"
+								"nrql": "FROM Transaction SELECT rate(count(*), 1 minute) timeseries"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
-						"column": 5,
+						"column": 4,
 						"row": 4,
 						"height": 3,
-						"width": 4
+						"width": 3
 					},
-					"title": "Golden Signals Errors - Top 5 Unhandled Errors",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM TransactionError FACET error.class SINCE 1 day ago TIMESERIES 10 minutes limit 5 EXTRAPOLATE"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
+					"title": "Throughput per URI",
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) FROM TransactionError FACET error.class SINCE 1 day ago TIMESERIES 10 minutes limit 5 EXTRAPOLATE"
+								"nrql": "FROM Transaction SELECT rate(count(*), 1 minute) facet request.uri timeseries"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
-						"column": 9,
+						"column": 7,
 						"row": 4,
 						"height": 3,
-						"width": 4
+						"width": 3
 					},
-					"title": "Golden Signals Saturation - Database",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(databaseDuration, 50, 95) FROM Transaction SINCE 1 day ago FACET appName limit 5"
-								}
-							]
-						},
-						"markdown": null
-					},
+					"title": "Error trend by app-service",
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT percentile(databaseDuration, 50, 95) FROM Transaction SINCE 1 day ago FACET appName limit 5"
+								"nrql": "SELECT count(*) from TransactionError TIMESERIES facet appName"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 10,
+						"row": 4,
+						"height": 3,
+						"width": 3
+					},
+					"title": "Backend Errors - App Services",
+					"rawConfiguration": {
+						"queries": [
+							{
+								"accountId": 0,
+								"nrql": "FROM Transaction SELECT count(*) facet errorType, appName where errorMessage  IS NOT NULL since 10 minutes ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 1,
 						"row": 7,
 						"height": 3,
 						"width": 4
 					},
-					"title": "Golden Signals Saturation - Top 5 CPU Util %",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(cpuPercent) FROM SystemSample FACET `entityName` SINCE 1 day ago TIMESERIES 30 minutes limit 5 EXTRAPOLATE"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
+					"title": "CPU % trend by Hostname",
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(cpuPercent) FROM SystemSample FACET `entityName` SINCE 1 day ago TIMESERIES 30 minutes limit 5 EXTRAPOLATE"
+								"nrql": "FROM SystemSample SELECT average(cpuPercent) facet hostname TIMESERIES Since 10 minutes ago"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 5,
 						"row": 7,
 						"height": 3,
 						"width": 4
 					},
-					"title": "Golden Signals Saturation - Top 5 Mem Util %",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(memoryUsedBytes/memoryTotalBytes*100) FROM SystemSample FACET `entityName` SINCE 1 day ago TIMESERIES 10 minutes LIMIT 5 EXTRAPOLATE"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
+					"title": "Memory % trend by Hostname",
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(memoryUsedBytes/memoryTotalBytes*100) FROM SystemSample FACET `entityName` SINCE 1 day ago TIMESERIES 10 minutes LIMIT 5 EXTRAPOLATE"
+								"nrql": "FROM SystemSample SELECT average(memoryUsedBytes/memoryTotalBytes)*100 facet hostname TIMESERIES Since 10 minutes ago"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.line"
+					},
 					"layout": {
 						"column": 9,
 						"row": 7,
 						"height": 3,
 						"width": 4
 					},
-					"title": "Golden Signals Saturation - Top 5 Disk Util %",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(diskUtilizationPercent) FROM SystemSample FACET `entityName` SINCE 1 day ago TIMESERIES 30 minutes LIMIT 5"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
+					"title": "Transfer Rate (Bps)",
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(diskUtilizationPercent) FROM SystemSample FACET `entityName` SINCE 1 day ago TIMESERIES 30 minutes LIMIT 5"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 1,
-						"row": 10,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Golden Signals Saturation - Top 5 Receive Bytes",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(receiveBytesPerSecond) FROM NetworkSample FACET `entityName` SINCE 1 day ago TIMESERIES 30 minutes  LIMIT 5"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT average(receiveBytesPerSecond) FROM NetworkSample FACET `entityName` SINCE 1 day ago TIMESERIES 30 minutes  LIMIT 5"
-							}
-						]
-					}
-				},
-				{
-					"visualization": {},
-					"layout": {
-						"column": 5,
-						"row": 10,
-						"height": 3,
-						"width": 4
-					},
-					"title": "Golden Signals Saturation - Apps with high disk util",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(totalUtilizationPercent) FROM StorageSample FACET `entityName` SINCE 1 day ago LIMIT 5"
-								}
-							]
-						},
-						"markdown": null
-					},
-					"rawConfiguration": {
-						"queries": [
-							{
-								"accountId": 0,
-								"nrql": "SELECT average(totalUtilizationPercent) FROM StorageSample FACET `entityName` SINCE 1 day ago LIMIT 5"
+								"nrql": "FROM NetworkSample SELECT average(transmitBytesPerSecond+receiveBytesPerSecond) facet hostname TIMESERIES "
 							}
 						]
 					}

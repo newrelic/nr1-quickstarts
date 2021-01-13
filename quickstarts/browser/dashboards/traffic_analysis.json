@@ -17,22 +17,6 @@
 						"width": 4
 					},
 					"title": "Browser",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET userAgentName SINCE 1 day ago"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -53,22 +37,6 @@
 						"width": 4
 					},
 					"title": "Longest Sessions",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) , average(duration) as 'Avg' FROM PageView FACET session SINCE 1 day ago limit 25"
-								}
-							]
-						},
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -89,22 +57,6 @@
 						"width": 4
 					},
 					"title": "Country",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET countryCode SINCE 1 day ago"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -125,22 +77,6 @@
 						"width": 4
 					},
 					"title": "Browser Version",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET userAgentVersion SINCE 1 day ago"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -161,22 +97,6 @@
 						"width": 4
 					},
 					"title": "City",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET city SINCE 1 day ago"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -197,22 +117,6 @@
 						"width": 4
 					},
 					"title": "OS",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET userAgentOS SINCE 1 day ago"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -233,22 +137,6 @@
 						"width": 4
 					},
 					"title": "Slowest Sessions",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) as 'Avg', count(*) FROM PageView FACET session SINCE 1 day ago limit 25"
-								}
-							]
-						},
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -269,22 +157,6 @@
 						"width": 4
 					},
 					"title": "Device Type",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET deviceType WHERE deviceType != 'Unknown' SINCE 1 day ago"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -305,22 +177,6 @@
 						"width": 4
 					},
 					"title": "Top Page Hits",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM PageView FACET pageUrl SINCE 1 day ago"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -341,22 +197,6 @@
 						"width": 4
 					},
 					"title": "Pages Over Time",
-					"configuration": {
-						"area": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) from PageView  facet pageUrl since 1 day ago TIMESERIES"
-								}
-							]
-						},
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -377,22 +217,6 @@
 						"width": 12
 					},
 					"title": "Timestamp by Page",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT pageUrl, duration  FROM PageView since 1 day ago limit 300"
-								}
-							]
-						},
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{

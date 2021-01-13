@@ -17,17 +17,6 @@
 						"width": 4
 					},
 					"title": " ",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": {
-							"text": "![Image](https://s3.amazonaws.com/nr-cloud-adoption/CloudAdoption-Plan.png)\n"
-						}
-					},
 					"rawConfiguration": {
 						"text": "![Image](https://s3.amazonaws.com/nr-cloud-adoption/CloudAdoption-Plan.png)\n"
 					}
@@ -43,22 +32,6 @@
 						"width": 4
 					},
 					"title": "Highest activity apps",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM Transaction since 1 week ago FACET  appName"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -79,22 +52,6 @@
 						"width": 4
 					},
 					"title": "Average Response Time by app",
-					"configuration": {
-						"area": null,
-						"line": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT average(duration) FROM Transaction since 1 day ago FACET appName TIMESERIES AUTO"
-								}
-							]
-						},
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -115,23 +72,6 @@
 						"width": 4
 					},
 					"title": "Uptime SLA",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentage(count(*),where result = 'SUCCESS')   as 'Availability' from SyntheticCheck since 1 day ago COMPARE WITH 1 day ago"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -152,22 +92,6 @@
 						"width": 4
 					},
 					"title": "Application Response Codes",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT count(*) FROM Transaction since 1 day ago FACET  httpResponseCode"
-								}
-							]
-						},
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{

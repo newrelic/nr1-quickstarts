@@ -7,7 +7,9 @@
 			"description": "",
 			"widgets": [
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.markdown"
+					},
 					"layout": {
 						"column": 1,
 						"row": 1,
@@ -15,23 +17,14 @@
 						"width": 4
 					},
 					"title": "",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": {
-							"text": "* ![Add Images](https://docs.newrelic.com/sites/default/files/thumbnails/image/core-web-vitals_0.png)\n"
-						}
-					},
 					"rawConfiguration": {
 						"text": "* ![Add Images](https://docs.newrelic.com/sites/default/files/thumbnails/image/core-web-vitals_0.png)\n"
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 5,
 						"row": 1,
@@ -39,34 +32,19 @@
 						"width": 3
 					},
 					"title": "Largest Contentful Paint (LCP)",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(largestContentfulPaint, 75) FROM PageViewTiming WHERE timingName = 'largestContentfulPaint'"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT percentile(largestContentfulPaint, 75) FROM PageViewTiming WHERE timingName = 'largestContentfulPaint'"
+								"nrql": "SELECT percentile(largestContentfulPaint, 75) FROM PageViewTiming WHERE timingName = 'largestContentfulPaint' FACET appName"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 8,
 						"row": 1,
@@ -74,34 +52,19 @@
 						"width": 2
 					},
 					"title": "First Input Delay (FID) (ms)",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(firstInputDelay, 75) FROM PageViewTiming WHERE AND timingName = 'firstInteraction'"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT percentile(firstInputDelay, 75) FROM PageViewTiming WHERE timingName = 'firstInteraction'"
+								"nrql": "SELECT percentile(firstInputDelay, 75) FROM PageViewTiming WHERE timingName = 'firstInteraction' FACET appName"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 10,
 						"row": 1,
@@ -109,34 +72,19 @@
 						"width": 3
 					},
 					"title": "Cumulative Layout Shift Score (CLS)",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(cumulativeLayoutShift, 75) FROM PageViewTiming  WHERE cumulativeLayoutShift IS NOT NULL AND timingName = 'firstContentfulPaint'"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT percentile(cumulativeLayoutShift, 75) FROM PageViewTiming  WHERE cumulativeLayoutShift IS NOT NULL AND timingName = 'firstContentfulPaint'"
+								"nrql": "SELECT percentile(cumulativeLayoutShift, 75) FROM PageViewTiming  WHERE cumulativeLayoutShift IS NOT NULL AND timingName = 'firstContentfulPaint' FACET appName"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 5,
 						"row": 3,
@@ -144,34 +92,19 @@
 						"width": 2
 					},
 					"title": "LCP Rating",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentage(count(*), WHERE largestContentfulPaint < 2.5) AS 'good (< 2.5)', percentage(count(*), WHERE largestContentfulPaint >= 2.5 and largestContentfulPaint < 4) AS 'needs improvement (>= 2.5 < 4)', percentage(count(*), WHERE largestContentfulPaint >= 4) AS 'poor (>=4)' FROM PageViewTiming WHERE timingName = 'largestContentfulPaint'"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT percentage(count(*), WHERE largestContentfulPaint < 2.5) AS 'good (< 2.5)', percentage(count(*), WHERE largestContentfulPaint >= 2.5 and largestContentfulPaint < 4) AS 'needs improvement (>= 2.5 < 4)', percentage(count(*), WHERE largestContentfulPaint >= 4) AS 'poor (>=4)' FROM PageViewTiming WHERE AND timingName = 'largestContentfulPaint'"
+								"nrql": "SELECT percentage(count(*), WHERE largestContentfulPaint < 2.5) AS 'good (< 2.5)', percentage(count(*), WHERE largestContentfulPaint >= 2.5 and largestContentfulPaint < 4) AS 'needs improvement (>= 2.5 < 4)', percentage(count(*), WHERE largestContentfulPaint >= 4) AS 'poor (>=4)' FROM PageViewTiming WHERE timingName = 'largestContentfulPaint' FACET appName"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 7,
 						"row": 3,
@@ -179,34 +112,19 @@
 						"width": 2
 					},
 					"title": "FID Rating",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentage(count(*), WHERE firstInputDelay < 100) AS 'good (<100ms)', percentage(count(*), WHERE firstInputDelay >= 100 and firstInputDelay < 300) AS 'needs improvement (>=100 <300ms)', percentage(count(*), WHERE firstInputDelay >= 300) AS 'poor (> 300ms)' FROM PageViewTiming WHERE timingName = 'firstInteraction' since 1 week ago"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT percentage(count(*), WHERE firstInputDelay < 100) AS 'good (<100ms)', percentage(count(*), WHERE firstInputDelay >= 100 and firstInputDelay < 300) AS 'needs improvement (>=100 <300ms)', percentage(count(*), WHERE firstInputDelay >= 300) AS 'poor (> 300ms)' FROM PageViewTiming WHERE timingName = 'firstInteraction' since 1 week ago"
+								"nrql": "SELECT percentage(count(*), WHERE firstInputDelay < 100) AS 'good (<100ms)', percentage(count(*), WHERE firstInputDelay >= 100 and firstInputDelay < 300) AS 'needs improvement (>=100 <300ms)', percentage(count(*), WHERE firstInputDelay >= 300) AS 'poor (> 300ms)' FROM PageViewTiming WHERE timingName = 'firstInteraction' since 1 week ago FACET appName"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 9,
 						"row": 3,
@@ -214,34 +132,19 @@
 						"width": 2
 					},
 					"title": "CLS Rating",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentage(count(*), WHERE cumulativeLayoutShift < 0.1) AS 'good (< 0.1)', percentage(count(*), WHERE cumulativeLayoutShift >= 0.1 AND cumulativeLayoutShift < 0.25) AS 'needs improvement (>= 0.1 < 0.25)', percentage(count(*), WHERE cumulativeLayoutShift >= 0.25) AS 'poor (>=0.25)'  FROM PageViewTiming WHERE cumulativeLayoutShift IS NOT NULL AND timingName = 'firstContentfulPaint' "
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT percentage(count(*), WHERE cumulativeLayoutShift < 0.1) AS 'good (< 0.1)', percentage(count(*), WHERE cumulativeLayoutShift >= 0.1 AND cumulativeLayoutShift < 0.25) AS 'needs improvement (>= 0.1 < 0.25)', percentage(count(*), WHERE cumulativeLayoutShift >= 0.25) AS 'poor (>=0.25)'  FROM PageViewTiming WHERE cumulativeLayoutShift IS NOT NULL AND timingName = 'firstContentfulPaint' "
+								"nrql": "SELECT percentage(count(*), WHERE cumulativeLayoutShift < 0.1) AS 'good (< 0.1)', percentage(count(*), WHERE cumulativeLayoutShift >= 0.1 AND cumulativeLayoutShift < 0.25) AS 'needs improvement (>= 0.1 < 0.25)', percentage(count(*), WHERE cumulativeLayoutShift >= 0.25) AS 'poor (>=0.25)'  FROM PageViewTiming WHERE cumulativeLayoutShift IS NOT NULL AND timingName = 'firstContentfulPaint' FACET appName"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.bar"
+					},
 					"layout": {
 						"column": 11,
 						"row": 3,
@@ -249,22 +152,6 @@
 						"width": 2
 					},
 					"title": "First Input Delay (FID) (ms) - Interaction Type",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(firstInputDelay, 75) FROM PageViewTiming WHERE timingName = 'firstInteraction' FACET interactionType LIMIT max"
-								}
-							]
-						},
-						"billboard": null,
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
@@ -275,7 +162,9 @@
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 1,
 						"row": 6,
@@ -283,34 +172,19 @@
 						"width": 2
 					},
 					"title": "First Contentful Paint (FCP)",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(firstContentfulPaint, 75) as 'First Contentful Paint' FROM PageViewTiming "
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT percentile(firstContentfulPaint, 75) as 'First Contentful Paint' FROM PageViewTiming "
+								"nrql": "SELECT percentile(firstContentfulPaint, 75) as 'First Contentful Paint' FROM PageViewTiming FACET appName"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 3,
 						"row": 6,
@@ -318,34 +192,19 @@
 						"width": 2
 					},
 					"title": "PageHide",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(pageHide, 75) FROM PageViewTiming"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT percentile(pageHide, 75) FROM PageViewTiming"
+								"nrql": "SELECT percentile(pageHide, 75) FROM PageViewTiming FACET appName"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 5,
 						"row": 6,
@@ -353,34 +212,19 @@
 						"width": 2
 					},
 					"title": "LCP - Percentiles",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(largestContentfulPaint, 50), percentile(largestContentfulPaint, 75), percentile(largestContentfulPaint, 95), percentile(largestContentfulPaint, 99) FROM PageViewTiming WHERE timingName = 'largestContentfulPaint'"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT percentile(largestContentfulPaint, 50), percentile(largestContentfulPaint, 75), percentile(largestContentfulPaint, 95), percentile(largestContentfulPaint, 99) FROM PageViewTiming WHERE timingName = 'largestContentfulPaint'"
+								"nrql": "SELECT percentile(largestContentfulPaint, 50), percentile(largestContentfulPaint, 75), percentile(largestContentfulPaint, 95), percentile(largestContentfulPaint, 99) FROM PageViewTiming WHERE timingName = 'largestContentfulPaint' FACET appName"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 7,
 						"row": 6,
@@ -388,34 +232,19 @@
 						"width": 2
 					},
 					"title": "FID percentiles",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(firstInputDelay, 50), percentile(firstInputDelay, 75), percentile(firstInputDelay, 95), percentile(firstInputDelay, 99) FROM PageViewTiming WHERE timingName = 'firstInteraction'"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT percentile(firstInputDelay, 50), percentile(firstInputDelay, 75), percentile(firstInputDelay, 95), percentile(firstInputDelay, 99) FROM PageViewTiming WHERE timingName = 'firstInteraction'"
+								"nrql": "SELECT percentile(firstInputDelay, 50), percentile(firstInputDelay, 75), percentile(firstInputDelay, 95), percentile(firstInputDelay, 99) FROM PageViewTiming WHERE timingName = 'firstInteraction' FACET appName"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.billboard"
+					},
 					"layout": {
 						"column": 9,
 						"row": 6,
@@ -423,34 +252,19 @@
 						"width": 2
 					},
 					"title": "CLS Percentiles (score)",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(cumulativeLayoutShift, 50), percentile(cumulativeLayoutShift, 75), percentile(cumulativeLayoutShift, 95), percentile(cumulativeLayoutShift, 99) FROM PageViewTiming WHERE cumulativeLayoutShift IS NOT NULL AND timingName = 'firstContentfulPaint'"
-								}
-							],
-							"thresholds": null
-						},
-						"pie": null,
-						"table": null,
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT percentile(cumulativeLayoutShift, 50), percentile(cumulativeLayoutShift, 75), percentile(cumulativeLayoutShift, 95), percentile(cumulativeLayoutShift, 99) FROM PageViewTiming WHERE cumulativeLayoutShift IS NOT NULL AND timingName = 'firstContentfulPaint'"
+								"nrql": "SELECT percentile(cumulativeLayoutShift, 50), percentile(cumulativeLayoutShift, 75), percentile(cumulativeLayoutShift, 95), percentile(cumulativeLayoutShift, 99) FROM PageViewTiming WHERE cumulativeLayoutShift IS NOT NULL AND timingName = 'firstContentfulPaint' FACET appName"
 							}
 						]
 					}
 				},
 				{
-					"visualization": {},
+					"visualization": {
+						"id": "viz.table"
+					},
 					"layout": {
 						"column": 1,
 						"row": 9,
@@ -458,27 +272,11 @@
 						"width": 12
 					},
 					"title": "Click to Filter to Transaction Name",
-					"configuration": {
-						"area": null,
-						"line": null,
-						"bar": null,
-						"billboard": null,
-						"pie": null,
-						"table": {
-							"queries": [
-								{
-									"accountId": 0,
-									"nrql": "SELECT percentile(firstContentfulPaint, 75), percentile(largestContentfulPaint, 75), percentile(firstInputDelay, 75), max(firstInputDelay), filter(percentile(cumulativeLayoutShift, 75), WHERE timingName = 'firstContentfulPaint') as 'Cumulative Layout Shift', percentile(pageHide, 75) FROM PageViewTiming FACET browserTransactionName LIMIT 50"
-								}
-							]
-						},
-						"markdown": null
-					},
 					"rawConfiguration": {
 						"queries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT percentile(firstContentfulPaint, 75), percentile(largestContentfulPaint, 75), percentile(firstInputDelay, 75), max(firstInputDelay), filter(percentile(cumulativeLayoutShift, 75), WHERE timingName = 'firstContentfulPaint') as 'Cumulative Layout Shift', percentile(pageHide, 75) FROM PageViewTiming FACET browserTransactionName LIMIT 50"
+								"nrql": "SELECT percentile(firstContentfulPaint, 75), percentile(largestContentfulPaint, 75), percentile(firstInputDelay, 75), max(firstInputDelay), filter(percentile(cumulativeLayoutShift, 75), WHERE timingName = 'firstContentfulPaint') as 'Cumulative Layout Shift', percentile(pageHide, 75) FROM PageViewTiming WHERE FACET appName, browserTransactionName LIMIT 50"
 							}
 						]
 					}
