@@ -161,7 +161,7 @@ class View extends React.Component {
                                 <GridItem columnSpan={2} className="text-right">
                                     <Button
                                         onClick={(e) => { this.openTools(dashboard.filename) }}
-                                        type={Button.TYPE.PLAIN}
+                                        type={Button.TYPE.PRIMARY}
                                         iconType={Button.ICON_TYPE.INTERFACE__OPERATIONS__IMPORT}
                                     >Import</Button>
                                 </GridItem>
