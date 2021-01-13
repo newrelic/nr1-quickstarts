@@ -77,6 +77,7 @@ class Tools extends React.Component {
 
     closeTools() {
         this.setState({
+            dashboardGuid: null,
             toolsModalHidden: true
         });
     }
