@@ -90,7 +90,7 @@ class ExportModal extends React.Component {
                             #     markdown {
                             #         text
                             #     }
-                            }
+                            # }
                             rawConfiguration
                         }
                     }
@@ -185,7 +185,7 @@ class ExportModal extends React.Component {
                 let dashboard = response;
                 this.setState({
                     dashboardName: dashboard.name,
-                    dashboardJson: this.filterDashboard(dashboard), // This is probably not needed, but just to be sure ;)
+                    dashboardJson: this.filterDashboard(dashboard),
                     dashboardLoading: false,
                 });
             })
@@ -314,28 +314,44 @@ class ExportModal extends React.Component {
             }
         });
         data.then(results => {
-            console.log("created", results);
-            Toast.showToast({
-                title: 'Dashboard created',
-                description: 'The dashboard was copied to your selected account.',
-                type: Toast.TYPE.NORMAL
-            });
+            if ('errors' in results.data.dashboardCreate && results.data.dashboardCreate.errors !== null) {
+                console.log("Nerdgraph Error:", results);
+                this._importFail();
+                return;
+            }
 
-            this.setState({
-                submitted: false,
-            });
+            console.log("created", results);
+            this._importSuccess();
         }).catch((error) => {
             console.log('Nerdgraph Error:', error);
-            Toast.showToast({
-                title: 'Dashboard error',
-                description: 'An error occurred and the dashboard was not created, please try again at a later time.',
-                type: Toast.TYPE.CRITICAL
-            });
-
-            this.setState({
-                submitted: false,
-            });
+            this._importFail();
         })
+    }
+
+    _importSuccess() {
+        Toast.showToast({
+            title: 'Dashboard created',
+            description: 'The dashboard was copied to your selected account.',
+            type: Toast.TYPE.NORMAL
+        });
+
+        this.setState({
+            submitted: false,
+        });
+
+        this.closeModal();
+    }
+
+    _importFail() {
+        Toast.showToast({
+            title: 'Dashboard error',
+            description: 'An error occurred and the dashboard was not created, please try again at a later time.',
+            type: Toast.TYPE.CRITICAL
+        });
+
+        this.setState({
+            submitted: false,
+        });
     }
 
     render() {
