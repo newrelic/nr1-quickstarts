@@ -33,10 +33,10 @@
 					},
 					"title": "directorySize",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM directorySize SELECT max(directory.size.bytes) FACET directory.name"
+								"query": "FROM directorySize SELECT max(directory.size.bytes) FACET directory.name"
 							}
 						]
 					}
@@ -68,10 +68,10 @@
 					},
 					"title": "fileCount - /etc",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM fileCount SELECT max(`fileCount.totalFound`)"
+								"query": "FROM fileCount SELECT max(`fileCount.totalFound`)"
 							}
 						]
 					}
@@ -103,10 +103,10 @@
 					},
 					"title": "fileSize - /etc/*conf (MB)",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM fileSize SELECT max(`fileSize.fileSizeBytes`)/1024 AS 'MB' FACET `fileSize.fileName`"
+								"query": "FROM fileSize SELECT max(`fileSize.fileSizeBytes`)/1024 AS 'MB' FACET `fileSize.fileName`"
 							}
 						]
 					}
@@ -138,10 +138,10 @@
 					},
 					"title": "digCheck - google.com Response Time (ms)",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM digCheck SELECT max(dig.responseTime) FACET dig.recordIP"
+								"query": "FROM digCheck SELECT max(dig.responseTime) FACET dig.recordIP"
 							}
 						]
 					}
@@ -173,10 +173,10 @@
 					},
 					"title": "osqueryOpenSockets - Listening Ports",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM osqueryOpenSockets SELECT count(*) FACET pid, state, local_address, local_port, remote_address, remote_port WHERE state = 'LISTEN' LIMIT MAX"
+								"query": "FROM osqueryOpenSockets SELECT count(*) FACET pid, state, local_address, local_port, remote_address, remote_port WHERE state = 'LISTEN' LIMIT MAX"
 							}
 						]
 					}

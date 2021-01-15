@@ -33,10 +33,10 @@
 					},
 					"title": "Highest activity apps",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) FROM Transaction since 1 week ago FACET  appName"
+								"query": "SELECT count(*) FROM Transaction since 1 week ago FACET  appName"
 							}
 						]
 					}
@@ -53,10 +53,10 @@
 					},
 					"title": "Average Response Time by app",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(duration) FROM Transaction since 1 day ago FACET appName TIMESERIES AUTO"
+								"query": "SELECT average(duration) FROM Transaction since 1 day ago FACET appName TIMESERIES AUTO"
 							}
 						]
 					}
@@ -73,10 +73,10 @@
 					},
 					"title": "Uptime SLA",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT percentage(count(*),where result = 'SUCCESS')   as 'Availability' from SyntheticCheck since 1 day ago COMPARE WITH 1 day ago"
+								"query": "SELECT percentage(count(*),where result = 'SUCCESS')   as 'Availability' from SyntheticCheck since 1 day ago COMPARE WITH 1 day ago"
 							}
 						]
 					}
@@ -93,10 +93,10 @@
 					},
 					"title": "Application Response Codes",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) FROM Transaction since 1 day ago FACET  httpResponseCode"
+								"query": "SELECT count(*) FROM Transaction since 1 day ago FACET  httpResponseCode"
 							}
 						]
 					}

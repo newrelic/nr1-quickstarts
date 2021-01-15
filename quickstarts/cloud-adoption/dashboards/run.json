@@ -33,10 +33,10 @@
 					},
 					"title": "Response Time by Browser",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(duration) from PageView  facet userAgentName since 24 hours ago TIMESERIES"
+								"query": "SELECT average(duration) from PageView  facet userAgentName since 24 hours ago TIMESERIES"
 							}
 						]
 					}
@@ -53,10 +53,10 @@
 					},
 					"title": "Instances per region",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT uniqueCount(entityId) from ComputeSample WHERE provider ='Ec2Instance' FACET awsRegion"
+								"query": "SELECT uniqueCount(entityId) from ComputeSample WHERE provider ='Ec2Instance' FACET awsRegion"
 							}
 						]
 					}
@@ -73,10 +73,10 @@
 					},
 					"title": "Instance Tier Average CPU",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(cpuPercent) FROM SystemSample WHERE provider ='Ec2Instance' TIMESERIES FACET ec2InstanceType LIMIT 100"
+								"query": "SELECT average(cpuPercent) FROM SystemSample WHERE provider ='Ec2Instance' TIMESERIES FACET ec2InstanceType LIMIT 100"
 							}
 						]
 					}
@@ -93,10 +93,10 @@
 					},
 					"title": "Cost by Instance Type",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT max(`provider.forecastedAmount`) as 'Actual Amount' from FinanceSample where provider='BillingBudget' AND `provider.budgetName` LIKE 'EC2 %' facet `provider.budgetName` since 1 day ago"
+								"query": "SELECT max(`provider.forecastedAmount`) as 'Actual Amount' from FinanceSample where provider='BillingBudget' AND `provider.budgetName` LIKE 'EC2 %' facet `provider.budgetName` since 1 day ago"
 							}
 						]
 					}
@@ -113,10 +113,10 @@
 					},
 					"title": "Forecasted Cloud Cost",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT max(`provider.forecastedAmount`) FROM FinanceSample WHERE provider='BillingBudget' AND `provider.budgetType`='COST' TIMESERIES AUTO  SINCE yesterday FACET `provider.budgetName` LIMIT 5"
+								"query": "SELECT max(`provider.forecastedAmount`) FROM FinanceSample WHERE provider='BillingBudget' AND `provider.budgetType`='COST' TIMESERIES AUTO  SINCE yesterday FACET `provider.budgetName` LIMIT 5"
 							}
 						]
 					}

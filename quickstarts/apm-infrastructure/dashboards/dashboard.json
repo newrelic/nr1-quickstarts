@@ -18,10 +18,10 @@
 					},
 					"title": "Application Names",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(duration) FROM Transaction, ProcessSample FACET appName"
+								"query": "SELECT average(duration) FROM Transaction, ProcessSample FACET appName"
 							}
 						]
 					}
@@ -38,10 +38,10 @@
 					},
 					"title": "APM Response Time",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(duration) from Transaction TIMESERIES since 6 hours ago facet appName"
+								"query": "SELECT average(duration) from Transaction TIMESERIES since 6 hours ago facet appName"
 							}
 						]
 					}
@@ -58,10 +58,10 @@
 					},
 					"title": "Transaction Durations",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(duration) from Transaction facet name"
+								"query": "SELECT average(duration) from Transaction facet name"
 							}
 						]
 					}
@@ -78,10 +78,10 @@
 					},
 					"title": "CPU Usage (Infrastructure)",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM SystemSample SELECT average(cpuPercent) FACET hostname TIMESERIES since 6 hours ago"
+								"query": "FROM SystemSample SELECT average(cpuPercent) FACET hostname TIMESERIES since 6 hours ago"
 							}
 						]
 					}
@@ -98,10 +98,10 @@
 					},
 					"title": "CPU by Host (Infrastructure)",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM SystemSample SELECT average(cpuPercent) TIMESERIES since 6 hours ago facet hostname"
+								"query": "FROM SystemSample SELECT average(cpuPercent) TIMESERIES since 6 hours ago facet hostname"
 							}
 						]
 					}
@@ -118,10 +118,10 @@
 					},
 					"title": "Top Processes",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(cpuPercent) FROM ProcessSample  FACET processDisplayName  LIMIT 100 SINCE 60 minutes ago"
+								"query": "SELECT average(cpuPercent) FROM ProcessSample  FACET processDisplayName  LIMIT 100 SINCE 60 minutes ago"
 							}
 						]
 					}
@@ -138,10 +138,10 @@
 					},
 					"title": "Processes",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(cpuPercent) FROM ProcessSample TIMESERIES FACET processDisplayName  LIMIT 100 SINCE 60 minutes ago"
+								"query": "SELECT average(cpuPercent) FROM ProcessSample TIMESERIES FACET processDisplayName  LIMIT 100 SINCE 60 minutes ago"
 							}
 						]
 					}

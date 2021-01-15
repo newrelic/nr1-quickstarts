@@ -19,10 +19,10 @@
 					"title": "Checks",
 					"rawConfiguration": {
 						"limit": 5000,
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago"
+								"query": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago"
 							}
 						]
 					}
@@ -39,10 +39,10 @@
 					},
 					"title": "Location",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago FACET locationLabel LIMIT 10"
+								"query": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago FACET locationLabel LIMIT 10"
 							}
 						]
 					}
@@ -59,10 +59,10 @@
 					},
 					"title": "Result",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago FACET result"
+								"query": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago FACET result"
 							}
 						]
 					}
@@ -79,10 +79,10 @@
 					},
 					"title": "Monitor",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago FACET  monitorName"
+								"query": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago FACET  monitorName"
 							}
 						]
 					}
@@ -99,10 +99,10 @@
 					},
 					"title": "Monitor",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago FACET monitorName"
+								"query": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago FACET monitorName"
 							}
 						]
 					}
@@ -119,10 +119,10 @@
 					},
 					"title": "Weekly Availability",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT percentage(count(*), where result='SUCCESS') AS '' FROM SyntheticCheck SINCE 1 day ago"
+								"query": "SELECT percentage(count(*), where result='SUCCESS') AS '' FROM SyntheticCheck SINCE 1 day ago"
 							}
 						]
 					}
@@ -139,10 +139,10 @@
 					},
 					"title": "Request and Response Body Sizes",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(totalResponseBodySize) AS '' FROM SyntheticCheck SINCE 1 day ago FACET monitorName LIMIT 10"
+								"query": "SELECT average(totalResponseBodySize) AS '' FROM SyntheticCheck SINCE 1 day ago FACET monitorName LIMIT 10"
 							}
 						]
 					}
@@ -159,10 +159,10 @@
 					},
 					"title": "Check Duration",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(duration) AS '' FROM SyntheticCheck SINCE 1 day ago TIMESERIES AUTO"
+								"query": "SELECT average(duration) AS '' FROM SyntheticCheck SINCE 1 day ago TIMESERIES AUTO"
 							}
 						]
 					}
@@ -179,10 +179,10 @@
 					},
 					"title": "Type",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago FACET type"
+								"query": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago FACET type"
 							}
 						]
 					}

@@ -48,43 +48,43 @@ class ExportModal extends React.Component {
                             # Can enabled again the future when the API supports both
                             # configuration {
                             #     area {
-                            #         queries {
+                            #         nrqlQueries {
                             #             accountId
-                            #             nrql
+                            #             query
                             #         }
                             #    }
                             #     line {
-                            #         queries {
+                            #         nrqlQueries {
                             #             accountId
-                            #             nrql
+                            #             query
                             #         }
                             #    }
                             #     bar {
-                            #         queries {
+                            #         nrqlQueries {
                             #             accountId
-                            #             nrql
+                            #             query
                             #         }
                             #    }
                             #     billboard {
-                            #         queries {
+                            #         nrqlQueries {
                             #             accountId
-                            #             nrql
+                            #             query
                             #       }
                             #         thresholds {
                             #             alertSeverity
-                            #             value
+                            #             query
                             #         }
                             #   }
                             #     pie {
-                            #         queries {
+                            #         nrqlQueries {
                             #             accountId
-                            #             nrql
+                            #             query
                             #         }
                             #   }
                             #     table {
-                            #         queries {
+                            #         nrqlQueries {
                             #             accountId
-                            #             nrql
+                            #             query
                             #         }
                             #   }
                             #     markdown {
@@ -255,10 +255,10 @@ class ExportModal extends React.Component {
         // Set accountId to right value depending on case
         if (forImport) {
             // Dashboard is being imported, lets replace accountId with current set accountId
-            dashboardData = this.replaceAll(dashboardData, 'queries', 'accountId', this.state.accountId);
+            dashboardData = this.replaceAll(dashboardData, 'nrqlQueries', 'accountId', this.state.accountId);
         } else {
             // Change all accounts to 0, so we don't expose sensitive information
-            dashboardData = this.replaceAll(dashboardData, 'queries', 'accountId', 0);
+            dashboardData = this.replaceAll(dashboardData, 'nrqlQueries', 'accountId', 0);
         }
 
         return dashboardData;

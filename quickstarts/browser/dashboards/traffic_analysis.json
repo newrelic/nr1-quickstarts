@@ -18,10 +18,10 @@
 					},
 					"title": "Browser",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET userAgentName SINCE 1 day ago"
+								"query": "SELECT count(*) as 'Page Views' FROM PageView  FACET userAgentName SINCE 1 day ago"
 							}
 						]
 					}
@@ -38,10 +38,10 @@
 					},
 					"title": "Longest Sessions",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) , average(duration) as 'Avg' FROM PageView FACET session SINCE 1 day ago limit 25"
+								"query": "SELECT count(*) , average(duration) as 'Avg' FROM PageView FACET session SINCE 1 day ago limit 25"
 							}
 						]
 					}
@@ -58,10 +58,10 @@
 					},
 					"title": "Country",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET countryCode SINCE 1 day ago"
+								"query": "SELECT count(*) as 'Page Views' FROM PageView  FACET countryCode SINCE 1 day ago"
 							}
 						]
 					}
@@ -78,10 +78,10 @@
 					},
 					"title": "Browser Version",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET userAgentVersion SINCE 1 day ago"
+								"query": "SELECT count(*) as 'Page Views' FROM PageView  FACET userAgentVersion SINCE 1 day ago"
 							}
 						]
 					}
@@ -98,10 +98,10 @@
 					},
 					"title": "City",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET city SINCE 1 day ago"
+								"query": "SELECT count(*) as 'Page Views' FROM PageView  FACET city SINCE 1 day ago"
 							}
 						]
 					}
@@ -118,10 +118,10 @@
 					},
 					"title": "OS",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET userAgentOS SINCE 1 day ago"
+								"query": "SELECT count(*) as 'Page Views' FROM PageView  FACET userAgentOS SINCE 1 day ago"
 							}
 						]
 					}
@@ -138,10 +138,10 @@
 					},
 					"title": "Slowest Sessions",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(duration) as 'Avg', count(*) FROM PageView FACET session SINCE 1 day ago limit 25"
+								"query": "SELECT average(duration) as 'Avg', count(*) FROM PageView FACET session SINCE 1 day ago limit 25"
 							}
 						]
 					}
@@ -158,10 +158,10 @@
 					},
 					"title": "Device Type",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) as 'Page Views' FROM PageView  FACET deviceType WHERE deviceType != 'Unknown' SINCE 1 day ago"
+								"query": "SELECT count(*) as 'Page Views' FROM PageView  FACET deviceType WHERE deviceType != 'Unknown' SINCE 1 day ago"
 							}
 						]
 					}
@@ -178,10 +178,10 @@
 					},
 					"title": "Top Page Hits",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) FROM PageView FACET pageUrl SINCE 1 day ago"
+								"query": "SELECT count(*) FROM PageView FACET pageUrl SINCE 1 day ago"
 							}
 						]
 					}
@@ -198,10 +198,10 @@
 					},
 					"title": "Pages Over Time",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(duration) from PageView  facet pageUrl since 1 day ago TIMESERIES"
+								"query": "SELECT average(duration) from PageView  facet pageUrl since 1 day ago TIMESERIES"
 							}
 						]
 					}
@@ -218,10 +218,10 @@
 					},
 					"title": "Timestamp by Page",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT pageUrl, duration  FROM PageView since 1 day ago limit 300"
+								"query": "SELECT pageUrl, duration  FROM PageView since 1 day ago limit 300"
 							}
 						]
 					}

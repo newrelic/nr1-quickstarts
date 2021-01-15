@@ -18,10 +18,10 @@
 					},
 					"title": "JS Errors by Application",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) FROM JavaScriptError SINCE 1 hour ago FACET appName"
+								"query": "SELECT count(*) FROM JavaScriptError SINCE 1 hour ago FACET appName"
 							}
 						]
 					}
@@ -38,10 +38,10 @@
 					},
 					"title": "Top 50 JS Error",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) FROM  JavaScriptError FACET errorClass SINCE 1 day ago LIMIT 50"
+								"query": "SELECT count(*) FROM  JavaScriptError FACET errorClass SINCE 1 day ago LIMIT 50"
 							}
 						]
 					}
@@ -58,10 +58,10 @@
 					},
 					"title": "Related JS Error Messages",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) FROM  JavaScriptError FACET errorMessage SINCE 1 day ago LIMIT 50"
+								"query": "SELECT count(*) FROM  JavaScriptError FACET errorMessage SINCE 1 day ago LIMIT 50"
 							}
 						]
 					}
@@ -78,10 +78,10 @@
 					},
 					"title": "JS Errors by Device Type",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) FROM  JavaScriptError FACET deviceType SINCE 1 day ago LIMIT 50"
+								"query": "SELECT count(*) FROM  JavaScriptError FACET deviceType SINCE 1 day ago LIMIT 50"
 							}
 						]
 					}
@@ -98,10 +98,10 @@
 					},
 					"title": "JS Error by Related Backend Transaction",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) FROM JavaScriptError SINCE 1 hour ago FACET transactionName"
+								"query": "SELECT count(*) FROM JavaScriptError SINCE 1 hour ago FACET transactionName"
 							}
 						]
 					}
@@ -118,10 +118,10 @@
 					},
 					"title": "Error by Request Uri",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) FROM  JavaScriptError FACET requestUri SINCE 1 day ago LIMIT 50"
+								"query": "SELECT count(*) FROM  JavaScriptError FACET requestUri SINCE 1 day ago LIMIT 50"
 							}
 						]
 					}
@@ -138,10 +138,10 @@
 					},
 					"title": "JS Errors by Agent OS",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) FROM  JavaScriptError FACET userAgentOS SINCE 1 day ago LIMIT 50"
+								"query": "SELECT count(*) FROM  JavaScriptError FACET userAgentOS SINCE 1 day ago LIMIT 50"
 							}
 						]
 					}
@@ -158,10 +158,10 @@
 					},
 					"title": "JS Errors by Browser",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) FROM  JavaScriptError FACET userAgentName SINCE 1 day ago LIMIT 50"
+								"query": "SELECT count(*) FROM  JavaScriptError FACET userAgentName SINCE 1 day ago LIMIT 50"
 							}
 						]
 					}
@@ -178,10 +178,10 @@
 					},
 					"title": "Related Browser Versions",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) FROM  JavaScriptError FACET userAgentVersion SINCE 1 day ago LIMIT 50"
+								"query": "SELECT count(*) FROM  JavaScriptError FACET userAgentVersion SINCE 1 day ago LIMIT 50"
 							}
 						]
 					}
@@ -198,10 +198,10 @@
 					},
 					"title": "Daily Running JS Error Count",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) FROM  JavaScriptError SINCE 1 day ago TIMESERIES AUTO"
+								"query": "SELECT count(*) FROM  JavaScriptError SINCE 1 day ago TIMESERIES AUTO"
 							}
 						]
 					}
@@ -218,10 +218,10 @@
 					},
 					"title": "Stack Trace Context",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) FROM JavaScriptError FACET stackTrace  SINCE 1 day ago"
+								"query": "SELECT count(*) FROM JavaScriptError FACET stackTrace  SINCE 1 day ago"
 							}
 						]
 					}

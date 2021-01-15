@@ -18,10 +18,10 @@
 					},
 					"title": "Top 5 Memory Consumer Containers",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(memoryResidentSizeBytes),average(memoryVirtualSizeBytes) FROM ProcessSample FACET containerId SINCE 30 minutes AGO limit 5"
+								"query": "SELECT average(memoryResidentSizeBytes),average(memoryVirtualSizeBytes) FROM ProcessSample FACET containerId SINCE 30 minutes AGO limit 5"
 							}
 						]
 					}
@@ -38,10 +38,10 @@
 					},
 					"title": "Container Images",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT  uniqueCount(containerImageName) FROM  ProcessSample FACET  containerImageName limit 1000 SINCE 30 minutes ago order by containerImageName"
+								"query": "SELECT  uniqueCount(containerImageName) FROM  ProcessSample FACET  containerImageName limit 1000 SINCE 30 minutes ago order by containerImageName"
 							}
 						]
 					}
@@ -58,10 +58,10 @@
 					},
 					"title": "Top 5 CPU Consumer Containers",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(cpuPercent) FROM ProcessSample FACET containerId since 30 minutes ago limit 5"
+								"query": "SELECT average(cpuPercent) FROM ProcessSample FACET containerId since 30 minutes ago limit 5"
 							}
 						]
 					}
@@ -78,10 +78,10 @@
 					},
 					"title": "CPU USAGE",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(cpuPercent),average(cpuSystemPercent), average(cpuUserPercent)  FROM ProcessSample SINCE  30 minutes ago TIMESERIES"
+								"query": "SELECT average(cpuPercent),average(cpuSystemPercent), average(cpuUserPercent)  FROM ProcessSample SINCE  30 minutes ago TIMESERIES"
 							}
 						]
 					}
@@ -98,10 +98,10 @@
 					},
 					"title": "Container Count By host",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT uniqueCount (containerId) FROM ProcessSample FACET fullHostname since 30 minutes ago limit 1000"
+								"query": "SELECT uniqueCount (containerId) FROM ProcessSample FACET fullHostname since 30 minutes ago limit 1000"
 							}
 						]
 					}
@@ -118,10 +118,10 @@
 					},
 					"title": "Process List",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT  uniques(commandLine) FROM ProcessSample SINCE 30 minutes AGO"
+								"query": "SELECT  uniques(commandLine) FROM ProcessSample SINCE 30 minutes AGO"
 							}
 						]
 					}
@@ -138,10 +138,10 @@
 					},
 					"title": "Disk Access",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT  average(diskFreePercent), average(readBytesPerSecond), average(writeBytesPerSecond) FROM StorageSample SINCE 30 minutes ago TIMESERIES 1 minute"
+								"query": "SELECT  average(diskFreePercent), average(readBytesPerSecond), average(writeBytesPerSecond) FROM StorageSample SINCE 30 minutes ago TIMESERIES 1 minute"
 							}
 						]
 					}
@@ -158,10 +158,10 @@
 					},
 					"title": "Process Count",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT  uniqueCount(processDisplayName) FROM ProcessSample facet entityName SINCE 30 minutes AGO  TIMESERIES"
+								"query": "SELECT  uniqueCount(processDisplayName) FROM ProcessSample facet entityName SINCE 30 minutes AGO  TIMESERIES"
 							}
 						]
 					}
@@ -178,10 +178,10 @@
 					},
 					"title": "Received Bytes Per Second",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(receiveBytesPerSecond) FROM NetworkSample SINCE 30 minutes ago COMPARE WITH 1 WEEK AGO TIMESERIES"
+								"query": "SELECT average(receiveBytesPerSecond) FROM NetworkSample SINCE 30 minutes ago COMPARE WITH 1 WEEK AGO TIMESERIES"
 							}
 						]
 					}
@@ -198,10 +198,10 @@
 					},
 					"title": "Memory Usage",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "select average(memoryResidentSizeBytes),average(memoryVirtualSizeBytes) FROM ProcessSample SINCE 30 minutes ago TIMESERIES 1 minute"
+								"query": "select average(memoryResidentSizeBytes),average(memoryVirtualSizeBytes) FROM ProcessSample SINCE 30 minutes ago TIMESERIES 1 minute"
 							}
 						]
 					}
@@ -218,10 +218,10 @@
 					},
 					"title": "Transmitted Bytes Per second",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(transmitBytesPerSecond) FROM NetworkSample SINCE 30 minutes ago COMPARE WITH 1 WEEK AGO TIMESERIES"
+								"query": "SELECT average(transmitBytesPerSecond) FROM NetworkSample SINCE 30 minutes ago COMPARE WITH 1 WEEK AGO TIMESERIES"
 							}
 						]
 					}

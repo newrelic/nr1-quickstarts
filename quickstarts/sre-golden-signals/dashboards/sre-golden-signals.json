@@ -18,10 +18,10 @@
 					},
 					"title": "Availability",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Transaction SELECT percentage(COUNT(*), WHERE error IS false) as '' since 1 week ago"
+								"query": "FROM Transaction SELECT percentage(COUNT(*), WHERE error IS false) as '' since 1 week ago"
 							}
 						]
 					}
@@ -38,10 +38,10 @@
 					},
 					"title": "Availability per Microservices",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Transaction SELECT percentage(count(*), WHERE error is false) facet appName since 1 week ago"
+								"query": "FROM Transaction SELECT percentage(count(*), WHERE error is false) facet appName since 1 week ago"
 							}
 						]
 					}
@@ -58,10 +58,10 @@
 					},
 					"title": "Latency (Percentile)",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT percentile(duration, 50, 90, 99) as 'sec' from Transaction "
+								"query": "SELECT percentile(duration, 50, 90, 99) as 'sec' from Transaction "
 							}
 						]
 					}
@@ -78,10 +78,10 @@
 					},
 					"title": "Latency Histgram",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT histogram(duration, 5, 10) from Transaction facet request.uri since 1 week ago"
+								"query": "SELECT histogram(duration, 5, 10) from Transaction facet request.uri since 1 week ago"
 							}
 						]
 					}
@@ -98,10 +98,10 @@
 					},
 					"title": "Throughput",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Transaction SELECT rate(count(*), 1 minute) timeseries"
+								"query": "FROM Transaction SELECT rate(count(*), 1 minute) timeseries"
 							}
 						]
 					}
@@ -118,10 +118,10 @@
 					},
 					"title": "Throughput per URI",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Transaction SELECT rate(count(*), 1 minute) facet request.uri timeseries"
+								"query": "FROM Transaction SELECT rate(count(*), 1 minute) facet request.uri timeseries"
 							}
 						]
 					}
@@ -138,10 +138,10 @@
 					},
 					"title": "Error trend by app-service",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) from TransactionError TIMESERIES facet appName"
+								"query": "SELECT count(*) from TransactionError TIMESERIES facet appName"
 							}
 						]
 					}
@@ -158,10 +158,10 @@
 					},
 					"title": "Backend Errors - App Services",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Transaction SELECT count(*) facet errorType, appName where errorMessage  IS NOT NULL since 10 minutes ago"
+								"query": "FROM Transaction SELECT count(*) facet errorType, appName where errorMessage  IS NOT NULL since 10 minutes ago"
 							}
 						]
 					}
@@ -178,10 +178,10 @@
 					},
 					"title": "CPU % trend by Hostname",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM SystemSample SELECT average(cpuPercent) facet hostname TIMESERIES Since 10 minutes ago"
+								"query": "FROM SystemSample SELECT average(cpuPercent) facet hostname TIMESERIES Since 10 minutes ago"
 							}
 						]
 					}
@@ -198,10 +198,10 @@
 					},
 					"title": "Memory % trend by Hostname",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM SystemSample SELECT average(memoryUsedBytes/memoryTotalBytes)*100 facet hostname TIMESERIES Since 10 minutes ago"
+								"query": "FROM SystemSample SELECT average(memoryUsedBytes/memoryTotalBytes)*100 facet hostname TIMESERIES Since 10 minutes ago"
 							}
 						]
 					}
@@ -218,10 +218,10 @@
 					},
 					"title": "Transfer Rate (Bps)",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM NetworkSample SELECT average(transmitBytesPerSecond+receiveBytesPerSecond) facet hostname TIMESERIES "
+								"query": "FROM NetworkSample SELECT average(transmitBytesPerSecond+receiveBytesPerSecond) facet hostname TIMESERIES "
 							}
 						]
 					}
