@@ -2,7 +2,7 @@
 set -e
 
 ROOT=../..
-WEBSITE_DIR=${ROOT}/packages/website
+WEBSITE_DIR=${ROOT}/website
 
 # Clean the data dir
 echo ">"
