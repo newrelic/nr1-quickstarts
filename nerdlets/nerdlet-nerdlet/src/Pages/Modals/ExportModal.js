@@ -365,7 +365,7 @@ class ExportModal extends React.Component {
 
         return (
             <Modal hidden={this.props.hidden} onClose={this.closeModal}>
-                <HeadingText spacingType={[AccountPicker.SPACING_TYPE.LARGE]} type={HeadingText.TYPE.HEADING_1}>Import dashboard</HeadingText>
+                <HeadingText spacingType={[AccountPicker.SPACING_TYPE.LARGE]} type={HeadingText.TYPE.HEADING_1}>Import/Export dashboard</HeadingText>
                 <Tabs defaultValue="tab-1">
                     <TabsItem value="tab-1" label="Import into">
                         <p className="padding-top">Where do you want to import the dashboard into?</p>
