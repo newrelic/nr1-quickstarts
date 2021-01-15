@@ -18,10 +18,10 @@
 					},
 					"title": "Total number of synthetic checks",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago COMPARE WITH 1 week ago"
+								"query": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago COMPARE WITH 1 week ago"
 							}
 						]
 					}
@@ -38,10 +38,10 @@
 					},
 					"title": "Number of Unresponsive Checks",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago WHERE result = 'FAILED' COMPARE WITH 1 week ago"
+								"query": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago WHERE result = 'FAILED' COMPARE WITH 1 week ago"
 							}
 						]
 					}
@@ -58,10 +58,10 @@
 					},
 					"title": "Percentage of unresponsive checks",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT percentage(count(result), WHERE result = 'FAILED') AS '' FROM SyntheticCheck SINCE 1 day ago COMPARE WITH 1 week ago"
+								"query": "SELECT percentage(count(result), WHERE result = 'FAILED') AS '' FROM SyntheticCheck SINCE 1 day ago COMPARE WITH 1 week ago"
 							}
 						]
 					}
@@ -78,10 +78,10 @@
 					},
 					"title": "Unresponsive checks",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) FROM SyntheticCheck SINCE 1 day ago WHERE result = 'FAILED' TIMESERIES AUTO"
+								"query": "SELECT count(*) FROM SyntheticCheck SINCE 1 day ago WHERE result = 'FAILED' TIMESERIES AUTO"
 							}
 						]
 					}
@@ -98,10 +98,10 @@
 					},
 					"title": "Location",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago WHERE result = 'FAILED' FACET locationLabel LIMIT 100"
+								"query": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago WHERE result = 'FAILED' FACET locationLabel LIMIT 100"
 							}
 						]
 					}
@@ -118,10 +118,10 @@
 					},
 					"title": "Non-200 responses by path",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) AS '' FROM SyntheticRequest SINCE 1 day ago WHERE responseCode != 200 facet path LIMIT 100"
+								"query": "SELECT count(*) AS '' FROM SyntheticRequest SINCE 1 day ago WHERE responseCode != 200 facet path LIMIT 100"
 							}
 						]
 					}
@@ -138,10 +138,10 @@
 					},
 					"title": "Monitors by  error code",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) AS '' FROM SyntheticCheck  SINCE 1 day ago WHERE result = 'FAILED' FACET error LIMIT 100"
+								"query": "SELECT count(*) AS '' FROM SyntheticCheck  SINCE 1 day ago WHERE result = 'FAILED' FACET error LIMIT 100"
 							}
 						]
 					}
@@ -158,10 +158,10 @@
 					},
 					"title": "Status codes",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) AS '' FROM SyntheticRequest WHERE responseCode != 200 SINCE 1 day ago FACET responseStatus LIMIT 100"
+								"query": "SELECT count(*) AS '' FROM SyntheticRequest WHERE responseCode != 200 SINCE 1 day ago FACET responseStatus LIMIT 100"
 							}
 						]
 					}
@@ -178,10 +178,10 @@
 					},
 					"title": "Page elements by monitor name",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) AS '' FROM SyntheticRequest WHERE responseCode != 200 SINCE 1 day ago FACET monitorName LIMIT 100"
+								"query": "SELECT count(*) AS '' FROM SyntheticRequest WHERE responseCode != 200 SINCE 1 day ago FACET monitorName LIMIT 100"
 							}
 						]
 					}
@@ -198,10 +198,10 @@
 					},
 					"title": "Synthetic monitors",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT uniqueCount(monitorName) AS '' FROM SyntheticCheck SINCE 1 day ago FACET monitorName LIMIT 100"
+								"query": "SELECT uniqueCount(monitorName) AS '' FROM SyntheticCheck SINCE 1 day ago FACET monitorName LIMIT 100"
 							}
 						]
 					}
@@ -218,10 +218,10 @@
 					},
 					"title": "Number of unresponsive checks",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago WHERE result = 'FAILED' TIMESERIES AUTO"
+								"query": "SELECT count(*) AS '' FROM SyntheticCheck SINCE 1 day ago WHERE result = 'FAILED' TIMESERIES AUTO"
 							}
 						]
 					}

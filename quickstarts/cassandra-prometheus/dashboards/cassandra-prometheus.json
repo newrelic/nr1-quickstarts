@@ -33,10 +33,10 @@
 					},
 					"title": "Memory Pool Used",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(jvm_memory_pool_bytes_used) FROM Metric TIMESERIES FACET `pool` LIMIT 10 SINCE 1800 seconds ago"
+								"query": "SELECT average(jvm_memory_pool_bytes_used) FROM Metric TIMESERIES FACET `pool` LIMIT 10 SINCE 1800 seconds ago"
 							}
 						]
 					}
@@ -53,10 +53,10 @@
 					},
 					"title": "Heap Usage",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "SELECT average(jvm_memory_bytes_used) as 'Heap Usage', average(jvm_memory_bytes_max) as 'Max Heap Size' FROM Metric TIMESERIES LIMIT 10 SINCE 1800 seconds ago"
+								"query": "SELECT average(jvm_memory_bytes_used) as 'Heap Usage', average(jvm_memory_bytes_max) as 'Max Heap Size' FROM Metric TIMESERIES LIMIT 10 SINCE 1800 seconds ago"
 							}
 						]
 					}
@@ -73,10 +73,10 @@
 					},
 					"title": "Non-Heap Memory Usage",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT average(jvm_memory_bytes_used) as 'Used non-heap size', average(jvm_memory_bytes_committed) as 'Committed non-heap size' WHERE area = 'nonheap' TIMESERIES AUTO "
+								"query": "FROM Metric SELECT average(jvm_memory_bytes_used) as 'Used non-heap size', average(jvm_memory_bytes_committed) as 'Committed non-heap size' WHERE area = 'nonheap' TIMESERIES AUTO "
 							}
 						]
 					}
@@ -108,10 +108,10 @@
 					},
 					"title": "Unavailable Exceptions",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT rate(average(cassandra_clientrequest_unavailables_count), 1 minute) TIMESERIES FACET type"
+								"query": "FROM Metric SELECT rate(average(cassandra_clientrequest_unavailables_count), 1 minute) TIMESERIES FACET type"
 							}
 						]
 					}
@@ -128,10 +128,10 @@
 					},
 					"title": "Timeout Exceptions",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT rate(average(`cassandra_clientrequest_timeouts_count`), 1 minute) TIMESERIES FACET type "
+								"query": "FROM Metric SELECT rate(average(`cassandra_clientrequest_timeouts_count`), 1 minute) TIMESERIES FACET type "
 							}
 						]
 					}
@@ -148,10 +148,10 @@
 					},
 					"title": "Storage Exceptions",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT rate(average(cassandra_storage_exceptions), 1 minute) TIMESERIES"
+								"query": "FROM Metric SELECT rate(average(cassandra_storage_exceptions), 1 minute) TIMESERIES"
 							}
 						]
 					}
@@ -168,10 +168,10 @@
 					},
 					"title": "Speculative Retries / per minute",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT rate(average(cassandra_columnfamily_speculativeretries), 1 minute) TIMESERIES FACET keyspace"
+								"query": "FROM Metric SELECT rate(average(cassandra_columnfamily_speculativeretries), 1 minute) TIMESERIES FACET keyspace"
 							}
 						]
 					}
@@ -203,10 +203,10 @@
 					},
 					"title": "Total Disk Space Used",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT sum(cassandra_columnfamily_totaldiskspaceused) FACET keyspace TIMESERIES "
+								"query": "FROM Metric SELECT sum(cassandra_columnfamily_totaldiskspaceused) FACET keyspace TIMESERIES "
 							}
 						]
 					}
@@ -223,10 +223,10 @@
 					},
 					"title": "Total Disk Usage",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT average(cassandra_storage_load) TIMESERIES"
+								"query": "FROM Metric SELECT average(cassandra_storage_load) TIMESERIES"
 							}
 						]
 					}
@@ -258,10 +258,10 @@
 					},
 					"title": "Top 10 SSTables count by keyspace",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT average(cassandra_columnfamily_livesstablecount) TIMESERIES FACET keyspace LIMIT 10"
+								"query": "FROM Metric SELECT average(cassandra_columnfamily_livesstablecount) TIMESERIES FACET keyspace LIMIT 10"
 							}
 						]
 					}
@@ -278,10 +278,10 @@
 					},
 					"title": "Top 10 SSTables count by columnFamily",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT average(cassandra_columnfamily_livesstablecount) TIMESERIES FACET columnfamily LIMIT 10"
+								"query": "FROM Metric SELECT average(cassandra_columnfamily_livesstablecount) TIMESERIES FACET columnfamily LIMIT 10"
 							}
 						]
 					}
@@ -298,10 +298,10 @@
 					},
 					"title": "Compaction Pending Tasks",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT average(cassandra_compaction_pendingtasks) TIMESERIES "
+								"query": "FROM Metric SELECT average(cassandra_compaction_pendingtasks) TIMESERIES "
 							}
 						]
 					}
@@ -318,10 +318,10 @@
 					},
 					"title": "Compaction Completed Tasks",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT average(cassandra_compaction_completedtasks) TIMESERIES"
+								"query": "FROM Metric SELECT average(cassandra_compaction_completedtasks) TIMESERIES"
 							}
 						]
 					}
@@ -338,10 +338,10 @@
 					},
 					"title": "Bytes Compacted",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT average(cassandra_compaction_bytescompacted) TIMESERIES"
+								"query": "FROM Metric SELECT average(cassandra_compaction_bytescompacted) TIMESERIES"
 							}
 						]
 					}
@@ -358,10 +358,10 @@
 					},
 					"title": "Total Completed Compactions",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT average(cassandra_compaction_totalcompactionscompleted) TIMESERIES"
+								"query": "FROM Metric SELECT average(cassandra_compaction_totalcompactionscompleted) TIMESERIES"
 							}
 						]
 					}
@@ -378,10 +378,10 @@
 					},
 					"title": "SSTables Per Read by Column Family",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT rate(average(cassandra_columnfamily_sstablesperreadhistogram), 1 minute) TIMESERIES FACET columnfamily"
+								"query": "FROM Metric SELECT rate(average(cassandra_columnfamily_sstablesperreadhistogram), 1 minute) TIMESERIES FACET columnfamily"
 							}
 						]
 					}
@@ -398,10 +398,10 @@
 					},
 					"title": "SSTables Per Read by keyspace",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT rate(average(cassandra_columnfamily_sstablesperreadhistogram), 1 minute) TIMESERIES FACET keyspace"
+								"query": "FROM Metric SELECT rate(average(cassandra_columnfamily_sstablesperreadhistogram), 1 minute) TIMESERIES FACET keyspace"
 							}
 						]
 					}
@@ -433,10 +433,10 @@
 					},
 					"title": "Connected Clients - Native & Thrift",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT average(cassandra_client_connectednativeclients) as 'Connected Native Clients', average(cassandra_client_connectedthriftclients) as 'Connected Thrift Clients' TIMESERIES"
+								"query": "FROM Metric SELECT average(cassandra_client_connectednativeclients) as 'Connected Native Clients', average(cassandra_client_connectedthriftclients) as 'Connected Thrift Clients' TIMESERIES"
 							}
 						]
 					}
@@ -468,10 +468,10 @@
 					},
 					"title": "Total Hints",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT rate(average(cassandra_storage_totalhints), 1 minute) as 'Total Hints' TIMESERIES"
+								"query": "FROM Metric SELECT rate(average(cassandra_storage_totalhints), 1 minute) as 'Total Hints' TIMESERIES"
 							}
 						]
 					}
@@ -488,10 +488,10 @@
 					},
 					"title": "Total Hints in Progress",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT rate(average(cassandra_storage_totalhintsinprogress), 1 minute) as 'Total Hints in Progress' TIMESERIES"
+								"query": "FROM Metric SELECT rate(average(cassandra_storage_totalhintsinprogress), 1 minute) as 'Total Hints in Progress' TIMESERIES"
 							}
 						]
 					}
@@ -523,10 +523,10 @@
 					},
 					"title": "False Positives by ColumnFamily",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterfalsepositives) TIMESERIES FACET columnfamily"
+								"query": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterfalsepositives) TIMESERIES FACET columnfamily"
 							}
 						]
 					}
@@ -543,10 +543,10 @@
 					},
 					"title": "False Positives by Keyspace",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterfalsepositives) FACET keyspace TIMESERIES "
+								"query": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterfalsepositives) FACET keyspace TIMESERIES "
 							}
 						]
 					}
@@ -563,10 +563,10 @@
 					},
 					"title": "False Ratios by ColumnFamily",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterfalseratio) FACET columnfamily TIMESERIES "
+								"query": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterfalseratio) FACET columnfamily TIMESERIES "
 							}
 						]
 					}
@@ -583,10 +583,10 @@
 					},
 					"title": "False Ratios by Keyspace",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterfalseratio) FACET keyspace TIMESERIES"
+								"query": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterfalseratio) FACET keyspace TIMESERIES"
 							}
 						]
 					}
@@ -603,10 +603,10 @@
 					},
 					"title": "Disk Space Used by ColumnFamily",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterdiskspaceused) TIMESERIES facet columnfamily"
+								"query": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterdiskspaceused) TIMESERIES facet columnfamily"
 							}
 						]
 					}
@@ -623,10 +623,10 @@
 					},
 					"title": "Disk Space Used by Keyspace",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterdiskspaceused) FACET keyspace TIMESERIES "
+								"query": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilterdiskspaceused) FACET keyspace TIMESERIES "
 							}
 						]
 					}
@@ -643,10 +643,10 @@
 					},
 					"title": "Off-Heap Memory Used by ColumnFamily",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilteroffheapmemoryused) FACET columnfamily TIMESERIES "
+								"query": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilteroffheapmemoryused) FACET columnfamily TIMESERIES "
 							}
 						]
 					}
@@ -663,10 +663,10 @@
 					},
 					"title": "Off-Heap Memory Used by Keyspace",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilteroffheapmemoryused) FACET keyspace TIMESERIES "
+								"query": "FROM Metric SELECT average(cassandra_columnfamily_bloomfilteroffheapmemoryused) FACET keyspace TIMESERIES "
 							}
 						]
 					}
@@ -698,10 +698,10 @@
 					},
 					"title": "Completed Tasks",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT rate(average(cassandra_threadpools_completedtasks), 1 minute) FACET threadpools TIMESERIES "
+								"query": "FROM Metric SELECT rate(average(cassandra_threadpools_completedtasks), 1 minute) FACET threadpools TIMESERIES "
 							}
 						]
 					}
@@ -718,10 +718,10 @@
 					},
 					"title": "Pending Tasks",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT rate(average(cassandra_threadpools_pendingtasks), 1 minute) as 'Pending Tasks' FACET threadpools TIMESERIES "
+								"query": "FROM Metric SELECT rate(average(cassandra_threadpools_pendingtasks), 1 minute) as 'Pending Tasks' FACET threadpools TIMESERIES "
 							}
 						]
 					}
@@ -738,10 +738,10 @@
 					},
 					"title": "Dropped Messages",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT rate(average(cassandra_droppedmessage_dropped), 1 minute) FACET droppedmessage TIMESERIES "
+								"query": "FROM Metric SELECT rate(average(cassandra_droppedmessage_dropped), 1 minute) FACET droppedmessage TIMESERIES "
 							}
 						]
 					}
@@ -758,10 +758,10 @@
 					},
 					"title": "Active Tasks",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT rate(average(cassandra_threadpools_activetasks), 1 minute) FACET threadpools TIMESERIES "
+								"query": "FROM Metric SELECT rate(average(cassandra_threadpools_activetasks), 1 minute) FACET threadpools TIMESERIES "
 							}
 						]
 					}
@@ -778,10 +778,10 @@
 					},
 					"title": "Blocked Tasks",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT rate(average(cassandra_threadpools_totalblockedtasks), 1 minute) FACET threadpools TIMESERIES "
+								"query": "FROM Metric SELECT rate(average(cassandra_threadpools_totalblockedtasks), 1 minute) FACET threadpools TIMESERIES "
 							}
 						]
 					}
@@ -798,10 +798,10 @@
 					},
 					"title": "Currently Blocked Tasks",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT rate(average(cassandra_threadpools_currentlyblockedtasks), 1 minute) FACET threadpools TIMESERIES "
+								"query": "FROM Metric SELECT rate(average(cassandra_threadpools_currentlyblockedtasks), 1 minute) FACET threadpools TIMESERIES "
 							}
 						]
 					}
@@ -833,10 +833,10 @@
 					},
 					"title": "Key Cache Hit Rate",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT average(cassandra_cache_hitrate) FACET cache TIMESERIES "
+								"query": "FROM Metric SELECT average(cassandra_cache_hitrate) FACET cache TIMESERIES "
 							}
 						]
 					}
@@ -853,10 +853,10 @@
 					},
 					"title": "Key Cache Size",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT average(cassandra_cache_size) FACET cache TIMESERIES "
+								"query": "FROM Metric SELECT average(cassandra_cache_size) FACET cache TIMESERIES "
 							}
 						]
 					}
@@ -873,10 +873,10 @@
 					},
 					"title": "Key Cache Hits",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT average(cassandra_cache_hits) FACET cache TIMESERIES "
+								"query": "FROM Metric SELECT average(cassandra_cache_hits) FACET cache TIMESERIES "
 							}
 						]
 					}
@@ -893,10 +893,10 @@
 					},
 					"title": "Cache Requests",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT rate(average(cassandra_cache_requests), 1 minute) FACET cache TIMESERIES "
+								"query": "FROM Metric SELECT rate(average(cassandra_cache_requests), 1 minute) FACET cache TIMESERIES "
 							}
 						]
 					}
@@ -913,10 +913,10 @@
 					},
 					"title": "Cache Entries",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT average(cassandra_cache_entries) FACET cache TIMESERIES "
+								"query": "FROM Metric SELECT average(cassandra_cache_entries) FACET cache TIMESERIES "
 							}
 						]
 					}
@@ -948,10 +948,10 @@
 					},
 					"title": "Top 10 Memtables by table size by ColumnFamily",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT sum(cassandra_columnfamily_memtablelivedatasize) FACET columnfamily TIMESERIES LIMIT 10"
+								"query": "FROM Metric SELECT sum(cassandra_columnfamily_memtablelivedatasize) FACET columnfamily TIMESERIES LIMIT 10"
 							}
 						]
 					}
@@ -968,10 +968,10 @@
 					},
 					"title": "Top 10 Memtables by table size by Keyspace",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT sum(cassandra_columnfamily_memtablelivedatasize) FACET keyspace TIMESERIES LIMIT 10"
+								"query": "FROM Metric SELECT sum(cassandra_columnfamily_memtablelivedatasize) FACET keyspace TIMESERIES LIMIT 10"
 							}
 						]
 					}
@@ -988,10 +988,10 @@
 					},
 					"title": "Memtables columns count by ColumnFamily",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT average(cassandra_columnfamily_memtablecolumnscount) FACET columnfamily TIMESERIES "
+								"query": "FROM Metric SELECT average(cassandra_columnfamily_memtablecolumnscount) FACET columnfamily TIMESERIES "
 							}
 						]
 					}
@@ -1008,10 +1008,10 @@
 					},
 					"title": "Memtables column count by Keyspace",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT average(cassandra_columnfamily_memtablecolumnscount) FACET keyspace TIMESERIES"
+								"query": "FROM Metric SELECT average(cassandra_columnfamily_memtablecolumnscount) FACET keyspace TIMESERIES"
 							}
 						]
 					}
@@ -1028,10 +1028,10 @@
 					},
 					"title": "Total Memtables Size",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT average(cassandra_columnfamily_memtableonheapsize) as 'On-Heap Size', average(cassandra_columnfamily_memtableoffheapsize) as 'Off-Heap Size' TIMESERIES "
+								"query": "FROM Metric SELECT average(cassandra_columnfamily_memtableonheapsize) as 'On-Heap Size', average(cassandra_columnfamily_memtableoffheapsize) as 'Off-Heap Size' TIMESERIES "
 							}
 						]
 					}
@@ -1048,10 +1048,10 @@
 					},
 					"title": "Memtables Switch Count",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT rate(average(cassandra_columnfamily_memtableswitchcount), 1 minute) FACET columnfamily TIMESERIES"
+								"query": "FROM Metric SELECT rate(average(cassandra_columnfamily_memtableswitchcount), 1 minute) FACET columnfamily TIMESERIES"
 							}
 						]
 					}
@@ -1083,10 +1083,10 @@
 					},
 					"title": "CQL Regular Statements",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT rate(average(cassandra_cql_regularstatementsexecuted), 1 minute) TIMESERIES"
+								"query": "FROM Metric SELECT rate(average(cassandra_cql_regularstatementsexecuted), 1 minute) TIMESERIES"
 							}
 						]
 					}
@@ -1103,10 +1103,10 @@
 					},
 					"title": "CQL prepared statements",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT rate(average(cassandra_cql_preparedstatementsexecuted), 1 minute) TIMESERIES"
+								"query": "FROM Metric SELECT rate(average(cassandra_cql_preparedstatementsexecuted), 1 minute) TIMESERIES"
 							}
 						]
 					}
@@ -1138,10 +1138,10 @@
 					},
 					"title": "Tombstones by Keyspace",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT average(cassandra_table_tombstonescannedhistogram_count) FACET keyspace TIMESERIES"
+								"query": "FROM Metric SELECT average(cassandra_table_tombstonescannedhistogram_count) FACET keyspace TIMESERIES"
 							}
 						]
 					}
@@ -1158,10 +1158,10 @@
 					},
 					"title": "Tombstones by Table",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT average(cassandra_table_tombstonescannedhistogram_count) FACET table TIMESERIES"
+								"query": "FROM Metric SELECT average(cassandra_table_tombstonescannedhistogram_count) FACET table TIMESERIES"
 							}
 						]
 					}

@@ -18,10 +18,10 @@
 					},
 					"title": "Requests (total)",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT rate(sum(coredns_dns_request_count_total), 5 minutes) FACET proto TIMESERIES"
+								"query": "FROM Metric SELECT rate(sum(coredns_dns_request_count_total), 5 minutes) FACET proto TIMESERIES"
 							}
 						]
 					}
@@ -38,10 +38,10 @@
 					},
 					"title": "Requests (by qtype)",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT rate(sum(coredns_dns_request_type_count_total), 5 minutes) FACET type TIMESERIES"
+								"query": "FROM Metric SELECT rate(sum(coredns_dns_request_type_count_total), 5 minutes) FACET type TIMESERIES"
 							}
 						]
 					}
@@ -58,10 +58,10 @@
 					},
 					"title": "Requests (by zone)",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT rate(sum(coredns_dns_request_count_total), 5 minutes) FACET zone TIMESERIES"
+								"query": "FROM Metric SELECT rate(sum(coredns_dns_request_count_total), 5 minutes) FACET zone TIMESERIES"
 							}
 						]
 					}
@@ -78,10 +78,10 @@
 					},
 					"title": "Responses (by rcode)",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT rate(sum(coredns_dns_response_rcode_count_total), 5 minutes) FACET rcode TIMESERIES"
+								"query": "FROM Metric SELECT rate(sum(coredns_dns_response_rcode_count_total), 5 minutes) FACET rcode TIMESERIES"
 							}
 						]
 					}
@@ -98,10 +98,10 @@
 					},
 					"title": "Cache (size)",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT sum(coredns_cache_size) FACET type TIMESERIES"
+								"query": "FROM Metric SELECT sum(coredns_cache_size) FACET type TIMESERIES"
 							}
 						]
 					}
@@ -118,10 +118,10 @@
 					},
 					"title": "Cache (hitrate)",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Metric SELECT rate(sum(coredns_cache_hits_total), 5 minutes) FACET type TIMESERIES"
+								"query": "FROM Metric SELECT rate(sum(coredns_cache_hits_total), 5 minutes) FACET type TIMESERIES"
 							}
 						]
 					}
@@ -138,10 +138,10 @@
 					},
 					"title": "CoreDNS Logs",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM Log select timestamp, message where `labels.k8s-app` = 'kube-dns'"
+								"query": "FROM Log select timestamp, message where `labels.k8s-app` = 'kube-dns'"
 							}
 						]
 					}

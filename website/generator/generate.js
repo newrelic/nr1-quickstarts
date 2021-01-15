@@ -34,7 +34,7 @@ function findQueries(dashboard, data) {
             data = findQueries(dashboard[key], data);
         }
 
-        if (key == 'nrql') {
+        if (key == 'query') {
             data.push(dashboard[key]);
         }
     }

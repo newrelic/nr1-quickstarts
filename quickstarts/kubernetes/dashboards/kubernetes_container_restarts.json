@@ -33,10 +33,10 @@
 					},
 					"title": "Container Restarts",
 					"rawConfiguration": {
-						"queries": [
+						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"nrql": "FROM K8sContainerSample select max(restartCount), latest(reason) where restartCount > 0 order by restartCount facet containerName, podName, clusterName since 30 minutes ago limit 1000"
+								"query": "FROM K8sContainerSample select max(restartCount), latest(reason) where restartCount > 0 order by restartCount facet containerName, podName, clusterName since 30 minutes ago limit 1000"
 							}
 						]
 					}
