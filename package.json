@@ -22,7 +22,8 @@
   },
   "scripts": {
     "start": "nr1 nerdpack:serve",
-    "website": "cd website && react-scripts start",
+    "start-website": "cd website && react-scripts start",
+    "build-website": "cd website && react-scripts build",
     "generator": "cd website/generator && ./generate-data.sh",
     "test": "exit 0",
     "eslint-check": "eslint nerdlets/ website/",

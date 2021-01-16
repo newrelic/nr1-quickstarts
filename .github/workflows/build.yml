@@ -20,19 +20,14 @@ jobs:
       with:
         node-version: 12.x
 
+    - name: Lint check
+      run: eslint nerdlets/ website/
+
     - name: Build data file
-      run: |
-        pushd website/generator/
-        npm install
-        bash generate-data.sh
-        popd
+      run: npm run generator
 
     - name: Build website
-      run: |
-        pushd website/
-        npm install
-        npm run build
-        popd
+      run: npm run build-website
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
