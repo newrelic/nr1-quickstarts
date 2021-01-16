@@ -1,0 +1,38 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Code check
+
+on:
+  push:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+
+    - name: install nr1 cli
+      run: curl -s https://cli.nr-ext.net/installer.sh | bash
+
+    - name: Lint check
+      run: eslint nerdlets/ website/
+
+    - name: Build data file
+      run: npm run generator
+
+    - name: Build website
+      run: npm run build-website
+
+    - name: Build nerdlet
+      run: npm run build

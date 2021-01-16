@@ -22,6 +22,7 @@
   },
   "scripts": {
     "start": "nr1 nerdpack:serve",
+    "build": "nr1 nerdpack:build",
     "start-website": "cd website && react-scripts start",
     "build-website": "cd website && react-scripts build",
     "generator": "cd website/generator && ./generate-data.sh",
