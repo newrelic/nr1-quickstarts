@@ -20,6 +20,13 @@ jobs:
       with:
         node-version: 12.x
 
+    - name: Install libraries
+      run: |
+        pushd website/
+        npm install
+        popd
+        npm install
+
     - name: Lint check
       run: eslint nerdlets/ website/
 
