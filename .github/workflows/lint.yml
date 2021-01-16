@@ -25,7 +25,7 @@ jobs:
       run: curl -s https://cli.nr-ext.net/installer.sh | sudo bash
 
     - name: Lint check
-      run: eslint nerdlets/ website/
+      run: npm run eslint-check
 
     - name: Build data file
       run: npm run generator
