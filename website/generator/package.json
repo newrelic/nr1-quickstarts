@@ -1,9 +1,0 @@
-{
-  "name": "nr-quickstarts",
-  "version": "0.1.0",
-  "private": true,
-  "homepage": "https://newrelic-experimental.github.io/quickstarts",
-  "dependencies": {
-    "js-yaml": "^3.14.0"
-  }
-}
