@@ -1,27 +1,12 @@
 const fs = require('fs');
 const yaml = require('js-yaml');
 const util = require('util');
-const path = require('path');
 const { exit } = require('process');
 
 
 // First argument should be path to quickstarts folder
 let directory = process.argv[2];
 
-
-// Helper to remove duplicates from an array
-// Thank you StackOverflow: https://stackoverflow.com/questions/1584370/how-to-merge-two-arrays-in-javascript-and-de-duplicate-items
-Array.prototype.unique = function() {
-    var a = this.concat();
-    for(var i=0; i<a.length; ++i) {
-        for(var j=i+1; j<a.length; ++j) {
-            if(a[i] === a[j])
-                a.splice(j--, 1);
-        }
-    }
-
-    return a;
-};
 
 // Helper to find all queries in a dashboard
 function findQueries(dashboard, data) {
@@ -34,7 +19,7 @@ function findQueries(dashboard, data) {
             data = findQueries(dashboard[key], data);
         }
 
-        if (key == 'query') {
+        if (key === 'query') {
             data.push(dashboard[key]);
         }
     }
@@ -193,7 +178,7 @@ function processQuickstart(element) {
 
                 flexConfig.integrations.forEach(integration => {
                     integration.config.apis.forEach(api => {
-                        quickstart.sources = quickstart.sources.filter((source) => source == api.event_type);
+                        quickstart.sources = quickstart.sources.filter((source) => source === api.event_type);
                     })
                 });
 

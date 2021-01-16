@@ -21,10 +21,10 @@
     "uuid": "dcaa3623-1e1c-41a3-a1d9-994499f4b66d"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "nr1 nerdpack:serve",
+    "test": "exit 0",
+    "eslint-check": "eslint nerdlets/ website/",
+    "eslint-fix": "eslint nerdlets/ website/ --fix"
   },
   "eslintConfig": {
     "extends": "react-app"

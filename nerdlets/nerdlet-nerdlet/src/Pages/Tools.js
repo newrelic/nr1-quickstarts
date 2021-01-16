@@ -104,7 +104,7 @@ class Tools extends React.Component {
     }
 
     getCreator(tags) {
-        let creatorTag = tags.filter(tag => tag.key == 'createdBy');
+        let creatorTag = tags.filter(tag => tag.key === 'createdBy');
         if (creatorTag && creatorTag.length > 0 && creatorTag[0].values && creatorTag[0].values.length > 0) {
             return creatorTag[0].values[0];
         } else {
