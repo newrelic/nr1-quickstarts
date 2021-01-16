@@ -22,7 +22,7 @@ jobs:
         node-version: 12.x
 
     - name: install nr1 cli
-      run: curl -s https://cli.nr-ext.net/installer.sh | bash
+      run: curl -s https://cli.nr-ext.net/installer.sh | sudo bash
 
     - name: Lint check
       run: eslint nerdlets/ website/
