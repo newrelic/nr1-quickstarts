@@ -116,10 +116,10 @@ class Tools extends React.Component {
         return (
             <>
                 <Grid>
-                    <GridItem columnSpan={8}>
+                    <GridItem className="padding-top" columnSpan={8}>
                         <HeadingText type={HeadingText.TYPE.HEADING_2}>Tools</HeadingText>
                     </GridItem>
-                    <GridItem columnSpan={4} className="text-right">
+                    <GridItem columnSpan={4} className="text-right padding-top">
                         <Link className="" to={"/"}>
                             <Button
                                 type={Button.TYPE.PRIMARY}
@@ -130,6 +130,8 @@ class Tools extends React.Component {
                     <GridItem columnSpan={12}>
                         <p>Below is a list of all the dashboards you have access to within New Relic. You can click on any of them to get a list of export options.</p>
                         <TextField className="custom-textfield" placeholder="Search" type={TextField.TYPE.SEARCH} onChange={this.search} spacingType={[TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE, TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE]} />
+                    </GridItem>
+                    <GridItem columnSpan={12}>
                         <NerdGraphQuery query={this.searchQuery} variables={this.state.search}>
                         {({ data, error, loading }) => {
                             if (loading) return <Spinner className="custom-spinner" spacingType={[Spinner.SPACING_TYPE.LARGE, Spinner.SPACING_TYPE.LARGE, Spinner.SPACING_TYPE.LARGE, Spinner.SPACING_TYPE.LARGE]} />

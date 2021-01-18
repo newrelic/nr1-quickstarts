@@ -35,12 +35,32 @@ a:hover {
     padding-bottom: 15px;
 }
 
+.padding-left {
+    padding-left: 15px;
+
+    ul li {
+        margin-left: 15px;
+    }
+}
+
+.margin-top {
+    margin-top: 15px;
+}
+
 .custom-spinner {
     height: 50px;
 }
 
 .custom-textfield {
     width: 100%;
+}
+
+.background-grey {
+    background: #f7f7f8;
+}
+
+.background-white {
+    background: #fff;
 }
 
 /*
