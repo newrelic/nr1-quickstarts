@@ -46,10 +46,10 @@ class Home extends React.Component {
         return (
             <>
                 <Grid className="padding-bottom padding-top">
-                    <GridItem columnSpan={9}>
+                    <GridItem columnSpan={11}>
                         <p>Use the search bar below to find a specific dashboard and click on any to get a more detailed description. If you want to add more dashboards or contribute to the code, please check out our <a href="https://github.com/newrelic-experimental/quickstarts" rel="noopener noreferrer" target="_BLANK">Github repository</a>.</p>
                     </GridItem>
-                    <GridItem columnSpan={3} className="text-right">
+                    <GridItem columnSpan={1} className="text-right">
                         <Link to={"/tools"}>
                             <Button
                                 type={Button.TYPE.NORMAL}
