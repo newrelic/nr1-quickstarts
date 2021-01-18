@@ -1,0 +1,16 @@
+# Name of your quickstart as shown on the website
+name: Prometheus OpenMetrics Integration Stats
+description: >
+  The purpose of this dashboard is to provide performance visibility for the New Relic Prometheus OpenMetrics Integration (aka POMI).
+  This dashboard uses a mix of data from POMI as well as the New Relic Kubernetes Integration.
+  It’s recommended to have both integrations deployed to your cluster for best results.
+
+# Optional: Authors of the quickstart
+authors:
+    - Brad Schmitt
+
+# Optional: Add additional sources as some can't be auto detected by the scripts (for example Prometheus data).
+# You can also redirect to external webpages when the dashboards provides specific installation instructions
+sources:
+  - Prometheus
+  - K8sContainerSample
