@@ -217,7 +217,7 @@ class ExportModal extends React.Component {
                 // Check if the current key matches our parent or we don't need to filter on a parent
                 this.loopAll(data[key], filterParent, filterElement, callback, parentMatch);
             }
-            if (key == filterElement && (filterParent == parentMatch || filterParent === null)) {
+            if (key === filterElement && (filterParent === parentMatch || filterParent === null)) {
                 data = callback(data, key);
             }
         }
@@ -281,7 +281,7 @@ class ExportModal extends React.Component {
                 errorAccountId: true,
             });
         }
-        if (this.state.dashboardName.trim().length == 0) {
+        if (this.state.dashboardName.trim().length === 0) {
             error = true;
             this.setState({
                 submitted: false,
@@ -399,7 +399,7 @@ class ExportModal extends React.Component {
                     </TabsItem>
                     <TabsItem value="tab-3" label="Export Json">
                         {this.state.dashboardUrl &&
-                            <p className="custom-export-json-link"><a href={this.state.dashboardUrl} target="_BLANK">Link to JSON</a></p>
+                            <p className="custom-export-json-link"><a href={this.state.dashboardUrl} rel="noopener noreferrer" target="_BLANK">Link to JSON</a></p>
                         }
                         <ExportJson json={this.state.dashboardJson} />
                     </TabsItem>

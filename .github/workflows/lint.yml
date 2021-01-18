@@ -1,14 +1,15 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Deploy website
+name: Code check
 
 on:
-  push:
-    branches: [ main ]
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build:
+  cicd:
 
     runs-on: ubuntu-latest
 
@@ -27,8 +28,11 @@ jobs:
         popd
         npm install
 
+    - name: install nr1 cli
+      run: curl -s https://cli.nr-ext.net/installer.sh | sudo bash
+
     - name: Lint check
-      run: eslint nerdlets/ website/
+      run: npm run eslint-check
 
     - name: Build data file
       run: npm run generator
@@ -36,9 +40,5 @@ jobs:
     - name: Build website
       run: npm run build-website
 
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      with:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BRANCH: gh-pages # The branch the action should deploy to.
-        FOLDER: website/build # The folder the action should deploy.
+    - name: Build nerdlet
+      run: npm run build

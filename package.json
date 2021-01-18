@@ -21,10 +21,14 @@
     "uuid": "dcaa3623-1e1c-41a3-a1d9-994499f4b66d"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "nr1 nerdpack:serve",
+    "build": "nr1 nerdpack:build",
+    "start-website": "cd website && react-scripts start",
+    "build-website": "cd website && react-scripts build",
+    "generator": "cd website/generator && ./generate-data.sh",
+    "test": "exit 0",
+    "eslint-check": "eslint nerdlets/ website/",
+    "eslint-fix": "eslint nerdlets/ website/ --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -40,5 +44,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^6.6.0"
   }
 }

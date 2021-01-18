@@ -2,8 +2,6 @@ import React from 'react';
 import {
     Link,
   } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 class View extends React.Component {
 
@@ -40,8 +38,8 @@ class View extends React.Component {
                                     <h2>Quickstart not found</h2>
                                 </div>
                                 <div className="col-4 text-right">
-                                    <Link className="btn btn-default" to={"/"}>
-                                        <FontAwesomeIcon icon={faHome} /> Back to listing
+                                    <Link className="btn btn-primary" to={"/"}>
+                                        Back to listing
                                     </Link>
                                 </div>
                             </div>
@@ -58,8 +56,8 @@ class View extends React.Component {
                         <h1>New Relic Quickstarts</h1>
                     </div>
                     <div className="col-4 text-right">
-                        <Link className="btn btn-default" to={"/"}>
-                            <FontAwesomeIcon icon={faHome} /> Back to listing
+                        <Link className="btn btn-primary" to={"/"}>
+                            Back to listing
                         </Link>
                     </div>
                 </div>
