@@ -28,7 +28,7 @@ jobs:
         npm install
 
     - name: Lint check
-      run: eslint nerdlets/ website/
+      run: npm run eslint-check
 
     - name: Build data file
       run: npm run generator
