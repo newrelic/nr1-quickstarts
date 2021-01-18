@@ -7,7 +7,9 @@
             "description": null,
             "widgets": [
                 {
-                    "visualization": {},
+                    "visualization": {
+                        "id": "viz.markdown"
+                    },
                     "layout": {
                         "column": 1,
                         "row": 1,
@@ -15,23 +17,14 @@
                         "width": 2
                     },
                     "title": "",
-                    "configuration": {
-                        "area": null,
-                        "line": null,
-                        "bar": null,
-                        "billboard": null,
-                        "pie": null,
-                        "table": null,
-                        "markdown": {
-                            "text": "![Prometheus](https://i.imgur.com/ngKW17V.png)"
-                        }
-                    },
                     "rawConfiguration": {
                         "text": "![Prometheus](https://i.imgur.com/ngKW17V.png)"
                     }
                 },
                 {
-                    "visualization": {},
+                    "visualization": {
+                        "id": "viz.markdown"
+                    },
                     "layout": {
                         "column": 3,
                         "row": 1,
@@ -39,23 +32,14 @@
                         "width": 6
                     },
                     "title": "",
-                    "configuration": {
-                        "area": null,
-                        "line": null,
-                        "bar": null,
-                        "billboard": null,
-                        "pie": null,
-                        "table": null,
-                        "markdown": {
-                            "text": "## Overview\n---\nThe purpose of this dashboard is to provide performance visibility for the [New Relic Prometheus OpenMetrics Integration](https://docs.newrelic.com/docs/integrations/prometheus-integrations/get-started/send-prometheus-metric-data-new-relic) (aka POMI).\n\nThis dashboard uses a mix of data from POMI as well as the [New Relic Kubernetes Integration](https://docs.newrelic.com/docs/integrations/kubernetes-integration/get-started/introduction-kubernetes-integration).\n\nIt's recommended to have both integrations deployed to your cluster for best results."
-                        }
-                    },
                     "rawConfiguration": {
                         "text": "## Overview\n---\nThe purpose of this dashboard is to provide performance visibility for the [New Relic Prometheus OpenMetrics Integration](https://docs.newrelic.com/docs/integrations/prometheus-integrations/get-started/send-prometheus-metric-data-new-relic) (aka POMI).\n\nThis dashboard uses a mix of data from POMI as well as the [New Relic Kubernetes Integration](https://docs.newrelic.com/docs/integrations/kubernetes-integration/get-started/introduction-kubernetes-integration).\n\nIt's recommended to have both integrations deployed to your cluster for best results."
                     }
                 },
                 {
-                    "visualization": {},
+                    "visualization": {
+                        "id": "viz.bar"
+                    },
                     "layout": {
                         "column": 9,
                         "row": 1,
@@ -63,22 +47,6 @@
                         "width": 4
                     },
                     "title": "POMI GB Ingested",
-                    "configuration": {
-                        "area": null,
-                        "line": null,
-                        "bar": {
-                            "queries": [
-                                {
-                                    "accountId": 0,
-                                    "nrql": "FROM Metric select bytecountestimate()/10e8 as 'GB' where integrationName = 'nri-prometheus' since 1 day ago facet clusterName "
-                                }
-                            ]
-                        },
-                        "billboard": null,
-                        "pie": null,
-                        "table": null,
-                        "markdown": null
-                    },
                     "rawConfiguration": {
                         "nrqlQueries": [
                             {
@@ -88,14 +56,16 @@
                         ],
                         "queries": [
                             {
-                                "accountId": 0,
+                                "accountId": 2609632,
                                 "nrql": "FROM Metric select bytecountestimate()/10e8 as 'GB' where integrationName = 'nri-prometheus' since 1 day ago facet clusterName "
                             }
                         ]
                     }
                 },
                 {
-                    "visualization": {},
+                    "visualization": {
+                        "id": "viz.markdown"
+                    },
                     "layout": {
                         "column": 1,
                         "row": 4,
@@ -103,23 +73,14 @@
                         "width": 8
                     },
                     "title": "",
-                    "configuration": {
-                        "area": null,
-                        "line": null,
-                        "bar": null,
-                        "billboard": null,
-                        "pie": null,
-                        "table": null,
-                        "markdown": {
-                            "text": "## POMI Instance Labeling\n---\nIt's recommended to add an alias to each POMI instance for easier identification.  This is especially helpful when running more than one instance in a single cluster.\n\nTo do this, add a custom attribute via a `transformation` in your POMI config:\n```\ntransformations:\n    - description: \"POMI Label Example\"\n      add_attributes:\n        - metric_prefix: \"\"\n          attributes:\n            pomiName: \"general\"\n```\n"
-                        }
-                    },
                     "rawConfiguration": {
                         "text": "## POMI Instance Labeling\n---\nIt's recommended to add an alias to each POMI instance for easier identification.  This is especially helpful when running more than one instance in a single cluster.\n\nTo do this, add a custom attribute via a `transformation` in your POMI config:\n```\ntransformations:\n    - description: \"POMI Label Example\"\n      add_attributes:\n        - metric_prefix: \"\"\n          attributes:\n            pomiName: \"general\"\n```\n"
                     }
                 },
                 {
-                    "visualization": {},
+                    "visualization": {
+                        "id": "viz.markdown"
+                    },
                     "layout": {
                         "column": 9,
                         "row": 4,
@@ -127,17 +88,6 @@
                         "width": 4
                     },
                     "title": "",
-                    "configuration": {
-                        "area": null,
-                        "line": null,
-                        "bar": null,
-                        "billboard": null,
-                        "pie": null,
-                        "table": null,
-                        "markdown": {
-                            "text": "## POMI Resource Considerations\n---\n\nCPU and Memory limits and requests can vary according to the number of targets monitored, and the number of metrics exposed by each target. \n\nFor example:\n- **800 targets** exposing **1000 timeseries** each\n- Each target with a **latency of 150ms**\n- `scrape_duration` of **30s**\n\nThis configuration is estimated to consume **2.5CPU** and **700MB of RAM**.\n\n\nFor more information, [please visit our docs](https://docs.newrelic.com/docs/integrations/prometheus-integrations/install-configure-openmetrics/configure-prometheus-openmetrics-integrations-large-kubernetes-environments)."
-                        }
-                    },
                     "rawConfiguration": {
                         "text": "## POMI Resource Considerations\n---\n\nCPU and Memory limits and requests can vary according to the number of targets monitored, and the number of metrics exposed by each target. \n\nFor example:\n- **800 targets** exposing **1000 timeseries** each\n- Each target with a **latency of 150ms**\n- `scrape_duration` of **30s**\n\nThis configuration is estimated to consume **2.5CPU** and **700MB of RAM**.\n\n\nFor more information, [please visit our docs](https://docs.newrelic.com/docs/integrations/prometheus-integrations/install-configure-openmetrics/configure-prometheus-openmetrics-integrations-large-kubernetes-environments)."
                     }
@@ -149,7 +99,9 @@
             "description": null,
             "widgets": [
                 {
-                    "visualization": {},
+                    "visualization": {
+                        "id": "viz.markdown"
+                    },
                     "layout": {
                         "column": 1,
                         "row": 1,
@@ -157,23 +109,14 @@
                         "width": 6
                     },
                     "title": "",
-                    "configuration": {
-                        "area": null,
-                        "line": null,
-                        "bar": null,
-                        "billboard": null,
-                        "pie": null,
-                        "table": null,
-                        "markdown": {
-                            "text": "## Integration Stats Key Data Points\n---\n\n### Targets and Timeseries\nThese values are directly correlated to the CPU and Memory resources that should be allocated to each POMI instance.  The more targets and unique timeseries, the more resources POMI will consume to process the data.\n\n---\n\n### Integration Process Duration\n\nThis value shows how long POMI takes to complete scraping all targets.  A good rule of thumb is that if this value exceeds 66% of the `scrape_interval`, then additional CPU/Memory resources may be needed.\n\n---\n\n### Scrape Duration by Target\n\nThis value shows how long POMI takes to scrape each target.  Keep in mind what your `scrape_interval` is set to (default 30s).  If a large number of targets are taking multiple seconds to complete their scrapes, then that could mean latency in the cluster **or** POMI might need more resources.\n\n---\n### Cardinality\n\nThis data point is simply a reference and usually not indicative of a problem.  Metrics with high cardinality take more resources to process and therefore *could* impact performance of POMI. There are cardinality limits applied at the account-level and individual metric-level.  [See our docs for details](https://docs.newrelic.com/docs/telemetry-data-platform/get-data/apis/metric-api-limits-restricted-attributes) on the Metric API limits."
-                        }
-                    },
                     "rawConfiguration": {
                         "text": "## Integration Stats Key Data Points\n---\n\n### Targets and Timeseries\nThese values are directly correlated to the CPU and Memory resources that should be allocated to each POMI instance.  The more targets and unique timeseries, the more resources POMI will consume to process the data.\n\n---\n\n### Integration Process Duration\n\nThis value shows how long POMI takes to complete scraping all targets.  A good rule of thumb is that if this value exceeds 66% of the `scrape_interval`, then additional CPU/Memory resources may be needed.\n\n---\n\n### Scrape Duration by Target\n\nThis value shows how long POMI takes to scrape each target.  Keep in mind what your `scrape_interval` is set to (default 30s).  If a large number of targets are taking multiple seconds to complete their scrapes, then that could mean latency in the cluster **or** POMI might need more resources.\n\n---\n### Cardinality\n\nThis data point is simply a reference and usually not indicative of a problem.  Metrics with high cardinality take more resources to process and therefore *could* impact performance of POMI. There are cardinality limits applied at the account-level and individual metric-level.  [See our docs for details](https://docs.newrelic.com/docs/telemetry-data-platform/get-data/apis/metric-api-limits-restricted-attributes) on the Metric API limits."
                     }
                 },
                 {
-                    "visualization": {},
+                    "visualization": {
+                        "id": "viz.markdown"
+                    },
                     "layout": {
                         "column": 7,
                         "row": 1,
@@ -181,17 +124,6 @@
                         "width": 6
                     },
                     "title": "",
-                    "configuration": {
-                        "area": null,
-                        "line": null,
-                        "bar": null,
-                        "billboard": null,
-                        "pie": null,
-                        "table": null,
-                        "markdown": {
-                            "text": "## Resource Utilization Key Data Points\n---\n### Request and Limit\nWhen you specify a Pod, you can optionally specify how much of each resource a Container needs. The most common resources to specify are CPU and Memory.\n\nWhen you specify the resource `request` for Containers in a Pod, the scheduler uses this information to decide which node to place the Pod on. When you specify a resource `limit` for a Container, the kubelet enforces those limits so that the running container is not allowed to use more of that resource than the limit you set. The kubelet also reserves at least the request amount of that system resource specifically for that container to use.\n\n---\n\n### CPU Utilization\nPercentage of CPU cores actually used by the container with respect to the CPU limit specified. This percentage is based on this calculation: `(cpuUsedCores / cpuLimitCores) * 100`\n\n---\n\n### Memory Utilization\nPercentage of memory actually used by the container with respect to the memory limit specified.\n"
-                        }
-                    },
                     "rawConfiguration": {
                         "text": "## Resource Utilization Key Data Points\n---\n### Request and Limit\nWhen you specify a Pod, you can optionally specify how much of each resource a Container needs. The most common resources to specify are CPU and Memory.\n\nWhen you specify the resource `request` for Containers in a Pod, the scheduler uses this information to decide which node to place the Pod on. When you specify a resource `limit` for a Container, the kubelet enforces those limits so that the running container is not allowed to use more of that resource than the limit you set. The kubelet also reserves at least the request amount of that system resource specifically for that container to use.\n\n---\n\n### CPU Utilization\nPercentage of CPU cores actually used by the container with respect to the CPU limit specified. This percentage is based on this calculation: `(cpuUsedCores / cpuLimitCores) * 100`\n\n---\n\n### Memory Utilization\nPercentage of memory actually used by the container with respect to the memory limit specified.\n"
                     }
@@ -203,7 +135,9 @@
             "description": null,
             "widgets": [
                 {
-                    "visualization": {},
+                    "visualization": {
+                        "id": "viz.table"
+                    },
                     "layout": {
                         "column": 1,
                         "row": 1,
@@ -211,22 +145,6 @@
                         "width": 5
                     },
                     "title": "Unique Timeseries per Instance",
-                    "configuration": {
-                        "area": null,
-                        "line": null,
-                        "bar": null,
-                        "billboard": null,
-                        "pie": null,
-                        "table": {
-                            "queries": [
-                                {
-                                    "accountId": 0,
-                                    "nrql": "from Metric select max(nr_stats_targets) as 'Target Count', latest(nr_stats_metrics_total_timeseries) as 'Timeseries' where integrationName = 'nri-prometheus' facet clusterName, pomiName limit max"
-                                }
-                            ]
-                        },
-                        "markdown": null
-                    },
                     "rawConfiguration": {
                         "nrqlQueries": [
                             {
@@ -236,14 +154,16 @@
                         ],
                         "queries": [
                             {
-                                "accountId": 0,
+                                "accountId": 2609632,
                                 "nrql": "from Metric select max(nr_stats_targets) as 'Target Count', latest(nr_stats_metrics_total_timeseries) as 'Timeseries' where integrationName = 'nri-prometheus' facet clusterName, pomiName limit max"
                             }
                         ]
                     }
                 },
                 {
-                    "visualization": {},
+                    "visualization": {
+                        "id": "viz.table"
+                    },
                     "layout": {
                         "column": 6,
                         "row": 1,
@@ -251,22 +171,6 @@
                         "width": 7
                     },
                     "title": "Integration Process Duration (e.g. time spent processing all metrics from all targets)",
-                    "configuration": {
-                        "area": null,
-                        "line": null,
-                        "bar": null,
-                        "billboard": null,
-                        "pie": null,
-                        "table": {
-                            "queries": [
-                                {
-                                    "accountId": 0,
-                                    "nrql": "from Metric select average(nr_stats_integration_payload_size) as 'Avg. Payload Size', latest(nr_stats_integration_process_duration_seconds) as 'Latest', max(nr_stats_integration_process_duration_seconds) as 'Max', average(nr_stats_integration_process_duration_seconds) as 'Avg' facet scrapedTargetURL, pomiName, integrationVersion as 'Version' limit 1000"
-                                }
-                            ]
-                        },
-                        "markdown": null
-                    },
                     "rawConfiguration": {
                         "nrqlQueries": [
                             {
@@ -276,14 +180,16 @@
                         ],
                         "queries": [
                             {
-                                "accountId": 0,
+                                "accountId": 2609632,
                                 "nrql": "from Metric select average(nr_stats_integration_payload_size) as 'Avg. Payload Size', latest(nr_stats_integration_process_duration_seconds) as 'Latest', max(nr_stats_integration_process_duration_seconds) as 'Max', average(nr_stats_integration_process_duration_seconds) as 'Avg' facet scrapedTargetURL, pomiName, integrationVersion as 'Version' limit 1000"
                             }
                         ]
                     }
                 },
                 {
-                    "visualization": {},
+                    "visualization": {
+                        "id": "viz.bar"
+                    },
                     "layout": {
                         "column": 1,
                         "row": 4,
@@ -291,22 +197,6 @@
                         "width": 2
                     },
                     "title": "Scraped Target Kind",
-                    "configuration": {
-                        "area": null,
-                        "line": null,
-                        "bar": {
-                            "queries": [
-                                {
-                                    "accountId": 0,
-                                    "nrql": "from Metric select uniqueCount(scrapedTargetURL) where integrationName = 'nri-prometheus' facet scrapedTargetKind "
-                                }
-                            ]
-                        },
-                        "billboard": null,
-                        "pie": null,
-                        "table": null,
-                        "markdown": null
-                    },
                     "rawConfiguration": {
                         "nrqlQueries": [
                             {
@@ -316,14 +206,16 @@
                         ],
                         "queries": [
                             {
-                                "accountId": 0,
+                                "accountId": 2609632,
                                 "nrql": "from Metric select uniqueCount(scrapedTargetURL) where integrationName = 'nri-prometheus' facet scrapedTargetKind "
                             }
                         ]
                     }
                 },
                 {
-                    "visualization": {},
+                    "visualization": {
+                        "id": "viz.table"
+                    },
                     "layout": {
                         "column": 3,
                         "row": 4,
@@ -331,22 +223,6 @@
                         "width": 5
                     },
                     "title": "Unique Timeseries by Target",
-                    "configuration": {
-                        "area": null,
-                        "line": null,
-                        "bar": null,
-                        "billboard": null,
-                        "pie": null,
-                        "table": {
-                            "queries": [
-                                {
-                                    "accountId": 0,
-                                    "nrql": "from Metric select latest(nr_stats_metrics_total_timeseries_by_target) as 'Latest' facet target, pomiName limit max "
-                                }
-                            ]
-                        },
-                        "markdown": null
-                    },
                     "rawConfiguration": {
                         "nrqlQueries": [
                             {
@@ -356,14 +232,16 @@
                         ],
                         "queries": [
                             {
-                                "accountId": 0,
+                                "accountId": 2609632,
                                 "nrql": "from Metric select latest(nr_stats_metrics_total_timeseries_by_target) as 'Latest' facet target, pomiName limit max "
                             }
                         ]
                     }
                 },
                 {
-                    "visualization": {},
+                    "visualization": {
+                        "id": "viz.table"
+                    },
                     "layout": {
                         "column": 8,
                         "row": 4,
@@ -371,22 +249,6 @@
                         "width": 5
                     },
                     "title": "Cardinality per Instance",
-                    "configuration": {
-                        "area": null,
-                        "line": null,
-                        "bar": null,
-                        "billboard": null,
-                        "pie": null,
-                        "table": {
-                            "queries": [
-                                {
-                                    "accountId": 0,
-                                    "nrql": "FROM Metric select cardinality() as 'Cardinality' where integrationName = 'nri-prometheus' facet clusterName, pomiName"
-                                }
-                            ]
-                        },
-                        "markdown": null
-                    },
                     "rawConfiguration": {
                         "nrqlQueries": [
                             {
@@ -396,14 +258,16 @@
                         ],
                         "queries": [
                             {
-                                "accountId": 0,
+                                "accountId": 2609632,
                                 "nrql": "FROM Metric select cardinality() as 'Cardinality' where integrationName = 'nri-prometheus' facet clusterName, pomiName"
                             }
                         ]
                     }
                 },
                 {
-                    "visualization": {},
+                    "visualization": {
+                        "id": "viz.table"
+                    },
                     "layout": {
                         "column": 1,
                         "row": 7,
@@ -411,22 +275,6 @@
                         "width": 8
                     },
                     "title": "Scrape Durations by Target",
-                    "configuration": {
-                        "area": null,
-                        "line": null,
-                        "bar": null,
-                        "billboard": null,
-                        "pie": null,
-                        "table": {
-                            "queries": [
-                                {
-                                    "accountId": 0,
-                                    "nrql": "from Metric select latest(nr_stats_integration_fetch_target_duration_seconds) as 'Latest', max(nr_stats_integration_fetch_target_duration_seconds) as 'Max', average(nr_stats_integration_fetch_target_duration_seconds) as 'Avg' facet target, pomiName limit max"
-                                }
-                            ]
-                        },
-                        "markdown": null
-                    },
                     "rawConfiguration": {
                         "nrqlQueries": [
                             {
@@ -436,14 +284,16 @@
                         ],
                         "queries": [
                             {
-                                "accountId": 0,
+                                "accountId": 2609632,
                                 "nrql": "from Metric select latest(nr_stats_integration_fetch_target_duration_seconds) as 'Latest', max(nr_stats_integration_fetch_target_duration_seconds) as 'Max', average(nr_stats_integration_fetch_target_duration_seconds) as 'Avg' facet target, pomiName limit max"
                             }
                         ]
                     }
                 },
                 {
-                    "visualization": {},
+                    "visualization": {
+                        "id": "viz.line"
+                    },
                     "layout": {
                         "column": 9,
                         "row": 7,
@@ -451,22 +301,6 @@
                         "width": 4
                     },
                     "title": "Scrape Durations by Target",
-                    "configuration": {
-                        "area": null,
-                        "line": {
-                            "queries": [
-                                {
-                                    "accountId": 0,
-                                    "nrql": "from Metric select average(nr_stats_integration_fetch_target_duration_seconds) as 'Latest' facet target, pomiName limit 1000 TIMESERIES "
-                                }
-                            ]
-                        },
-                        "bar": null,
-                        "billboard": null,
-                        "pie": null,
-                        "table": null,
-                        "markdown": null
-                    },
                     "rawConfiguration": {
                         "nrqlQueries": [
                             {
@@ -476,14 +310,16 @@
                         ],
                         "queries": [
                             {
-                                "accountId": 0,
+                                "accountId": 2609632,
                                 "nrql": "from Metric select average(nr_stats_integration_fetch_target_duration_seconds) as 'Latest' facet target, pomiName limit 1000 TIMESERIES "
                             }
                         ]
                     }
                 },
                 {
-                    "visualization": {},
+                    "visualization": {
+                        "id": "viz.table"
+                    },
                     "layout": {
                         "column": 1,
                         "row": 10,
@@ -491,22 +327,6 @@
                         "width": 12
                     },
                     "title": "Fetch Errors Total",
-                    "configuration": {
-                        "area": null,
-                        "line": null,
-                        "bar": null,
-                        "billboard": null,
-                        "pie": null,
-                        "table": {
-                            "queries": [
-                                {
-                                    "accountId": 0,
-                                    "nrql": "from Metric select sum(nr_stats_fetches_total), sum(nr_stats_fetch_errors_total), sum(nr_stats_fetches_total), sum(nr_stats_discovery_errors_total), sum(nr_stats_integration_total_executions) facet clusterName, target, pomiName limit max"
-                                }
-                            ]
-                        },
-                        "markdown": null
-                    },
                     "rawConfiguration": {
                         "nrqlQueries": [
                             {
@@ -516,14 +336,16 @@
                         ],
                         "queries": [
                             {
-                                "accountId": 0,
+                                "accountId": 2609632,
                                 "nrql": "from Metric select sum(nr_stats_fetches_total), sum(nr_stats_fetch_errors_total), sum(nr_stats_fetches_total), sum(nr_stats_discovery_errors_total), sum(nr_stats_integration_total_executions) facet clusterName, target, pomiName limit max"
                             }
                         ]
                     }
                 },
                 {
-                    "visualization": {},
+                    "visualization": {
+                        "id": "viz.table"
+                    },
                     "layout": {
                         "column": 1,
                         "row": 13,
@@ -531,22 +353,6 @@
                         "width": 12
                     },
                     "title": "Targets List",
-                    "configuration": {
-                        "area": null,
-                        "line": null,
-                        "bar": null,
-                        "billboard": null,
-                        "pie": null,
-                        "table": {
-                            "queries": [
-                                {
-                                    "accountId": 0,
-                                    "nrql": "from Metric select latest(scrapedTargetName) where integrationName = 'nri-prometheus' facet pomiName, scrapedTargetURL limit max"
-                                }
-                            ]
-                        },
-                        "markdown": null
-                    },
                     "rawConfiguration": {
                         "nrqlQueries": [
                             {
@@ -556,7 +362,7 @@
                         ],
                         "queries": [
                             {
-                                "accountId": 0,
+                                "accountId": 2609632,
                                 "nrql": "from Metric select latest(scrapedTargetName) where integrationName = 'nri-prometheus' facet pomiName, scrapedTargetURL limit max"
                             }
                         ]
@@ -569,7 +375,9 @@
             "description": null,
             "widgets": [
                 {
-                    "visualization": {},
+                    "visualization": {
+                        "id": "viz.table"
+                    },
                     "layout": {
                         "column": 1,
                         "row": 4,
@@ -577,22 +385,6 @@
                         "width": 12
                     },
                     "title": "POMI CPU/Mem Request and Limit Settings (source: nri-kubernetes)",
-                    "configuration": {
-                        "area": null,
-                        "line": null,
-                        "bar": null,
-                        "billboard": null,
-                        "pie": null,
-                        "table": {
-                            "queries": [
-                                {
-                                    "accountId": 0,
-                                    "nrql": "from K8sContainerSample select filter(latest(cpuLimitCores*1000), where eventType() = 'K8sContainerSample') as 'CPU Limit', filter(latest(cpuRequestedCores*1000), where eventType() = 'K8sContainerSample') as 'CPU Request', filter(latest(memoryLimitBytes/1024/1024), where eventType() = 'K8sContainerSample') as 'Mem Limit', filter(latest(memoryRequestedBytes/1024/1024), where eventType() = 'K8sContainerSample') as 'Mem Request' where podName like '%nri-prometheus%' facet clusterName, podName limit 1000"
-                                }
-                            ]
-                        },
-                        "markdown": null
-                    },
                     "rawConfiguration": {
                         "nrqlQueries": [
                             {
@@ -602,14 +394,16 @@
                         ],
                         "queries": [
                             {
-                                "accountId": 0,
+                                "accountId": 2609632,
                                 "nrql": "from K8sContainerSample select filter(latest(cpuLimitCores*1000), where eventType() = 'K8sContainerSample') as 'CPU Limit', filter(latest(cpuRequestedCores*1000), where eventType() = 'K8sContainerSample') as 'CPU Request', filter(latest(memoryLimitBytes/1024/1024), where eventType() = 'K8sContainerSample') as 'Mem Limit', filter(latest(memoryRequestedBytes/1024/1024), where eventType() = 'K8sContainerSample') as 'Mem Request' where podName like '%nri-prometheus%' facet clusterName, podName limit 1000"
                             }
                         ]
                     }
                 },
                 {
-                    "visualization": {},
+                    "visualization": {
+                        "id": "viz.line"
+                    },
                     "layout": {
                         "column": 1,
                         "row": 7,
@@ -617,22 +411,6 @@
                         "width": 6
                     },
                     "title": "CPU Cores Utilization %",
-                    "configuration": {
-                        "area": null,
-                        "line": {
-                            "queries": [
-                                {
-                                    "accountId": 0,
-                                    "nrql": "FROM K8sContainerSample select latest(cpuCoresUtilization) where podName like '%nri-prometheus%' TIMESERIES facet clusterName, podName limit 300"
-                                }
-                            ]
-                        },
-                        "bar": null,
-                        "billboard": null,
-                        "pie": null,
-                        "table": null,
-                        "markdown": null
-                    },
                     "rawConfiguration": {
                         "nrqlQueries": [
                             {
@@ -642,14 +420,16 @@
                         ],
                         "queries": [
                             {
-                                "accountId": 0,
+                                "accountId": 2609632,
                                 "nrql": "FROM K8sContainerSample select latest(cpuCoresUtilization) where podName like '%nri-prometheus%' TIMESERIES facet clusterName, podName limit 300"
                             }
                         ]
                     }
                 },
                 {
-                    "visualization": {},
+                    "visualization": {
+                        "id": "viz.line"
+                    },
                     "layout": {
                         "column": 7,
                         "row": 7,
@@ -657,22 +437,6 @@
                         "width": 6
                     },
                     "title": "CPU Used vs. Limit ",
-                    "configuration": {
-                        "area": null,
-                        "line": {
-                            "queries": [
-                                {
-                                    "accountId": 0,
-                                    "nrql": "FROM K8sContainerSample select latest(cpuUsedCores) * 1000, latest(cpuLimitCores) * 1000 where podName like '%nri-prometheus%' TIMESERIES facet clusterName, podName limit 300"
-                                }
-                            ]
-                        },
-                        "bar": null,
-                        "billboard": null,
-                        "pie": null,
-                        "table": null,
-                        "markdown": null
-                    },
                     "rawConfiguration": {
                         "nrqlQueries": [
                             {
@@ -682,14 +446,16 @@
                         ],
                         "queries": [
                             {
-                                "accountId": 0,
+                                "accountId": 2609632,
                                 "nrql": "FROM K8sContainerSample select latest(cpuUsedCores) * 1000, latest(cpuLimitCores) * 1000 where podName like '%nri-prometheus%' TIMESERIES facet clusterName, podName limit 300"
                             }
                         ]
                     }
                 },
                 {
-                    "visualization": {},
+                    "visualization": {
+                        "id": "viz.line"
+                    },
                     "layout": {
                         "column": 1,
                         "row": 10,
@@ -697,22 +463,6 @@
                         "width": 6
                     },
                     "title": "Memory Utilization %",
-                    "configuration": {
-                        "area": null,
-                        "line": {
-                            "queries": [
-                                {
-                                    "accountId": 0,
-                                    "nrql": "FROM K8sContainerSample select latest(memoryUtilization) where podName like '%nri-prometheus%' TIMESERIES facet clusterName, podName limit 300"
-                                }
-                            ]
-                        },
-                        "bar": null,
-                        "billboard": null,
-                        "pie": null,
-                        "table": null,
-                        "markdown": null
-                    },
                     "rawConfiguration": {
                         "nrqlQueries": [
                             {
@@ -722,14 +472,16 @@
                         ],
                         "queries": [
                             {
-                                "accountId": 0,
+                                "accountId": 2609632,
                                 "nrql": "FROM K8sContainerSample select latest(memoryUtilization) where podName like '%nri-prometheus%' TIMESERIES facet clusterName, podName limit 300"
                             }
                         ]
                     }
                 },
                 {
-                    "visualization": {},
+                    "visualization": {
+                        "id": "viz.line"
+                    },
                     "layout": {
                         "column": 7,
                         "row": 10,
@@ -737,22 +489,6 @@
                         "width": 6
                     },
                     "title": "Memory Used vs. Limit",
-                    "configuration": {
-                        "area": null,
-                        "line": {
-                            "queries": [
-                                {
-                                    "accountId": 0,
-                                    "nrql": "FROM K8sContainerSample select latest(memoryUsedBytes) / 1024 / 1024 as 'Memory Used Bytes', latest(memoryLimitBytes) / 1024 / 1024 as 'Memory Limit Bytes' where podName like '%nri-prometheus%' TIMESERIES facet clusterName, podName limit 300"
-                                }
-                            ]
-                        },
-                        "bar": null,
-                        "billboard": null,
-                        "pie": null,
-                        "table": null,
-                        "markdown": null
-                    },
                     "rawConfiguration": {
                         "nrqlQueries": [
                             {
@@ -762,7 +498,7 @@
                         ],
                         "queries": [
                             {
-                                "accountId": 0,
+                                "accountId": 2609632,
                                 "nrql": "FROM K8sContainerSample select latest(memoryUsedBytes) / 1024 / 1024 as 'Memory Used Bytes', latest(memoryLimitBytes) / 1024 / 1024 as 'Memory Limit Bytes' where podName like '%nri-prometheus%' TIMESERIES facet clusterName, podName limit 300"
                             }
                         ]
