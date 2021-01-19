@@ -153,7 +153,7 @@ function processQuickstart(element) {
         // Check if an image exists with same name as dashboard
         dashboard.screenshots = fs.readdirSync(directory + element + '/dashboards/')
             // Filter out images
-            .filter((imagename) => imagename.endsWith('png') || imagename.endsWith('jpeg') || imagename.endsWith('gif'))
+            .filter((imagename) => imagename.endsWith('png') || imagename.endsWith('jpeg') || imagename.endsWith('jpg') || imagename.endsWith('gif'))
             // Check if imagename starts same as dashboard name
             .filter((imagename) => imagename.startsWith(filename.slice(0, -5)))
             .map((imagename) => {
