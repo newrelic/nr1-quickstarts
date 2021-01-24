@@ -7,6 +7,7 @@ import {
     Grid,
     GridItem,
     TextField,
+    HeadingText,
 } from "nr1";
 
 class Home extends React.Component {
@@ -45,26 +46,31 @@ class Home extends React.Component {
     render() {
         return (
             <>
-                <Grid className="padding-bottom padding-top">
-                    <GridItem columnSpan={11}>
-                        <p>Use the search bar below to find a specific dashboard and click on any to get a more detailed description. If you want to add more dashboards or contribute to the code, please check out our <a href="https://github.com/newrelic-experimental/quickstarts" rel="noopener noreferrer" target="_BLANK">Github repository</a>.</p>
-                    </GridItem>
-                    <GridItem columnSpan={1} className="text-right">
+                <Grid>
+                    <GridItem columnSpan={3}>
+                        <HeadingText type={HeadingText.TYPE.HEADING_1} className="padding-top padding-bottom">Quickstarts</HeadingText>
+                        <p>Welcome to the New Relic dashboard library. </p>
+
+                        <p>Use the search bar below to find a specific dashboard and click on any to get a more detailed description. If you want to add more dashboards or contribute to the code, please check out our <a href="https://github.com/newrelic-experimental/quickstarts" rel="noopener noreferrer" target="_BLANK">Github repository</a></p>
+
+                        <HeadingText type={HeadingText.TYPE.HEADING_3} className="padding-top">Search</HeadingText>
+                        <TextField className="custom-textfield" placeholder="Search" type={TextField.TYPE.SEARCH} onChange={this.setSearch} spacingType={[TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE, TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE]} />
+
+                        <HeadingText type={HeadingText.TYPE.HEADING_3} className="padding-top">Tools</HeadingText>
                         <Link to={"/tools"}>
                             <Button
                                 type={Button.TYPE.NORMAL}
                                 iconType={Button.ICON_TYPE.DOCUMENTS__DOCUMENTS__NOTES__A_ADD}
-                            >Tools</Button>
+                            >Export helper</Button>
                         </Link>
                     </GridItem>
-                    <GridItem columnSpan={12}>
-                        <TextField className="custom-textfield" placeholder="Search" type={TextField.TYPE.SEARCH} onChange={this.setSearch} spacingType={[TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE, TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE]} />
+                    <GridItem columnSpan={9}>
+                        <Grid className="list-view">
+                            {this.props.data.quickstarts.filter(this.search).map((quickstart, i) => {
+                                return (<Preview key={quickstart.name} quickstart={quickstart} />)
+                            })}
+                        </Grid>
                     </GridItem>
-                </Grid>
-                <Grid className="list-view">
-                    {this.props.data.quickstarts.filter(this.search).map((quickstart, i) => {
-                        return (<Preview key={quickstart.name} quickstart={quickstart} />)
-                    })}
                 </Grid>
             </>
         );
