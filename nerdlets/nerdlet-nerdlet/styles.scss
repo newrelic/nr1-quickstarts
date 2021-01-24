@@ -122,8 +122,17 @@ a:hover {
 
 
 /*
-    Used on
+    Used on Export Modal
 */
 .custom-export-json-link {
     padding: 5px 0 5px 16px;
+}
+
+
+/*
+    Used on Export Json
+*/
+.custom-textfield-json {
+    @extend .custom-textfield;
+    height: 300px;
 }

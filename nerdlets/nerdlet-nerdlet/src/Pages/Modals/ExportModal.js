@@ -403,10 +403,10 @@ class ExportModal extends React.Component {
                         </Button>
                     </TabsItem>
                     <TabsItem value="tab-3" label="Export Json">
+                        <ExportJson json={this.state.dashboardJson} />
                         {this.state.dashboardUrl &&
                             <p className="custom-export-json-link"><a href={this.state.dashboardUrl} rel="noopener noreferrer" target="_BLANK">Link to JSON</a></p>
                         }
-                        <ExportJson json={this.state.dashboardJson} />
                     </TabsItem>
                 </Tabs>
             </Modal>
