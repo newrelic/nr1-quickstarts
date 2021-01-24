@@ -10,6 +10,7 @@ import {
     TextField,
     HeadingText,
     Modal,
+    navigation,
     AccountPicker,
     Spinner,
     Tabs,
@@ -321,18 +322,22 @@ class ExportModal extends React.Component {
             }
 
             console.log("created", results);
-            this._importSuccess();
+            this._importSuccess(results.data.dashboardCreate.entityResult.guid);
         }).catch((error) => {
             console.log('Nerdgraph Error:', error);
             this._importFail();
         })
     }
 
-    _importSuccess() {
+    _importSuccess(entityGuid) {
         Toast.showToast({
             title: 'Dashboard created',
             description: 'The dashboard was copied to your selected account.',
-            type: Toast.TYPE.NORMAL
+            type: Toast.TYPE.NORMAL,
+            actions: [{
+                label: 'View',
+                onClick: () => navigation.openEntity(entityGuid),
+            }],
         });
 
         this.setState({
