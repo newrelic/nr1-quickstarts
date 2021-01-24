@@ -117,6 +117,60 @@ function processQuickstart(element) {
         dashboard.sources = sources;
         quickstart.sources = [].concat(quickstart.sources, sources);
 
+
+        // Check which products the dashboard uses
+        quickstart.products = quickstart.sources.sort().map((source, i) => {
+            // Speciale case if config specifically set's it's own options
+            if (typeof source === 'object' && source !== null) {
+                return source;
+            }
+
+            switch(source) {
+                case 'ComputeSample':
+                case 'FinanceSample':
+                    return 'Cloud integration';
+                case 'SystemSample':
+                case 'ProcessSample':
+                case 'NetworkSample':
+                case 'StorageSample':
+                    return 'Infrastructure';
+                case 'PageView':
+                case 'PageAction':
+                case 'BrowserInteraction':
+                case 'JavaScriptError':
+                case 'PageViewTiming':
+                    return 'Browser';
+                case 'SyntheticRequest':
+                case 'SyntheticCheck':
+                    return 'Synthetics';
+                case 'Transaction':
+                case 'TransactionError':
+                    return 'APM';
+                case 'ServerlessSample':
+                    return 'Lambda';
+                case 'Kubernetes':
+                case 'K8sContainerSample':
+                case 'K8sNodeSample':
+                case 'K8sPodSample':
+                    return 'Kubernetes'
+                case 'Mobile':
+                case 'MobileCrash':
+                case 'MobileRequest':
+                    return 'Mobile'
+                case 'Log':
+                    return 'Logs';
+                case 'Prometheus':
+                    return 'Prometheus';
+                default:
+                    console.log(filename, 'Unknown event type:', source);
+                    return null;
+            }
+        }).sort().filter(function(item, pos, ary) {
+            if (item == null) { return false; }
+            return !pos || item !== ary[pos - 1];
+        });
+
+
         // Do a sanity check of all widgets
         for (let page of dashboardJson['pages']) {
             for (let widget of page['widgets']) {
@@ -201,7 +255,7 @@ function processQuickstart(element) {
 //
 // Write out data for use in front-end
 //
-console.log(util.inspect(quickstarts, false, null, true /* enable colors */))
+// Debug output: console.log(util.inspect(quickstarts, false, null, true /* enable colors */))
 let json = JSON.stringify({
     'quickstarts': quickstarts
 });
