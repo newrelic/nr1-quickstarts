@@ -1,0 +1,7 @@
+# Name of your quickstart as shown on the website
+name: Mobile example
+description: Dashboard based on the New Relic Mobile data.
+
+# Optional: Authors of the quickstart
+authors:
+    - New Relic

@@ -1,0 +1,600 @@
+{
+	"name": "Mobile App Experience",
+	"description": "",
+	"pages": [
+		{
+			"name": "Mobile App Experience",
+			"description": "",
+			"widgets": [
+				{
+					"visualization": {
+						"id": "viz.markdown"
+					},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "",
+					"rawConfiguration": {
+						"text": "![Image](https://newrelic.com/content/dam/component-assets/u03-navigation/logo-mobile.svg)\n\n[Dive deeper into Mobile Performance](https://rpm.newrelic.com/accounts/1606862/mobile/61690778)"
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 5,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Mobile Sessions",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) AS 'sessions' FROM Mobile SINCE 1 week ago COMPARE WITH 1 week ago"
+							}
+						],
+						"queries": [
+							{
+								"accountId": 1606862,
+								"nrql": "SELECT count(*) AS 'sessions' FROM Mobile SINCE 1 week ago COMPARE WITH 1 week ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bullet"
+					},
+					"layout": {
+						"column": 9,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Unique Mobile Users",
+					"rawConfiguration": {
+						"limit": 1000,
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT uniqueCount(uuid) as 'Unique User Logins' FROM Mobile SINCE 1 week ago"
+							}
+						],
+						"queries": [
+							{
+								"accountId": 1606862,
+								"nrql": "SELECT uniqueCount(uuid) as 'Unique User Logins' FROM Mobile SINCE 1 week ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.area"
+					},
+					"layout": {
+						"column": 1,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "App usage by version",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(responseTime) from MobileRequest facet appVersion TIMESERIES since  1 week ago"
+							}
+						],
+						"queries": [
+							{
+								"accountId": 1606862,
+								"nrql": "SELECT count(responseTime) from MobileRequest facet appVersion TIMESERIES since  1 week ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 5,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Device Model Distribution",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT Count(*)  FROM MobileRequest SINCE 1 day ago facet deviceModel"
+							}
+						],
+						"queries": [
+							{
+								"accountId": 1606862,
+								"nrql": "SELECT Count(*)  FROM MobileRequest SINCE 1 day ago facet deviceModel"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 9,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Carrier Distribution",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "select count(*) from Mobile since 1 day ago facet carrier"
+							}
+						],
+						"queries": [
+							{
+								"accountId": 1606862,
+								"nrql": "select count(*) from Mobile since 1 day ago facet carrier"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 1,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Device Manufacturers Distribution",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "select count(*) FROM Mobile SINCE 1 day ago  facet deviceManufacturer"
+							}
+						],
+						"queries": [
+							{
+								"accountId": 1606862,
+								"nrql": "select count(*) FROM Mobile SINCE 1 day ago  facet deviceManufacturer"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 5,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Mobile Login API Response time",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(duration) FROM Transaction FACET appName SINCE 1 day ago COMPARE WITH 1 day ago TIMESERIES AUTO"
+							}
+						],
+						"queries": [
+							{
+								"accountId": 1606862,
+								"nrql": "SELECT average(duration) FROM Transaction FACET appName SINCE 1 day ago COMPARE WITH 1 day ago TIMESERIES AUTO"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 1,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Historical Conversion Rate",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT uniqueCount(session) AS 'Site Visitors' FROM PageView SINCE 1 minute ago COMPARE WITH 1 week ago TIMESERIES"
+							}
+						],
+						"queries": [
+							{
+								"accountId": 1606862,
+								"nrql": "SELECT uniqueCount(session) AS 'Site Visitors' FROM PageView SINCE 1 minute ago COMPARE WITH 1 week ago TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 5,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Device Model HTTP Performance",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(responseTime)  FROM MobileRequest   SINCE 1 day ago facet deviceModel"
+							}
+						],
+						"queries": [
+							{
+								"accountId": 1606862,
+								"nrql": "SELECT average(responseTime)  FROM MobileRequest   SINCE 1 day ago facet deviceModel"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 9,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Time Spent in App by App Version",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(sessionDuration) FROM Mobile SINCE 1 week ago facet appVersion"
+							}
+						],
+						"queries": [
+							{
+								"accountId": 1606862,
+								"nrql": "SELECT average(sessionDuration) FROM Mobile SINCE 1 week ago facet appVersion"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 13,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Device Manufacturers HTTP Performance",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(responseTime) from MobileRequest  facet deviceManufacturer since 1 day ago"
+							}
+						],
+						"queries": [
+							{
+								"accountId": 1606862,
+								"nrql": "SELECT average(responseTime) from MobileRequest  facet deviceManufacturer since 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 5,
+						"row": 13,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Device Model HTTP Performance",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(responseTime) FROM MobileRequest SINCE 1 day ago facet deviceModel TIMESERIES"
+							}
+						],
+						"queries": [
+							{
+								"accountId": 1606862,
+								"nrql": "SELECT average(responseTime) FROM MobileRequest SINCE 1 day ago facet deviceModel TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 9,
+						"row": 13,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Carrier HTTP Performance",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "select count(*) from Mobile since 1 day ago facet carrier"
+							}
+						],
+						"queries": [
+							{
+								"accountId": 1606862,
+								"nrql": "select count(*) from Mobile since 1 day ago facet carrier"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 1,
+						"row": 16,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Device Manufacturers HTTP Performance",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(responseTime) from MobileRequest  facet deviceManufacturer TIMESERIES  since 1 day ago"
+							}
+						],
+						"queries": [
+							{
+								"accountId": 1606862,
+								"nrql": "SELECT average(responseTime) from MobileRequest  facet deviceManufacturer TIMESERIES  since 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 5,
+						"row": 16,
+						"height": 3,
+						"width": 4
+					},
+					"title": "CRASH by Device Model",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from MobileCrash  SINCE 1 day ago facet deviceModel"
+							}
+						],
+						"queries": [
+							{
+								"accountId": 1606862,
+								"nrql": "SELECT count(*) from MobileCrash  SINCE 1 day ago facet deviceModel"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 9,
+						"row": 16,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Carrier HTTP Performance",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "select count(*) from Mobile since 1 day ago facet carrier"
+							}
+						],
+						"queries": [
+							{
+								"accountId": 1606862,
+								"nrql": "select count(*) from Mobile since 1 day ago facet carrier"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 19,
+						"height": 3,
+						"width": 4
+					},
+					"title": "CRASH by Device Manufacturers",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from MobileCrash  facet deviceManufacturer since 1 day ago"
+							}
+						],
+						"queries": [
+							{
+								"accountId": 1606862,
+								"nrql": "SELECT count(*) from MobileCrash  facet deviceManufacturer since 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 5,
+						"row": 19,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Session Duration by Device Model",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(sessionDuration) FROM MobileRequest SINCE 1 day ago facet deviceModel"
+							}
+						],
+						"queries": [
+							{
+								"accountId": 1606862,
+								"nrql": "SELECT average(sessionDuration) FROM MobileRequest SINCE 1 day ago facet deviceModel"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 9,
+						"row": 19,
+						"height": 3,
+						"width": 4
+					},
+					"title": "CRASH by Carrier",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from MobileCrash since 1 day ago facet carrier"
+							}
+						],
+						"queries": [
+							{
+								"accountId": 1606862,
+								"nrql": "SELECT count(*) from MobileCrash since 1 day ago facet carrier"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 1,
+						"row": 22,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Mobile App Usage by Version",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(responseTime) from MobileRequest facet appVersion"
+							}
+						],
+						"queries": [
+							{
+								"accountId": 1606862,
+								"nrql": "SELECT count(responseTime) from MobileRequest facet appVersion"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 5,
+						"row": 22,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Mobile App Crash by Version",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM MobileCrash  WHERE crashFingerprint NOT IN(  ) FACET `appVersion` since 1 day ago"
+							}
+						],
+						"queries": [
+							{
+								"accountId": 1606862,
+								"nrql": "SELECT count(*) FROM MobileCrash  WHERE crashFingerprint NOT IN(  ) FACET `appVersion` since 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.area"
+					},
+					"layout": {
+						"column": 9,
+						"row": 22,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Mobile App Crash by Version over time",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM MobileCrash  WHERE crashFingerprint NOT IN(  ) FACET `appVersion` since 1 day ago TIMESERIES"
+							}
+						],
+						"queries": [
+							{
+								"accountId": 1606862,
+								"nrql": "SELECT count(*) FROM MobileCrash  WHERE crashFingerprint NOT IN(  ) FACET `appVersion` since 1 day ago TIMESERIES"
+							}
+						]
+					}
+				}
+			]
+		}
+	]
+}
