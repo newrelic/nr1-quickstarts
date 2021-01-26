@@ -19,7 +19,7 @@ import {
 } from 'nr1';
 
 
-class Tools extends React.Component {
+class ToolsExport extends React.Component {
 
     modalCallback = undefined;
     searchTimeout = undefined;
@@ -117,7 +117,7 @@ class Tools extends React.Component {
             <>
                 <Grid>
                     <GridItem className="padding-top" columnSpan={8}>
-                        <HeadingText type={HeadingText.TYPE.HEADING_2}>Tools</HeadingText>
+                        <HeadingText type={HeadingText.TYPE.HEADING_2}>Export dashboard</HeadingText>
                     </GridItem>
                     <GridItem columnSpan={4} className="text-right padding-top">
                         <Link className="" to={"/"}>
@@ -169,4 +169,4 @@ class Tools extends React.Component {
     }
 }
 
-export default Tools;
+export default ToolsExport;

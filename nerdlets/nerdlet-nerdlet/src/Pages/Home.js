@@ -61,7 +61,7 @@ class Home extends React.Component {
                             <li><a href="https://github.com/newrelic-experimental/quickstarts/discussions" target="_BLANK"rel="noopener noreferrer">Community</a></li>
                             <li><a href="https://github.com/newrelic-experimental/quickstarts/issues/new/choose" target="_BLANK"rel="noopener noreferrer">Report idea or issue</a></li>
                             <li><a href="https://github.com/newrelic-experimental/quickstarts/" target="_BLANK"rel="noopener noreferrer">Github repository</a></li>
-                            <li className="padding-top"><Link to={"/tools"}>Export helper</Link></li>
+                            <li className="padding-top"><Link to={"/tools/export"}>Export helper</Link></li>
                         </ul>
                     </GridItem>
                     <GridItem columnSpan={9}>

@@ -7,7 +7,7 @@ import {
 import Home from './Pages/Home';
 import View from './Pages/View';
 import ScrollToTop from './Helpers/ScrollToTop';
-import Tools from './Pages/Tools';
+import ToolsExport from './Pages/ToolsExport';
 import {
     Grid,
     GridItem,
@@ -52,7 +52,7 @@ class App extends React.Component {
                 <main role="main">
                     <Switch>
                         <Route path="/view/:handle" render={(props) => <View data={this.state.data} {...props} /> } />
-                        <Route path="/tools" render={(props) => <Tools data={this.state.data} {...props} /> } />
+                        <Route path="/tools/export" render={(props) => <ToolsExport data={this.state.data} {...props} /> } />
                         <Route path="/" render={(props) => <Home data={this.state.data} {...props} /> } />
                     </Switch>
                 </main>
