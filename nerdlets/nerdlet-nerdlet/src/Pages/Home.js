@@ -56,13 +56,13 @@ class Home extends React.Component {
                         <HeadingText type={HeadingText.TYPE.HEADING_3} className="padding-top">Search</HeadingText>
                         <TextField className="custom-textfield" placeholder="Search" type={TextField.TYPE.SEARCH} onChange={this.setSearch} spacingType={[TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE, TextField.SPACING_TYPE.LARGE, TextField.SPACING_TYPE.NONE]} />
 
-                        <HeadingText type={HeadingText.TYPE.HEADING_3} className="padding-top">Tools</HeadingText>
-                        <Link to={"/tools"}>
-                            <Button
-                                type={Button.TYPE.NORMAL}
-                                iconType={Button.ICON_TYPE.DOCUMENTS__DOCUMENTS__NOTES__A_ADD}
-                            >Export helper</Button>
-                        </Link>
+                        <HeadingText type={HeadingText.TYPE.HEADING_3} className="padding-top">Links</HeadingText>
+                        <ul className="links">
+                            <li><a href="https://github.com/newrelic-experimental/quickstarts/discussions" target="_BLANK"rel="noopener noreferrer">Community</a></li>
+                            <li><a href="https://github.com/newrelic-experimental/quickstarts/issues/new/choose" target="_BLANK"rel="noopener noreferrer">Report idea or issue</a></li>
+                            <li><a href="https://github.com/newrelic-experimental/quickstarts/" target="_BLANK"rel="noopener noreferrer">Github repository</a></li>
+                            <li className="padding-top"><Link to={"/tools"}>Export helper</Link></li>
+                        </ul>
                     </GridItem>
                     <GridItem columnSpan={9}>
                         <Grid className="list-view">
