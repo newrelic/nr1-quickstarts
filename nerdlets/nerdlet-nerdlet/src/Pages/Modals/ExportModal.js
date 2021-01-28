@@ -22,7 +22,7 @@ import PropTypes from 'prop-types';
 
 class ExportModal extends React.Component {
   static getDerivedStateFromProps(props, state) {
-    if (props.accountId !== state.accountId) {
+    if (props.accountId !== state.accountId && state.accountId == null) {
       return { ...state, accountId: props.accountId };
     }
     return state;
@@ -43,6 +43,7 @@ class ExportModal extends React.Component {
       dashboardName: '',
       dashboardLoading: true,
       submitted: false,
+      accountId: null,
     };
   }
 
@@ -196,6 +197,9 @@ class ExportModal extends React.Component {
   }
 
   closeModal(event, value) {
+    this.setState({
+      accountId: null,
+    });
     this.props.onClose(event, value);
   }
 
