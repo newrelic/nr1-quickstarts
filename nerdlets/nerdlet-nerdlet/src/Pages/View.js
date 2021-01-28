@@ -56,10 +56,12 @@ class View extends React.Component {
 
   openTools(file) {
     const url = `https://newrelic.github.io/quickstarts/data/${this.state.quickstart.id}/dashboards/${file}`;
-    this.setState({
+
+    this.setState((prevState) => ({
+      ...prevState,
       dashboardUrl: url,
       toolsModalHidden: false,
-    });
+    }));
   }
 
   closeTools() {
