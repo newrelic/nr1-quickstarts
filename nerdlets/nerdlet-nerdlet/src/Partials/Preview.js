@@ -30,7 +30,7 @@ class Preview extends React.Component {
             />
             <CardBody className="preview-image">
               <img
-                src={`https://newrelic.github.io/quickstarts/data/${this.props.quickstart.id}/dashboards/${this.state.screenshot}`}
+                src={`https://newrelic.github.io/nr1-quickstarts/data/${this.props.quickstart.id}/dashboards/${this.state.screenshot}`}
                 alt="Dashboard screenshot"
               />
             </CardBody>

@@ -55,7 +55,7 @@ class View extends React.Component {
   }
 
   openTools(file) {
-    const url = `https://newrelic.github.io/quickstarts/data/${this.state.quickstart.id}/dashboards/${file}`;
+    const url = `https://newrelic.github.io/nr1-quickstarts/data/${this.state.quickstart.id}/dashboards/${file}`;
 
     this.setState((prevState) => ({
       ...prevState,
@@ -214,7 +214,7 @@ class View extends React.Component {
               Problems or feedback?
             </HeadingText>
             <Button
-              to={`https://github.com/newrelic/quickstarts/issues/new?labels=bug&title=Problem%20with%20${this.state.quickstart.id}`}
+              to={`https://github.com/newrelic/nr1-quickstarts/issues/new?labels=bug&title=Problem%20with%20${this.state.quickstart.id}`}
               type={Button.TYPE.PLAIN}
               iconType={
                 Button.ICON_TYPE
@@ -253,7 +253,7 @@ class View extends React.Component {
                         return (
                           <GridItem key={screenshot} columnSpan={6}>
                             <img
-                              src={`https://newrelic.github.io/quickstarts/data/${this.state.quickstart.id}/dashboards/${screenshot}`}
+                              src={`https://newrelic.github.io/nr1-quickstarts/data/${this.state.quickstart.id}/dashboards/${screenshot}`}
                               className="card-img-top"
                               alt="..."
                             />

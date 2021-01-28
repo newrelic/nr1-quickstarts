@@ -21,7 +21,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        fetch('https://newrelic.github.io/quickstarts/data.json')
+        fetch('https://newrelic.github.io/nr1-quickstarts/data.json')
             .then(response => response.json())
             .then((response) => {
                 this.setState({

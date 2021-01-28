@@ -57,7 +57,7 @@ class Home extends React.Component {
               any to get a more detailed description. If you want to add more
               dashboards or contribute to the code, please check out our{' '}
               <a
-                href="https://github.com/newrelic/quickstarts"
+                href="https://github.com/newrelic/nr1-quickstarts"
                 rel="noopener noreferrer"
                 target="_BLANK"
               >
@@ -93,7 +93,7 @@ class Home extends React.Component {
             <ul className="links">
               <li>
                 <a
-                  href="https://github.com/newrelic/quickstarts/discussions"
+                  href="https://github.com/newrelic/nr1-quickstarts/discussions"
                   target="_BLANK"
                   rel="noopener noreferrer"
                 >
@@ -102,7 +102,7 @@ class Home extends React.Component {
               </li>
               <li>
                 <a
-                  href="https://github.com/newrelic/quickstarts/issues/new/choose"
+                  href="https://github.com/newrelic/nr1-quickstarts/issues/new/choose"
                   target="_BLANK"
                   rel="noopener noreferrer"
                 >
@@ -111,7 +111,7 @@ class Home extends React.Component {
               </li>
               <li>
                 <a
-                  href="https://github.com/newrelic/quickstarts/"
+                  href="https://github.com/newrelic/nr1-quickstarts/"
                   target="_BLANK"
                   rel="noopener noreferrer"
                 >
