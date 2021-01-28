@@ -21,6 +21,13 @@ import {
 import PropTypes from 'prop-types';
 
 class ExportModal extends React.Component {
+  static getDerivedStateFromProps(props, state) {
+    if (props.accountId !== state.accountId) {
+      return { ...state, accountId: props.accountId };
+    }
+    return state;
+  }
+
   constructor(props) {
     super(props);
 
@@ -44,12 +51,6 @@ class ExportModal extends React.Component {
       this.loadGuid(this.props.sourceGuid);
     } else if (prevProps.sourceUrl !== this.props.sourceUrl) {
       this.loadJson(this.props.sourceUrl);
-    }
-
-    if (prevProps.accountId !== this.props.accountId) {
-      this.setState({
-        accountId: this.props.accountId,
-      });
     }
   }
 

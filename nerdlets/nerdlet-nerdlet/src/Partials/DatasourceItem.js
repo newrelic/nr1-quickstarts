@@ -2,7 +2,6 @@ import React from 'react';
 import { ListItem } from 'nr1';
 import PropTypes from 'prop-types';
 
-
 class DatasourceItem extends React.Component {
   static getProduct(source) {
     let name = '';
