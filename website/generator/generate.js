@@ -1,6 +1,5 @@
 const fs = require('fs');
 const yaml = require('js-yaml');
-const util = require('util');
 const { exit } = require('process');
 
 
