@@ -43,19 +43,16 @@ If you encounter any issues, have feedback or ideas. Please don't hesitate to cr
 >Add the url for the support thread here -->
 
 ## Contributing
-Full details about how to contribute to
-Contributions to improve [Project Name] are encouraged! Keep in mind when you submit your pull request, you'll need to sign the CLA via the click-through using CLA-Assistant. You only have to sign the CLA one time per project.
+Contributions to improve Quickstarts are encouraged! Keep in mind when you submit your pull request, you'll need to sign the CLA via the click-through using CLA-Assistant. You only have to sign the CLA one time per project.
 To execute our corporate CLA, which is required if your contribution is on behalf of a company, or if you have any questions, please drop us an email at opensource@newrelic.com.
 
-### A note about vulnerabilities
+To all contributors, we thank you! Without your contribution, this project would not be what it is today.
+
+## Security
 
 As noted in our [security policy](https://github.com/newrelic/nr1-quickstarts/security/policy), New Relic is committed to the privacy and security of our customers and their data. We believe that providing coordinated disclosure by security researchers and engaging with the security community are important means to achieve our security goals.
 
 If you believe you have found a security vulnerability in this project or any of New Relic's products or websites, we welcome and greatly appreciate you reporting it to New Relic through HackerOne.
-
-If you would like to contribute to this project, review these guidelines.
-
-To all contributors, we thank you! Without your contribution, this project would not be what it is today.
 
 ## License
 New Relic quickstarts is licensed under the [Apache 2.0](http://apache.org/licenses/LICENSE-2.0.txt) License.
