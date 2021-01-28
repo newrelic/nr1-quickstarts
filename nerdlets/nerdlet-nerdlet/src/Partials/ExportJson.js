@@ -44,7 +44,8 @@ class ExportJson extends React.Component {
               Copy to clipboard
             </Button>
           </CopyToClipboard>
-          <GridItem columnSpan={12} />
+        </GridItem>
+        <GridItem columnSpan={12}>
           <TextField
             className="custom-textfield-json"
             label="JSON output"
