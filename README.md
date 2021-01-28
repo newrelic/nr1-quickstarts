@@ -1,4 +1,4 @@
-[![New Relic Experimental header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/Experimental.png)](https://opensource.newrelic.com/oss-category/#new-relic-experimental)
+[![New Relic One Catalog Project header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/New_Relic_One_Catalog_Project.png)](https://opensource.newrelic.com/oss-category/#new-relic-one-catalog-project)
 
 # New Relic Quickstart Preview ![Deploy website](https://github.com/newrelic/quickstarts/workflows/Deploy%20website/badge.svg?branch=master)
 
