@@ -213,25 +213,27 @@ class ExportModal extends React.Component {
 
   loopAll(data, filterParent, filterElement, callback, parentMatch) {
     for (const key in data) {
-      if (Array.isArray(data[key]) || typeof data[key] === 'object') {
-        if (!Array.isArray(data)) {
-          parentMatch = key;
-        }
+      if (Object.prototype.hasOwnProperty.call(data, key)) {
+        if (Array.isArray(data[key]) || typeof data[key] === 'object') {
+          if (!Array.isArray(data)) {
+            parentMatch = key;
+          }
 
-        // Check if the current key matches our parent or we don't need to filter on a parent
-        this.loopAll(
-          data[key],
-          filterParent,
-          filterElement,
-          callback,
-          parentMatch
-        );
-      }
-      if (
-        key === filterElement &&
-        (filterParent === parentMatch || filterParent === null)
-      ) {
-        data = callback(data, key);
+          // Check if the current key matches our parent or we don't need to filter on a parent
+          this.loopAll(
+            data[key],
+            filterParent,
+            filterElement,
+            callback,
+            parentMatch
+          );
+        }
+        if (
+          key === filterElement &&
+          (filterParent === parentMatch || filterParent === null)
+        ) {
+          data = callback(data, key);
+        }
       }
     }
 
