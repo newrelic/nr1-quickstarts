@@ -2,7 +2,7 @@
   "name": "nr-quickstarts",
   "version": "0.2.0",
   "private": true,
-  "homepage": "https://newrelic-experimental.github.io/quickstarts",
+  "homepage": "https://newrelic.github.io/quickstarts",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",

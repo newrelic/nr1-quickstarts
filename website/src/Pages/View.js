@@ -70,7 +70,7 @@ class View extends React.Component {
                                 return dashboard.screenshots.map((screenshot) => {
                                     return (
                                         <div className="col-4" key={dashboard.name + screenshot}>
-                                            <img src={ "https://newrelic-experimental.github.io/quickstarts/data/" + this.state.quickstart.id + "/dashboards/" + screenshot} className="card-img-top" alt="..." />
+                                            <img src={ "https://newrelic.github.io/quickstarts/data/" + this.state.quickstart.id + "/dashboards/" + screenshot} className="card-img-top" alt="..." />
                                         </div>
                                     );
                                 });
@@ -79,7 +79,7 @@ class View extends React.Component {
 
                         <p className="description mt-4">{ this.state.quickstart.description }</p>
 
-                        <p><b>Installation: </b>Please follow the <a href="https://github.com/newrelic-experimental/quickstarts/blob/main/INSTALLATION.md" rel="noopener noreferrer" target="_BLANK">instructions here</a> to install the Quickstarts Nerdlet into your New Relic account which will allow you to import these dashboards.</p>
+                        <p><b>Installation: </b>Please follow the <a href="https://github.com/newrelic/quickstarts/blob/main/INSTALLATION.md" rel="noopener noreferrer" target="_BLANK">instructions here</a> to install the Quickstarts Nerdlet into your New Relic account which will allow you to import these dashboards.</p>
                     </div>
                 </div>
             </div>

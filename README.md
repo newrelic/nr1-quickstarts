@@ -1,8 +1,8 @@
 [![New Relic Experimental header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/Experimental.png)](https://opensource.newrelic.com/oss-category/#new-relic-experimental)
 
-# New Relic Quickstart Preview ![Deploy website](https://github.com/newrelic-experimental/quickstarts/workflows/Deploy%20website/badge.svg?branch=master)
+# New Relic Quickstart Preview ![Deploy website](https://github.com/newrelic/quickstarts/workflows/Deploy%20website/badge.svg?branch=master)
 
-Community repository of New Relic dashboards, alerts, and installation instructions. You can find the repository here: https://newrelic-experimental.github.io/quickstarts/
+Community repository of New Relic dashboards, alerts, and installation instructions. You can find the repository here: https://newrelic.github.io/quickstarts/
 
 ## Installation
 
@@ -24,7 +24,7 @@ Community repository of New Relic dashboards, alerts, and installation instructi
 
 7. Push your changes to Github `git push`
 
-8. [Create a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) in the [parent repository](https://github.com/newrelic-experimental/quickstarts/compare?expand=1).
+8. [Create a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) in the [parent repository](https://github.com/newrelic/quickstarts/compare?expand=1).
 
 9. Submit and wait for review. We will review as fast as we can, but it can sometimes take a day or two.
 
@@ -49,7 +49,7 @@ To execute our corporate CLA, which is required if your contribution is on behal
 
 ### A note about vulnerabilities
 
-As noted in our [security policy](https://github.com/newrelic-experimental/quickstarts/security/policy), New Relic is committed to the privacy and security of our customers and their data. We believe that providing coordinated disclosure by security researchers and engaging with the security community are important means to achieve our security goals.
+As noted in our [security policy](https://github.com/newrelic/quickstarts/security/policy), New Relic is committed to the privacy and security of our customers and their data. We believe that providing coordinated disclosure by security researchers and engaging with the security community are important means to achieve our security goals.
 
 If you believe you have found a security vulnerability in this project or any of New Relic's products or websites, we welcome and greatly appreciate you reporting it to New Relic through HackerOne.
 
