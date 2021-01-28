@@ -42,3 +42,21 @@ jobs:
 
     - name: Build nerdlet
       run: npm run build
+
+  validate-nerdpack:
+    name: validate nerdpack
+    needs: checkout-and-build-pr
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Validate Open Source Files
+        uses: newrelic/validate-nerdpack-action@v1
+
+      - name: Install NR1 CLI
+        run: |
+          curl -s https://cli.nr-ext.net/installer.sh | sudo bash
+      - name: Validate Nerdpack Schema
+        run: |
+          nr1 nerdpack:validate
