@@ -329,7 +329,7 @@ class ExportModal extends React.Component {
 
     // Set the dashboard as private by default
     // TODO: Give customer the option
-    dashboardData.permissions = 'PRIVATE';
+    dashboardData.permissions = 'PUBLIC_READ_WRITE';
 
     // Filter any variables and set accountId
     dashboardData = this.filterDashboard(dashboardData, true);
