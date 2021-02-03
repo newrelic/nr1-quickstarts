@@ -1,0 +1,112 @@
+{
+	"name": "Kubernetes Utilization",
+	"description": null,
+	"pages": [
+		{
+			"name": "Kubernetes Utilization",
+			"description": null,
+			"widgets": [
+				{
+					"visualization": {
+						"id": "viz.area"
+					},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 3,
+						"width": 12
+					},
+					"title": "CPU Used (Cores) by Node",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(cpuUsedCores) FROM K8sNodeSample FACET nodeName SINCE 60 MINUTES AGO TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.heatmap"
+					},
+					"layout": {
+						"column": 1,
+						"row": 4,
+						"height": 3,
+						"width": 8
+					},
+					"title": "CPU % by Instance Type",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT histogram(cpuPercent, 100, 25) FROM ProcessSample FACET instanceType"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 9,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Memory Usage by pod, container",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT (average(memoryUsedBytes) / average(memoryLimitBytes))*100 as 'Memory Used %' from K8sContainerSample facet podName, containerName timeseries since 60 minutes ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.heatmap"
+					},
+					"layout": {
+						"column": 1,
+						"row": 7,
+						"height": 3,
+						"width": 8
+					},
+					"title": "CPU % by Namespace",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT histogram(cpuPercent, 10, 100) FROM ProcessSample FACET `containerLabel_io.kubernetes.pod.namespace`"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 9,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "MAX CPU Cores Requested by Container",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT max(cpuRequestedCores) FROM K8sContainerSample FACET containerName SINCE 30 MINUTES AGO TIMESERIES"
+							}
+						]
+					}
+				}
+			]
+		}
+	]
+}
