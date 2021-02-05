@@ -1,0 +1,12 @@
+# Name of your quickstart as shown on the website
+name: APM Pages Dashboard
+description: Set of dashboards based on New Relic APM agent data.
+
+
+# Optional: Authors of the quickstart
+authors:
+    - Darren Doyle.
+    
+
+# Optional: Add additional sources as some can't be auto detected by the scripts (for example Prometheus data).
+# You can also redirect to external webpages when the dashboards provides specific installation instructions

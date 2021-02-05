@@ -1,0 +1,2078 @@
+{
+	"name": "Mobile Pages Dashboard",
+	"description": "",
+	"pages": [
+		{
+			"name": "HTTP Requests",
+			"description": null,
+			"widgets": [
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Select an App!",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM MobileRequest  FACET appName since 3 days ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 5,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Select a version!",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM MobileRequest  FACET appVersion  since 3 days ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.area"
+					},
+					"layout": {
+						"column": 9,
+						"row": 1,
+						"height": 4,
+						"width": 4
+					},
+					"title": "Average requests / session",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*)/uniqueCount(sessionId) from MobileRequest, MobileSession  since 1 day ago facet appName timeseries"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 4,
+						"height": 2,
+						"width": 4
+					},
+					"title": "HTTP Requests: Domains",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM MobileRequest  FACET requestDomain since 3 days ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 5,
+						"row": 4,
+						"height": 3,
+						"width": 2
+					},
+					"title": "Network Response Time Percentiles",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentile(responseTime, 98) as '(sec)', percentile(responseTime, 90) as '(sec)', percentile(responseTime, 50) as '(sec)' from MobileRequest since 3 days ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 7,
+						"row": 4,
+						"height": 3,
+						"width": 2
+					},
+					"title": "Error rate (request errors / total requests)",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentage(count(*), where errorType = 'NetworkFailure' OR errorType = 'HTTPError' and networkError not like 'Cancelled') as 'Error Rate %' FROM MobileRequestError, MobileRequest  since 3 days ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.heatmap"
+					},
+					"layout": {
+						"column": 9,
+						"row": 5,
+						"height": 4,
+						"width": 4
+					},
+					"title": "Response Time Distribution by Carrier",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT histogram(responseTime, 20, 20) FROM MobileRequest  since 3 days ago facet carrier"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 6,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Network Requests per Day",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from MobileRequest  facet weekdayOf(timestamp) since 3 days ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 5,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "HTTP Requests: Paths",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from MobileRequestError facet requestPath since 3 days ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 9,
+						"row": 9,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Bucketed Response Times",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentile(responseTime, 90), latest(requestUrl) as 'Latest URL' from MobileRequest facet cases(where requestUrl like '%token%' as 'Tokens', where requestUrl like '%summary%' as 'Summary', where requestUrl like '%dashboards%' as 'Dashboards', where requestUrl like '%collections%' as 'Collections', where requestUrl like '%chartdata%' as 'Chartdata Service', where requestUrl like '%/v1/metrics%' as 'Metric Service', where requestUrl like '%accounts%' as 'Account Service', where requestUrl not like '%accounts%' and requestUrl not like '%/v1/metrics%' and requestUrl not like '%chartdata%'  and requestUrl not like '%token%' and requestUrl not like '%summary%' and requestUrl not like '%dashboards%' and requestUrl not like '%collections%' as 'Other' ) since 3 days ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 5,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "90% Response Time by Domain",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentile(responseTime, 90) as 'Response Time (sec)' from MobileRequest  facet requestDomain since 3 days ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 9,
+						"row": 12,
+						"height": 3,
+						"width": 4
+					},
+					"title": "% Users Impacted by >3 sec network response time",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT filter(uniqueCount(MobileRequest.uuid), WHERE responseTime > 3) / uniqueCount(Mobile.uuid) * 100 as '% Users Impacted' FROM MobileRequest, Mobile   since 1 day ago timeseries compare with 2 days ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 1,
+						"row": 13,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Error rate by Domain",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentage(count(*), where errorType = 'NetworkFailure' OR errorType = 'HTTPError' and networkError not like 'Cancelled') as 'Error Rate %', filter(count(*), where networkError not like 'Cancelled') as '# of Requests', filter(count(*), where errorType='NetworkFailure' OR errorType='HTTPError' and networkError not like 'Cancelled' as '# of Errors') FROM MobileRequestError, MobileRequest facet requestDomain  since 3 days ago where requestDomain not like 'wpad'"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 9,
+						"row": 15,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Bucketed Traffic",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*), latest(requestUrl) as 'Latest URL' from MobileRequest facet cases(where requestUrl like '%token%' as 'Tokens', where requestUrl like '%summary%' as 'Summary', where requestUrl like '%dashboards%' as 'Dashboards', where requestUrl like '%collections%' as 'Collections', where requestUrl like '%chartdata%' as 'Chartdata Service', where requestUrl like '%/v1/metrics%' as 'Metric Service', where requestUrl like '%accounts%' as 'Account Service', where requestUrl not like '%accounts%' and requestUrl not like '%/v1/metrics%' and requestUrl not like '%chartdata%'  and requestUrl not like '%token%' and requestUrl not like '%summary%' and requestUrl not like '%dashboards%' and requestUrl not like '%collections%' as 'Other' ) since 3 days ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 1,
+						"row": 16,
+						"height": 3,
+						"width": 4
+					},
+					"title": "90% Response Time by Domain",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentile(responseTime, 90) as 'Response Time (specify unit)' from MobileRequest  facet requestDomain since 3 days ago timeseries"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 5,
+						"row": 16,
+						"height": 3,
+						"width": 4
+					},
+					"title": "90% Response Time by Path",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentile(responseTime, 90) from MobileRequest  facet requestPath timeseries since 3 days ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 9,
+						"row": 18,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Response time",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentile(responseTime, 90) from MobileRequest  since 1 day ago compare with 2 days ago timeseries"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 1,
+						"row": 19,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Error Rate faceted by requestPath",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentage(count(*), where errorType = 'NetworkFailure' OR errorType = 'HTTPError' and networkError not like 'Cancelled') as 'Error Rate %', filter(count(*), where networkError not like 'Cancelled') as '# of Requests', filter(count(*), where errorType='NetworkFailure' OR errorType='HTTPError' and networkError not like 'Cancelled' as '# of Errors') FROM MobileRequestError, MobileRequest facet requestPath   since 3 days ago where requestDomain not like 'wpad'"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 9,
+						"row": 21,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Session Duration",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentile(sessionDuration,90) as 'Session Duration (sec)' from MobileSession    since 3 days ago facet appName  timeseries"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 1,
+						"row": 22,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Error rate faceted by requestUrl",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentage(count(*), where errorType = 'NetworkFailure' OR errorType = 'HTTPError' and networkError not like 'Cancelled' ) as 'Error Rate %', count(*) as '# of Requests', filter(count(*), where errorType='NetworkFailure' OR errorType='HTTPError' and networkError not like 'Cancelled' as '# of Errors') FROM MobileRequestError, MobileRequest facet requestUrl   since 3 days ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 9,
+						"row": 24,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Sessions by App",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM MobileSession   FACET appName since 3 days ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 1,
+						"row": 27,
+						"height": 3,
+						"width": 12
+					},
+					"title": "HTTP Request List (filtered to app, version, etc.)",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT requestMethod, requestUrl, statusCode, authentication_email as 'custom attribute with user id' from MobileRequest since 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 1,
+						"row": 30,
+						"height": 3,
+						"width": 12
+					},
+					"title": "Top Device UUIDs making requests",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*), latest(accountName), latest(email) as 'custom attribute with user id', latest(device), latest(carrier), latest(asnOwner), latest(regionCode) FROM MobileRequest  FACET deviceUuid  limit 100 SINCE 1 days ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.heatmap"
+					},
+					"layout": {
+						"column": 1,
+						"row": 33,
+						"height": 3,
+						"width": 12
+					},
+					"title": "Response Time Distribution by requestUrl",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT histogram(responseTime, 20, 20) FROM MobileRequest  since 3 days ago facet requestUrl"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.heatmap"
+					},
+					"layout": {
+						"column": 1,
+						"row": 36,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Response Time Distribution by requestDomain",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT histogram(responseTime, 20, 20) FROM MobileRequest  since 3 days ago facet requestDomain"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.heatmap"
+					},
+					"layout": {
+						"column": 5,
+						"row": 36,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Response Time Distribution by Country Code",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT histogram(responseTime, 20, 20) FROM MobileRequest  since 3 days ago facet countryCode"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.heatmap"
+					},
+					"layout": {
+						"column": 9,
+						"row": 36,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Response Time Distribution by ASN Owner (wifi provider)",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT histogram(responseTime, 20, 20) FROM MobileRequest  since 3 days ago facet asnOwner"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.area"
+					},
+					"layout": {
+						"column": 9,
+						"row": 39,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Active app versions",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT uniqueCount(sessionId) from MobileSession facet appVersion timeseries"
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Request Demographics",
+			"description": null,
+			"widgets": [
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Response Time - Application",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(responseTime) from MobileRequest facet appName"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 5,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Response time - Version",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(responseTime) from MobileRequest facet appVersion  limit 50"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 9,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Wifi vs Cellular Sessions",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "From MobileRequest  select uniqueCount(sessionId) facet connectionType"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Slowest Domains",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(responseTime) from MobileRequest facet requestDomain"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.area"
+					},
+					"layout": {
+						"column": 5,
+						"row": 4,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Domain Response Times",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(responseTime) from MobileRequest facet requestDomain timeseries"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Slowest Request Paths",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(responseTime) from MobileRequest facet requestPath"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.area"
+					},
+					"layout": {
+						"column": 5,
+						"row": 7,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Request Path Response Time",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(responseTime) from MobileRequest facet requestPath timeseries"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 1,
+						"row": 10,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Request Details",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*),average(responseTime),percentile(responseTime,95),average(bytesReceived)/1024 as 'Received KB',average(bytesSent)/1024 as 'Sent KB' FROM MobileRequest facet requestPath limit 20"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 9,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Avg Response Time City",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(responseTime) from MobileRequest facet city"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 13,
+						"height": 3,
+						"width": 4
+					},
+					"title": "HTTP Request Errors (Status Code)",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM MobileRequestError FACET statusCode"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 5,
+						"row": 13,
+						"height": 3,
+						"width": 4
+					},
+					"title": "HTTP Errors: Error-Free Users",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT (1-filter(uniqueCount(MobileRequestError.uuid), WHERE errorType='HTTPError') / uniqueCount(Mobile.uuid)) * 100 AS '% Error-Free Users' FROM MobileRequestError, Mobile compare with 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 9,
+						"row": 13,
+						"height": 6,
+						"width": 4
+					},
+					"title": "Response Time - time of day",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(responseTime) from MobileRequest facet hourOf(timestamp) since 24 hours ago limit 24"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 16,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Network Errors (Type)",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM MobileRequestError FACET networkError"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 5,
+						"row": 16,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Network Failures: Failure-Free Users",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT (1-filter(uniqueCount(MobileRequestError.uuid), WHERE errorType='NetworkFailure' and networkError not like 'Cancelled') / uniqueCount(Mobile.uuid)) * 100 AS '% Failure-Free Users' FROM MobileRequestError, Mobile  compare with 1 day ago"
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Crash Demographics",
+			"description": null,
+			"widgets": [
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Crashes by Version",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "From MobileCrash Select uniqueCount(uuid) facet appVersion SINCE  1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 5,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Crashes by App",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(responseTime) from MobileRequest facet appName SINCE  1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 9,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Crashing Devices",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "From MobileCrash Select uniqueCount(sessionId) as 'Crashes' facet deviceModel SINCE  1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Avg Time to Crash",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "From MobileCrash Select average(sessionDuration) facet appVersion SINCE  1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 5,
+						"row": 4,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Crashes by Version",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "From MobileCrash Select uniqueCount(uuid) facet appVersion TIMESERIES SINCE  1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 7,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Crashiest Locations",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "From MobileCrash Select uniqueCount(uuid) facet crashLocation SINCE  1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 9,
+						"row": 7,
+						"height": 6,
+						"width": 4
+					},
+					"title": "Crashes by Hour",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT uniqueCount(uuid) as 'Crashes' from MobileCrash facet hourOf(timestamp) limit 24 since 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 10,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Crash Types",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "From MobileCrash Select uniqueCount(uuid) facet crashException SINCE  1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 1,
+						"row": 13,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Session Length by Crash",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "From MobileCrash Select average(sessionDuration) facet crashLocationClass SINCE  7 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 9,
+						"row": 13,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Crashes by City",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "From MobileCrash Select uniqueCount(uuid) facet city SINCE  1 day ago"
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "HTTP Errors & Network Failures",
+			"description": null,
+			"widgets": [
+				{
+					"visualization": {
+						"id": "viz.area"
+					},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Failures and Errors",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM MobileRequestError where networkError not like 'Cancelled' facet errorType timeseries 5 minutes since 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 5,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Failures and Errors: % Users Impacted",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT uniqueCount(MobileRequestError.uuid) / uniqueCount(Mobile.uuid) * 100 as '% Users Impacted' from MobileRequestError, Mobile where networkError not like 'Cancelled' timeseries"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 9,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Endpoint Communications",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from MobileRequestError facet requestDomain"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 1,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "HTTP Errors: Users Impacted",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT filter(uniqueCount(MobileRequestError.uuid), WHERE errorType='HTTPError') / uniqueCount(Mobile.uuid) * 100 as '% Users Impacted' FROM MobileRequestError, Mobile compare with 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 5,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "HTTP Errors: Apps",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM MobileRequestError where errorType='HTTPError' FACET appName"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 9,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "HTTP Errors: App Versions",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM MobileRequestError where errorType='HTTPError' FACET appVersion"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 1,
+						"row": 7,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Errors by Service",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*), latest(requestUrl) as 'Latest URL' from MobileRequestError where errorType like 'HTTPError' facet cases(where requestUrl like '%token%' as 'Tokens', where requestUrl like '%summary%' as 'Summary', where requestUrl like '%dashboards%' as 'Dashboards', where requestUrl like '%collections%' as 'Collections', where requestUrl not like '%token%' and requestUrl not like '%summary%' and requestUrl not like '%dashboards%' and requestUrl not like '%collections%' as 'Other' )"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.area"
+					},
+					"layout": {
+						"column": 9,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Active app versions",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT uniqueCount(sessionId) from MobileSession facet appVersion timeseries"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 1,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "HTTP Errors: Domains",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM MobileRequestError where errorType='HTTPError' FACET requestDomain"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 5,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "HTTP Errors: Paths",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from MobileRequestError where errorType='HTTPError' facet requestPath"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 9,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "HTTP Errors: Status Codes",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from MobileRequestError where errorType='HTTPError' facet statusCode"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 1,
+						"row": 13,
+						"height": 3,
+						"width": 4
+					},
+					"title": "HTTP Errors: Domain Spikes",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM MobileRequestError where errorType='HTTPError' FACET requestDomain timeseries"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 5,
+						"row": 13,
+						"height": 3,
+						"width": 4
+					},
+					"title": "HTTP Errors: Path Spikes",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from MobileRequestError where errorType='HTTPError' facet requestPath timeseries"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 9,
+						"row": 13,
+						"height": 3,
+						"width": 4
+					},
+					"title": "HTTP Errors: Status Code Spikes",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from MobileRequestError where errorType='HTTPError' facet statusCode TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 1,
+						"row": 16,
+						"height": 3,
+						"width": 4
+					},
+					"title": "HTTP Errors: Sessions Impacted",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT filter(uniqueCount(MobileRequestError.sessionId), WHERE errorType='HTTPError') / uniqueCount(Mobile.sessionId) * 100 as '% Sessions Impacted' FROM MobileRequestError, Mobile compare with 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 5,
+						"row": 16,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Device UUIDs with Request Errors",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*), latest(accountName), latest(email), latest(authentication_email), latest(device), latest(carrier), latest(asnOwner), latest(regionCode) FROM MobileRequestError where networkError not like 'Cancelled' FACET deviceUuid  limit 100 SINCE 1 days ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 9,
+						"row": 16,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Network Failures: ASN",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from MobileRequestError where errorType='NetworkFailure' and networkError not like 'Cancelled' facet asnOwner"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 1,
+						"row": 19,
+						"height": 3,
+						"width": 12
+					},
+					"title": "HTTP Errors",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT requestMethod, requestUrl, statusCode, email, authentication_email from MobileRequestError where errorType='HTTPError'"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 1,
+						"row": 22,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Network Failures: Failure-free Users",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT (1-filter(uniqueCount(MobileRequestError.uuid), WHERE errorType='NetworkFailure' and networkError not like 'Cancelled') / uniqueCount(Mobile.uuid)) * 100 as '% Failure-Free Users' FROM MobileRequestError, Mobile  compare with 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 5,
+						"row": 22,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Network Failures: % Users Impacted",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT filter(uniqueCount(MobileRequestError.uuid), WHERE errorType='NetworkFailure' and networkError not like 'Cancelled') / uniqueCount(Mobile.uuid) * 100 as '% Users Impacted' FROM MobileRequestError, Mobile timeseries"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 25,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Network Failures: Apps",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from MobileRequestError where errorType='NetworkFailure' and networkError not like 'cancelled' facet appName"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 5,
+						"row": 25,
+						"height": 3,
+						"width": 4
+					},
+					"title": "New agent data: Android sessionIds and uuids on errors",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT filter(count(*), where sessionId is not null) as 'Has sessionId', filter(count(*), where uuid is not null) as 'Has uuid', count(*) as 'total errors' from MobileRequestError where appName='Anaplan'"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 9,
+						"row": 25,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Network Failures: Carriers",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from MobileRequestError where errorType='NetworkFailure' and networkError not like 'Cancelled' facet carrier"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 1,
+						"row": 28,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Network Failures: Domain Spikes",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from MobileRequestError where errorType='NetworkFailure' and networkError not like 'Cancelled' facet requestDomain timeseries"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 5,
+						"row": 28,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Network Failures: App Versions",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from MobileRequestError where errorType='NetworkFailure' and networkError not like 'cancelled' facet appVersion"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 9,
+						"row": 28,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Network Failures: Error Type Spikes",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from MobileRequestError facet networkError where networkError not like 'Cancelled' timeseries"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 1,
+						"row": 31,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Network Failures: Manufacturer",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from MobileRequestError where errorType='NetworkFailure' and networkError not like 'Cancelled' facet deviceManufacturer"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 5,
+						"row": 31,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Network Failures: Path Spikes",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from MobileRequestError where errorType='NetworkFailure' and networkError not like 'Cancelled' facet requestPath  timeseries"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 9,
+						"row": 31,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Network Failures: Types",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from MobileRequestError facet networkError where networkError not like 'Cancelled'"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 1,
+						"row": 34,
+						"height": 3,
+						"width": 12
+					},
+					"title": "Network Failures",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT requestMethod, requestDomain, requestPath, networkError, email, authentication_email   from MobileRequestError where errorType='NetworkFailure' and networkError not like 'Cancelled'"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 37,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Network Failures & HTTP Errors: Device Types",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from MobileRequestError where networkError not like 'Cancelled' facet deviceType"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 5,
+						"row": 37,
+						"height": 3,
+						"width": 4
+					},
+					"title": "HTTP Errors: Error-Free Sessions",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT (1-filter(uniqueCount(MobileRequestError.sessionId), WHERE errorType='HTTPError' ) / uniqueCount(Mobile.sessionId)) * 100 as '% Error-Free Sessions' FROM MobileRequestError, Mobile compare with 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 9,
+						"row": 37,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Request URL",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM MobileRequestError where errorType = 'HTTPError' FACET requestUrl since last week"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 1,
+						"row": 40,
+						"height": 3,
+						"width": 4
+					},
+					"title": "New agent data: iOS sessionIds and uuids on events",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT filter(count(*), where sessionId is not null) as 'Has sessionId', filter(count(*), where uuid is not null) as 'Has uuid', count(*) as 'total errors' from MobileRequestError"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.area"
+					},
+					"layout": {
+						"column": 5,
+						"row": 40,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Geography",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from MobileRequestError where errorType='NetworkFailure' and networkError not like 'Cancelled' facet countryCode  timeseries"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 9,
+						"row": 40,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Request Errors by Version",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from MobileRequestError where networkError not like 'Cancelled' facet appVersion"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 1,
+						"row": 43,
+						"height": 3,
+						"width": 4
+					},
+					"title": "iOS users",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from MobileRequestError where osName='iOS' and networkError not like 'Cancelled'"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 5,
+						"row": 43,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Android users",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from MobileRequestError where osName='Android' and networkError not like 'Cancelled'"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 9,
+						"row": 43,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Connection Types",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from MobileRequestError where errorType='NetworkFailure' and networkError not like 'Cancelled' facet connectionType"
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Mobile Session Usage",
+			"description": null,
+			"widgets": [
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Devices",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT sum(sessionDuration) FROM MobileSession FACET device SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bullet"
+					},
+					"layout": {
+						"column": 5,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "% Android",
+					"rawConfiguration": {
+						"limit": 100,
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentage(count(osName), WHERE osName = 'Android') FROM MobileSession SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bullet"
+					},
+					"layout": {
+						"column": 9,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "% iOS",
+					"rawConfiguration": {
+						"limit": 100,
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentage(count(osName), WHERE osName = 'iOS') FROM MobileSession SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 1,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Countries",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT sum(sessionDuration) FROM MobileSession FACET countryCode SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 5,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Duration by Android Version",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT sum(sessionDuration) FROM MobileSession FACET osVersion WHERE osName = 'Android' SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 9,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Duration by iOS Version",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT sum(sessionDuration) FROM MobileSession FACET osVersion WHERE osName = 'iOS' SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 1,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "US States",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT sum(sessionDuration) FROM MobileSession FACET regionCode WHERE countryCode = 'US' SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 5,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Sessions by Android Version",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM MobileSession FACET osVersion WHERE osName = 'Android' SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 9,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Sessions by iOS Version",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM MobileSession FACET osVersion WHERE osName = 'iOS' SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 10,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Non US Countries",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT sum(sessionDuration) FROM MobileSession FACET countryCode SINCE 1 day ago WHERE countryCode != 'US'"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 9,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Carriers (excluding wifi)",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT sum(sessionDuration) FROM MobileSession FACET carrier WHERE carrier != 'wifi' SINCE 1 day ago"
+							}
+						]
+					}
+				}
+			]
+		}
+	]
+}
