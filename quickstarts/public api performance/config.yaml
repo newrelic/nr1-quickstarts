@@ -1,16 +1,15 @@
 # Name of your quickstart as shown on the website
 name: Public API Performance
-description: This dashboard shows real-world latencies experienced by an anonymized sampling of New Relic customers when accessing popular public APIs.
-
-You can filter the dashboard to a specific domain by selecting it in the bar chart on the left-hand side or by adding a filter using the filter bar at the top.
-
-To view or customize the queries powering these charts, select “View query” or “Edit” from the chart actions drop-down menu. You can add additional charts to this dashboard by using the “+”.
+description: |
+    This dashboard shows real-world latencies experienced by an anonymized sampling of New Relic customers when accessing popular public APIs.
+    You can filter the dashboard to a specific domain by selecting it in the bar chart on the left-hand side or by adding a filter using the filter bar at the top.
+    To view or customize the queries powering these charts, select “View query” or “Edit” from the chart actions drop-down menu. You can add additional charts to this dashboard by using the “+”.
 
 
 # Optional: Authors of the quickstart
 authors:
     - Darren Doyle.
-    
+
 
 # Optional: Add additional sources as some can't be auto detected by the scripts (for example Prometheus data).
 # You can also redirect to external webpages when the dashboards provides specific installation instructions
