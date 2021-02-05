@@ -1,6 +1,6 @@
 {
   "name": "nr-quickstarts",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "homepage": "https://newrelic.github.io/nr1-quickstarts",
   "dependencies": {
