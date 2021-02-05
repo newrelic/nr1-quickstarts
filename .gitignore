@@ -4,3 +4,6 @@ node_modules/
 # build files
 dist/
 tmp/
+
+# MacOS
+.DS_Store
