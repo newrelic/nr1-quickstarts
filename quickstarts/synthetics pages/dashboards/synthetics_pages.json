@@ -1,0 +1,1575 @@
+{
+	"name": "Synthetics Pages Dashboard",
+	"description": "",
+	"pages": [
+		{
+			"name": "Synthetics Overall",
+			"description": null,
+			"widgets": [
+				{
+					"visualization": {
+						"id": "viz.markdown"
+					},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "",
+					"rawConfiguration": {
+						"text": "![Image](https://newrelic.com/content/dam/component-assets/u03-navigation/logo-synthetics.svg)\n* Number of checks follow-up\n* Availability Analysis\n* Performance Analysis\n* Third Party Analysis\n* [Dive deeper into Synthetic Monitoring](https://synthetics.newrelic.com/accounts/1606862/synthetics)"
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 5,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "# Nb of checks trend",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM SyntheticCheck  SINCE 1 day ago COMPARE WITH  1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 9,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Number of Checks by Status",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM SyntheticCheck FACET result  since 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 1,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Number of Checks by Monitor",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM SyntheticCheck FACET monitorName since 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 5,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Availability per monitor",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentage(count(result), WHERE result = 'SUCCESS') as 'Availability' FROM SyntheticCheck  SINCE 1 day ago FACET monitorName"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 9,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Average duration per monitor",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(duration) as 'Durée ms' FROM SyntheticCheck  FACET monitorName SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 1,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Request & Response Total Size (KB) over time",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "from SyntheticCheck select average(totalRequestHeaderSize+totalRequestBodySize)/1000 as 'Request Size (KB)', average(totalResponseBodySize)/1000 as 'Response Size (KB)'"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 5,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Request & Response Total Size (KB) over time",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "from SyntheticCheck select average(totalRequestHeaderSize+totalRequestBodySize)/1000 as 'Request Size (KB)', average(totalResponseBodySize)/1000 as 'Response Size (KB)' since 1 day ago TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 9,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Availability by Location",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentage(count(result), WHERE result = 'SUCCESS') as 'Availability' FROM SyntheticCheck  SINCE 1 day ago FACET locationLabel"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Duration per Step",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(duration) FROM SyntheticRequest  FACET pageref since 1 day ago limit 20"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 5,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Percentiles vs Average Full Page Load",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(duration) as 'Average', percentile(duration, 10) as 'p10th', percentile(duration, 50) as 'p50th', percentile(duration, 90) as 'p90th' FROM SyntheticCheck WHERE monitorName not like '%API Analytics%'  SINCE 1 day ago TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.area"
+					},
+					"layout": {
+						"column": 9,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Slow Domains over Time",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(duration) FROM SyntheticRequest FACET host SINCE 1 day  AGO TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bullet"
+					},
+					"layout": {
+						"column": 1,
+						"row": 13,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Global Synthetics Availability",
+					"rawConfiguration": {
+						"limit": 100,
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentage(count(result), WHERE result = 'SUCCESS') as 'Availability Rate' FROM SyntheticCheck  SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 5,
+						"row": 13,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Requests by Content Category",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(contentCategory) FROM SyntheticRequest FACET contentCategory since 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 9,
+						"row": 13,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Availability by Location",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentage(count(result), WHERE result = 'SUCCESS') as 'Availability' FROM SyntheticCheck  SINCE 1 day ago FACET locationLabel TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 1,
+						"row": 16,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Average & Median Duration per Request",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(duration) as 'Average', percentile(duration,50) as 'Median' FROM SyntheticRequest SINCE 1 day  AGO TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 5,
+						"row": 16,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Requests Types",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(verb) as 'HTTP Requests' FROM SyntheticRequest FACET verb since 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 9,
+						"row": 16,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Availability by monitor",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentage(count(result), WHERE result = 'SUCCESS') as 'Taux de dispo' FROM SyntheticCheck SINCE 1 day ago FACET monitorName TIMESERIES 15 minutes"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 1,
+						"row": 19,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Average duration by monitor",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(duration) as 'Durée ms'  FROM SyntheticCheck SINCE 1 day ago FACET monitorName TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 5,
+						"row": 19,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Percentiles vs Average Duration",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(duration) as 'Average', percentile(duration, 10) as 'p10th', percentile(duration, 50) as 'p50th', percentile(duration, 90) as 'p90th' FROM SyntheticCheck WHERE monitorName not like '%API Analytics%'  SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.area"
+					},
+					"layout": {
+						"column": 9,
+						"row": 19,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Duration per Step",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(duration) FROM SyntheticRequest  FACET pageref TIMESERIES since 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 22,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Slow Domains",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(duration) FROM SyntheticRequest FACET host SINCE 1 day  AGO"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 5,
+						"row": 22,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Requests Count per Domain",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM SyntheticRequest FACET host  SINCE 1 day  AGO"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 9,
+						"row": 22,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Slow objects",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(duration) FROM SyntheticRequest  FACET path SINCE 1 day  AGO"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 1,
+						"row": 25,
+						"height": 3,
+						"width": 12
+					},
+					"title": "Content Detail by URL",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(duration) as 'Avg Duration', percentile(duration,50) as 'Median', percentile(duration,90) as '90th Percentile', count(hierarchicalURL) as 'Count'  FROM SyntheticRequest FACET hierarchicalURL, domain, verb,contentCategory, contentType  limit 20"
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "User Audit",
+			"description": null,
+			"widgets": [
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Changes by Monitor ID",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM NrAuditEvent WHERE actionIdentifier LIKE '%synthetics_monitor%'  since 1 days ago FACET targetId limit 25"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.markdown"
+					},
+					"layout": {
+						"column": 9,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "",
+					"rawConfiguration": {
+						"text": "\n#  Synthetics account changes include:\n\n* synthetics_monitor.create\n* synthetics_monitor.delete\n* synthetics_monitor.update\n\nhttps://docs.newrelic.com/docs/insights/insights-data-sources/default-data/nrauditevent-default-attributes-examples#synth-user"
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 4,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Type of Monitor change",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM NrAuditEvent WHERE actionIdentifier LIKE '%synthetics_monitor%' since 1 day ago   FACET    actionIdentifier"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 9,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Daily Changes Views By Hour",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM NrAuditEvent WHERE actionIdentifier LIKE '%synthetics_monitor%'  FACET hourof(timestamp) SINCE 24 hours ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 7,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Monitor changes by email",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM NrAuditEvent WHERE actionIdentifier LIKE '%synthetics_monitor%' since 1 day ago   FACET    actorEmail"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 9,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Changes by Monitor Type",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM NrAuditEvent WHERE actionIdentifier LIKE '%synthetics_monitor%' since 1 day ago   FACET    targetType"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 1,
+						"row": 10,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Changes By Description",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM NrAuditEvent WHERE actionIdentifier LIKE '%synthetics_monitor%' since 1 day ago   FACET   description"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 9,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Weekly Change By Day",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM NrAuditEvent WHERE actionIdentifier LIKE '%synthetics_monitor%' FACET weekDayOf(timestamp)  since 7 day ago  limit 7"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 1,
+						"row": 13,
+						"height": 3,
+						"width": 12
+					},
+					"title": "Change By IP Address ,Email Address, Monitor ID",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM NrAuditEvent WHERE actionIdentifier LIKE '%synthetics_monitor%' since 1 day ago   FACET  actorEmail, actorIpAddress, targetId"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 1,
+						"row": 16,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Changes By Role",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM NrAuditEvent WHERE actionIdentifier LIKE '%synthetics_monitor%' since 1 day ago   FACET   actorType"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 9,
+						"row": 16,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Changes over time",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(targetId) FROM NrAuditEvent WHERE actionIdentifier LIKE '%synthetics_monitor%'   since 1 day ago TIMESERIEs"
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Debugging",
+			"description": null,
+			"widgets": [
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Count Failures by location",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from SyntheticCheck WHERE result = 'FAILED' facet locationLabel since 1 day  ago  TIMESERIES 30 minutes"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 5,
+						"row": 1,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Percentage failures by location",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentage(uniqueCount(monitorId), where result = 'FAILED' ) from SyntheticCheck  TIMESERIES 5 minutes SINCE  30 minutes ago FACET locationLabel limit 20"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 1,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Monitor Failure % - 6 hour",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentage(uniqueCount(monitorId) , where result ='FAILED' ) from SyntheticCheck where location IS NOT NULL   TIMESERIES 1 minutes since 6 hours ago FACET locationLabel"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 5,
+						"row": 4,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Monitor Failure % - 24 hour",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentage(uniqueCount(monitorId) , where result ='FAILED' ) from SyntheticCheck where location IS NOT NULL  TIMESERIES 5 minutes since 24 hours ago FACET locationLabel"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 7,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Max Duration",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT max(duration) FROM SyntheticRequest FACET monitorName, URL SINCE  24 hours ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 9,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Domain",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM SyntheticRequest SINCE 24 hours ago FACET domain LIMIT 100"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Requests by URL",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM SyntheticRequest SINCE  24 hours  ago FACET URL LIMIT 10"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 5,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Content Category",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM SyntheticRequest SINCE 24 hours ago FACET contentCategory LIMIT 100"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 9,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Response Status",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM SyntheticRequest SINCE 24 hours ago FACET responseStatus LIMIT 10"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 1,
+						"row": 13,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Hosts",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM SyntheticRequest SINCE 24 hours ago  FACET host LIMIT 100"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 5,
+						"row": 13,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Location",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM SyntheticRequest SINCE 24 hours ago FACET locationLabel LIMIT 10"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 9,
+						"row": 13,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Command",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM SyntheticRequest SINCE yesterday FACET verb LIMIT 100"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 1,
+						"row": 16,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Non HTTP 200 by URL",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM SyntheticRequest SINCE yesterday where  responseCode !=200 FACET URL limit 100"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 5,
+						"row": 16,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Average Request and Response size by Domain",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(requestBodySize) , average(requestHeaderSize), average(responseBodySize), average(responseHeaderSize) from SyntheticRequest  since  24 hours ago FACET URL limit 100"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 1,
+						"row": 19,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Max Request and Response size",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT max(requestBodySize) , max(requestHeaderSize), max(responseBodySize), max(responseHeaderSize) from SyntheticRequest  since 24 hours ago FACET URL limit 100"
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Unresponsive Checks",
+			"description": null,
+			"widgets": [
+				{
+					"visualization": {
+						"id": "viz.markdown"
+					},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "",
+					"rawConfiguration": {
+						"text": "![Image](https://newrelic.com/content/dam/component-assets/u03-navigation/logo-synthetics.svg)\n\n\nThis dashboard shows Synthetic Checks, Metrics and Uptime from the Synthetics Monitors on the Full Stack Observability Platform (FSO)\n\n"
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bullet"
+					},
+					"layout": {
+						"column": 5,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Total Number of Synthetic Checks",
+					"rawConfiguration": {
+						"limit": 5000,
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM SyntheticCheck SINCE today"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bullet"
+					},
+					"layout": {
+						"column": 9,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Percentage of Unresponsive Checks",
+					"rawConfiguration": {
+						"limit": 100,
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentage(count(result), WHERE result = 'FAILED') FROM SyntheticCheck SINCE today"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bullet"
+					},
+					"layout": {
+						"column": 1,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Number of Unresponsive Checks",
+					"rawConfiguration": {
+						"limit": 100,
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM SyntheticCheck SINCE today WHERE result = 'FAILED'"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 5,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Location",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM SyntheticCheck SINCE today WHERE result = 'FAILED' FACET locationLabel LIMIT 5"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 9,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Non-200 Responses by Path",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM SyntheticRequest SINCE today WHERE responseCode != 200 facet path LIMIT 5"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 1,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Unresponsive Checks",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM SyntheticCheck SINCE today WHERE result = 'FAILED' TIMESERIES AUTO"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 5,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Monitors by  Error Code",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM SyntheticCheck  SINCE today WHERE result = 'FAILED' FACET error LIMIT 5"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 9,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Status Codes",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM SyntheticRequest WHERE responseCode != 200 SINCE today FACET responseStatus LIMIT 5"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 1,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Page Elements by Monitor Name",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM SyntheticRequest WHERE responseCode != 200 SINCE today FACET monitorName"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 5,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Type of Checks",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM SyntheticCheck FACET type since 1 day ago"
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "SLOs",
+			"description": null,
+			"widgets": [
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Daily Uptime",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentage(count(result), where result = 'SUCCESS') from SyntheticCheck since 1 Day ago"
+							}
+						],
+						"thresholds": [
+							{
+								"alertSeverity": "CRITICAL",
+								"value": 50
+							},
+							{
+								"alertSeverity": "WARNING",
+								"value": 90
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 5,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Weekly Uptime",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentage(count(result), where result = 'SUCCESS') from SyntheticCheck since 1 week ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 9,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Monthly Uptime",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentage(count(result), where result = 'SUCCESS') from SyntheticCheck since 1 month ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Average Load Times by Monitor",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(duration)/1000 from SyntheticCheck facet monitorName since 1 week ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 5,
+						"row": 4,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Average Load Time by Monitor",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(duration)/1000 from SyntheticCheck facet monitorName since 1 day ago timeseries"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 1,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Failure Rate by Monitor",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT 100-percentage(count(result), where result = 'SUCCESS') as 'Failure Rate' from SyntheticCheck FACET monitorName since 1 Day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.area"
+					},
+					"layout": {
+						"column": 5,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Failures by Monitor over Time",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM SyntheticCheck WHERE result != 'SUCCESS' FACET  monitorName SINCE 1 day ago TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.area"
+					},
+					"layout": {
+						"column": 9,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Failures by Location",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM SyntheticCheck WHERE result != 'SUCCESS' FACET locationLabel SINCE 1 day ago TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Average Execution By Location",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(duration) from SyntheticCheck facet locationLabel since 1 week ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 5,
+						"row": 10,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Execution times",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(duration) from SyntheticCheck facet locationLabel since 1 day ago timeseries"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 1,
+						"row": 13,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Slowest Assets By Type",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(duration) from SyntheticRequest facet contentCategory since 1 week ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 5,
+						"row": 13,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Load Times by Asset Type Over Time",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(duration) from SyntheticRequest facet contentCategory  since 1 day ago TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 16,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Slowest Assets",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(duration) from SyntheticRequest facet hierarchicalURL since 1 week ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 5,
+						"row": 16,
+						"height": 3,
+						"width": 8
+					},
+					"title": "5 Slowest Assets Over Time",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(duration) from SyntheticRequest facet URL limit 5 since 1 day ago TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 1,
+						"row": 19,
+						"height": 3,
+						"width": 12
+					},
+					"title": "Assets",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT * from SyntheticRequest since 3 days ago"
+							}
+						]
+					}
+				}
+			]
+		}
+	]
+}

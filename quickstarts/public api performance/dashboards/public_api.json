@@ -1,0 +1,217 @@
+{
+	"name": "Public API Performance",
+	"description": null,
+	"pages": [
+		{
+			"name": "Public API Performance",
+			"description": null,
+			"widgets": [
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 11,
+						"width": 5
+					},
+					"title": "99th Percentile Response Time by Domain (sec)",
+					"rawConfiguration": {
+						"facet": {
+							"showOtherSeries": false
+						},
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "FROM Public_APICall SELECT percentile(duration, 99) as 'response time' FACET api LIMIT 100"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 6,
+						"row": 1,
+						"height": 4,
+						"width": 4
+					},
+					"title": "Median Latency by Endpoint (sec)",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "FROM Public_APICall SELECT percentile(duration, 50) FACET http.url TIMESERIES "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.markdown"
+					},
+					"layout": {
+						"column": 10,
+						"row": 1,
+						"height": 11,
+						"width": 3
+					},
+					"title": "",
+					"rawConfiguration": {
+						"text": "# Public API Calls\n---\nThis dashboard shows **real-world latencies** experienced by an anonymized sampling of New Relic customers when accessing popular public APIs. \n\nYou can filter the dashboard to a specific domain by selecting it in the bar chart on the left-hand side or by adding a filter using the filter bar at the top.\n\nTo view or customize the queries powering these charts, select \"*View query*\" or \"*Edit*\" from the chart actions drop-down menu. You can add additional charts to this dashboard by using the \"*+*\".\n\n\n### Useful Links and Documentation\n   * Details on [New Relic Global Performance Datasets](https://docs.newrelic.com/docs/query-your-data/new-relic-one-dashboards/global-performance-dataset/new-relic-global-performance-dataset)\n   * Introduction to [New Relic One Dashboards](https://docs.newrelic.com/docs/dashboards/new-relic-one-dashboards/get-started/introduction-new-relic-one-dashboards)\n   * Introduction to the [New Relic Query Language (NRQL)](https://docs.newrelic.com/docs/query-data/nrql-new-relic-query-language/getting-started/introduction-nrql)\n  "
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 6,
+						"row": 5,
+						"height": 4,
+						"width": 4
+					},
+					"title": "50th & 99th Percentile Latencies by Domain (sec)",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "FROM Public_APICall SELECT percentile(duration, 50,99) as 'latency' FACET api TIMESERIES "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.heatmap"
+					},
+					"layout": {
+						"column": 6,
+						"row": 9,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Latency by HTTP Request Method (sec)",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "FROM Public_APICall SELECT histogram(duration) FACET http.method"
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "AWS APIs",
+			"description": null,
+			"widgets": [
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 5,
+						"width": 3
+					},
+					"title": "Number of Regions API is Called From",
+					"rawConfiguration": {
+						"facet": {
+							"showOtherSeries": false
+						},
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "FROM Public_APICall SELECT uniqueCount(awsRegion) WHERE api='amazonaws.com' FACET awsAPI "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 4,
+						"row": 1,
+						"height": 5,
+						"width": 6
+					},
+					"title": "99th Percentile Latency by AWS API (sec)",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "FROM Public_APICall SELECT percentile(duration, 99) WHERE api='amazonaws.com' TIMESERIES FACET awsAPI "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.markdown"
+					},
+					"layout": {
+						"column": 10,
+						"row": 1,
+						"height": 10,
+						"width": 3
+					},
+					"title": "",
+					"rawConfiguration": {
+						"text": "# AWS API Calls\n---\nThis dashboard shows **real-world latencies** experienced by an anonymized sampling of New Relic customers when accessing AWS APIs. \n\nYou can filter the dashboard to a specific API or Region by selecting it in one of the tables on the left or by adding a filter using the filter bar at the top.\n\nTo view or customize the queries powering these charts, select \"*View query*\" or \"*Edit*\" in the chart actions drop-down menu.  You can add additional charts to this dashboard by using the \"*+*\".\n"
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 1,
+						"row": 6,
+						"height": 5,
+						"width": 3
+					},
+					"title": "Number of APIs Used by Region",
+					"rawConfiguration": {
+						"facet": {
+							"showOtherSeries": false
+						},
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "FROM Public_APICall SELECT uniqueCount(awsAPI) WHERE api='amazonaws.com' FACET awsRegion  "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 4,
+						"row": 6,
+						"height": 5,
+						"width": 6
+					},
+					"title": "99th Percentile Latency by Region (sec)",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "FROM Public_APICall SELECT percentile(duration, 99) WHERE api='amazonaws.com' TIMESERIES FACET awsRegion "
+							}
+						]
+					}
+				}
+			]
+		}
+	]
+}

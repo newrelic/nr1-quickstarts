@@ -1,0 +1,614 @@
+{
+	"name": "APM Pages Dashboard",
+	"description": "",
+	"pages": [
+		{
+			"name": "APM Performance Dashboard",
+			"description": null,
+			"widgets": [
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 2,
+						"width": 5
+					},
+					"title": "Filter To App",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "select count(*) from Transaction facet appName"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.area"
+					},
+					"layout": {
+						"column": 6,
+						"row": 1,
+						"height": 2,
+						"width": 7
+					},
+					"title": "Number of Transactions ",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from Transaction facet appName since 1 day ago TIMESERIES max"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 1,
+						"row": 3,
+						"height": 2,
+						"width": 5
+					},
+					"title": "Average Duration of APM Transactions",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(duration) FROM Transaction SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 6,
+						"row": 3,
+						"height": 2,
+						"width": 7
+					},
+					"title": "Average Duration Timeseries",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(duration) FROM Transaction SINCE 1 day ago TIMESERIES"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 1,
+						"row": 5,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Throughput Response Percentiles",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) as 'Throughput',average(duration) as 'AVG',percentile(duration,99,85,75) as '%' FROM Transaction  FACET appName"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 9,
+						"row": 5,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Throughput by Host ",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM Transaction facet host since 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 1,
+						"row": 8,
+						"height": 11,
+						"width": 4
+					},
+					"title": "Number of Transactions ",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM Transaction SINCE 1 day ago facet name"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.heatmap"
+					},
+					"layout": {
+						"column": 5,
+						"row": 8,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Transaction Duration Histogram",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT histogram(duration) from Transaction facet name since 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.area"
+					},
+					"layout": {
+						"column": 5,
+						"row": 11,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Throughput by Host",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM Transaction facet host since 1 day ago TIMESERIES max"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.area"
+					},
+					"layout": {
+						"column": 5,
+						"row": 14,
+						"height": 5,
+						"width": 8
+					},
+					"title": "Average Database Duration",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(duration) FROM Transaction TIMESERIES max facet name  since 1 hour ago"
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "APM Error Analysis",
+			"description": null,
+			"widgets": [
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Total Errors",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM TransactionError SINCE 1 day ago COMPARE WITH 1 week ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 5,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Errors by Application",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM TransactionError FACET appName SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 9,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Error Messages",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM TransactionError FACET `error.message` SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 1,
+						"row": 4,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Errors by Message over Time",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM TransactionError FACET `error.message` SINCE 1 day ago TIMESERIES 5 minutes"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 9,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "HTTP Response",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM TransactionError FACET httpResponseCode SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 1,
+						"row": 7,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Transaction Errors",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM TransactionError FACET transactionName SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 9,
+						"row": 7,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Errors by Referrer",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM TransactionError FACET `request.headers.referer` SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 10,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Errors by Host",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM TransactionError FACET host SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 9,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Errors by Class",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM TransactionError FACET `error.class` SINCE 1 day ago"
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "SLA Dashboard ",
+			"description": null,
+			"widgets": [
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Total Count of by Transactions",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from Transaction since 1 day ago facet appName"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 5,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Avg Duration - DoD query",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(duration) FROM Transaction SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 9,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Avg Duration - WoW",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(duration) FROM Transaction SINCE 1 week ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 1,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "APM SLA Satisfied",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentage(count(*), WHERE duration <= 7000) FROM Transaction SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 5,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "APM SLA Tolerated",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentage(count(*), WHERE duration >.010 AND duration <= 28000) FROM Transaction SINCE 1 day ago"
+							}
+						],
+						"thresholds": [
+							{
+								"alertSeverity": "CRITICAL",
+								"value": 85
+							},
+							{
+								"alertSeverity": "WARNING",
+								"value": 90
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 9,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "APM SLA Frustrated",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentage(count(*), WHERE duration  >2) FROM Transaction  SINCE 1 day ago"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 1,
+						"row": 7,
+						"height": 3,
+						"width": 12
+					},
+					"title": "Percentile Avg Response by Day query",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentile(duration, 75, 95, 99) FROM Transaction SINCE 8 weeks ago FACET dateOf(timestamp)"
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.bar"
+					},
+					"layout": {
+						"column": 1,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Apdex",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "FROM Transaction SELECT apdex(duration, t: 0.8) AS apdexScore FACET appName "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 5,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Application Health",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT percentage(count(*), WHERE error is false) from Transaction FACET appName "
+							}
+						]
+					}
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 9,
+						"row": 10,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Response Time",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT median(duration) from Transaction TIMESERIES facet appName"
+							}
+						]
+					}
+				}
+			]
+		}
+	]
+}
