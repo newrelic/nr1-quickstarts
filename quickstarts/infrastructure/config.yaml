@@ -1,12 +1,12 @@
 # Name of your quickstart as shown on the website
-name: Infrastructure Pages Dashboard
+name: Infrastructure
 description: This dashboard shows metrics and events from the infrastructure Service on the Full Stack Observability Platform (FSO).
 
 
 # Optional: Authors of the quickstart
 authors:
     - Darren Doyle.
-    
+
 
 # Optional: Add additional sources as some can't be auto detected by the scripts (for example Prometheus data).
 # You can also redirect to external webpages when the dashboards provides specific installation instructions

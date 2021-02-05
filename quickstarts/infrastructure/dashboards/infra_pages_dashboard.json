@@ -377,7 +377,7 @@
 						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"query": "SELECT max(duration) from Transaction where appName = 'WebPortal' since 1 day ago compare with 1 day ago"
+								"query": "SELECT max(duration) from Transaction since 1 day ago compare with 1 day ago"
 							}
 						]
 					}
@@ -397,7 +397,7 @@
 						"nrqlQueries": [
 							{
 								"accountId": 0,
-								"query": "SELECT max(networkDuration) from PageView where appName = 'WebPortal' facet name since 1 day ago limit 5 timeseries"
+								"query": "SELECT max(networkDuration) from PageView facet name since 1 day ago limit 5 timeseries"
 							}
 						]
 					}
@@ -532,7 +532,7 @@
 						"height": 3,
 						"width": 4
 					},
-					"title": "Percentage of Hosts On-Premises",
+					"title": "Percentage of Hosts On-Premises (Query changes needed)",
 					"rawConfiguration": {
 						"limit": 100,
 						"nrqlQueries": [
@@ -633,7 +633,7 @@
 						"height": 3,
 						"width": 4
 					},
-					"title": "Total number of hosts by Application",
+					"title": "Total number of hosts by Application (Query changes needed)",
 					"rawConfiguration": {
 						"nrqlQueries": [
 							{
