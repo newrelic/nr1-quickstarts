@@ -20,7 +20,15 @@ Now that we have the latest version of the sourcecode we need to download the la
 
 `npm install`
 
-3) Publish the Nerdlet to your New Relic account
+3) Update the UUID to your account
+
+`nr1 nerdpack:uuid -gf`
+
+If you have multiple profiles set-up you will need to add `--profile=your_profile_name` to all `nr1` commands including this one.
+
+To see a list of APIkeys / profiles available in your development environment: `nr1 profiles:list`
+
+4) Publish the Nerdlet to your New Relic account
 
 If you succesfully completed all the steps you will be able to publish the Nerdlet into your New Relic account. Run the command below in the commandline.
 
@@ -32,6 +40,6 @@ If that command succeed you can then deploy the Nerdlet.
 
 You should now see the Quickstarts nerdlet if you go to `Apps` in New Relic One. Follow the instructions to add it to your accounts.
 
-4) Import some dashboards
+5) Import some dashboards
 
 You can now use the Quickstarts nerdlet in New Relic. Try it out by importing some dashboards. If you have any feedback or ideas, don't hesitate to create a ticket.
