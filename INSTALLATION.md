@@ -12,7 +12,7 @@
 
 Depending on your operating system you can do this through a Git GUI or the Git CLI. The Git CLI command is shown below:
 
-`git clone git@github.com:newrelic/nr1-quickstarts.git`
+`git clone https://github.com/newrelic/nr1-quickstarts.git`
 
 2) Download dependencies
 
