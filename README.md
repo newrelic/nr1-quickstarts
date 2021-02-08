@@ -1,8 +1,12 @@
 [![New Relic One Catalog Project header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/New_Relic_One_Catalog_Project.png)](https://opensource.newrelic.com/oss-category/#new-relic-one-catalog-project)
 
-# New Relic Quickstart Preview ![Deploy website](https://github.com/newrelic/nr1-quickstarts/workflows/Deploy%20website/badge.svg?branch=master)
+# New Relic Quickstarts![Deploy website](https://github.com/newrelic/nr1-quickstarts/workflows/Deploy%20website/badge.svg?branch=master)
 
 Community repository of New Relic dashboards, alerts, and installation instructions. You can find the repository here: https://newrelic.github.io/nr1-quickstarts/
+
+## Open source license
+
+This project is distributed under the [Apache 2 license](LICENSE).
 
 ## Installation
 
@@ -37,10 +41,9 @@ Check out the [development manual](./DEVELOPMENT.md) to set-up your own local de
 
 ## Support
 
-If you encounter any issues, have feedback or ideas. Please don't hesitate to create a ticket.
-<!-- New Relic hosts and moderates an online forum where customers can interact with New Relic employees as well as other customers to get help and share best practices. Like all official New Relic open source projects, there's a related Community topic in the New Relic Explorers Hub. You can find this project's topic/threads here:
+New Relic has open-sourced this project. This project is provided AS-IS WITHOUT WARRANTY OR DEDICATED SUPPORT. Issues and contributions should be reported to the project here on GitHub.
 
->Add the url for the support thread here -->
+We encourage you to bring your experiences and questions to the [Explorers Hub](https://discuss.newrelic.com) where our community members collaborate on solutions and new ideas.
 
 ## Contributing
 Contributions to improve Quickstarts are encouraged! Keep in mind when you submit your pull request, you'll need to sign the CLA via the click-through using CLA-Assistant. You only have to sign the CLA one time per project.
