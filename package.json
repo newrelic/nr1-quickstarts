@@ -3,6 +3,9 @@
   "version": "0.2.1",
   "private": true,
   "homepage": "https://newrelic.github.io/nr1-quickstarts",
+  "bugs": {
+    "email": "opensource+nr1-quickstarts@newrelic.com"
+  },
   "dependencies": {
     "js-yaml": "^3.14.0",
     "node-sass": "^4.14.1",

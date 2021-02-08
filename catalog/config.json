@@ -2,10 +2,10 @@
   "tagline": "Library of curated dashboards",
   "details": "Rich set of dashboards ready to be imported into your New Relic account. Quickly check if you have all the required data sources, and import the dashboard into your accounts.",
   "repository": "https://github.com/newrelic/nr1-quickstarts",
-  "whatsNew": "\n-Fixed: Incorrect name and description\n",
+  "whatsNew": "\nInitial Release\n",
   "support": {
     "email": {
-      "address": "svandamme@newrelic.com"
+      "address": "opensource+nr1-quickstarts@newrelic.com"
     },
     "issues": {
       "url": "https://github.com/newrelic/nr1-quickstarts/issues/new/choose"
