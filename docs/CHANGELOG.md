@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/newrelic/nr1-quickstarts/compare/v1.0.0...v1.1.0) (2021-02-08)
+
+
+### Features
+
+* Added code of conduct and license to READMe ([e40f58a](https://github.com/newrelic/nr1-quickstarts/commit/e40f58afb33a909f46ec74c4292cb46f5caf6a32))
+
 # 1.0.0 (2021-02-08)
 
 
