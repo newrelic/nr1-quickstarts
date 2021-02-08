@@ -4,16 +4,10 @@
   "private": true,
   "homepage": "https://newrelic.github.io/nr1-quickstarts",
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
     "js-yaml": "^3.14.0",
     "node-sass": "^4.14.1",
     "prop-types": "^15.6.2",
-    "react": "^16.14.0",
-    "react-bootstrap": "^1.4.0",
     "react-copy-to-clipboard": "^5.0.3",
-    "react-dom": "^16.14.0",
     "react-router-bootstrap": "^0.25.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.4"
@@ -47,8 +41,15 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
     "@newrelic/eslint-plugin-newrelic": "^0.3.1",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
     "eslint": "^6.6.0",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "react": "16.6.3",
+    "react-dom": "16.6.3"
   }
 }
