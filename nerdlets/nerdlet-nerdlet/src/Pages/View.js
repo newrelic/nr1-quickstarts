@@ -118,7 +118,7 @@ class View extends React.Component {
             </Link>
           </GridItem>
         </Grid>
-        <Grid className="background-grey">
+        <Grid>
           <GridItem columnSpan={3} className="padding-left">
             <HeadingText
               type={HeadingText.TYPE.HEADING_3}
@@ -226,7 +226,7 @@ class View extends React.Component {
             </Button>
           </GridItem>
 
-          <GridItem columnSpan={9} className="padding-top">
+          <GridItem columnSpan={9} className="list-view">
             <Grid>
               {this.state.quickstart.dashboards.map((dashboard) => {
                 return (
