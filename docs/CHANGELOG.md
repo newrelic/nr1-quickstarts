@@ -1,3 +1,16 @@
+# [1.2.0](https://github.com/newrelic/nr1-quickstarts/compare/v1.1.0...v1.2.0) (2021-02-12)
+
+
+### Bug Fixes
+
+* incorrect url's to data folder ([0769bf6](https://github.com/newrelic/nr1-quickstarts/commit/0769bf6ec2741934dba97f8f42a846eb9612f7bd))
+
+
+### Features
+
+* improved design of view page ([26783b6](https://github.com/newrelic/nr1-quickstarts/commit/26783b6b32573891d5f976b044d73b7f794d12b1))
+* moved library and website to different repository ([b0b1fda](https://github.com/newrelic/nr1-quickstarts/commit/b0b1fda5af35f4ecda3a8dd43d9ac4b2c3b752c6))
+
 # [1.1.0](https://github.com/newrelic/nr1-quickstarts/compare/v1.0.0...v1.1.0) (2021-02-08)
 
 
