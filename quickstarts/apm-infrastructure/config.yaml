@@ -1,4 +1,0 @@
-name: APM + Infrastructure
-description: Dashboard based on New Relic APM and Infrastructure agent data, linking metrics together for a deeper visibility into your stack.
-authors:
-    - Ryan Jussel

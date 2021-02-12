@@ -1,7 +1,0 @@
-# libraries
-node_modules/
-
-# build data
-build/
-public/data
-public/data.json

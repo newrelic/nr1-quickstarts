@@ -21,12 +21,9 @@
   "scripts": {
     "start": "nr1 nerdpack:serve",
     "build": "nr1 nerdpack:build",
-    "start-website": "cd website && react-scripts start",
-    "build-website": "cd website && react-scripts build",
-    "generator": "cd website/generator && ./generate-data.sh",
     "test": "exit 0",
-    "eslint-check": "eslint nerdlets/ website/",
-    "eslint-fix": "eslint nerdlets/ website/ --fix"
+    "eslint-check": "eslint nerdlets/",
+    "eslint-fix": "eslint nerdlets/ --fix"
   },
   "eslintConfig": {
     "extends": "react-app"

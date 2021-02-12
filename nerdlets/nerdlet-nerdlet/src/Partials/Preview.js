@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardHeader, CardBody, GridItem } from 'nr1';
 import PropTypes from 'prop-types';
+import * as config from '../../config';
 
 class Preview extends React.Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class Preview extends React.Component {
             />
             <CardBody className="preview-image">
               <img
-                src={`https://newrelic.github.io/nr1-quickstarts/data/${this.props.quickstart.id}/dashboards/${this.state.screenshot}`}
+                src={`${config.URL_DATA_FOLDER}${this.props.quickstart.id}/dashboards/${this.state.screenshot}`}
                 alt="Dashboard screenshot"
               />
             </CardBody>

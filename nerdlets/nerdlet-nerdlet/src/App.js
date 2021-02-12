@@ -5,6 +5,7 @@ import View from './Pages/View';
 import ScrollToTop from './Helpers/ScrollToTop';
 import ToolsExport from './Pages/ToolsExport';
 import { Grid, GridItem, Spinner } from 'nr1';
+import * as config from '../config';
 
 class App extends React.Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('https://newrelic.github.io/nr1-quickstarts/data.json')
+    fetch(config.URL_DATA_FILE)
       .then((response) => response.json())
       .then((response) => {
         this.setState({

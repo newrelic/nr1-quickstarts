@@ -12,6 +12,7 @@ import {
 } from 'nr1';
 import InstallationInstructions from '../Partials/InstallationInstructions';
 import PropTypes from 'prop-types';
+import * as config from '../../config';
 
 class View extends React.Component {
   static getState(props) {
@@ -55,7 +56,7 @@ class View extends React.Component {
   }
 
   openTools(file) {
-    const url = `https://newrelic.github.io/nr1-quickstarts/data/${this.state.quickstart.id}/dashboards/${file}`;
+    const url = `${config.URL_DATA_FOLDER}${this.state.quickstart.id}/dashboards/${file}`;
 
     this.setState((prevState) => ({
       ...prevState,
@@ -253,7 +254,7 @@ class View extends React.Component {
                         return (
                           <GridItem key={screenshot} columnSpan={6}>
                             <img
-                              src={`https://newrelic.github.io/nr1-quickstarts/data/${this.state.quickstart.id}/dashboards/${screenshot}`}
+                              src={`${config.URL_DATA_FOLDER}${this.state.quickstart.id}/dashboards/${screenshot}`}
                               className="card-img-top"
                               alt="..."
                             />

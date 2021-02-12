@@ -1,9 +1,0 @@
-name: CoreDNS
-description: Set of dashboards and examples to monitor CoreDNS.
-authors:
-    - Stijn Polfliet
-sources:
-    - Kubernetes
-    - Prometheus
-    - name: CoreDNS
-      url: https://github.com/coredns/coredns/tree/master/plugin/metrics

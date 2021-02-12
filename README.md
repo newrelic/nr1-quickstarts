@@ -1,6 +1,6 @@
 [![New Relic One Catalog Project header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/New_Relic_One_Catalog_Project.png)](https://opensource.newrelic.com/oss-category/#new-relic-one-catalog-project)
 
-# New Relic Quickstarts![Deploy website](https://github.com/newrelic/nr1-quickstarts/workflows/Deploy%20website/badge.svg?branch=master)
+# New Relic Quickstarts
 
 Community repository of New Relic dashboards, alerts, and installation instructions. You can find the repository here: https://newrelic.github.io/nr1-quickstarts/
 
@@ -10,34 +10,15 @@ This project is distributed under the [Apache 2 license](LICENSE).
 
 ## Installation
 
-[Please follow the instructions here to install Quickstarts into your own New Relic account.](./INSTALLATION.md)
+[Please follow the instructions here to install Quickstarts into your own New Relic account.](https://newrelic.github.io/quickstarts-dashboard-library/#/installation)
 
 ## Adding your own dashboards, alerts or instructions
 
-1. [Fork the Github repository](https://help.github.com/en/github/getting-started-with-github/fork-a-repo#fork-an-example-repository)
-
-2. [Clone your own repository to your local machine](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository)
-
-3. Copy the directory `quickstarts/_template` and it's content to a new directory within the `quickstarts` folder. Choose a name which identifies the main purpose of your quickstart, for example: `rabbitmq`, `apm-errors`, ..
-
-4. Change the dashboards in the `quickstarts/[your dir]/dashboards` folder. You can add multiple screenshots per dashboard as long as they have the same name as your dashboard file. For example `rabbitmq.json` `rabbitmq.png` `rabbitmq.jpeg`. You can add multiple screenshots by putting a number after the filename, for example `rabbitmq1.png`, `rabbitmq2,png`.
-
-5. Edit the `quickstarts/[your dir]/config.yaml` file with your your values.
-
-6. Commit your changes `git add -A` and `git commit -m "My new resource"`. Change the `My new resource` with a description of the resource you've added.
-
-7. Push your changes to Github `git push`
-
-8. [Create a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) in the [parent repository](https://github.com/newrelic/nr1-quickstarts/compare?expand=1).
-
-9. Submit and wait for review. We will review as fast as we can, but it can sometimes take a day or two.
-
-Thanks a lot for your submission!
-
+The library of dashboards is [hosted here and contains all instructions needed to add more](https://github.com/newrelic/quickstarts-dashboard-library#getting-started)!
 
 ## Development
 
-Check out the [development manual](./DEVELOPMENT.md) to set-up your own local dev environment. This is only needed if you want to make changes to the website or nerdlet, not if you want to add another quickstarts. Follow the instructions above to add or edit a quickstart.
+Check out the [development manual](./DEVELOPMENT.md) to set-up your own local dev environment. This is only needed if you want to make changes to the nerdlet, not if you want to add another dashboard. Follow the instructions above to add or edit a dashboard.
 
 ## Support
 
