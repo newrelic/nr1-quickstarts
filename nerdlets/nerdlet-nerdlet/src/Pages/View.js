@@ -56,7 +56,7 @@ class View extends React.Component {
   }
 
   openTools(file) {
-    const url = `${config.URL_DATA_FOLDER}${this.state.quickstart.id}/dashboards/${file}`;
+    const url = config.URL_DATA_FOLDER + `${this.state.quickstart.id}/dashboards/${file}`;
 
     this.setState((prevState) => ({
       ...prevState,
@@ -254,7 +254,7 @@ class View extends React.Component {
                         return (
                           <GridItem key={screenshot} columnSpan={6}>
                             <img
-                              src={`${config.URL_DATA_FOLDER}${this.state.quickstart.id}/dashboards/${screenshot}`}
+                              src={config.URL_DATA_FOLDER + `${this.state.quickstart.id}/dashboards/${screenshot}`}
                               className="card-img-top"
                               alt="..."
                             />
