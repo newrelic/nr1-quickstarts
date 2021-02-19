@@ -146,6 +146,7 @@ class View extends React.Component {
             <InstallationInstructions
               accountId={this.state.accountId}
               sources={this.state.quickstart.sources}
+              sourceData={this.props.data.sources}
             />
             {this.state.quickstart.flex.length > 0 && (
               <div>
@@ -282,6 +283,7 @@ class View extends React.Component {
 
 View.propTypes = {
   match: PropTypes.object,
+  data: PropTypes.object,
 };
 
 export default View;
