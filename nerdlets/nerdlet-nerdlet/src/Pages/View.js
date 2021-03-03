@@ -153,18 +153,27 @@ class View extends React.Component {
               sources={this.props.data.sources}
             />
             {this.state.quickstart.flex.length > 0 && (
-              <div>
-                <b>Flex configuration files</b>
+              <>
+                <HeadingText
+                  type={HeadingText.TYPE.HEADING_3}
+                  className="padding-top"
+                >
+                  Flex configuration files
+                </HeadingText>
                 <p>
-                  This dashboard uses custom flex data, please{' '}
+                  This dashboard uses custom flex data, please install the
+                  following Flex files.
+                </p>
+                <p>
                   <a
                     href="https://github.com/newrelic/nri-flex/blob/master/docs/basic-tutorial.md"
                     rel="noopener noreferrer"
                     target="_BLANK"
                   >
-                    install the following Flex files.
+                    Follow these installation instructions for more information.
                   </a>
                 </p>
+                <p className="padding-top">Flex configs:</p>
                 <ul>
                   {this.state.quickstart.flex.map((flex) => {
                     return (
@@ -180,7 +189,7 @@ class View extends React.Component {
                     );
                   })}
                 </ul>
-              </div>
+              </>
             )}
 
             <HeadingText
