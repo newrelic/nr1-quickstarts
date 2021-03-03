@@ -126,7 +126,12 @@ class View extends React.Component {
             >
               Description
             </HeadingText>
-            <p>{this.state.quickstart.description}</p>
+            {this.state.quickstart.description.split('\n').map((descriptionLine) => {
+              return (
+                <p>{descriptionLine}</p>
+              );
+            })}
+
 
             <HeadingText
               type={HeadingText.TYPE.HEADING_3}
