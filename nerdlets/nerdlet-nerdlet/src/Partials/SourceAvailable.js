@@ -4,11 +4,13 @@ import PropTypes from 'prop-types';
 
 class SourceAvailable extends React.Component {
   render() {
-    if (this.props.accountId) {
+    if (this.props.accountId && this.props.source) {
       return (
         <NrqlQuery
           accountId={this.props.accountId}
-          query={`SELECT count(*) FROM ${this.props.source} SINCE 60 minutes ago LIMIT 1`}
+          query={`SELECT count(*) FROM ${this.props.source.join(
+            ','
+          )} SINCE 60 minutes ago LIMIT 1`}
         >
           {({ loading, data }) => {
             if (loading) {

@@ -126,12 +126,11 @@ class View extends React.Component {
             >
               Description
             </HeadingText>
-            {this.state.quickstart.description.split('\n').map((descriptionLine) => {
-              return (
-                <p>{descriptionLine}</p>
-              );
-            })}
-
+            {this.state.quickstart.description
+              .split('\n')
+              .map((descriptionLine, index) => {
+                return <p key={index}>{descriptionLine}</p>;
+              })}
 
             <HeadingText
               type={HeadingText.TYPE.HEADING_3}
@@ -150,7 +149,8 @@ class View extends React.Component {
             />
             <InstallationInstructions
               accountId={this.state.accountId}
-              sources={this.state.quickstart.sources}
+              requirements={this.state.quickstart.sources}
+              sources={this.props.data.sources}
             />
             {this.state.quickstart.flex.length > 0 && (
               <div>
@@ -287,6 +287,7 @@ class View extends React.Component {
 
 View.propTypes = {
   match: PropTypes.object,
+  data: PropTypes.object,
 };
 
 export default View;
