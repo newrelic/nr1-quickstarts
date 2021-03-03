@@ -51,7 +51,7 @@ class SourceAvailable extends React.Component {
 
 SourceAvailable.propTypes = {
   accountId: PropTypes.number,
-  source: PropTypes.string,
+  source: PropTypes.array,
 };
 
 export default SourceAvailable;
