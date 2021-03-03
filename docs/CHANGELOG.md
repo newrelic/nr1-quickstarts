@@ -1,3 +1,15 @@
+# [1.3.0](https://github.com/newrelic/nr1-quickstarts/compare/v1.2.1...v1.3.0) (2021-03-03)
+
+
+### Bug Fixes
+
+* multiline descriptions ([e197509](https://github.com/newrelic/nr1-quickstarts/commit/e19750974691b8f8d0c502fce6e50d04e7afaaab))
+
+
+### Features
+
+* improved requirements check ([8c2084a](https://github.com/newrelic/nr1-quickstarts/commit/8c2084a5e6d9efffb97b0f943e5a58a8c859a3b1))
+
 ## [1.2.1](https://github.com/newrelic/nr1-quickstarts/compare/v1.2.0...v1.2.1) (2021-02-12)
 
 
