@@ -43,7 +43,7 @@ class Home extends React.Component {
     return (
       <>
         <Grid>
-          <GridItem columnSpan={3}>
+          <GridItem className="padding-left" columnSpan={3}>
             <HeadingText
               type={HeadingText.TYPE.HEADING_1}
               className="padding-top padding-bottom"
