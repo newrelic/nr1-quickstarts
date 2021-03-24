@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/newrelic/nr1-quickstarts/compare/v1.3.0...v1.3.1) (2021-03-24)
+
+
+### Bug Fixes
+
+* remove guid from dashboard json on import/export ([d514aea](https://github.com/newrelic/nr1-quickstarts/commit/d514aea9ad30605ccfaeea4ab7093d88c0a7a7de))
+
 # [1.3.0](https://github.com/newrelic/nr1-quickstarts/compare/v1.2.1...v1.3.0) (2021-03-03)
 
 
