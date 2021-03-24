@@ -268,6 +268,9 @@ class ExportModal extends React.Component {
     // Filter out __typename as the mutator is not a fan
     dashboardData = this.filterAll(dashboardData, null, '__typename');
 
+    // Filter out guid as the mutator is not a fan
+    dashboardData = this.filterAll(dashboardData, null, 'guid');
+
     // Filter out widget Id's because they will change anyway.
     dashboardData = this.filterAll(dashboardData, 'widgets', 'id');
 
