@@ -174,9 +174,9 @@ class ExportNerdlet extends React.Component {
                       </TableHeader>
                       {({ item }) => (
                         <TableRow
-                          onClick={navigation.getOpenStackedNerdletLocation({ id: 'transfer', urlState: {
+                          onClick={() => navigation.openStackedNerdlet({ id: 'transfer', urlState: {
                             dashboardGuid: item.guid,
-                          }, })}
+                          }})}
                         >
                           <EntityTitleTableRowCell value={item} />
                           <TableRowCell>{item.account.name}</TableRowCell>
