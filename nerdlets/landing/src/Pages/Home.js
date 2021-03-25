@@ -1,8 +1,7 @@
 import React from 'react';
 import Preview from '../Partials/Preview';
 import DatasourceItem from '../Partials/DatasourceItem';
-import { Link } from 'react-router-dom';
-import { Grid, GridItem, TextField, HeadingText } from 'nr1';
+import { Link, Grid, GridItem, TextField, HeadingText, navigation, nerdlet } from 'nr1';
 import PropTypes from 'prop-types';
 
 class Home extends React.Component {
@@ -15,6 +14,10 @@ class Home extends React.Component {
 
     this.setSearch = this.setSearch.bind(this);
     this.search = this.search.bind(this);
+
+    nerdlet.setConfig({
+      timePicker: false
+    });
   }
 
   setSearch(event) {
@@ -119,7 +122,7 @@ class Home extends React.Component {
                 </a>
               </li>
               <li className="padding-top">
-                <Link to="/tools/export">Export helper</Link>
+                <Link to={navigation.getReplaceNerdletLocation({ id: 'export-helper' })}>Export helper</Link>
               </li>
             </ul>
           </GridItem>

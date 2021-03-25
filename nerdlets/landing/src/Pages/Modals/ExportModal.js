@@ -157,7 +157,7 @@ class ExportModal extends React.Component {
       dashboardUrl: null,
       dashboardLoading: true,
     });
-
+    console.log('test');
     const data = NerdGraphQuery.query({
       query: this.downloadQuery,
       variables: { guid: guid },

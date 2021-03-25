@@ -1,28 +1,26 @@
 import React from 'react';
-import ExportModal from './Modals/ExportModal';
-import { Link } from 'react-router-dom';
 import {
   AccountPicker,
   Button,
   HeadingText,
   List,
+  Link,
   ListItem,
   Grid,
   GridItem,
+  navigation,
 } from 'nr1';
-import InstallationInstructions from '../Partials/InstallationInstructions';
+import InstallationInstructions from './InstallationInstructions';
 import PropTypes from 'prop-types';
-import * as config from '../../config';
+import * as config from './../config';
 
 class View extends React.Component {
   static getState(props) {
     return {
       quickstart: props.data.quickstarts.find(
-        (element) => element.id === props.match.params.handle
+        (element) => element.id === props.dashboardId
       ),
-      path: props.match.path,
       dashboardUrl: '',
-      toolsModalHidden: true,
       accountId: null,
     };
   }
@@ -31,8 +29,6 @@ class View extends React.Component {
     super(props);
 
     this.onChangeAccount = this.onChangeAccount.bind(this);
-    this.openTools = this.openTools.bind(this);
-    this.closeTools = this.closeTools.bind(this);
 
     this.state = View.getState(props);
   }
@@ -40,35 +36,16 @@ class View extends React.Component {
   static getDerivedStateFromProps(props, state) {
     if (
       !state.quickstart ||
-      state.quickstart.id !== props.match.params.handle
+      state.quickstart.id !== props.dashboardId
     ) {
       return View.getState(props);
     }
     return null;
   }
 
-  modalCallback = undefined;
-
   onChangeAccount(event, value) {
     this.setState({
       accountId: value,
-    });
-  }
-
-  openTools(file) {
-    const url = `${config.URL_DATA_FOLDER}${this.state.quickstart.id}/dashboards/${file}`;
-
-    this.setState((prevState) => ({
-      ...prevState,
-      dashboardUrl: url,
-      toolsModalHidden: false,
-    }));
-  }
-
-  closeTools() {
-    this.setState({
-      toolsModalHidden: true,
-      dashboardUrl: null,
     });
   }
 
@@ -95,7 +72,6 @@ class View extends React.Component {
         </Grid>
       );
     }
-
     return (
       <>
         <Grid>
@@ -254,7 +230,9 @@ class View extends React.Component {
                       <GridItem columnSpan={2} className="text-right">
                         <Button
                           onClick={() => {
-                            this.openTools(dashboard.filename);
+                            navigation.openStackedNerdlet({ id: 'transfer', urlState: {
+                              dashboardUrl: `${config.URL_DATA_FOLDER}${this.state.quickstart.id}/dashboards/${dashboard.filename}`,
+                            }})
                           }}
                           type={Button.TYPE.PRIMARY}
                           iconType={
@@ -281,13 +259,6 @@ class View extends React.Component {
               })}
             </Grid>
           </GridItem>
-
-          <ExportModal
-            hidden={this.state.toolsModalHidden}
-            onClose={this.closeTools}
-            sourceUrl={this.state.dashboardUrl}
-            accountId={this.state.accountId}
-          />
         </Grid>
       </>
     );
