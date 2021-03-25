@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardHeader, CardBody, GridItem, Link, navigation } from 'nr1';
 import PropTypes from 'prop-types';
-import * as config from './../../../config';
+import * as config from './../config';
 
 class Preview extends React.Component {
   constructor(props) {

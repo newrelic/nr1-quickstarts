@@ -1,6 +1,6 @@
 import React from 'react';
-import Preview from '../Partials/Preview';
-import DatasourceItem from '../Partials/DatasourceItem';
+import Preview from './Preview';
+import DatasourceItem from './DatasourceItem';
 import { Link, Grid, GridItem, TextField, HeadingText, navigation, nerdlet } from 'nr1';
 import PropTypes from 'prop-types';
 
