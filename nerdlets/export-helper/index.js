@@ -37,7 +37,6 @@ class ExportNerdlet extends React.Component {
     };
   }
 
-  modalCallback = undefined;
   searchTimeout = undefined;
 
   searchQuery = `

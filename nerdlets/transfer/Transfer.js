@@ -105,8 +105,6 @@ class Transfer extends React.Component {
     }
     `;
 
-  modalCallback = undefined;
-
   loadGuid(guid) {
     // Reset view
     this.setState({
@@ -331,8 +329,6 @@ class Transfer extends React.Component {
     this.setState({
       submitted: false,
     });
-
-    this.closeModal();
   }
 
   _importFail() {
