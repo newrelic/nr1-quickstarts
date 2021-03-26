@@ -159,11 +159,11 @@ class ExportNerdlet extends React.Component {
                       ]}
                     />
                   );
-                if (error) return <BlockText>{error.message}</BlockText>;
+                if (error) return <BlockText className="padding-left">{error.message}</BlockText>;
                 return (
                   <>
                     {data.actor.entitySearch.count > 200 && (
-                      <BlockText>
+                      <BlockText className="padding-left">
                         <Badge type={Badge.TYPE.WARNING}>Warning</Badge> You
                         have access to more than 200 dashboards, please use
                         search to narrow your results.
