@@ -1,26 +1,5 @@
 @import "../shared.scss";
 
-/*
-    Used on App.js
-*/
-
-.loading {
-    padding-top: 50px;
-    height: 100px;
-}
-
-/*
-    Used on Home.js
-*/
-
-.list-view {
-    background: #f7f7f8;
-    padding: 10px;
-    margin-left: 0px;
-    margin-right: 0px;
-    width: 100%;
-}
-
 .links {
 
     padding-top: 10px;
@@ -30,57 +9,4 @@
         margin-left: 20px;
     }
 
-}
-
-/*
-    Used on Preview.js
-*/
-
-.preview-item {
-    background-color: white;
-    padding: 5px;
-}
-
-.preview-image {
-    img {
-        width: 100%;
-    }
-}
-
-/*
-    Used on View.js
-*/
-
-.view-item {
-    background-color: white;
-    padding: 10px;
-
-    img {
-        width: 100%;
-    }
-}
-
-/*
-    Used on ExportTerraform
-*/
-
-.terraform {
-    max-width: 400px;
-}
-
-
-/*
-    Used on Export Modal
-*/
-.custom-export-json-link {
-    padding: 5px 0 5px 16px;
-}
-
-
-/*
-    Used on Export Json
-*/
-.custom-textfield-json {
-    @extend .custom-textfield;
-    height: 300px;
 }

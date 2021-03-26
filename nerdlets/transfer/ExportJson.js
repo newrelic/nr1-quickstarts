@@ -1,6 +1,6 @@
 import React from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Button, Grid, GridItem, TextField, Toast } from 'nr1';
+import { Button, Grid, GridItem, MultilineTextField, Toast } from 'nr1';
 import PropTypes from 'prop-types';
 
 class ExportJson extends React.Component {
@@ -46,11 +46,11 @@ class ExportJson extends React.Component {
           </CopyToClipboard>
         </GridItem>
         <GridItem columnSpan={12}>
-          <TextField
+          <MultilineTextField
             className="custom-textfield-json"
             label="JSON output"
-            multiline
             readOnly
+            rows={20}
             value={this.state.output}
           />
         </GridItem>

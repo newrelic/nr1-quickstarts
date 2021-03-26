@@ -1,7 +1,7 @@
 import React from 'react';
 import Home from './Home';
 import { Grid, GridItem, Spinner } from 'nr1';
-import * as config from './../config';
+import * as config from '../config';
 
 export default class Nerdlet extends React.Component {
   constructor(props) {
@@ -35,8 +35,6 @@ export default class Nerdlet extends React.Component {
       );
     }
 
-    return (
-      <Home data={this.state.data} />
-    );
+    return <Home data={this.state.data} />;
   }
 }

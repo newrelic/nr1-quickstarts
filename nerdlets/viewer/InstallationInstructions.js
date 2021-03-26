@@ -52,15 +52,14 @@ class InstallationInstructions extends React.Component {
                     accountId={this.props.accountId}
                     source={requirement.eventTypes}
                   />{' '}
-                  {requirement.name} (
+                  {requirement.name} -{' '}
                   <a
                     href={requirement.url}
                     target="_BLANK"
                     rel="noopener noreferrer"
                   >
-                    documentation
+                    docs
                   </a>
-                  )
                 </b>
                 <br />
               </div>

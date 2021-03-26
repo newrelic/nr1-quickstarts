@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Badge,
   Link,
   BlockText,
   Button,
@@ -24,18 +25,16 @@ class ExportNerdlet extends React.Component {
     super(props);
 
     nerdlet.setConfig({
-        timePicker: false,
+      timePicker: false,
     });
 
     this.search = this.search.bind(this);
 
     this.state = {
-      toolsModalHidden: true,
       search: {
         name: '%',
       },
     };
-
   }
 
   modalCallback = undefined;
@@ -103,13 +102,19 @@ class ExportNerdlet extends React.Component {
     return (
       <>
         <Grid>
-          <GridItem className="padding-top" columnSpan={8}>
+          <GridItem className="padding-top padding-left" columnSpan={8}>
             <HeadingText type={HeadingText.TYPE.HEADING_2}>
               Export dashboard
             </HeadingText>
           </GridItem>
-          <GridItem columnSpan={4} className="text-right padding-top">
-            <Link className="" to={navigation.getReplaceNerdletLocation({ id: 'landing' })}>
+          <GridItem
+            columnSpan={4}
+            className="text-right padding-top padding-left"
+          >
+            <Link
+              className=""
+              to={navigation.getReplaceNerdletLocation({ id: 'landing' })}
+            >
               <Button
                 type={Button.TYPE.PRIMARY}
                 iconType={Button.ICON_TYPE.LOCATION__LOCATION__HOME}
@@ -118,7 +123,7 @@ class ExportNerdlet extends React.Component {
               </Button>
             </Link>
           </GridItem>
-          <GridItem columnSpan={12}>
+          <GridItem columnSpan={12} className="padding-left">
             <p>
               Below is a list of all the dashboards you have access to within
               New Relic. You can click on any of them to get a list of export
@@ -159,14 +164,16 @@ class ExportNerdlet extends React.Component {
                 return (
                   <>
                     {data.actor.entitySearch.count > 200 && (
-                      <p>
-                        <b>
-                          You have access to more than 200 dashboards, please
-                          use search to narrow your results.
-                        </b>
-                      </p>
+                      <BlockText>
+                        <Badge type={Badge.TYPE.WARNING}>Warning</Badge> You
+                        have access to more than 200 dashboards, please use
+                        search to narrow your results.
+                      </BlockText>
                     )}
-                    <Table items={data.actor.entitySearch.results.entities} ariaLabel="List of available dashboards">
+                    <Table
+                      items={data.actor.entitySearch.results.entities}
+                      ariaLabel="List of available dashboards"
+                    >
                       <TableHeader>
                         <TableHeaderCell>Name</TableHeaderCell>
                         <TableHeaderCell>Account</TableHeaderCell>
@@ -174,9 +181,14 @@ class ExportNerdlet extends React.Component {
                       </TableHeader>
                       {({ item }) => (
                         <TableRow
-                          onClick={() => navigation.openStackedNerdlet({ id: 'transfer', urlState: {
-                            dashboardGuid: item.guid,
-                          }})}
+                          onClick={() =>
+                            navigation.openStackedNerdlet({
+                              id: 'transfer',
+                              urlState: {
+                                dashboardGuid: item.guid,
+                              },
+                            })
+                          }
                         >
                           <EntityTitleTableRowCell value={item} />
                           <TableRowCell>{item.account.name}</TableRowCell>

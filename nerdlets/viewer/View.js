@@ -12,7 +12,7 @@ import {
 } from 'nr1';
 import InstallationInstructions from './InstallationInstructions';
 import PropTypes from 'prop-types';
-import * as config from './../config';
+import * as config from '../config';
 
 class View extends React.Component {
   static getState(props) {
@@ -34,10 +34,7 @@ class View extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (
-      !state.quickstart ||
-      state.quickstart.id !== props.dashboardId
-    ) {
+    if (!state.quickstart || state.quickstart.id !== props.dashboardId) {
       return View.getState(props);
     }
     return null;
@@ -75,27 +72,11 @@ class View extends React.Component {
     return (
       <>
         <Grid>
-          <GridItem className="padding-top padding-bottom" columnSpan={8}>
+          <GridItem columnSpan={3} className="padding-left padding-top">
             <HeadingText type={HeadingText.TYPE.HEADING_2}>
               {this.state.quickstart.name}
             </HeadingText>
-          </GridItem>
-          <GridItem
-            columnSpan={4}
-            className="text-right padding-top padding-bottom"
-          >
-            <Link to="/">
-              <Button
-                type={Button.TYPE.NORMAL}
-                iconType={Button.ICON_TYPE.LOCATION__LOCATION__HOME}
-              >
-                Back to listing
-              </Button>
-            </Link>
-          </GridItem>
-        </Grid>
-        <Grid>
-          <GridItem columnSpan={3} className="padding-left">
+
             <HeadingText
               type={HeadingText.TYPE.HEADING_3}
               className="padding-top"
@@ -230,9 +211,12 @@ class View extends React.Component {
                       <GridItem columnSpan={2} className="text-right">
                         <Button
                           onClick={() => {
-                            navigation.openStackedNerdlet({ id: 'transfer', urlState: {
-                              dashboardUrl: `${config.URL_DATA_FOLDER}${this.state.quickstart.id}/dashboards/${dashboard.filename}`,
-                            }})
+                            navigation.openStackedNerdlet({
+                              id: 'transfer',
+                              urlState: {
+                                dashboardUrl: `${config.URL_DATA_FOLDER}${this.state.quickstart.id}/dashboards/${dashboard.filename}`,
+                              },
+                            });
                           }}
                           type={Button.TYPE.PRIMARY}
                           iconType={
@@ -266,7 +250,7 @@ class View extends React.Component {
 }
 
 View.propTypes = {
-  match: PropTypes.object,
+  dashboardId: PropTypes.string,
   data: PropTypes.object,
 };
 

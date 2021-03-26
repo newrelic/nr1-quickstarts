@@ -1,0 +1,21 @@
+@import "../shared.scss";
+
+.view-item {
+    background-color: white;
+    padding: 10px;
+
+    img {
+        width: 100%;
+    }
+}
+
+.preview-item {
+    background-color: white;
+    padding: 5px;
+}
+
+.preview-image {
+    img {
+        width: 100%;
+    }
+}

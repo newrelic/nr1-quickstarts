@@ -10,10 +10,8 @@ import {
   NerdGraphMutation,
   TextField,
   HeadingText,
-  NerdletStateContext,
   navigation,
   AccountPicker,
-  Spinner,
   Tabs,
   TabsItem,
   Toast,
@@ -21,7 +19,6 @@ import {
 import PropTypes from 'prop-types';
 
 class Transfer extends React.Component {
-
   static getDerivedStateFromProps(props, state) {
     if (props.accountId !== state.accountId && state.accountId == null) {
       return { ...state, accountId: props.accountId };
@@ -47,7 +44,7 @@ class Transfer extends React.Component {
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     if (this.props.sourceGuid !== undefined) {
       this.loadGuid(this.props.sourceGuid);
     } else if (this.props.sourceUrl !== undefined) {
@@ -361,9 +358,9 @@ class Transfer extends React.Component {
           Import/Export dashboard
         </HeadingText>
         <Tabs defaultValue="tab-1" ariaLabel="List of export options">
-          <TabsItem value="tab-1" label="Import into">
+          <TabsItem value="tab-1" label="Import into" className="padding-left">
             <p className="padding-top">
-              Where do you want to import the dashboard into?
+              Select the account where you want to import the dashboard.
             </p>
             {this.state.errorAccountId && (
               <p className="text-red">Please choose an account!</p>
@@ -404,7 +401,7 @@ class Transfer extends React.Component {
               Import dashboard
             </Button>
           </TabsItem>
-          <TabsItem value="tab-3" label="Export Json">
+          <TabsItem value="tab-3" label="Export Json" className="padding-left">
             <ExportJson json={this.state.dashboardJson} />
             {this.state.dashboardUrl && (
               <p className="custom-export-json-link">
