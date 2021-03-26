@@ -2,11 +2,14 @@ import React from 'react';
 import Preview from './Preview';
 import DatasourceItem from './DatasourceItem';
 import {
+  Badge,
+  BlockText,
   Link,
   Layout,
   LayoutItem,
   TextField,
   Grid,
+  GridItem,
   HeadingText,
   navigation,
   nerdlet,
@@ -62,12 +65,21 @@ class Home extends React.Component {
           <HeadingText type={HeadingText.TYPE.HEADING_1}>
             Quickstarts
           </HeadingText>
-          <p>Welcome to the New Relic dashboard library. </p>
+          <BlockText className="padding-top">
+            Welcome to the New Relic dashboard library.
+          </BlockText>
 
-          <p>
-            Use the search bar below to find a specific dashboard and click on
-            any to get a more detailed description. If you want to add more
-            dashboards or contribute to the code, please check out our{' '}
+          <BlockText className="padding-top">
+            <Badge type={Badge.TYPE.INFO}>New</Badge> Check out{' '}
+            <Link to="https://newrelic.github.io/quickstarts-synthetics-library/#/">
+              New Relic's Synthetics library.
+            </Link>
+          </BlockText>
+
+          <BlockText className="padding-top">
+            Use the search bar to find a specific dashboard and click on any to
+            get a more detailed description. If you want to add more dashboards
+            or contribute to the code, please check out our{' '}
             <a
               href="https://github.com/newrelic/nr1-quickstarts"
               rel="noopener noreferrer"
@@ -75,26 +87,7 @@ class Home extends React.Component {
             >
               Github repository
             </a>
-          </p>
-
-          <HeadingText
-            type={HeadingText.TYPE.HEADING_3}
-            className="padding-top"
-          >
-            Search
-          </HeadingText>
-          <TextField
-            className="custom-textfield"
-            placeholder="Search"
-            type={TextField.TYPE.SEARCH}
-            onChange={this.setSearch}
-            spacingType={[
-              TextField.SPACING_TYPE.LARGE,
-              TextField.SPACING_TYPE.NONE,
-              TextField.SPACING_TYPE.LARGE,
-              TextField.SPACING_TYPE.NONE,
-            ]}
-          />
+          </BlockText>
 
           <HeadingText
             type={HeadingText.TYPE.HEADING_3}
@@ -143,6 +136,20 @@ class Home extends React.Component {
         </LayoutItem>
         <LayoutItem className="list-view">
           <Grid>
+            <GridItem columnSpan={12}>
+              <TextField
+                className="custom-textfield"
+                placeholder="Search"
+                type={TextField.TYPE.SEARCH}
+                onChange={this.setSearch}
+                spacingType={[
+                  TextField.SPACING_TYPE.LARGE,
+                  TextField.SPACING_TYPE.NONE,
+                  TextField.SPACING_TYPE.LARGE,
+                  TextField.SPACING_TYPE.NONE,
+                ]}
+              />
+            </GridItem>
             {this.props.data.quickstarts
               .filter(this.search)
               .map((quickstart) => {
