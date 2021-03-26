@@ -159,7 +159,12 @@ class ExportNerdlet extends React.Component {
                       ]}
                     />
                   );
-                if (error) return <BlockText className="padding-left">{error.message}</BlockText>;
+                if (error)
+                  return (
+                    <BlockText className="padding-left">
+                      {error.message}
+                    </BlockText>
+                  );
                 return (
                   <>
                     {data.actor.entitySearch.count > 200 && (
