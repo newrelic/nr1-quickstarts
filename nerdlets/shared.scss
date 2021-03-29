@@ -1,0 +1,75 @@
+/*
+    General
+*/
+
+/*
+    General helpers
+*/
+.text-green {
+    color: green;
+}
+
+.text-red {
+    color: red;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.padding-top {
+    padding-top: 15px;
+}
+
+.padding-bottom {
+    padding-bottom: 15px;
+}
+
+.padding-left {
+    padding-left: 15px;
+
+    ul li {
+        margin-left: 15px;
+    }
+}
+
+.margin-top {
+    margin-top: 15px;
+}
+
+.custom-spinner {
+    height: 50px;
+}
+
+.custom-textfield {
+    width: 100%;
+}
+
+.background-grey {
+    background: #f7f7f8;
+}
+
+.background-white {
+    background: #fff;
+}
+
+/*
+    Helper for positioning the loading spinner
+*/
+.loading {
+    padding-top: 50px;
+    height: 100px;
+}
+
+/*
+    List view
+*/
+.list-view {
+    background: #f7f7f8;
+    padding: 10px;
+}
+

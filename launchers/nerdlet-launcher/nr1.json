@@ -3,5 +3,5 @@
     "id": "nerdlet-launcher",
     "displayName": "Quickstarts",
     "description": "Describe me",
-    "rootNerdletId": "nerdlet-nerdlet"
+    "rootNerdletId": "landing"
 }

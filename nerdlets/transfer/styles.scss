@@ -1,0 +1,13 @@
+@import "../shared.scss";
+
+.custom-textfield-json {
+    @extend .custom-textfield;
+}
+
+.custom-export-json-link {
+    padding: 5px 0 5px 16px;
+}
+
+.terraform {
+    max-width: 400px;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import ExportJson from '../../Partials/ExportJson';
+import ExportJson from './ExportJson';
 import {
   logger,
   Button,
@@ -10,17 +10,15 @@ import {
   NerdGraphMutation,
   TextField,
   HeadingText,
-  Modal,
   navigation,
   AccountPicker,
-  Spinner,
   Tabs,
   TabsItem,
   Toast,
 } from 'nr1';
 import PropTypes from 'prop-types';
 
-class ExportModal extends React.Component {
+class Transfer extends React.Component {
   static getDerivedStateFromProps(props, state) {
     if (props.accountId !== state.accountId && state.accountId == null) {
       return { ...state, accountId: props.accountId };
@@ -31,20 +29,27 @@ class ExportModal extends React.Component {
   constructor(props) {
     super(props);
 
-    this.closeModal = this.closeModal.bind(this);
     this.onChangeAccount = this.onChangeAccount.bind(this);
     this.onDashboardNameChange = this.onDashboardNameChange.bind(this);
     this.onCopyDashboard = this.onCopyDashboard.bind(this);
 
     // Set initial state
     this.state = {
-      dashboardJson: '',
-      dashboardUrl: null,
+      dashboardJson: {},
+      dashboardUrl: undefined,
       dashboardName: '',
       dashboardLoading: true,
       submitted: false,
       accountId: null,
     };
+  }
+
+  componentDidMount() {
+    if (this.props.sourceGuid !== undefined) {
+      this.loadGuid(this.props.sourceGuid);
+    } else if (this.props.sourceUrl !== undefined) {
+      this.loadJson(this.props.sourceUrl);
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -77,53 +82,6 @@ class ExportModal extends React.Component {
                                 width
                             }
                             title
-                            # Disabled because our import API cannot accept configuration and rawConfiguration
-                            # Can enabled again the future when the API supports both
-                            # configuration {
-                            #     area {
-                            #         nrqlQueries {
-                            #             accountId
-                            #             query
-                            #         }
-                            #    }
-                            #     line {
-                            #         nrqlQueries {
-                            #             accountId
-                            #             query
-                            #         }
-                            #    }
-                            #     bar {
-                            #         nrqlQueries {
-                            #             accountId
-                            #             query
-                            #         }
-                            #    }
-                            #     billboard {
-                            #         nrqlQueries {
-                            #             accountId
-                            #             query
-                            #       }
-                            #         thresholds {
-                            #             alertSeverity
-                            #             query
-                            #         }
-                            #   }
-                            #     pie {
-                            #         nrqlQueries {
-                            #             accountId
-                            #             query
-                            #         }
-                            #   }
-                            #     table {
-                            #         nrqlQueries {
-                            #             accountId
-                            #             query
-                            #         }
-                            #   }
-                            #     markdown {
-                            #         text
-                            #     }
-                            # }
                             rawConfiguration
                         }
                     }
@@ -147,12 +105,10 @@ class ExportModal extends React.Component {
     }
     `;
 
-  modalCallback = undefined;
-
   loadGuid(guid) {
     // Reset view
     this.setState({
-      dashboardJson: '',
+      dashboardJson: {},
       dashboardName: '',
       dashboardUrl: null,
       dashboardLoading: true,
@@ -178,7 +134,7 @@ class ExportModal extends React.Component {
   loadJson(url) {
     // Reset view
     this.setState({
-      dashboardJson: '',
+      dashboardJson: {},
       dashboardUrl: url,
       dashboardName: '',
       dashboardLoading: true,
@@ -194,13 +150,6 @@ class ExportModal extends React.Component {
           dashboardLoading: false,
         });
       });
-  }
-
-  closeModal(event, value) {
-    this.setState({
-      accountId: null,
-    });
-    this.props.onClose(event, value);
   }
 
   onChangeAccount(event, value) {
@@ -380,8 +329,6 @@ class ExportModal extends React.Component {
     this.setState({
       submitted: false,
     });
-
-    this.closeModal();
   }
 
   _importFail() {
@@ -398,26 +345,18 @@ class ExportModal extends React.Component {
   }
 
   render() {
-    if (this.props.hidden) {
-      return null;
-    }
-
-    if (this.state.dashboardLoading) {
-      return <Spinner />;
-    }
-
     return (
-      <Modal hidden={this.props.hidden} onClose={this.closeModal}>
+      <>
         <HeadingText
           spacingType={[AccountPicker.SPACING_TYPE.LARGE]}
           type={HeadingText.TYPE.HEADING_1}
         >
           Import/Export dashboard
         </HeadingText>
-        <Tabs defaultValue="tab-1">
-          <TabsItem value="tab-1" label="Import into">
+        <Tabs defaultValue="tab-1" ariaLabel="List of export options">
+          <TabsItem value="tab-1" label="Import into" className="padding-left">
             <p className="padding-top">
-              Where do you want to import the dashboard into?
+              Select the account where you want to import the dashboard.
             </p>
             {this.state.errorAccountId && (
               <p className="text-red">Please choose an account!</p>
@@ -458,7 +397,7 @@ class ExportModal extends React.Component {
               Import dashboard
             </Button>
           </TabsItem>
-          <TabsItem value="tab-3" label="Export Json">
+          <TabsItem value="tab-3" label="Export Json" className="padding-left">
             <ExportJson json={this.state.dashboardJson} />
             {this.state.dashboardUrl && (
               <p className="custom-export-json-link">
@@ -473,17 +412,15 @@ class ExportModal extends React.Component {
             )}
           </TabsItem>
         </Tabs>
-      </Modal>
+      </>
     );
   }
 }
 
-ExportModal.propTypes = {
+Transfer.propTypes = {
   sourceGuid: PropTypes.string,
   sourceUrl: PropTypes.string,
   accountId: PropTypes.number,
-  onClose: PropTypes.func,
-  hidden: PropTypes.bool,
 };
 
-export default ExportModal;
+export default Transfer;

@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Card, CardHeader, CardBody, GridItem } from 'nr1';
+import { Card, CardHeader, CardBody, GridItem, Link, navigation } from 'nr1';
 import PropTypes from 'prop-types';
-import * as config from '../../config';
+import * as config from '../config';
 
 class Preview extends React.Component {
   constructor(props) {
@@ -20,10 +19,15 @@ class Preview extends React.Component {
     if (this.props.quickstart.authors.length > 0) {
       subtitle = `Created by ${this.props.quickstart.authors.join(', ')}`;
     }
-
     return (
       <GridItem columnSpan={3}>
-        <Link className="preview-item" to={`/view/${this.props.quickstart.id}`}>
+        <Link
+          className="preview-item"
+          to={navigation.getOpenStackedNerdletLocation({
+            id: 'viewer',
+            urlState: { dashboardId: this.props.quickstart.id },
+          })}
+        >
           <Card>
             <CardHeader
               title={this.props.quickstart.name}

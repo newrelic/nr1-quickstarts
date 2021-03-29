@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import ExportModal from './Modals/ExportModal';
 import {
+  Badge,
+  Link,
   BlockText,
   Button,
   EntityTitleTableRowCell,
@@ -16,25 +16,27 @@ import {
   TableRowCell,
   HeadingText,
   Spinner,
+  navigation,
+  nerdlet,
 } from 'nr1';
 
-class ToolsExport extends React.Component {
+class ExportNerdlet extends React.Component {
   constructor(props) {
     super(props);
 
+    nerdlet.setConfig({
+      timePicker: false,
+    });
+
     this.search = this.search.bind(this);
-    this.openTools = this.openTools.bind(this);
-    this.closeTools = this.closeTools.bind(this);
 
     this.state = {
-      toolsModalHidden: true,
       search: {
         name: '%',
       },
     };
   }
 
-  modalCallback = undefined;
   searchTimeout = undefined;
 
   searchQuery = `
@@ -65,20 +67,6 @@ class ToolsExport extends React.Component {
         }
     }
   `;
-
-  openTools(guid) {
-    this.setState({
-      dashboardGuid: guid,
-      toolsModalHidden: false,
-    });
-  }
-
-  closeTools() {
-    this.setState({
-      dashboardGuid: null,
-      toolsModalHidden: true,
-    });
-  }
 
   search(event) {
     if (this.searchTimeout) {
@@ -113,13 +101,19 @@ class ToolsExport extends React.Component {
     return (
       <>
         <Grid>
-          <GridItem className="padding-top" columnSpan={8}>
+          <GridItem className="padding-top padding-left" columnSpan={8}>
             <HeadingText type={HeadingText.TYPE.HEADING_2}>
               Export dashboard
             </HeadingText>
           </GridItem>
-          <GridItem columnSpan={4} className="text-right padding-top">
-            <Link className="" to="/">
+          <GridItem
+            columnSpan={4}
+            className="text-right padding-top padding-left"
+          >
+            <Link
+              className=""
+              to={navigation.getReplaceNerdletLocation({ id: 'landing' })}
+            >
               <Button
                 type={Button.TYPE.PRIMARY}
                 iconType={Button.ICON_TYPE.LOCATION__LOCATION__HOME}
@@ -128,7 +122,7 @@ class ToolsExport extends React.Component {
               </Button>
             </Link>
           </GridItem>
-          <GridItem columnSpan={12}>
+          <GridItem columnSpan={12} className="padding-left">
             <p>
               Below is a list of all the dashboards you have access to within
               New Relic. You can click on any of them to get a list of export
@@ -165,18 +159,25 @@ class ToolsExport extends React.Component {
                       ]}
                     />
                   );
-                if (error) return <BlockText>{error.message}</BlockText>;
+                if (error)
+                  return (
+                    <BlockText className="padding-left">
+                      {error.message}
+                    </BlockText>
+                  );
                 return (
                   <>
                     {data.actor.entitySearch.count > 200 && (
-                      <p>
-                        <b>
-                          You have access to more than 200 dashboards, please
-                          use search to narrow your results.
-                        </b>
-                      </p>
+                      <BlockText className="padding-left">
+                        <Badge type={Badge.TYPE.WARNING}>Warning</Badge> You
+                        have access to more than 200 dashboards, please use
+                        search to narrow your results.
+                      </BlockText>
                     )}
-                    <Table items={data.actor.entitySearch.results.entities}>
+                    <Table
+                      items={data.actor.entitySearch.results.entities}
+                      ariaLabel="List of available dashboards"
+                    >
                       <TableHeader>
                         <TableHeaderCell>Name</TableHeaderCell>
                         <TableHeaderCell>Account</TableHeaderCell>
@@ -184,9 +185,14 @@ class ToolsExport extends React.Component {
                       </TableHeader>
                       {({ item }) => (
                         <TableRow
-                          onClick={(evt, { item }) => {
-                            this.openTools(item.guid);
-                          }}
+                          onClick={() =>
+                            navigation.openStackedNerdlet({
+                              id: 'transfer',
+                              urlState: {
+                                dashboardGuid: item.guid,
+                              },
+                            })
+                          }
                         >
                           <EntityTitleTableRowCell value={item} />
                           <TableRowCell>{item.account.name}</TableRowCell>
@@ -202,15 +208,9 @@ class ToolsExport extends React.Component {
             </NerdGraphQuery>
           </GridItem>
         </Grid>
-
-        <ExportModal
-          hidden={this.state.toolsModalHidden}
-          onClose={this.closeTools}
-          sourceGuid={this.state.dashboardGuid}
-        />
       </>
     );
   }
 }
 
-export default ToolsExport;
+export default ExportNerdlet;
