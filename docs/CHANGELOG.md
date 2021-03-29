@@ -1,3 +1,20 @@
+# [1.4.0](https://github.com/newrelic/nr1-quickstarts/compare/v1.3.1...v1.4.0) (2021-03-29)
+
+
+### Bug Fixes
+
+* design problems from switching to multiple nerdlets ([859aa4c](https://github.com/newrelic/nr1-quickstarts/commit/859aa4c5fb3ef4fdc382370075bde6d4b3d1ae2b))
+* leftover code from migration to multiple nerdlets ([759c20e](https://github.com/newrelic/nr1-quickstarts/commit/759c20e7c35bb73d8be0780f92025444651e6541))
+* link issue to export modal ([22cc900](https://github.com/newrelic/nr1-quickstarts/commit/22cc900f0895fefd098c94ff3f64478c0a469dce))
+* small design improvement on export tools ([9b256a5](https://github.com/newrelic/nr1-quickstarts/commit/9b256a58baabb2a96e50f7da2d5bd1d79ba6d389))
+* small design improvement on InstallationInstructions ([b8dfed0](https://github.com/newrelic/nr1-quickstarts/commit/b8dfed07e39febed2de8d66aa9e95f8a426df331))
+
+
+### Features
+
+* added link to Synthetics library and moved search to top of list ([0b84a06](https://github.com/newrelic/nr1-quickstarts/commit/0b84a060598cb04240f6abad02188849c3590a59))
+* removed router and created separate nerdlets for speed and flexability ([a672a9a](https://github.com/newrelic/nr1-quickstarts/commit/a672a9a4ceb48ca5a981d6058e63ec01bf25dc31))
+
 ## [1.3.1](https://github.com/newrelic/nr1-quickstarts/compare/v1.3.0...v1.3.1) (2021-03-24)
 
 
