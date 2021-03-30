@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/newrelic/nr1-quickstarts/compare/v1.4.0...v1.4.1) (2021-03-30)
+
+
+### Bug Fixes
+
+* typo ([826554b](https://github.com/newrelic/nr1-quickstarts/commit/826554b755f2e180213b24e6980ed25098b95ce4))
+
 # [1.4.0](https://github.com/newrelic/nr1-quickstarts/compare/v1.3.1...v1.4.0) (2021-03-29)
 
 
