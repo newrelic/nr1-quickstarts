@@ -310,7 +310,7 @@ class Transfer extends React.Component {
       .catch((error) => {
         logger.error('Nerdgraph Error:', error);
         this._importFail();
-        throw error
+        throw error;
       });
   }
 
