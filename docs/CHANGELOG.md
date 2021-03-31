@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/newrelic/nr1-quickstarts/compare/v1.4.1...v1.4.2) (2021-03-31)
+
+
+### Bug Fixes
+
+* incorrect flex url's ([c18f989](https://github.com/newrelic/nr1-quickstarts/commit/c18f989b4aa6bb50d9b65239f0ae0d1c59b7fbf3))
+
 ## [1.4.1](https://github.com/newrelic/nr1-quickstarts/compare/v1.4.0...v1.4.1) (2021-03-30)
 
 
