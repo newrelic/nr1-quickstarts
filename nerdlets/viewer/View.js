@@ -136,7 +136,7 @@ class View extends React.Component {
                     return (
                       <li key={flex}>
                         <a
-                          href={`./data/${this.state.quickstart.id}/flex/${flex}`}
+                          href={`${config.URL_DATA_FOLDER}${this.state.quickstart.id}/flex/${flex}`}
                           target="_BLANK"
                           rel="noopener noreferrer"
                         >
