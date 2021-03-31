@@ -7,7 +7,7 @@
     "email": "opensource+nr1-quickstarts@newrelic.com"
   },
   "dependencies": {
-    "js-yaml": "^3.14.0",
+    "js-yaml": "^3.14.1",
     "node-sass": "^4.14.1",
     "prop-types": "^15.6.2",
     "react-copy-to-clipboard": "^5.0.3",
