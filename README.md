@@ -1,4 +1,4 @@
-[![New Relic One Catalog Project header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/New_Relic_One_Catalog_Project.png)](https://opensource.newrelic.com/oss-category/#new-relic-one-catalog-project)
+[![Archived header](https://github.com/newrelic/opensource-website/raw/main/src/images/categories/Archived.png)](https://opensource.newrelic.com/oss-category/#archived)
 
 # New Relic Quickstarts
 
