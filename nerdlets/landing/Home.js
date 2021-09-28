@@ -60,8 +60,6 @@ class Home extends React.Component {
   }
 
   render() {
-    const launcher = { id: 'marketplace.home' };
-    const location = navigation.getOpenLauncherLocation(launcher);
     return (
       <Layout>
         <LayoutItem
@@ -176,9 +174,9 @@ class Home extends React.Component {
                   />{' '}
                   Notice
                 </Badge>{' '}
-                We will be archiving this app on November 1st in favour of our
-                New Relic Instant Observability platform. Click here to check it
-                out...
+                We will be archiving this application on November 1st 2021 and
+                replacing it with the New Relic Instant Observability platform.
+                Click here to check it out...
               </Tile>
 
               <TextField
