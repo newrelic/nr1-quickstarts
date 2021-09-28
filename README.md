@@ -1,5 +1,8 @@
 [![New Relic One Catalog Project header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/New_Relic_One_Catalog_Project.png)](https://opensource.newrelic.com/oss-category/#new-relic-one-catalog-project)
 
+# Notice
+
+This app will be archived on November 1st 2021 to be replaced by the [New Relic Instant Observability](https://one.newrelic.com/launcher/nr1-core.explorer?platform[filters]=Iihkb21haW4gPSAnQVBNJyBBTkQgdHlwZSA9ICdBUFBMSUNBVElPTicpIg==&pane=eyJuZXJkbGV0SWQiOiJucjEtY29yZS5saXN0aW5nIiwiZW50aXR5RXhwbG9yZXJQcm9kdWN0UmVkaXJlY3Rpb24iOnRydWUsImZhdm9yaXRlcyI6eyJzZWxlY3RlZCI6dHJ1ZSwidmlzaWJsZSI6dHJ1ZX0sImxhc3RWaWV3ZWQiOnsic2VsZWN0ZWQiOmZhbHNlLCJ2aXNpYmxlIjp0cnVlfX0=&overlay=eyJuZXJkbGV0SWQiOiJtYXJrZXRwbGFjZS5ob21lIn0=&sidebars[0]=eyJuZXJkbGV0SWQiOiJucjEtY29yZS5jYXRlZ29yaWVzIiwicm9vdE5lcmRsZXRJZCI6Im5yMS1jb3JlLmxpc3RpbmciLCJmYXZvcml0ZXMiOnsic2VsZWN0ZWQiOnRydWUsInZpc2libGUiOnRydWV9LCJsYXN0Vmlld2VkIjp7InNlbGVjdGVkIjpmYWxzZSwidmlzaWJsZSI6dHJ1ZX19&state=27820fcc-4884-886e-f1be-7037ba1ded58) platform. Also check out our Public Catalog at [https://developer.newrelic.com/instant-observability/](https://developer.newrelic.com/instant-observability/).
 # New Relic Quickstarts
 
 Community repository of New Relic dashboards, alerts, and installation instructions. You can find the repository here: https://newrelic.github.io/nr1-quickstarts/

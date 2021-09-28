@@ -13,6 +13,11 @@ import {
   HeadingText,
   navigation,
   nerdlet,
+  Card,
+  CardHeader,
+  CardBody,
+  Icon,
+  Tile,
 } from 'nr1';
 import PropTypes from 'prop-types';
 
@@ -55,6 +60,8 @@ class Home extends React.Component {
   }
 
   render() {
+    const launcher = { id: 'marketplace.home' };
+    const location = navigation.getOpenLauncherLocation(launcher);
     return (
       <Layout>
         <LayoutItem
@@ -70,7 +77,6 @@ class Home extends React.Component {
           </BlockText>
 
           <BlockText className="padding-top">
-            <Badge type={Badge.TYPE.INFO}>New</Badge> Check out{' '}
             <Link to="https://newrelic.github.io/quickstarts-synthetics-library/#/">
               New Relic's Synthetics library.
             </Link>
@@ -96,6 +102,16 @@ class Home extends React.Component {
             Links
           </HeadingText>
           <ul className="links">
+            <li>
+              <Link
+                to={navigation.getOpenStackedNerdletLocation({
+                  id: 'marketplace.home',
+                })}
+                rel="noopener noreferrer"
+              >
+                <Badge type={Badge.TYPE.INFO}>New</Badge> Instant Observability
+              </Link>
+            </li>
             <li>
               <a
                 href="https://github.com/newrelic/nr1-quickstarts/discussions"
@@ -137,6 +153,34 @@ class Home extends React.Component {
         <LayoutItem className="list-view">
           <Grid>
             <GridItem columnSpan={12}>
+              <Tile
+                to={navigation.getOpenStackedNerdletLocation({
+                  id: 'marketplace.home',
+                })}
+                type={Tile.TYPE.SOLID}
+                className="notice-tile"
+              >
+                <Badge
+                  type={Badge.TYPE.CRITICAL}
+                  spacingType={[
+                    Badge.SPACING_TYPE.OMIT,
+                    Badge.SPACING_TYPE.MEDIUM,
+                    Badge.SPACING_TYPE.OMIT,
+                    Badge.SPACING_TYPE.MEDIUM,
+                  ]}
+                  className="notice-badge"
+                >
+                  <Icon
+                    type={Icon.TYPE.INTERFACE__SIGN__EXCLAMATION__V_ALTERNATE}
+                    color="red"
+                  />{' '}
+                  Notice
+                </Badge>{' '}
+                We will be archiving this app on November 1st in favour of our
+                New Relic Instant Observability platform. Click here to check it
+                out...
+              </Tile>
+
               <TextField
                 className="custom-textfield"
                 placeholder="Search"
@@ -149,6 +193,30 @@ class Home extends React.Component {
                   TextField.SPACING_TYPE.NONE,
                 ]}
               />
+            </GridItem>
+            <GridItem columnSpan={3}>
+              <Link
+                className="preview-item"
+                to={navigation.getOpenStackedNerdletLocation({
+                  id: 'marketplace.home',
+                })}
+              >
+                <Card>
+                  <CardHeader
+                    title="New Relic Instant Observability"
+                    subtitle="Browse our new platform which includes visualizations, apps,
+                    or quickstarts filled with resources like dashboards,
+                    instrumentation, and alerts."
+                  />
+                  <CardBody className="preview-image">
+                    <img
+                      src="https://i.ibb.co/sjf4Xfx/screenshot-IO.png"
+                      alt="Instant Observability screenshot"
+                    />
+                    <Badge type={Badge.TYPE.INFO}>New</Badge>
+                  </CardBody>
+                </Card>
+              </Link>
             </GridItem>
             {this.props.data.quickstarts
               .filter(this.search)
