@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/newrelic/nr1-quickstarts/compare/v1.4.2...v1.5.0) (2021-09-29)
+
+
+### Features
+
+* links to IO and archival notices ([305ba28](https://github.com/newrelic/nr1-quickstarts/commit/305ba284bbec49b2bcf7674b36150b7da43a9d08))
+
 ## [1.4.2](https://github.com/newrelic/nr1-quickstarts/compare/v1.4.1...v1.4.2) (2021-03-31)
 
 
