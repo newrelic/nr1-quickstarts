@@ -174,7 +174,7 @@ class Home extends React.Component {
                   />{' '}
                   Notice
                 </Badge>{' '}
-                We will be archiving this application on November 1st 2021 and
+                We will be archiving this application on January 31st 2022 and
                 replacing it with the New Relic Instant Observability platform.
                 Click here to check it out...
               </Tile>
