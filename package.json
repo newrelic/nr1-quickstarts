@@ -8,10 +8,10 @@
   },
   "dependencies": {
     "js-yaml": "^3.14.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.2",
     "prop-types": "^15.6.2",
     "react-copy-to-clipboard": "^5.0.3",
-    "react-scripts": "^3.4.4"
+    "react-scripts": "^5.0.0"
   },
   "nr1": {
     "uuid": "dcaa3623-1e1c-41a3-a1d9-994499f4b66d"
